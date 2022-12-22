@@ -42,6 +42,20 @@ function imageShortcode(src, classes, alt, sizes, raw) {
   return Image.generateHTML(metadata, imageAttributes);
 }
 
+function imageUrlShortcode(src) {
+  let options = {
+    widths: [600],
+    formats: ["jpeg"]
+  };
+
+  Image(src, options);
+
+  let metadata = Image.statsSync(src, options);
+  return src;
+
+}
+
 module.exports = {
-    image: imageShortcode
+    image: imageShortcode,
+    imageUrl: imageUrlShortcode
 }

@@ -2,10 +2,27 @@ const pluginRss = require('@11ty/eleventy-plugin-rss')
 const pluginNavigation = require('@11ty/eleventy-navigation')
 const markdownIt = require('markdown-it')
 const anchors_plugin = require('@orchidjs/eleventy-plugin-ids');
+const Image = require("@11ty/eleventy-img")
 
 const filters = require('./utils/filters.js')
 const transforms = require('./utils/transforms.js')
 const shortcodes = require('./utils/shortcodes.js')
+
+
+async function shareImageShortcode(src) {
+    // src might be small.png - taken from frontmatter
+    let metadata = await Image(src, {
+      widths: [600],
+      formats: ["jpeg"],
+      urlPath: "/assets/",
+      outputDir: "./assets/",
+    })
+  
+    const data = metadata.jpeg[0]
+    // data.url might be /blog/hello-world/xfO_genLg4-600.jpeg
+    // note the filename is a content hash-width combination
+    return data.url
+}
 
 module.exports = function (config) {
     // Plugins
@@ -27,6 +44,8 @@ module.exports = function (config) {
     Object.keys(shortcodes).forEach((shortcodeName) => {
         config.addShortcode(shortcodeName, shortcodes[shortcodeName])
     })
+
+    config.addNunjucksAsyncShortcode("shareImageUri", shareImageShortcode)
 
     // Asset Watch Targets
     config.addWatchTarget('./src/assets')
@@ -65,7 +84,6 @@ module.exports = function (config) {
         return tagsSet
     })
       
-
     // Base Config
     return {
         dir: {
