@@ -1,0 +1,34 @@
+---
+layout: base
+---
+<article class="container">
+
+    <header class="title-container">
+        <div class="cover">
+            {% image
+                cover,
+                "photoclass",
+                "",
+                "(min-width: 30em) 50vw, 100vw",
+                false
+            %}
+        </div>
+        <div class="title">
+            <h1 class="u-float-right">{{ title | wrapFirstLetters | safe }}</h1>
+        </div>
+    </header>
+
+    <ul class="tags-list"> 
+        {% for tag in tags -%}
+            {% if tag !== 'posts' %}
+                <li>
+                    <a class="tag" href="/tags/{{ tag }}">#{{ tag }}</a>
+                </li>
+            {% endif %}
+        {%- endfor %}
+    </ul>
+
+    <div class="entry-content">
+        {{ content | safe }}
+    </div>
+</article>

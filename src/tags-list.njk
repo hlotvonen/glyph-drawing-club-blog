@@ -1,0 +1,12 @@
+---
+permalink: /tags/
+layout: base
+---
+<div class="container page">
+  <h1>Browse by tag</h1>
+  <ul class="posts-grid u-align-center">
+    {% for tag in collections.tagsList %}
+        <li><a href="/tags/{{tag}}">{{tag}}</a></li>
+    {% endfor %}
+  </ul>
+</section>

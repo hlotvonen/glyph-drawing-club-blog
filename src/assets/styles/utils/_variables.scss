@@ -1,0 +1,36 @@
+//--------------------
+// SCSS VARIABLES
+//--------------------
+
+// Grid breakpoints
+//
+// Define the minimum and maximum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+$breakpoints: (
+    md: 670px,
+    lg: 940px,
+    xl: 1260px
+);
+
+$container-max-width: 1200px;
+
+// Z-Index Stack
+//
+// Control the order of layers in the application
+$z-layers: (
+    'modal': 999,
+    'nav': 100,
+    'content-overlay': 30
+);
+
+// Brand Colors
+
+$color-1: #000000;
+$color-2: #1f246a;
+$color-3: #8a1181;
+$color-4: #d14444;
+$color-5: #2ca53e;
+$color-6: #68cbcb;
+$color-7: #e3c72d;
+$color-8: #dcf5ff;

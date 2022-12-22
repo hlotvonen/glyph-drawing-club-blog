@@ -1,0 +1,40 @@
+---
+pagination:
+  data: collections
+  size: 1
+  alias: tag
+permalink: /tags/{{ tag }}/
+layout: base
+---
+<div class="container page">
+
+  <h1>Tagged “{{ tag }}”</h1>
+  <ul class="posts-grid">
+    {% set taglist = collections[ tag ] %}
+    {% for post in taglist | reverse %}
+    <li>
+        
+      <div class="cover">
+        <a href="{{ post.url }}">
+          {%if post.data.cover %}
+            {% image
+              post.data.cover,
+              "photoclass",
+              "",
+              "(min-width: 30em) 50vw, 100vw",
+              false
+            %}
+          {% endif %}
+        </a>
+      </div>
+        
+      <div>
+        <a href="{{ post.url }}">
+          <h2>{{ post.data.title }}</h2>
+        </a>
+        {{ post.data.description }}
+      </div>
+
+    </li>
+    {% endfor %}
+  </ul>

@@ -1,0 +1,93 @@
+---
+layout: base
+eleventyNavigation:
+  key: Home
+---
+
+<div class="container page">
+
+<!-- Tutorials -->
+  <h1>Tutorials</h1>
+  <ul class="posts-grid">
+    {% for post in collections.Tutorial %}
+      <li{% if page.url == post.url %} aria-current="page"{% endif %}>
+        
+        <div class="cover">
+          <a href="{{ post.url }}">
+            {% image
+              post.data.cover,
+              "photoclass",
+              "",
+              "(min-width: 30em) 50vw, 100vw",
+              false
+            %}
+          </a>
+        </div>
+        
+        <div>
+          <a href="{{ post.url }}">
+            <h2>{{ post.data.title }}</h2>
+          </a>
+          {{ post.data.description }}
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+
+<!--Essays -->
+  <h1>Essays</h1>
+  <ul class="posts-grid">
+    {% for post in collections.Essay %}
+      <li{% if page.url == post.url %} aria-current="page"{% endif %}>
+        
+        <div class="cover">
+          <a href="{{ post.url }}">
+            {% image
+              post.data.cover,
+              "photoclass",
+              "",
+              "(min-width: 30em) 50vw, 100vw",
+              false
+            %}
+          </a>
+        </div>
+        
+        <div>
+          <a href="{{ post.url }}">
+            <h2>{{ post.data.title }}</h2>
+          </a>
+          {{ post.data.description }}
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+
+<!-- Articles -->
+  <h1>Articles</h1>
+  <ul class="posts-grid">
+    {% for post in collections.Article %}
+      <li{% if page.url == post.url %} aria-current="page"{% endif %}>
+        
+        <div class="cover">
+          <a href="{{ post.url }}">
+            {% image
+              post.data.cover,
+              "photoclass",
+              "",
+              "(min-width: 30em) 50vw, 100vw",
+              false
+            %}
+          </a>
+        </div>
+        
+        <div>
+          <a href="{{ post.url }}">
+            <h2>{{ post.data.title }}</h2>
+          </a>
+          {{ post.data.description }}
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+
+</div>
