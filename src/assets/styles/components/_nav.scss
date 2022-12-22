@@ -10,7 +10,7 @@
     }
 
     .nav__item--active {
-        background: linear-gradient($color-1, $color-2, $color-1);
+        background: linear-gradient(var(--color-1), var(--color-2), var(--color-1));
         border-radius: 0.5rem;
     }
 

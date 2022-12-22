@@ -2,7 +2,7 @@
     font-size: 0.875rem;
     padding: 2rem;
     margin-top:2rem;
-    border-top: 2px solid $color-2;
+    border-top: 2px solid var(--color-2);
     &__inner {
         display: flex;
         justify-content: space-between;

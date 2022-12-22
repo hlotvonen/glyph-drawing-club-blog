@@ -25,12 +25,26 @@ $z-layers: (
 );
 
 // Brand Colors
+:root {
+    --color-1: #eeeeee;
+    --color-2: #bfca8a57;
+    --color-3: #b38dd957;
+    --color-4: #b73c3c;
+    --color-5: #e1265b;
+    --color-6: #ea601d;
+    --color-7: #0e216cd4;
+    --color-8: #333333;
+}
 
-$color-1: #000000;
-$color-2: #1f246a;
-$color-3: #8a1181;
-$color-4: #d14444;
-$color-5: #2ca53e;
-$color-6: #68cbcb;
-$color-7: #e3c72d;
-$color-8: #dcf5ff;
+@media screen and (prefers-color-scheme: dark) {
+    :root {
+        --color-1: #000000;
+        --color-2: #1f246a;
+        --color-3: #8a1181;
+        --color-4: #d14444;
+        --color-5: #2ca53e;
+        --color-6: #68cbcb;
+        --color-7: #e3c72d;
+        --color-8: #dcf5ff;
+    }
+}
