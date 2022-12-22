@@ -302,10 +302,10 @@ p.summary a:hover {
     text-align: left;
 }
 .entry-content table td {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--color-8);
 }
 .entry-content table th {
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid var(--color-8);
     font-weight: normal;
 }
 
@@ -338,8 +338,6 @@ p.summary {
 
 blockquote {
     margin: 1rem 0;
-    border: 1px solid black;
-    border-width: 2px 0;
 }
 .entry-content blockquote p {
     font-size: 1.3rem;
@@ -359,7 +357,7 @@ blockquote p::first-letter {
 
 .longquote {
     margin: 1rem 1rem 0;
-    border-left: 1px solid black;
+    border-left: 1px solid var(--color-8);
     padding-left: 1rem;
 }
 .longquote p {
@@ -411,7 +409,7 @@ sub {
 }
 
 .ref {
-    border: 1px solid black;
+    border: 1px solid var(--color-8);
     padding: 0.5rem;
     background: #fff;
     z-index: 10;
