@@ -1,7 +1,7 @@
 const pluginRss = require('@11ty/eleventy-plugin-rss')
 const pluginNavigation = require('@11ty/eleventy-navigation')
 const markdownIt = require('markdown-it')
-const anchors_plugin = require('@orchidjs/eleventy-plugin-ids');
+    const anchors_plugin = require('@orchidjs/eleventy-plugin-ids');
 const Image = require("@11ty/eleventy-img")
 
 const filters = require('./utils/filters.js')
@@ -57,8 +57,8 @@ module.exports = function (config) {
             html: true,
             breaks: true,
             linkify: true,
-            typographer: true
-        })
+            typographer: false
+        }).use(require('markdown-it-footnote'))
     )
 
     // Layouts

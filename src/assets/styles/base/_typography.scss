@@ -186,13 +186,50 @@ p.summary a:hover {
 .entry-content ol,
 .entry-content ul,
 .entry-content pre,
-.entry-content table {
+.entry-content table,
+.entry-content details {
     max-width: 40rem;
     width: 100%;
 }
+.entry-content details {
+    margin: auto;
+    border-radius: 1rem;
+    background: linear-gradient(
+        var(--color-2),
+        var(--color-1),
+        var(--color-1),
+        var(--color-1),
+        var(--color-2)
+    );
+}
+.entry-content details summary {
+    background: linear-gradient(
+        var(--color-4),
+        var(--color-1),
+        var(--color-1),
+        var(--color-1),
+        var(--color-4)
+    );
+    padding: 2rem 0rem;
+    margin: 1rem 0 1rem 0rem;
+    border-radius: 1rem;
+}
 
+.entry-content details pre {
+    white-space: break-spaces;
+    margin: auto;
+}
 .entry-content pre {
     margin: auto;
+}
+
+.entry-content h1 {
+    font-size:4rem;
+    text-align: center;
+    max-width: 100%;
+    padding:0;
+    hyphens: auto;
+    word-wrap: break-word;
 }
 
 .entry-content h2 {
@@ -218,6 +255,7 @@ p.summary a:hover {
     margin: 2rem auto 0;
 }
 
+.entry-content h1,
 .entry-content h4,
 .entry-content p,
 .entry-content table,
@@ -374,11 +412,24 @@ iframe {
 }
 
 /*
+ Custom extra elements
+*/
+.note-from-the-future {
+    background: var(--color-2);
+    max-width: 40rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+/*
   FOOTNOTES
   */
 hr {
     border: 0;
     border-top: 2px solid var(--color-2);
+    margin: 3rem 0;
 }
 
 .footnote {

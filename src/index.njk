@@ -62,10 +62,10 @@ eleventyNavigation:
     {% endfor %}
   </ul>
 
-<!-- Articles -->
-  <h1>Articles</h1>
+<!-- Blog posts -->
+  <h1>Blog posts</h1>
   <ul class="posts-grid">
-    {% for post in collections.Article %}
+    {% for post in collections.Post %}
       <li{% if page.url == post.url %} aria-current="page"{% endif %}>
         
         <div class="cover">
