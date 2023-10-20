@@ -43,7 +43,7 @@ I delve into the creation of Amiga ASCII art and use it as a method to develop m
 
 [Introduction](#introduction)
 
-[Research section](#2-research-section)
+[Research section](#research-section)
 &hellip; 2.1. [Source materials and research data](#21-source-materials-and-research-data)
 &hellip; 2.2. [About text art](#22-about-text-art)
 &hellip; &hellip; 2.2.1. [Definition of text art](#221-definition-of-text-art)
@@ -56,7 +56,7 @@ I delve into the creation of Amiga ASCII art and use it as a method to develop m
 &hellip; &hellip; 2.3.5. [ASCII art to decorate BBS boards](#235-ascii-art-to-decorate-bbs-boards)
 &hellip; &hellip; 2.3.6. [What is a colly?](#236-what-is-a-colly)
 
-[Production part](#3-production-part)
+[Production part](#production-part)
 &hellip; 3.1. [My starting point for creating ASCII art](#31-my-starting-point-for-creating-ascii-art)
 &hellip; &hellip; 3.1.1. [Finding the right method](#311-finding-the-right-method)
 &hellip; 3.2. [Production process](#32-production-process)
@@ -64,9 +64,9 @@ I delve into the creation of Amiga ASCII art and use it as a method to develop m
 &hellip; &hellip; 3.2.2. [Making the colly](#322-making-the-colly)
 &hellip; &hellip; 3.2.3. [Physical final product](#323-physical-final-product)
 
-[Final reflections](#final-reflections)
+[Concluding remarks](#concluding-remarks)
 
-[Sources](#5-sources)
+[Sources](#sources)
 &hellip; 5.1. [Printed sources](#51-printed-sources)
 &hellip; 5.2. [Unprinted sources](#52-unprinted-sources)
 &hellip; &hellip; 5.2.1 [Internet sources](#521-internet-sources)
@@ -281,7 +281,7 @@ In the 1960s, to facilitate the transfer of text-form information across various
 <figure class="u-image-full-width">
     {% image
         "./src/assets/images/figure6.png",
-        "crisp",
+        "crisp invert-color",
         "A list of characters in ASCII",
         "(min-width: 30em) 50vw, 100vw",
         true
@@ -340,7 +340,7 @@ The Amiga has its own 8-bit character set. The first 128 characters follow the A
 <figure class="u-image-full-width">
     {% image
         "./src/assets/images/figure8.png",
-        "crisp",
+        "crisp invert-color",
         "A list of characters in Amiga",
         "(min-width: 30em) 50vw, 100vw",
         true
@@ -357,7 +357,7 @@ Slashes and underscores are perhaps the most commonly used characters in Amiga A
 <figure class="u-image-full-width">
     {% image
         "./src/assets/images/figure9.png",
-        "crisp",
+        "crisp invert-color",
         "The word foundation rendered in Amiga ASCII style",
         "(min-width: 30em) 50vw, 100vw",
         true
@@ -371,8 +371,8 @@ Michael Hischer, whom I interviewed, describes his technique as:
 <figure class="u-image-full-width">
     {% image
         "./src/assets/images/figure10.png",
-        "crisp",
-        "The word foundation rendered in Amiga ASCII style",
+        "crisp invert-color",
+        "Various typographical symbols from the Amiga character set",
         "(min-width: 30em) 50vw, 100vw",
         true
     %}
@@ -407,7 +407,7 @@ The origin of BBSs began when Ward Christensen and Randy Suess (US) developed th
 <figure class="u-image-full-width">
     {% image
         "./src/assets/images/figure11.jpg",
-        "crisp",
+        "crisp ",
         "Amiga computer connected to a CRT showing a colorful BBS menu screen",
         "(min-width: 30em) 50vw, 100vw",
         true
@@ -443,7 +443,7 @@ Amiga and PC-based BBSs started to be decorated with ASCII graphics. Most of the
 <figure class="u-image-full-width">
     {% image
         "./src/assets/images/figure12.png",
-        "crisp",
+        "crisp invert-color",
         "The word GRMMXI in PC and Amiga ASCII styles. The PC style word looks like it's outline is made of dashed lines while the Amiga has a more seamless outline.",
         "(min-width: 30em) 50vw, 100vw",
         true
@@ -503,7 +503,7 @@ Collies usually begin with either an advertisement for their own BBS or a title.
 <figure class="u-image-full-width">
     {% image
         "./src/assets/images/figure13.png",
-        "crisp",
+        "crisp invert-color",
         "Logo and various advertising text in black and white Amiga ASCII style",
         "(min-width: 30em) 50vw, 100vw",
         true
@@ -521,7 +521,7 @@ At the beginning of collies, there is usually a title. The title may include the
 <figure class="u-image-full-width">
     {% image
         "./src/assets/images/figure15.png",
-        "crisp",
+        "crisp invert-color",
         "Various logos, text and patterns in black and white Amiga ASCII style",
         "(min-width: 30em) 50vw, 100vw",
         true
@@ -538,7 +538,7 @@ Collies often also contain a brief introduction, where the creator writes about 
 <figure class="u-image-full-width">
     {% image
         "./src/assets/images/figure14.png",
-        "crisp",
+        "crisp invert-color",
         "Logo and epilogue text in black and white Amiga ASCII style",
         "(min-width: 30em) 50vw, 100vw",
         true
@@ -554,7 +554,7 @@ FILE_ID.DIZ is an ASCII text file that contains a short description of the conte
 <figure class="u-image-full-width">
     {% image
         "./src/assets/images/figure16.png",
-        "crisp",
+        "crisp invert-color",
         "Logo in black and white Amiga ASCII style",
         "(min-width: 30em) 50vw, 100vw",
         true
@@ -625,7 +625,7 @@ I work as a web designer, so I started working on my first experiments with the 
 <figure class="u-image-full-width">
     {% image
         "./src/assets/images/figure17.png",
-        "crisp",
+        "crisp invert-color",
         "Logo in black and white Amiga ASCII style",
         "(min-width: 30em) 50vw, 100vw",
         true
@@ -642,7 +642,7 @@ I found and installed the original Amiga fonts[^58] in TTF format on my computer
 <figure class="u-image-full-width">
     {% image
         "./src/assets/images/figure18.png",
-        "crisp",
+        "crisp invert-color",
         "Logo in black and white filled ASCII style",
         "(min-width: 30em) 50vw, 100vw",
         true
@@ -662,7 +662,7 @@ Typing each character by hand required absolute focus. However, using the cut-pa
 <figure class="u-image-full-width">
     {% image
         "./src/assets/images/figure19.png",
-        "crisp",
+        "crisp invert-color",
         "Logo in black and white Amiga ASCII style",
         "(min-width: 30em) 50vw, 100vw",
         true
@@ -679,7 +679,7 @@ I tried a more expressive form language by creating logos that consisted of shar
 <figure class="u-image-full-width">
     {% image
         "./src/assets/images/figure21.png",
-        "crisp",
+        "crisp invert-color",
         "Logo in black and white Amiga ASCII style",
         "(min-width: 30em) 50vw, 100vw",
         true
@@ -692,7 +692,7 @@ In one logo experiment, I added eyes and a mouth, making the letters look like f
 <figure class="u-image-full-width">
     {% image
         "./src/assets/images/figure20.png",
-        "crisp",
+        "crisp invert-color",
         "Logo in black and white Amiga ASCII style",
         "(min-width: 30em) 50vw, 100vw",
         true
@@ -728,7 +728,7 @@ I find the final result interesting, and I am satisfied with it. The colly turne
 <figure class="u-image-full-width">
     {% image
         "./src/assets/images/colly.png",
-        "crisp",
+        "crisp invert-color",
         "Dot matrix printer printing the colly",
         "(min-width: 30em) 50vw, 100vw",
         true

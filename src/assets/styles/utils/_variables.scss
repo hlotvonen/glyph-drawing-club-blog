@@ -34,7 +34,17 @@ $z-layers: (
     --color-6: #ea601d;
     --color-7: #0e216cd4;
     --color-8: #333333;
+    --font-size-root: 14px;
+    --line-height: 1.44rem;
 }
+
+@include mq(lg) {
+    :root {
+        --font-size-root: 20px;
+        --line-height: 1.625rem;
+    }
+}
+
 
 @media screen and (prefers-color-scheme: dark) {
     :root {
@@ -46,5 +56,9 @@ $z-layers: (
         --color-6: #68cbcb;
         --color-7: #e3c72d;
         --color-8: #dcf5ff;
+    }
+    .invert-color {
+        -webkit-filter: invert(100%);
+        filter: invert(100%);
     }
 }
