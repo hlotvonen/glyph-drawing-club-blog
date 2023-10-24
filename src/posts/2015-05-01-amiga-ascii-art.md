@@ -35,6 +35,11 @@ I delve into the creation of Amiga ASCII art and use it as a method to develop m
   <p>
     Enjoy :-)
   </p>
+
+  <p>
+    <em>EDIT: Thanks to <a href="https://mw.rat.bz/">Michael Walden</a> and <a href="https://www.goto80.com/">goto80</a> for some edits and corrections!</em>
+  </p>
+
 </div>
 
 ---
@@ -82,7 +87,7 @@ Colon, hyphen, and parenthesis are typographic punctuation marks used in written
 
 In text-based communication, the representation of images has not always been possible for technical reasons. To address this need, text art emerged, a technique of creating images where a picture or word is formed from drawn or printed symbols in a composition. An emoticon is a kind of simple image formed with letter characters. However, by combining various letter characters spread over several lines, it's possible to create much more nuanced images that can depict almost any subject. This image-making technique has been a part of the history of writing up to the present day. I will discuss this matter in more detail in section [2.2.2.](#222-history-of-text-art)
 
-Text art made on a computer is usually called ASCII art. The name derives from the character standard developed in the 1960s. ASCII art flourished in the 1980s and 1990s, before the internet, when text-based BBS systems operating on telephone networks served as the primary places for thought and information exchange, much like the internet. The making of ASCII art waned as the internet displaced BBS systems with the advent of fast broadband connections around the year 2000. However, ASCII art has surged in recent years due to nostalgia, social media, and the archiving of ASCII art.
+Text art made on a computer is usually called ASCII art. The name derives from the character standard developed in the 1960s. ASCII art flourished in the 1980s and 1990s, before widespread public access to the internet, when text-based BBS systems operating on telephone networks served as the primary places for thought and information exchange, much like the internet. The making of ASCII art waned as the internet displaced BBS systems with the advent of fast broadband connections around the year 2000. However, ASCII art has surged in recent years due to nostalgia, social media, and the archiving of ASCII art.
 
 In my thesis, I delve into this image-making technique and use it as a method to develop my visual expression. In the research sections, I define text art as one genre of visual art, encompassing ASCII art and its sub-genres, and briefly describe the history of text art and ASCII art and the associated subculture. I focus especially on the Amiga-style ASCII text art in my thesis and create a collection of my experiments using this image-making method. I elaborate on the aforementioned concepts in section [2.3](#23-the-era-of-ascii-art).
 
@@ -129,7 +134,7 @@ Text art can therefore be defined as follows: **text art is a form of art in whi
     This definition is not satisfactory. 
   </p>
   <p>
-    First of all, there are forms of text art where characters can have be both: semantic (where the character is a part of a word) and non-semantic (where the same character is part of an typographical picture) meanings. This is quite common in shaped or visual poetry. 
+    First of all, there are forms of text art where characters can be both: semantic (where the character is a part of a word) and non-semantic (where the same character is part of an typographical picture) meanings. This is quite common in shaped or visual poetry. 
   </p>
   <p>
     Secondly — where the attempt at a universal definition of text art gets really complicated — it's possible that the whole picture consists of no letters at all. An example is of course ANSI art, where the pictures usually consist of only block elements █, ▓, ▒, and ░. 
@@ -173,7 +178,7 @@ Before the invention of typewriters and computers, calligram was the most common
     <figcaption>(Figure 2.) Axe of Simmias of Rhodes, 325 BCE</figcaption>
 </figure>
 
-Arabic calligraphy can also be considered a form of text art. Drawing humans is seen in Islam as idol worship, so picyutrd were drawn using calligraphy, that is, text. In Islamic culture, calligraphy is considered the noblest form of visual art, as it translates the words of God as revealed in the Qur'an into a visible form. Qur'anic manuscripts have always been commissioned from the most skilled calligraphers to give the text an artistic appearance worthy of its value [^7].
+Arabic calligraphy can also be considered a form of text art. Drawing humans is seen in Islam as idol worship, so pictures were drawn using calligraphy, that is, text. In Islamic culture, calligraphy is considered the noblest form of visual art, as it translates the words of God as revealed in the Qur'an into a visible form. Qur'anic manuscripts have always been commissioned from the most skilled calligraphers to give the text an artistic appearance worthy of its value [^7].
 
 Movable type and printing press developed in the 1400s made duplicating knowledge fast and, above all, cheap. The printing technique made it possible to shape people's perceptions of themselves and the surrounding world. The great revolution of printing in Europe was the invention of movable type, which meant that the same type could be used over and over again to produce many different printed products. Movable types significantly accelerated page production compared to engraving each page separately on wood or metal plates, so movable types were also used to create typographic ornaments and pictures [^8].
 
@@ -335,7 +340,14 @@ Even though this image was swiftly removed from the office wall and rapidly dism
 
 ASCII art made with the Amiga computer's font and column settings is called Amiga ASCII. 
 
-The Amiga has its own 8-bit character set. The first 128 characters follow the ASCII standard, but the remaining 128 characters belong to Amiga's extended character set. It isn't particularly suited for drawing pictures and graphics, as it doesn't contain characters meant for drawing tables and graphics, unlike character sets of some other contemporary machines. Amiga's extended character set mainly contains some mathematical symbols and some characters of European languages, such as the letters ä, ö, and å used in Finnish.
+The Amiga has its own 8-bit character set. The first 128 characters follow the ASCII standard, and the remaining 128 characters follow a supplemental Latin character set ISO/IEC 8859-1. It isn't particularly suited for drawing pictures and graphics, as it doesn't contain characters meant for drawing tables and graphics, unlike character sets of some other contemporary machines. Amiga's extended character set mainly contains some mathematical symbols and some characters of European languages, such as the letters ä, ö, and å used in Finnish.
+
+<div class="note-from-the-future">
+  <h4>Note from 2023:</h4>
+  <p>
+    <a href="https://mw.rat.bz/ascii/#AmigaOS">As noted by Michael Walden</a>, the Amiga character set is equal to "ISO/IEC 8859-1" and "ECMA-94 Latin Alphabet No. 1" except for one character at code point hex 7F. It's a strange glyph: a rectangle filled with diagonal black and white stripes. Normally the code point at 7F is <a href="https://graphemica.com/007F">DELETE</a>. This character is rarely used in Amiga ASCII art, but can be used for some interesting effects. See recent <a href="https://16colo.rs/pack/impure80/h7-impure.txt">example by h7</a> where this character is used for the beard and line under the logo.
+  </p>
+</div>
 
 <figure class="u-image-full-width">
     {% image
@@ -451,12 +463,32 @@ Amiga and PC-based BBSs started to be decorated with ASCII graphics. Most of the
     <figcaption>(Figure 12.) The same logo in IBM PC's (left) and Amiga's (right) fonts.</figcaption>
 </figure>
 
-ANSI art is a form of ASCII art. However, it significantly differs from other forms of ASCII art, as ANSI art mainly consists of rectangular raster bars and looks more like pixel graphics than actual text art. PC computers' ROM (_read only memory_) contained the character set and font specified on _"code page 437"_. This character set includes the 128 characters of the ASCII standard and additionally a set of graphical elements specifically for drawing tables and graphics. However, ANSI images are primarily composed of five characters, whose different strength raster surfaces enable the creation of color fields and shading on an 80x25 grid. Using color was also possible through terminal control codes included in the terminal control standard. The typical ANSI color palette consists of 16 colors and 8 background colors, which was later expanded to 16 colors and 8 background colors. This allowed for significantly more imposing images than traditional ASCII graphics.[^44]
+ANSI art is a form of ASCII art. However, it significantly differs from other forms of ASCII art, as ANSI art mainly consists of rectangular raster bars and looks more like pixel graphics than actual text art. PC computers' ROM (_read only memory_) contained the character set and font specified on _"code page 437"_. This character set includes the 128 characters of the ASCII standard and additionally a set of graphical elements specifically for drawing tables and graphics. However, ANSI images are primarily composed of five characters, whose different strength raster surfaces enable the creation of color fields and shading on an 80x25 grid. Using color was also possible through terminal control codes included in the ANSI X3.64 terminal control standard. The ANSI color palette consists of 16 colors and 8 background colors, which was later expanded to 16 colors and 16 background colors by reusing some bits for more colors. This allowed for significantly more imposing images than traditional ASCII graphics.[^44]
 
 <div class="note-from-the-future">
   <h4>Note from 2023:</h4>
   <p>
-    Because the tools for creating ANSI and Amiga ASCII are mostly the same, many contemporary Amiga ASCII pieces also use ANSI colours. However, if colored Amiga ASCII is viewed on an actual Amiga, the colours wouldn't show.
+    Because the tools for creating ANSI and Amiga ASCII are mostly the same, many contemporary Amiga ASCII pieces also use ANSI colours. However, if the Amiga ASCII is using <a href="https://forum.16colo.rs/t/ice-colors-or-blinking-text/27">iCE colors</a>, the file wouldn't display correctly in many Amiga ASCII viewers and editors. For example the escape sequence "Esc[1m" turns on bold text on Amiga, but the same escape code turns the foreground text a bright light blue color using iCE colors.</p>
+  <p>
+    On the other hand, AmigaOS has a wide range of supported colors and different ANSI escape sequences, which would theoretically allow one to display more colors than the PC ANSIs. Some escape sequence commands can be also used for all kinds of funny trickery, like moving the cursor and erasing parts of lines. This made it possible to create pixel art with text files, and has lead to a lot of <a href="https://eab.abime.net/showthread.php?t=39795">confusion among the ASCII art community</a>.
+  </p> 
+
+  <figure class="u-image-full-width">
+      {% image
+          "./src/assets/images/amiga-ansi.png",
+          "crisp",
+          "AmigaOS shell, showing a pixel logo of abime.net",
+          "(min-width: 30em) 50vw, 100vw",
+          true
+      %}
+      <figcaption>This logo is actually a text file. When this text file is opened in AmigaShell, it renders a logo that look very much like pixel art, but it's made with some clever escape sequence trickery.</figcaption>
+  </figure>
+  <p>
+    Even though Amiga ASCII could potentially be more colorful and diverse in form than the PC ANSI, for some reason most Amiga ASCII art in the archives is just plain text in monochrome.
+  </p>
+
+  <p>  
+    <em>Thanks to <a href="https://www.goto80.com/">goto80</a> and by proxy sir garbagetruck for pointing this out.</em>
   </p>
 </div>
 
@@ -836,14 +868,14 @@ I look forward to following the development of Amiga ASCII art.
 * Scott, Jason (2005): _BBS Documentary Interview Collection: John Sheetz_. < https://archive.org/details/20030322-bbs-sheetz > 10.4.2015.
 
 ### 5.2.3. INTERVIEWS
-* Kiuru, Antti (2015): henkilöhaastattelu. Helsinki. 5.4.2015.
-* Hischer, Michael (2015): sähköpostihaastattelu. 18.3.2015.
+* Kiuru, Antti (2015): Interviewed in person. Helsinki. 5.4.2015.
+* Hischer, Michael (2015): Interviewed through email. 18.3.2015.
 
 ## 5.3. IMAGE SOURCES
 * Figure 1. Lotvonen, Heikki (2015).
 * Figure 2. Macpuerto (2013): _Caligramas_. Image from the WWW-page. < http://macpuerto.com/wp-content/uploads/2013/12/03_simmias_rodas.jpg > 10.4.2015.
-* Figure 3. Tullett, Barrie (2014): _Typewriter art: a modern anthology_. Lontoo: Laurence King Publishing. Skannattu 10.4.2015.
-* Figure 4. Tullett, Barrie (2014): _Typewriter art: a modern anthology_. Lontoo: Laurence King Publishing. Skannattu 10.4.2015.
+* Figure 3. Tullett, Barrie (2014): _Typewriter art: a modern anthology_. London: Laurence King Publishing. Scanned 10.4.2015.
+* Figure 4. Tullett, Barrie (2014): _Typewriter art: a modern anthology_. London: Laurence King Publishing. Scanned 10.4.2015.
 * Figure 5. Scott, Jason (2005): Images from John Sheetz interview. Image from the WWW-page. < http://www.bbsdocumentary.com/photos/099sheetz/M/p1010032.jpg > 10.4.2015.
 * Figure 6. Lotvonen, Heikki (2015).
 * Figure 7. Knowlton, Ken (1966): _Ken Knowlton Mosaics_. Image from the WWW-page. < http://www.knowltonmosaics.com/pages/HKnewd.htm > 10.4.2015.
