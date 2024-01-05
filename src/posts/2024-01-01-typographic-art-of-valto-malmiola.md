@@ -367,7 +367,7 @@ Syvänne also had a go at it, as exemplified by his work on the cover of *Kirjap
 
 <figure class="u-image-small">
     {% image
-        "./src/assets/images/malmiola/kirjapainotaito-kesaakuu-1936.jpg",
+        "./src/assets/images/malmiola/kirjapainotaito-kesakuu-1936.jpg",
         "",
         "Cover of Kirjapainotaito -magazine is a graphic print of a sunset, composed of brass rule",
         "(min-width: 30em) 50vw, 100vw",
