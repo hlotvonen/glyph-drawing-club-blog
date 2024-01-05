@@ -382,7 +382,7 @@ As a morbid anthithesis to the playfulness of his work, during my research of Ma
 
 <figure class="u-image-full-width">
     {% image
-        "./src/assets/images/malmiola/Topi-Valkonen-1948-Malmiola-tyoon-aarella.jpg",
+        "./src/assets/images/malmiola/Topi-Valkonen-1948-Malmiola-tyon-aarella.jpg",
         "",
         "",
         "(min-width: 30em) 50vw, 100vw",
