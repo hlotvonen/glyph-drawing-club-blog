@@ -255,7 +255,7 @@ I don't know much about the creation of this print, but I saw it for the first t
 
 <figure class="u-image-full-width">
     {% image
-        "./src/assets/images/malmiola/metsä.jpg",
+        "./src/assets/images/malmiola/metsa.jpg",
         "",
         "A framed print of a gloomy moon-lit forest, made with horizontal type rules",
         "(min-width: 30em) 50vw, 100vw",
@@ -367,7 +367,7 @@ Syvänne also had a go at it, as exemplified by his work on the cover of *Kirjap
 
 <figure class="u-image-small">
     {% image
-        "./src/assets/images/malmiola/kirjapainotaito-kesäkuu-1936.jpg",
+        "./src/assets/images/malmiola/kirjapainotaito-kesaakuu-1936.jpg",
         "",
         "Cover of Kirjapainotaito -magazine is a graphic print of a sunset, composed of brass rule",
         "(min-width: 30em) 50vw, 100vw",
@@ -382,7 +382,7 @@ As a morbid anthithesis to the playfulness of his work, during my research of Ma
 
 <figure class="u-image-full-width">
     {% image
-        "./src/assets/images/malmiola/Topi-Valkonen-1948-Malmiola-työn-äärellä.jpg",
+        "./src/assets/images/malmiola/Topi-Valkonen-1948-Malmiola-tyoon-aarella.jpg",
         "",
         "",
         "(min-width: 30em) 50vw, 100vw",
