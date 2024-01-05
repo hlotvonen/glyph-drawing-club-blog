@@ -378,7 +378,7 @@ Syvänne also had a go at it, as exemplified by his work on the cover of *Kirjap
 
 ## Valto Malmiola's Short Biography
 
-As a morbid anthithesis to the playfulness of his work, during my research of Malmiola I found out that he was a supporter for Nazi ideology as evidenced in his article 'Työn aateluus,' (source available on request). This of course casts a shadow on his legacy and I debated for a long time if I should even write about him. But, because I already sunk a lot of time into this research, his art is unique in the context of (Finnish) typography, his personal beliefs are not evident in the work itself, and his work is part of a bigger typographic phenomena, I decided to go ahead anyway. While his work in pictorial typesetting remains a fascinating subject, it's important to view his person with a critical understanding of this context. That said, **fuck nazis and fuck Malmiola**, may he rot in hell.
+As a morbid anthithesis to the playfulness of his work, during my research of Malmiola I found out that he was a supporter for Nazi ideology as evidenced in his article 'Työn aateluus,' (source available on request). This of course casts a shadow on his legacy and I debated for a long time if I should even write about him. But, because I already sunk a lot of time into this research, his art is unique in the context of (Finnish) typography, and his work is part of a bigger typographic phenomena, I decided to go ahead anyway. While his work in pictorial typesetting remains a fascinating subject, it's important to view his person with a critical understanding of this context. That said, **fuck nazis and fuck Malmiola**, may he rot in hell.
 
 <figure class="u-image-full-width">
     {% image
