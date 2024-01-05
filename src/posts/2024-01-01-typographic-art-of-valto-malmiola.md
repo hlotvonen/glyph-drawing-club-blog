@@ -200,7 +200,7 @@ In 1942 Malmiola finished another piece composed with Monotype rules, to commemo
 
 <figure class="u-image-full-width">
     {% image
-        "./src/assets/images/malmiola/fregatti.jpg",
+        "./src/assets/images/malmiola/fregatti.JPG",
         "",
         "A black and white print of a 3 masted ship, composed with various horizontal rules",
         "(min-width: 30em) 50vw, 100vw",
@@ -227,7 +227,7 @@ The print is based on a photo by Allan C. Green of a four-masted steel barque na
 <div class="u-col-2">
     <figure class="u-image-full-width">
         {% image
-            "./src/assets/images/malmiola/fregatti-closeup-2.jpg",
+            "./src/assets/images/malmiola/fregatti-closeup-2.JPG",
             "",
             "Closeup of the print, showing the top of the ship's mast",
             "(min-width: 30em) 50vw, 100vw",
@@ -237,7 +237,7 @@ The print is based on a photo by Allan C. Green of a four-masted steel barque na
     </figure>
     <figure class="u-image-full-width">
         {% image
-            "./src/assets/images/malmiola/fregatti-closeup-3.jpg",
+            "./src/assets/images/malmiola/fregatti-closeup-3.JPG",
             "",
             "Closeup of the print, showing various tones of the ocean",
             "(min-width: 30em) 50vw, 100vw",
@@ -328,7 +328,7 @@ Fasol's art deserves an in-depth article in itself. Beyond Fasol, there are many
 
 <figure class="u-image-full-width">
     {% image
-        "./src/assets/images/malmiola/otto-ellandi-lenin.jpg",
+        "./src/assets/images/malmiola/otto-ellandi-lenin.JPG",
         "",
         "A print of Lenin made with horizontal type rule",
         "(min-width: 30em) 50vw, 100vw",
