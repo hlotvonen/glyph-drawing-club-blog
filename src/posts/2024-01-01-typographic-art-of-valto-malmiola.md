@@ -20,7 +20,7 @@ I start with Valto Malmiola (1893–1950), as he is the only *Finnish* typograph
 
 ## Typographic Portrait of Jean Sibelius Composed Entirely of Brass Rule
 
-In the dimly lit basement of [Media Museum and Archives Merkki](https://merkkiin.fi/) is a remarkable and curious object. It's a mosaic of tightly arranged brass rule and spacing material, made by Valto Malmiola in 1937. Note, it's **not** a single piece of metal, and it's neither engraved nor etched... it's thousands of individual metal bits, pieced together by hand, and locked tightly into a frame for printing.
+In the dimly lit "printing cellar" of [Media Museum and Archives Merkki](https://merkkiin.fi/) is a remarkable and curious object. It's a mosaic of tightly arranged brass rule and spacing material, made by Valto Malmiola in 1937. Note, it's **not** a single piece of metal, and it's neither engraved nor etched... it's thousands of individual metal bits, pieced together by hand, and locked tightly into a frame for printing.
 
 <figure class="u-image-small">
     {% image
@@ -133,7 +133,7 @@ Haavi also recounts that Malmiola went to present the print to Sibelius, who rep
 
 Malmiola announced the finished piece in *Kirjapainotaito* and sold the prints for a measly 10mk (equivalent to about 4€ today, adjusted for inflation). Given the relatively small size of the Finnish typography scene at the time, there weren't many who would truly appreciate such a print. The potential for profit was likely limited, and as an incentive, Malmiola sold the prints »for the benefit of war orphans»^[Grafiskt blad, Walto Malmiola, Jean Sibelius, tryckt signatur, 37x27,5. Ej signerad - 1342 9028 - [Metropol Auktioner. (n.d.).](https://www.metropol.se/auctions/bildshow/default.asp?OG={029A1D0F-8D1A-44A4-A4B8-E88EA14000BD}&extra={67D13BA0-06FE-4BDB-9AE6-62538859EF01}&extrapos=2)]. Furthermore, during wartime in Finland, Malmiola was penniless and faced ongoing challenges in selling his prints. As Haavi notes, he resorted to selling them on the streets of Helsinki and through newspaper ads, a misfortune that continued for years.
 
-Later on the original forme was donated to a hand compositors club in Helsinki, and is on loan to Media Museum and Archives Merkki in Helsinki^[Haavi, Paavo. Interview by Jussi Lahtinen. Notes provided by Markku Kuusela and communicated via email to Heikki Lotvonen. March 28, 2022.] where it's currently displayed.
+After Malmiola's death, the original letterpress forme of the Sibelius -print was donated to the hand typesetters guild, and subsequently to the printing industry workers' trade division, the Helsinki Print Workers' Association (HKY). HKY sold prints, and the proceeds were used for the benefit of enhancing the professional skills of young people working in printing. In 2015, HKY loaned the Sibelius composition to the Media museum and archive Merkki's printing cellar, where it remains on public display.
 
 ## Malmiola's Other Prints 
 
@@ -192,11 +192,11 @@ The magazine includes a short description of the cover:
 
 > »The composer of the structure explains that the image was derived from the theme "the waves of time strike harshly." The line material used is from monotype casting, which explains why the image surface could be modified by even breaking the material, something that, of course, would not be acceptable or even permissible with ordinary lines.» ^[Kirjapainotaito : graafillinen aikakauslehti, 01.11.1939, nro 11, s. 27, [Kansalliskirjaston digitaaliset aineistot](https://digi.kansalliskirjasto.fi/aikakausi/binding/927069?page=27)]
 
-It's worth noting here, that instead of standard pre-made, pre-cut brass rules—like in the Sibelius print—Malmiola programmed a Monotype machine with a precise sequence of instructions to cast custom-sized rules. The process likely required a lot of hand-setting type and manually trimming rule to precise lengths. It probably still saved time, as Malmiola could make alterations without permanently damaging the material—unlike with pre-made brass rule. The selling point of the Monotype machine was that once used, the metal could simply be melted down and reused. 
+It's worth noting here, that for creating this image, Malmiola used a Monotype machine, instead of composing the image with pre-made brass rules, like in the Sibelius print. He programmed the machine to cast custom-sized rules from type metal, an alloy comprising lead, antimony, and tin. Unlike brass, type metal was bulk material and reusable. This meant that any errors could be rectified by melting the metal down for reuse, making it a more cost-effective option than the expensive brass. The process, however, still demanded a lof of manual effort in hand-setting type and trimming the rules to the exact needed lengths.
 
 ### 3. Carradale -print, 1942
 
-In 1942 Malmiola finished another piece composed with Monotype rules, to commemorate the 300th anniversary of Finnish printing art. Like the earlier lighthouse print, this was also done with just horizontal lines, possibly making the construction much faster (although not as interesting as the 1938 bird print).
+In 1942 Malmiola finished another piece to commemorate the 300th anniversary of Finnish printing art.
 
 <figure class="u-image-full-width">
     {% image
@@ -209,20 +209,9 @@ In 1942 Malmiola finished another piece composed with Monotype rules, to commemo
     <figcaption>Figure 11. Carradale, composed with 325 meters of Monotype rule</figcaption>
 </figure>
 
-As far as I know, this is Malmiola's largest print, measuring 45 × 53 cm (~18 × 21 inches) and uses **an astonishing 72,000 ciceros of rule** (around 325 meters or ~1,065 feet), and took Malmiola 140 hours ^[Lahtinen, Juhani. *Käsinlatoja: Kadonnut Ammattikunta : Muistoja Ja Muistelmia Helsingissä.*, 2006.] to complete. Due to the extensive amount of rule needed for the print, which was likely beyond his workplace's capacity to offer—considering the resource scarcity during wartime in Finland—the necessary materials were provided by the Valtioneuvoston kirjapaino (Government Printing Office).
+As far as I know, this is Malmiola's largest print, measuring 45 × 53 cm (~18 × 21 inches) and uses **an astonishing 72,000 ciceros of rule** (around 325 meters or ~1,065 feet), and took Malmiola 140 hours ^[Lahtinen, Juhani. *Käsinlatoja: Kadonnut Ammattikunta : Muistoja Ja Muistelmia Helsingissä.*, 2006.] to complete. 
 
-<figure class="u-image-small">
-    {% image
-        "./src/assets/images/malmiola/carradale.jpg",
-        "",
-        "Photograph of the Carradale -ship",
-        "(min-width: 30em) 50vw, 100vw",
-        [300, 600]
-    %}
-    <figcaption>Figure 12. The original photograph</figcaption>
-</figure>
-
-The print is based on a photo by Allan C. Green of a four-masted steel barque named Carradale (which Malmiola incorrectly called a frigate), built in 1889. In 1914 the ship was sold to Finnish shipowner J. Tengström, and the photo appeared in various magazines at that time (see for example [1922 Nuori Voima no 48](https://digi.kansalliskirjasto.fi/aikakausi/binding/891025?term=CARRADALE&page=26)). ^[Frank Hellsten, [Flickr](https://www.flickr.com/photos/88198496@N04/) — Accessed 02.01.2024]
+Recently, [an original copy of the Carradale -print](https://auctionet.com/en/3213467-walto-malmiola-graphic-sheet-ship-portrait-finland-1942-approx-56-x-46-cm) appeared at an auction, which had an added text printed at the bottom of the print. This text, absent in later copies, reveals that the original was composed using Monotype rules. Like the earlier lighthouse print, this was also made out of only horizontal lines; possibly making the construction much faster than the Sibelius print, which mixed both horizontal and vertical rules. 
 
 <div class="u-col-2">
     <figure class="u-image-full-width">
@@ -247,7 +236,20 @@ The print is based on a photo by Allan C. Green of a four-masted steel barque na
     </figure>
 </div>
 
-According to Haavi, the forme was destroyed by accident when an apprentice at the printing house dropped it on the floor.^[Haavi, Paavo. Interview by Jussi Lahtinen. Notes provided by Markku Kuusela and communicated via email to Heikki Lotvonen. March 28, 2022.]
+Even though the print was made with a Monotype machine, allowing for the possible reuse of the material, Malmiola's intention was to preserve the layout, not to melt it down. This is evidenced by the fact that the type metal needed for the construction of the print was provided by the Valtioneuvoston kirjapaino (Government Printing Office), and not by Malmiola's employer, K.K. printing house, who probably lacked the required lead material (or the will to give it). However, an unforeseen accident resulted in its melting: according to Haavi, the forme was destroyed when an apprentice at the printing house dropped it on the floor.^[Haavi, Paavo. Interview by Jussi Lahtinen. Notes provided by Markku Kuusela and communicated via email to Heikki Lotvonen. March 28, 2022.]
+
+<figure class="u-image-small">
+    {% image
+        "./src/assets/images/malmiola/carradale.jpg",
+        "",
+        "Photograph of the Carradale -ship",
+        "(min-width: 30em) 50vw, 100vw",
+        [300, 600]
+    %}
+    <figcaption>Figure 12. The original photograph</figcaption>
+</figure>
+
+The print is based on a photo by Allan C. Green of a four-masted steel barque named Carradale (which Malmiola incorrectly called a frigate), built in 1889. In 1914 the ship was sold to Finnish shipowner J. Tengström, and the photo appeared in various magazines at that time (see for example [1922 Nuori Voima no 48](https://digi.kansalliskirjasto.fi/aikakausi/binding/891025?term=CARRADALE&page=26)). ^[Frank Hellsten, [Flickr](https://www.flickr.com/photos/88198496@N04/) — Accessed 02.01.2024]
 
 ### 4. Forest -print, 1943
 
