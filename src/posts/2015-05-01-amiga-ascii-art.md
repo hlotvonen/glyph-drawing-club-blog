@@ -21,7 +21,7 @@ I delve into the creation of Amiga ASCII art and use it as a method to develop m
 <div class="note-from-the-future">
   <h4>Note from 2023:</h4>
   <p>
-    This is my BA thesis I wrote in 2015. <a href="https://aaltodoc.aalto.fi/handle/123456789/16290">The original</a> is in Finnish, but I finally managed to translate it to English.
+    This is my BA thesis I wrote in 2015. <a href="https://urn.fi/URN:NBN:fi:aalto-201505282956">The original</a> is in Finnish, but I finally managed to translate it to English.
   </p>
   <p>
     This thesis is <em>just</em> a bachelors thesis, so it's far from being comprehensive. But as far as I know, it's still the only study of Amiga ASCII art. I have included some comments here and there from my 2023 perspective where I thought it needed them. 
