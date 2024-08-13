@@ -54,6 +54,7 @@ class TinyBox extends HTMLElement {
           line-height: 1.4;
           resize: none;
           overflow: auto;
+          white-space: pre;
         }
         iframe { 
           border:none;
