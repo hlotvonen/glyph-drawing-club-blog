@@ -14,9 +14,9 @@ module.exports = {
     htmlmin: function (content, outputPath) {
         if (shouldTransformHTML(outputPath)) {
             return htmlmin.minify(content, {
-                useShortDoctype: true,
-                removeComments: true,
-                collapseWhitespace: true
+                useShortDoctype: false,
+                removeComments: false,
+                collapseWhitespace: false
             })
         }
         return content
