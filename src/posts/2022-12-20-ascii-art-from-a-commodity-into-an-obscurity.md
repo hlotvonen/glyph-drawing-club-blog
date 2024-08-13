@@ -1,6 +1,6 @@
 ---
 title: 'ASCII art: From a Commodity Into an Obscurity'
-date: 2022-12-20
+date: 2018-12-20
 cover: './src/assets/images/ascii-essay-cover.png'
 description: Why does ASCII art exist? Is ASCII art just a nostalgic trend? Can you find a "cyberspace utopia" within the ASCII art community?
 permalink: '/{{ title | slugify }}/'

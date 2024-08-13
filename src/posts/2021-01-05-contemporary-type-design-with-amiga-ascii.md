@@ -7,7 +7,6 @@ permalink: '/{{ title | slugify }}/'
 tags:
     - Tutorial
     - ASCII art
-    - Fonts
     - Type Design
 ---
 

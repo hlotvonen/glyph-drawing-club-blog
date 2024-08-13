@@ -5,13 +5,17 @@ layout: base
 
     <header class="title-container">
         <div class="cover">
-            {% image
-                cover,
-                "photoclass",
-                "",
-                "(min-width: 30em) 50vw, 100vw",
-                false
-            %}
+            {% if cover %}
+                {% image
+                    cover,
+                    "photoclass",
+                    "",
+                    "(min-width: 30em) 50vw, 100vw",
+                    false
+                %}
+            {% else %}
+                <div class="no-img">{{ ["✾","❀","✿","✺","✯","✻","❂","✧","✣"] | random }}</div>
+            {% endif %}
         </div>
         <div class="title">
             <h1 class="u-float-right">{{ title | wrapFirstLetters | safe }}</h1>

@@ -1,12 +1,18 @@
 const Image = require("@11ty/eleventy-img");
 
 function imageShortcode(src, classes, alt, sizes, raw) {
-  if(alt === undefined) {
+  // Defensive check for undefined or null `src`
+  if (!src) {
+    console.warn("Image source is undefined or null, skipping image generation.");
+    return ''; // Return an empty string to avoid rendering issues
+  }
+
+  if (alt === undefined) {
     // You bet we throw an error on missing alt (alt="" works okay)
     throw new Error(`Missing \`alt\` on responsiveimage from: ${src}`);
   }
 
-  let options = {}
+  let options = {};
 
   if (raw === true) {
     options = {
@@ -17,17 +23,17 @@ function imageShortcode(src, classes, alt, sizes, raw) {
       sharpOptions: {
         animated: true
       }
-    };  
+    };
   } else {
     options = {
       widths: [320, 640, 1280],
       formats: ["jpg"],
       urlPath: "/assets/",
       outputDir: "./dist/assets/"
-    };  
+    };
   }
 
-  // generate images, while this is async we don’t wait
+  // Generate images, while this is async we don’t wait
   Image(src, options);
 
   let imageAttributes = {
@@ -37,12 +43,18 @@ function imageShortcode(src, classes, alt, sizes, raw) {
     loading: "lazy",
     decoding: "async",
   };
-  // get metadata even the images are not fully generated
-  metadata = Image.statsSync(src, options);
+  // Get metadata even the images are not fully generated
+  let metadata = Image.statsSync(src, options);
   return Image.generateHTML(metadata, imageAttributes);
 }
 
 function imageUrlShortcode(src) {
+  // Defensive check for undefined or null `src`
+  if (!src) {
+    console.warn("Image source is undefined or null, skipping image URL generation.");
+    return ''; // Return an empty string to avoid issues
+  }
+
   let options = {
     widths: [600],
     formats: ["jpeg"]
@@ -52,10 +64,9 @@ function imageUrlShortcode(src) {
 
   let metadata = Image.statsSync(src, options);
   return src;
-
 }
 
 module.exports = {
-    image: imageShortcode,
-    imageUrl: imageUrlShortcode
-}
+  image: imageShortcode,
+  imageUrl: imageUrlShortcode
+};

@@ -5,7 +5,7 @@ cover: './src/assets/images/cover-otoogdc.jpg'
 description: Why I decided to make my own design tool
 permalink: '/{{ title | slugify }}/'
 tags:
-    - Post
+    - Blog
     - Glyph Drawing Club
 ---
 

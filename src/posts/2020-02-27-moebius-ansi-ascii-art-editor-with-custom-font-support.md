@@ -8,8 +8,6 @@ tags:
     - Tools
     - Tutorial
     - ASCII art
-    - XBIN art
-    - Fonts
 ---
 
 **UPDATE 06.12.2021: I've released a new version of Moebius XBIN! This guide is completely rewritten for it.**

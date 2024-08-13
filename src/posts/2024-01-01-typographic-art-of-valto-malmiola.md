@@ -14,7 +14,6 @@ tags:
 
 ## Introduction
 
-
 Typography is often seen as the practice of arranging letters to make written language clear and visually appealing. However, this view overlooks a rich tradition of decorative elements like printer’s flowers, flourishes, and ornaments that have been part of typography for centuries. While these elements don’t convey written language per se, they are a part of the broader field of typography, which is concerned with the artful presentation of type in various forms. If we broaden our understanding of typography and view it as a comprehensive field serving multiple purposes, that includes these decorative practices, we can start appreciating typography as a form of art full of expressive potential.
 
 My aim is to highlight this expanded view of typography, found especially in the often joyous **pictorial typography**—a form of art arranging printing type into decorative patterns or pictorial compositions. This approach challenges conventional rules of typography and pushes the boundaries of what is thought possible with letterpress, transforming it into an artistic tool. I begin with Valto Malmiola, a Finnish typographer from the early 20th century, as he is the only *Finnish* typographer I know who has extensively experimented with pictorial typography. 

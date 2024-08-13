@@ -1,11 +1,11 @@
 ---
-title: An outsider's journey into the Amiga ASCII community. 
-date: 2023-10-17
+title: An outsider's journey into the Amiga ASCII community
+date: 2018-10-17
 cover: './src/assets/images/journey-cover.png'
 description: How I, a total outsider who has never even touched an Amiga, found my way into researching and making Amiga ASCII art.
 permalink: '/{{ title | slugify }}/'
 tags:
-    - Post
+    - Blog
     - ASCII art
 ---
 

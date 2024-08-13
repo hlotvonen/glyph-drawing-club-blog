@@ -8,7 +8,6 @@ tags:
     - Tutorial
     - Glyph Drawing Club
     - Type Design
-    - Fonts
 ---
 
 [Download font template here](https://drive.google.com/open?id=1c7f1nsu0Ou-AlVM0P4IVia4ujB6zxZMd).

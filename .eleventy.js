@@ -70,6 +70,7 @@ module.exports = function (config) {
     config.addPassthroughCopy('src/site.webmanifest')
     config.addPassthroughCopy('src/assets/icons')
     config.addPassthroughCopy('src/assets/fonts')
+    config.addPassthroughCopy('src/assets/webcomponents')
 
     // Deep-Merge
     config.setDataDeepMerge(true)

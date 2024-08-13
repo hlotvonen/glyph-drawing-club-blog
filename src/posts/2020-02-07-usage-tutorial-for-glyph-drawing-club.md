@@ -1,5 +1,5 @@
 ---
-title: Tutorial for Glyph Drawing Club
+title: Usage Tutorial for Glyph Drawing Club
 date: 2020-02-09
 cover: './src/assets/images/tutorial-cover.png'
 description: Want to learn how to use Glyph Drawing Club?
@@ -49,7 +49,11 @@ Problems?
     %}
 </figure>
 
-Glyph Drawing Club is a free online modular design and text art tool, suitable for creating custom type design, illustrations, patterns and more. The editor is based on an adjustable grid into which users can “draw” with a set of geometric patterns or with any typographic symbol from any font.
+Glyph Drawing Club is a free online modular design and text art tool, suitable for creating custom type design, illustrations, patterns and more. 
+
+[Open the editor ↗](https://glyphdrawing.club/)
+
+The editor is based on an adjustable grid into which users can “draw” with a set of geometric patterns or with any typographic symbol from any font.
 
 Creating images with Glyph Drawing Club requires a lot of precision and relies heavily on keyboard interaction and shortcuts instead of just the mouse. Learning how to use Glyph Drawing Club is simple and you can jump right in without a lengthy tutorial, but if you want to achieve faster workflow and higher precision it's important to familiarise yourself with the program, its various features and shortcuts. This tutorial tries to cover everything there is to know about how to use Glyph Drawing Club.
 

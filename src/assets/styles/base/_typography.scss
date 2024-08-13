@@ -3,17 +3,22 @@
     font-style: normal;
     font-display: swap;
     font-weight: 400;
-    src: url('/assets/fonts/Polyvers-Extended.woff2') format('woff2'),
-        url('/assetsfonts/Polyvers-Extended.woff') format('woff');
+    src: url('/assets/fonts/Polyvers-Extended.woff2') format('woff2');
 }
 @font-face {
     font-family: 'U001';
     font-style: normal;
     font-display: swap;
     font-weight: 400;
-    src: url('/assets/fonts/U001-Reg.woff2') format('woff2'),
-        url('/assets/fonts/U001-Reg.woff') format('woff');
+    src: url('/assets/fonts/U001-Reg.woff2') format('woff2');
 }
+@font-face {
+    font-family: 'Monaspace';
+    src: url('/assets/fonts/MonaspaceKrypton-SyntaxHighlighter-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 // Typography Variables
 //
 // Font, line-height, and color for body text, headings, and more.
@@ -141,10 +146,16 @@ em {
     color:var(--color-6);
 }
 
+pre:has(code) {
+    border: 2px solid #1d1d1d;
+    background-color: black;
+    color:#f1f1f1;
+    padding:0.5rem;
+    border-radius: 0.5rem;
+}
 code, kbd {
-    background: linear-gradient(var(--color-3), var(--color-1), var(--color-3));
-    padding:0 0.2rem;
-    border-radius: 0.1rem;
+    font-family: "Monaspace", monospace;
+    font-feature-settings: "colr", "calt";
 }
 
 .lead {
@@ -312,14 +323,7 @@ p.summary a:hover {
     > li {
         display: flow-root list-item;
         position: relative;
-        background: linear-gradient(
-            var(--color-2),
-            var(--color-1),
-            var(--color-1),
-            var(--color-1),
-            var(--color-2)
-        );
-        padding: 2rem 1rem;
+        padding: 1rem;
         margin: 1rem 0 1rem 5rem;
         border-radius: 1rem;
     }
