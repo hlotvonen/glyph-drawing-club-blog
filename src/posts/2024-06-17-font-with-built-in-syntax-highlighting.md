@@ -11,30 +11,32 @@ webcomponent: 'tinybox'
 ---
 ## Syntax Highlighting in Hand-Coded Websites
 
-I have been trying to identify practical reasons why hand-coding websites with basic HTML and CSS is so hard (*by hand-coding, I mean not relying on frameworks or generators*). 
+### The problem 
+
+I have been trying to identify practical reasons why hand-coding websites with HTML and CSS is so hard (*by hand-coding, I mean not relying on frameworks, generators or 3rd party scripts that modify the DOM*).
 
 Let's say, I want to make a blog. What are the **actual** things that prevent me from making—and maintaining—it by hand? What would it take to clear these roadblocks?
 
-For a hand-coded programming oriented blog, one of these roadblocks would be **syntax highlighting**. If I want to display snippets of code, I want to make the code easy to read and understand by highlighting it with different colours. To do that, I would typically need to use a complex syntax highlighter library, like [Prism](https://prismjs.com/) or [highlight.js](https://highlightjs.org/). 
+There are many, of course, but for a hand-coded programming oriented blog one of these roadblocks is **syntax highlighting**. 
 
-Syntax highlighter scripts parse code into tokens using regular expressions to identify language-specific patterns, rewrites the code as HTML, assigning CSS classes to each token type, and then injects the HTML back into the page. But, the resulting HTML is a messy, hard-to-read `<span>` soup. 
+When I display snippets of code, I want to make the code easy to read and understand by highlighting it with colors. To do that, I would normally need to use a complex syntax highlighter library, like [Prism](https://prismjs.com/) or [highlight.js](https://highlightjs.org/). These scripts work by scanning and chopping up the code into small language-specific patterns, then wrapping each part in tags with special styling that creates the highlighted effect, and then injecting the resulting HTML back into the page.
 
-If I want to write code by hand, I don't want any external scripts to mess with the DOM. And I don't like the complexity and bloat it adds. I want to keep things as simple as possible.
+But, I want to write code by hand. I don't want any external scripts to inject things I didn't write myself. Syntax highlighters also add to the overall complexity and bloat of each page, which I'm trying to avoid. I want to keep things as simple as possible.
 
-This lead me to think: **could it be possible to bake syntax highlighting directly into a font, skipping JavaScript altogether?** 
+### Leveraging OpenType features to build a simple syntax highlighter inside the font
 
-OpenType supports multi-colored glyphs with the COLR table, but would some kind of pattern matching be possible with contextual alternates?
+This lead me to think: **could it be possible to build syntax highlighting directly into a font**, skipping JavaScript altogether? Could I somehow leverage OpenType features, by creating colored glyphs with the COLR table, and identifying and substituting code syntax with contextual alternates?
 
     <div class="spoilers">
       <strong>Yes, it's possible!</strong>
-      <small>...with some caveats =)</small>
+      <small>...to some extent =)</small>
     </div>
 
-The colors in the HTML snippet above **comes from within the font itself**. 
+The colors in the HTML snippet above **comes from within the font itself**, the code is **plain text**, and requires **no JavaScript**.
 
-There is no JavaScript, no parsing. It's just plain text.
+To achieve that, I modified an open source font Monaspace Krypton to include colored versions of each character, and then used OpenType contextual alternates to essentially find & replace specific strings of text based on HTML, CSS and JS syntax. The result is a simple syntax highlighter, **built-in** to the font itself.
 
-To use it yourself, download the font: [MonaspaceKrypton-SyntaxHighlighter-Regular.woff2](/assets/fonts/MonaspaceKrypton-SyntaxHighlighter-Regular.woff2)
+If you want to try it yourself, download the font: [MonaspaceKrypton-SyntaxHighlighter-Regular.woff2](/assets/fonts/MonaspaceKrypton-SyntaxHighlighter-Regular.woff2)
 
 And include the following bits of CSS:
 
@@ -54,22 +56,19 @@ And that's it!
 
 ## What are the Pros and Cons of this method?
 
-There are, of course, many limitations to this method. It is not a direct replacement to the more robust syntax highligting libraries, but works well enough for simple needs.
-
-However, this method opens up some really exciting possibilities...
+This method opens up some interesting possibilities...
 
 ### Pros
 
-1. Install is super easy: Import font, declare styles. Done. 
-2. No JavaScript needed: works even if JS is disabled! No need to import a million external scripts. No need to initialize the syntax highlighter.
-3. No external CSS themes needed: no need to import a billion language specific CSS themes.
-4. No parsing: it's as fast as plain text (because it is plain text)!
-5. No span soup: snippets of code can be put into good old `<pre>` and `<code>`, with no extra classes or `<span>`s.
-6. Clean HTML: Inspect the source code and you'll see the exact same code as what's on the page.
-7. Works in `<textarea>` and `<input>`! Syntax highlighting inside `<textarea>` has been [previously impossible](https://css-tricks.com/creating-an-editable-textarea-that-supports-syntax-highlighted-code/), because textareas and inputs can only contain plain text.
-8. Works everywhere that supports OpenType features. Making a PDF containing code snippets in Adobe InDesign? No need for any complicated scripts of crazy GREP styles.
-9. No maintenance: no packages to update and worry about.
-10. Simple embeddable code editors: Did I mention it works in `<textarea>`? How about a tiny HTML, CSS & JS sandbox, with native undo and redo, in a single, self-contained, [~200 line web component](/assets/webcomponents/tinybox.js)?
+1. Install is easy: Import the font and enable OpenType COLR (color) and CALT (contextual alternates) features.
+2. Works without JavaScript.
+3. Works without CSS themes.
+4. It's as fast as plain text, because it is plain text.
+5. Snippets of code can be put into `<pre>` and `<code>`, with no extra classes or `<span>`s.
+6. Clean HTML source code.
+7. Works everywhere that supports OpenType features, like InDesign.
+8. Doesn't require maintenance or updating.
+9. Works in `<textarea>` and `<input>`! Syntax highlighting inside `<textarea>` has been [previously impossible](https://css-tricks.com/creating-an-editable-textarea-that-supports-syntax-highlighted-code/), because textareas and inputs can only contain plain text. This is where the interesting possibilities lie. As a demo, I made this tiny HTML, CSS & JS sandbox, with native undo and redo, in a single, [~200 line web component](/assets/webcomponents/tinybox.js).
 
 <tiny-box class="u-screen-size">
  <tiny-slot slot="html">
@@ -107,24 +106,21 @@ document.querySelector('p').style.background = 'yellow';
 
 ### Cons
 
-What are the limitations then?
+There are, of course, many limitations to this method. It is not a direct replacement to the more robust syntax highligting libraries, but works well enough for simple needs.
 
-1. Making any modifications to the syntax highligher, like changing the color palette, means modifying the font. This is inaccessible for most people. I use Glyphs to make and modify fonts, but it only works on Mac, and costs ~300 euros. There might be some free and open source type design software that would work for this, but I don't know them.
-2. The font *is* the syntax highlighter, which means that you can't change the font to your favourite programming font. If you want a different font to have this built-in syntax highlighter, you have to add it to the font yourself.
-3. It only works where OpenType is supported. Fortunately, all major browsers (even Safari!) supports `font-feature-settings: "colr", "calt";`. However, you can't use it in PowerPoint for example because it doesn't support OpenType (AFAIK).
-4. Finding patterns in text with OpenType contextual alternates is **very** basic. The resulting syntax highlighting is simple, and not meant to be used in actual code editors. For example, you can't tell it to ignore syntax highlighting within `<p>` tags, so words that are JS keywords will be always highlighted, like so: `<p>if I throw this Object through the window, catch it, for else it’ll continue to Infinity.</p>`. It also can't highlight comment blocks, etc.
-5. So far, I've only added basic support for HTML, CSS and JavaScript in the demo font. More could be added, but again... it requires modifying the font. I made this font for my own use, and I have no plans on adding more.
-6. My color palette is quite wild and it would probably be very straining in longer use, but I've made it purposefully colorful for the purpose of teaching. This is not a limitation of the technique, but of my implementation =)
+1. Making any modifications to the syntax highligher, like changing the color palette, adding more language supports or changing the look of the font, requires modifying the font file. This is inaccessible for most people. I used Glyphs to modify this font, but it only works on Mac, and costs ~300 euros.
+2. It only works where OpenType is supported. Fortunately, all major browsers support `font-feature-settings: "colr", "calt";`. However, eg. PowerPoint doesn't support OpenType (as far as I know).
+3. Finding patterns in text with OpenType contextual alternates is basic, and is no match for scripts that use regular expressions. For example, words within `<p>` tags that are JS keywords will be always highlighted: `<p>if I throw this Object through the window, catch it, for else it’ll continue to Infinity & break</p>`. It can't highlight comment blocks, or strings between quotes, etc.
 
 ## How does it actually work?
 
-Here's roughly how it works. There are two features in OpenType that make this possible.
+Here's roughly how it works. There are two features in OpenType that make this possible: OpenType COLR table and contextual alternates.
 
-First is the OpenType COLR table. It makes multi-colored fonts possible. It's quite gimmicky and rare to see one in actual use, but it makes this concept work. 
+### OpenType COLR table
 
-The COLR setup for syntax highlighting is fairly easy. I followed [this handy guide on creating a Micro­soft color font (CPAL/‌COLR)](https://glyphsapp.com/learn/creating-a-microsoft-color-font). I made a palette with 6 colors: these are the highlight colors.
+OpenType COLR table makes multi-colored fonts possible. [There is a good guide on creating a color font using Glyphs](https://glyphsapp.com/learn/creating-a-microsoft-color-font). 
 
-To assign colors, I duplicated letters `A`&thinsp;`–`&thinsp;`Z`, numbers `0`&thinsp;`–`&thinsp;`9` and the characters `.` `#` `*` `-` and `_` four times, as these would be highlighted using different colours based on the glyph substitution rules. Each duplicated character is then suffixed with .alt1, .alt2, .alt3 or .alt4, and then assigned a color. All .alt1's are `this` lime-yellow, for example.
+I made a palette with 6 colors. I duplicated letters `A`&thinsp;`–`&thinsp;`Z`, numbers `0`&thinsp;`–`&thinsp;`9` and the characters `.` `#` `*` `-` and `_` four times. Each duplicated character is then suffixed with .alt1, .alt2, .alt3 or .alt4, and then assigned a color from the palette. For example, all .alt1 glyphs are `this` lime-yellow.
 
 <figure class="u-image-small">
     {% image
@@ -134,12 +130,16 @@ To assign colors, I duplicated letters `A`&thinsp;`–`&thinsp;`Z`, numbers `0`&
         "(min-width: 30em) 50vw, 100vw",
         [300, 600]
     %}
-    <figcaption>Figure 1. Forme for the Jean Sibelius print at the <a href="https://merkkiin.fi">Media Museum and Archives Merkki</a>.</figcaption>
+    <figcaption>View from Glyps app. Each alternate character has a different color.</figcaption>
 </figure>
 
-The two other colors are used for operators and other symbols used in code, like `&`, `|` `$` `+` `−` `=` `~` `[]` `()` `{}` `/` `;` `:` `"` and `'` and are always in one color.
+The two other colors I used for symbols `&`, `|` `$` `+` `−` `=` `~` `[]` `()` `{}` `/` `;` `:` `"` and `'`, and are always in one color.
 
-The second required feature is OpenType contextual alternates. Contextual alternates makes characters "aware" of their adjacent characters. The most clear example would be fonts that emulate continuous hand writing, where letters connect to each other. But *how* a letter connects depends on which letter it connects to. There is a [great article covering possible uses here](https://ilovetypography.com/2011/04/01/engaging-contextuality/). 
+### OpenType contextual alternates
+
+The second required feature is OpenType contextual alternates. [There is an indepth guide to advanced contextual alternates for Glyphs](https://glyphsapp.com/learn/features-part-3-advanced-contextual-alternates).
+
+Contextual alternates makes characters "aware" of their adjacent characters. An example would be fonts that emulate continuous hand writing, where *how* a letter connects depends on which letter it connects to. There is a [great article covering possible uses here](https://ilovetypography.com/2011/04/01/engaging-contextuality/).
 
 The core feature of contextual alternates is substituting glyphs. Here is the simplified code for finding the JavaScript keyword `if` and substituting the letters i and f with their colored variant:
 
@@ -147,16 +147,11 @@ The core feature of contextual alternates is substituting glyphs. Here is the si
     sub i.alt2 f' by f.alt2;
 
 In English:
-1. "When i is followed by f, don’t set the default glyph for i, but substitute it with an alternate (i.alt2)".
-2. "When i.alt2 is followed by f, don’t set the default glyph for f, but substitute it with an alternate (f.alt2)".
+1. When i is followed by f, substitute the default i with an alternate (i.alt2).
+2. When i.alt2 is followed by f, substitute the default f with an alternate (f.alt2).
+3. As a result, every "if" in text gets substituted with `if`.
 
-As you can see, it's not comparable to the power of regular expression. I wish we could even do something like this: 
-
-    sub i' f' by i.alt2 f.alt2;
-
-...but no.
-
-The substitution rules can get very messy. Here's the substitution rule for the keyword `localStorage`:
+The substitution rules can get very long. Here's the substitution rule for the keyword `localStorage`:
 
     lookup localStorageAttrCalt useExtension {
       ignore sub @AllLetters l' o c a l S t o r a g e;
@@ -175,9 +170,9 @@ The substitution rules can get very messy. Here's the substitution rule for the 
       sub l.alt o.alt c.alt a.alt l.alt S.alt t.alt o.alt r.alt a.alt g.alt e'  by e.alt;
     } localStorageAttrCalt;
 
-First two lines tell it to ignore strings like `BlocalStorage` or `localStorages`. The rest substitutes letters one by one.
+First two lines tell it to ignore strings like `XlocalStorage` or `localStorages`, but not if there's a period like `localStorage.setItem()`. The rest substitutes letters `l o c a l S t o r a g e` with alternates, one by one.
 
-In the end, identifying JavaScript syntax is fairly straightforward. You just repeat the above for each keyword.
+Identifying basic JavaScript keywords is fairly straightforward. The logic is the same for each keyword.
 
 But for HTML and CSS... I had to get a bit more creative. There are simply too many keywords for both HTML and CSS combined. Making a separate rule for each keyword would inflate the file size.
 
@@ -216,10 +211,10 @@ Instead, I came up with this monstrosity. Here's how I find CSS value functions:
       sub @CssParam' parenleft by @CssParamAlt4;
     } CssParamCalt;
 
-@CssParam is a custom OpenType glyph class I've set up. It includes the characters `A`&thinsp;`–`&thinsp;`Z`, `a`&thinsp;`–`&thinsp;`z`, and `-`, which are all the possible characters used in CSS value function names. Because the longest possible CSS value function name is `repeating-linear-gradient()`, with 25 letters, the first line of the lookup starts with @CssParam repeated 25 times, followed by parenleft (`(`). This lookup will match any word up to 25 letters long that's immediately followed by an opening parenthesis. When a match occurs, it substitutes the matched text with its alternate color form (@CssParamAlt4). 
+@CssParam is a custom OpenType glyph class I've set up. It includes the characters `A`&thinsp;`–`&thinsp;`Z`, `a`&thinsp;`–`&thinsp;`z`, and `-`, which are all the possible characters used in CSS value function names. Because the longest possible CSS value function name is `repeating-linear-gradient()`, with 25 letters, the first line of the lookup starts with @CssParam repeated 25 times, followed by parenleft (`(`). This lookup will match any word up to 25 letters long, if it's immediately followed by an opening parenthesis. When a match occurs, it substitutes the matched text with its alternate color form (@CssParamAlt4). 
 
 This lookup works for both CSS and JavaScript. It will colorize standard CSS functions like `rgb()` as well as custom JavaScript functions like `myFunction()`. The result is a semi-flexible syntax highlighter that doesn't require complex parsing. I've repeated the same principle for finding HTML tags and attributes, and for CSS selectors and parameters.
 
-As for the font itself, I didn't feel like designing a font from scratch, so I used the well made open source [Monaspace](https://github.com/githubnext/monaspace) font. Monaspace's source files are provided in its repository, so modifying the font was easy with [Glyphs](https://glyphsapp.com/). The font could have been anything though, I just chose Monaspace Krypton because it looks funky.
+### End note
 
-The full process is a little bit too convoluted to go into fully detailed step-by-step, but if you're a type designer who wants to do this with their own font, don't hesitate to contact. Doing this all manually would take ages, so I used a python script for generating all the contextual alternate rules, and Glyphs.app python scripting api for adding the color palette to each alternate glyph. I'm also not an OpenType expert, so I'm sure the substitution logic could be refined. I'm also open to sharing the modified source file to anyone interested, but don't want to share it publically quite yet because I haven't properly modified the licence information. If you have any ideas for use cases or feedback, let me know. You can reach me at `hlotvonen@gmail.com`.
+The full process is a little bit too convoluted to go into step-by-step, but if you're a type designer who wants to do this with their own font, don't hesitate to contact me. I'm also not an OpenType expert, so I'm sure the substitution logics could be improved upon. I'm open to sharing the modified source file to anyone interested. If you have any ideas, suggestions or feedback, let me know. You can reach me at `hlotvonen@gmail.com`.
