@@ -2,6 +2,7 @@
 title: Font with Built-In Syntax Highlighting
 date: 2024-01-01
 description: "An experiment in javascript-free syntax highlighting, made possible by opentype contextual alternates and COLR table"
+cover: './src/assets/images/cover-syntax-highlighter.png'
 permalink: '/{{ title | slugify }}/'
 tags:
     - Blog
