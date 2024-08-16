@@ -1,8 +1,10 @@
 const pluginRss = require('@11ty/eleventy-plugin-rss')
 const pluginNavigation = require('@11ty/eleventy-navigation')
-const markdownIt = require('markdown-it')
-    const anchors_plugin = require('@orchidjs/eleventy-plugin-ids');
+const anchors_plugin = require('@orchidjs/eleventy-plugin-ids');
 const Image = require("@11ty/eleventy-img")
+
+const markdownIt = require('markdown-it')
+const markdownItContainer = require("markdown-it-container");
 
 const filters = require('./utils/filters.js')
 const transforms = require('./utils/transforms.js')
@@ -58,7 +60,23 @@ module.exports = function (config) {
             breaks: true,
             linkify: true,
             typographer: false
-        }).use(require('markdown-it-footnote'))
+        })
+        .use(require('markdown-it-footnote'))
+        .use(markdownItContainer, 'wrap', {
+            validate: function(params) {
+              return params.trim().match(/^wrap\s+(.*)$/);
+            },
+            render: function(tokens, idx) {
+              var m = tokens[idx].info.trim().match(/^wrap\s+(.*)$/);
+              if (tokens[idx].nesting === 1) {
+                // opening tag
+                return '<div class="' + m[1] + '">\n';
+              } else {
+                // closing tag
+                return '</div>\n';
+              }
+            }
+        })
     )
 
     // Layouts

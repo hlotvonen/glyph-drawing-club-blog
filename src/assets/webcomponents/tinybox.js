@@ -49,7 +49,7 @@ class TinyBox extends HTMLElement {
           background-color: black;
           border-radius: 4px;
           color: #f1f1f1;
-          font-family: "Monaspace", monospace;
+          font-family: "FontWithASyntaxHighlighter", monospace;
           font-feature-settings: "colr", "calt";
           line-height: 1.4;
           resize: none;
@@ -132,8 +132,8 @@ class TinyBox extends HTMLElement {
 
     // We can't use font-face directly inside web components, so we have to do this.
     const EDITOR_FONT = `@font-face {
-      font-family: 'Monaspace';
-      src: url('/assets/fonts/MonaspaceKrypton-SyntaxHighlighter-Regular.woff2') format('woff2');
+      font-family: 'FontWithASyntaxHighlighter';
+      src: url('/assets/fonts/FontWithASyntaxHighlighter-Regular.woff2') format('woff2');
       font-weight: normal;
       font-style: normal;
     }`;

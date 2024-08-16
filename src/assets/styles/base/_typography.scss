@@ -13,8 +13,8 @@
     src: url('/assets/fonts/U001-Reg.woff2') format('woff2');
 }
 @font-face {
-    font-family: 'Monaspace';
-    src: url('/assets/fonts/MonaspaceKrypton-SyntaxHighlighter-Regular.woff2') format('woff2');
+    font-family: 'FontWithASyntaxHighlighter';
+    src: url('/assets/fonts/FontWithASyntaxHighlighter-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
@@ -154,8 +154,7 @@ pre:has(code) {
     border-radius: 0.5rem;
 }
 code, kbd {
-    font-family: "Monaspace", monospace;
-    font-feature-settings: "colr", "calt";
+    font-family: "FontWithASyntaxHighlighter", monospace;
 }
 @media screen and (prefers-color-scheme: light) {
     code {
@@ -280,8 +279,23 @@ p.summary a:hover {
     margin: 2rem auto 0;
 }
 
+
+.entry-content h4 {
+    margin: 2rem auto 0;
+    position: relative;
+}
+.entry-content h4::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 0.5rem;
+    position: absolute;
+    background: linear-gradient(0.25turn, var(--color-2), var(--color-1));
+    z-index: -1;
+    bottom: 0.25rem;
+}
+
 .entry-content h1,
-.entry-content h4,
 .entry-content p,
 .entry-content table,
 .entry-content ol,
@@ -432,7 +446,7 @@ iframe {
 /*
  Custom extra elements
 */
-.note-from-the-future {
+.note-from-the-future, .note {
     background: var(--color-2);
     max-width: 40rem;
     width: 100%;

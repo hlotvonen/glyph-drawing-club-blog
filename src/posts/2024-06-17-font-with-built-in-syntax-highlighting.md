@@ -10,6 +10,15 @@ tags:
     - Fonts
 webcomponent: 'tinybox'
 ---
+
+::: wrap note
+
+Note:
+
+I received a lot of great feedback from the discussions at [Mastodon](https://typo.social/@gdc/112959308500800771) and [Hacker News](https://news.ycombinator.com/item?id=41245159), so I've updated the post with some improvements to the font! I've also added some further examples and acknowledgements at the end.
+
+:::
+
 ## Syntax Highlighting in Hand-Coded Websites
 
 ### The problem 
@@ -37,20 +46,19 @@ The colors in the HTML snippet above **comes from within the font itself**, the 
 
 To achieve that, I modified an open source font Monaspace Krypton to include colored versions of each character, and then used OpenType contextual alternates to essentially find & replace specific strings of text based on HTML, CSS and JS syntax. The result is a simple syntax highlighter, **built-in** to the font itself.
 
-If you want to try it yourself, download the font: [MonaspaceKrypton-SyntaxHighlighter-Regular.woff2](/assets/fonts/MonaspaceKrypton-SyntaxHighlighter-Regular.woff2)
+If you want to try it yourself, download the font: [FontWithASyntaxHighlighter-Regular.woff2](/assets/fonts/FontWithASyntaxHighlighter-Regular.woff2)
 
 And include the following bits of CSS:
 
     @font-face {
-      font-family: 'Monaspace';
+      font-family: 'FontWithASyntaxHighlighter';
       src: 
-        url('/MonaspaceKrypton-SyntaxHighlighter-Regular.woff2') 
+        url('/FontWithASyntaxHighlighter-Regular.woff2') 
         format('woff2')
       ;
     }
     code {
-      font-family: "Monaspace", monospace;
-      font-feature-settings: "colr", "calt";
+      font-family: "FontWithASyntaxHighlighter", monospace;
     }
 
 And that's it!
@@ -61,10 +69,11 @@ This method opens up some interesting possibilities...
 
 ### Pros
 
-1. Install is easy: Import the font and enable OpenType COLR (color) and CALT (contextual alternates) features.
+1. Install is as easy as using any custom font.
 2. Works without JavaScript.
 3. Works without CSS themes.
-4. It's as fast as plain text, because it is plain text.
+4. ...but can be themed with CSS.
+4. It's fast.
 5. Snippets of code can be put into `<pre>` and `<code>`, with no extra classes or `<span>`s.
 6. Clean HTML source code.
 7. Works everywhere that supports OpenType features, like InDesign.
@@ -74,6 +83,7 @@ This method opens up some interesting possibilities...
 <tiny-box class="u-screen-size">
  <tiny-slot slot="html">
 <div class="container">
+  <!-- Edit the content! -->
   <p>
     tiny HTML & CSS sandbox =)
   </p>
@@ -86,6 +96,7 @@ This method opens up some interesting possibilities...
   display: grid;
   place-content: center;
   background:
+    /* evening sunset over ocean horizon */
     linear-gradient(
       lch(40 50 290),
       lch(60 50 60) 50%,
@@ -107,11 +118,11 @@ document.querySelector('p').style.background = 'yellow';
 
 ### Cons
 
-There are, of course, many limitations to this method. It is not a direct replacement to the more robust syntax highligting libraries, but works well enough for simple needs.
+There are, of course, some limitations to this method. It is not a direct replacement to the more robust syntax highligting libraries, but works well enough for simple needs.
 
-1. Making any modifications to the syntax highligher, like changing the color palette, adding more language supports or changing the look of the font, requires modifying the font file. This is inaccessible for most people. I used Glyphs to modify this font, but it only works on Mac, and costs ~300 euros.
-2. It only works where OpenType is supported. Fortunately, all major browsers support `font-feature-settings: "colr", "calt";`. However, eg. PowerPoint doesn't support OpenType (as far as I know).
-3. Finding patterns in text with OpenType contextual alternates is basic, and is no match for scripts that use regular expressions. For example, words within `<p>` tags that are JS keywords will be always highlighted: `<p>if I throw this Object through the window, catch it, for else it’ll continue to Infinity & break</p>`. It can't highlight comment blocks, or strings between quotes, etc.
+1. Making modifications to the syntax highligher, like adding more language supports or changing the look of the font, requires modifying the font file. This is inaccessible for most people. I used Glyphs to modify this font, but it only works on Mac, and costs ~300 euros.
+2. It only works where OpenType is supported. Fortunately, that's all major browsers and most modern programs. However, something like PowerPoint doesn't support OpenType.
+3. Finding patterns in text with OpenType contextual alternates is quite basic, and is no match for scripts that use regular expressions. For example, words within `<p>` tags that are JS keywords will be always highlighted: `<p>if I throw this Object through the window, catch it, for else it’ll continue to Infinity & break</p>`. Comment blocks can't have new lines etc.
 
 ## How does it actually work?
 
@@ -121,7 +132,11 @@ Here's roughly how it works. There are two features in OpenType that make this p
 
 OpenType COLR table makes multi-colored fonts possible. [There is a good guide on creating a color font using Glyphs](https://glyphsapp.com/learn/creating-a-microsoft-color-font). 
 
-I made a palette with 6 colors. I duplicated letters `A`&thinsp;`–`&thinsp;`Z`, numbers `0`&thinsp;`–`&thinsp;`9` and the characters `.` `#` `*` `-` and `_` four times. Each duplicated character is then suffixed with .alt1, .alt2, .alt3 or .alt4, and then assigned a color from the palette. For example, all .alt1 glyphs are `this` lime-yellow.
+I made a palette with 8 colors. 
+
+I duplicated letters `A`&thinsp;`–`&thinsp;`Z`, numbers `0`&thinsp;`–`&thinsp;`9` and the characters `.` `#` `*` `-` and `_` four times. Each duplicated character is then suffixed with .alt, .alt2, .alt3 or .alt4, and then assigned a color from the palette. For example, all .alt1 glyphs are `this` lime-yellow.
+
+I also duplicated all characters twice, and gave them suffices .alt1 and .alt5 and assigned them colors used in `<!-- comment blocks -->` and `"strings within quotes"`
 
 <figure class="u-image-small">
     {% image
@@ -134,15 +149,17 @@ I made a palette with 6 colors. I duplicated letters `A`&thinsp;`–`&thinsp;`Z`
     <figcaption>View from Glyps app. Each alternate character has a different color.</figcaption>
 </figure>
 
-The two other colors I used for symbols `&`, `|` `$` `+` `−` `=` `~` `[]` `()` `{}` `/` `;` `:` `"` and `'`, and are always in one color.
+The two other colors I used for symbols `& | $ + − = ~ [] () {} / ; : " @ %` and `'`, and they are always in one color. Numbers `0 1 2 3 4 5 6 7 8 9` are also always a certain color, unless overriden by other rules.
 
 ### OpenType contextual alternates
 
-The second required feature is OpenType contextual alternates. [There is an indepth guide to advanced contextual alternates for Glyphs](https://glyphsapp.com/learn/features-part-3-advanced-contextual-alternates).
+The second required feature is OpenType contextual alternates. [Here's a great indepth guide to advanced contextual alternates for Glyphs](https://glyphsapp.com/learn/features-part-3-advanced-contextual-alternates).
 
-Contextual alternates makes characters "aware" of their adjacent characters. An example would be fonts that emulate continuous hand writing, where *how* a letter connects depends on which letter it connects to. There is a [great article covering possible uses here](https://ilovetypography.com/2011/04/01/engaging-contextuality/).
+Contextual alternates makes characters "aware" of their adjacent characters. An example would be fonts that emulate continuous hand writing, where *how* a letter connects depends on which letter it connects to. There is a [nice article covering possible uses here](https://ilovetypography.com/2011/04/01/engaging-contextuality/).
 
-The core feature of contextual alternates is substituting glyphs. Here is the simplified code for finding the JavaScript keyword `if` and substituting the letters i and f with their colored variant:
+#### JavaScript syntax rules
+
+The core feature of contextual alternates is substituting glyphs. Here is a simplified code for finding the JavaScript keyword `if` and substituting the letters i and f with their colored variant:
 
     sub i' f by i.alt2;
     sub i.alt2 f' by f.alt2;
@@ -152,28 +169,23 @@ In English:
 2. When i.alt2 is followed by f, substitute the default f with an alternate (f.alt2).
 3. As a result, every "if" in text gets substituted with `if`.
 
-The substitution rules can get very long. Here's the substitution rule for the keyword `localStorage`:
+OpenType doesn't support many-to-many substitutions directly, but I found a nice workaround. Here's the substitution rule for the keyword `localStorage`:
 
-    lookup localStorageAttrCalt useExtension {
-      ignore sub @AllLetters l' o c a l S t o r a g e;
-      ignore sub l' o c a l S t o r a g e @AllLetters;
-      sub l' o c a l S t o r a g e by l.alt;
-      sub l.alt o' c a l S t o r a g e by o.alt;
-      sub l.alt o.alt c' a l S t o r a g e by c.alt;
-      sub l.alt o.alt c.alt a' l S t o r a g e by a.alt;
-      sub l.alt o.alt c.alt a.alt l' S t o r a g e by l.alt;
-      sub l.alt o.alt c.alt a.alt l.alt S' t o r a g e by S.alt;
-      sub l.alt o.alt c.alt a.alt l.alt S.alt t' o r a g e by t.alt;
-      sub l.alt o.alt c.alt a.alt l.alt S.alt t.alt o' r a g e by o.alt;
-      sub l.alt o.alt c.alt a.alt l.alt S.alt t.alt o.alt r' a g e by r.alt;
-      sub l.alt o.alt c.alt a.alt l.alt S.alt t.alt o.alt r.alt a' g e by a.alt;
-      sub l.alt o.alt c.alt a.alt l.alt S.alt t.alt o.alt r.alt a.alt g' e by g.alt;
-      sub l.alt o.alt c.alt a.alt l.alt S.alt t.alt o.alt r.alt a.alt g.alt e'  by e.alt;
-    } localStorageAttrCalt;
+    lookup LOCALSTORAGE useExtension {
+      ignore sub @AllLetters l' o c a l S t o r a g e, l' o c a l S t o r a g e @AllLetters;
+      sub l' o c a l S t o r a g e by l.alt3 o.alt3 c.alt3 a.alt3 l.alt3 S.alt3 t.alt3 o.alt3 r.alt3 a.alt3 g.alt3;
+      sub l.alt3 o.alt3 c.alt3 a.alt3 l.alt3 S.alt3 t.alt3 o.alt3 r.alt3 a.alt3 g.alt3 o' c' a' l' S' t' o' r' a' g' e' by e.alt3;
+    } LOCALSTORAGE;
 
-First two lines tell it to ignore strings like `XlocalStorage` or `localStorages`, but not if there's a period like `localStorage.setItem()`. The rest substitutes letters `l o c a l S t o r a g e` with alternates, one by one.
+First line tells it to ignore strings like `XlocalStorage` or `localStorages`, but not if there's a period like `localStorage.setItem()`.
 
-Identifying basic JavaScript keywords is fairly straightforward. The logic is the same for each keyword.
+The second line substitutes the first letter `l` with characters `localStorag` in their alternate color, resulting in a weird in-between state `localStoragocalStorage`.
+
+The third line substitutes the all of the remaining `ocalStorage` with a single, alternate color `e`. The final result is `localStorage`.
+
+Identifying basic JavaScript keywords is fairly straightforward. The logic is the same for each keyword. I used a python script to generate them.
+
+#### HTML & CSS syntax rules
 
 But for HTML and CSS... I had to get a bit more creative. There are simply too many keywords for both HTML and CSS combined. Making a separate rule for each keyword would inflate the file size.
 
@@ -216,6 +228,323 @@ Instead, I came up with this monstrosity. Here's how I find CSS value functions:
 
 This lookup works for both CSS and JavaScript. It will colorize standard CSS functions like `rgb()` as well as custom JavaScript functions like `myFunction()`. The result is a semi-flexible syntax highlighter that doesn't require complex parsing. I've repeated the same principle for finding HTML tags and attributes, and for CSS selectors and parameters.
 
+#### Unknown length rules
+
+Comment blocks and strings between quotes also required extra care, because their length can be anything. OpenType doesn't support loops or anything resembling regular expressions. For example, I can't just tell it to simply substitute everything it finds between two quotes. 
+
+However, I got a great suggestion from @penteract on [*Hacker News*](https://news.ycombinator.com/item?id=41259124) to use a finite state machine for these kinds of situations. Here our aim is to colorize eveything between /* and */ gray:
+
+    lookup CSScomment useExtension {
+      // stop if we encounter a colored */
+      ignore sub asterisk.alt1 slash.alt1 @All';
+
+      // color first letter after /*
+      sub slash asterisk @All' by @AllAlt1;
+      sub slash asterisk space @All' by @AllAlt1;
+      
+      // color /* itself
+      sub slash' asterisk by slash.alt1;
+      sub slash.alt1 asterisk' by asterisk.alt1;
+      
+      // finite state machine to color rest of the characters
+      // or until ignore condition is met
+      sub @AllAlt1 @All' by @AllAlt1;
+    } CSScomment;
+
+The last line is the important one. The lookup will just continue replacing characters if the previous character is already colored. 
+
 ### End note
 
-The full process is a little bit too convoluted to go into step-by-step, but if you're a type designer who wants to do this with their own font, don't hesitate to contact me. I'm also not an OpenType expert, so I'm sure the substitution logics could be improved upon. I'm open to sharing the modified source file to anyone interested. If you have any ideas, suggestions or feedback, let me know. You can reach me at `hlotvonen@gmail.com`.
+The full process is a little bit too convoluted to go into step-by-step, but if you're a type designer who wants to do this with their own font, don't hesitate to contact me. I'm also not an OpenType expert, so I'm sure the substitution logics could be improved upon. I'm open to sharing the modified source file to anyone interested. If you have any ideas, suggestions or feedback, let me know. You can reach me at `hlotvonen@gmail.com` or leave a comment on [Mastodon](https://typo.social/@gdc/112959308500800771).
+
+## Changing the color theme
+
+You can even change the color theme with CSS [`override-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-palette-values/override-colors)! Browser support is great.
+
+<tiny-box class="u-screen-size">
+ <tiny-slot slot="html">
+<div class="container">
+  <!-- Edit the content! -->
+  <pre><code>
+    var const let for while
+    function() linear-gradient()
+    .myDiv{ background-color: pink; }
+    console.log("hello", true)
+    /* comment */
+    & | $ + − = ~ [] () {} / ; : " @ % 
+    0 1 2 3 4 5 6 7 8 9
+  </code></pre>
+</div>
+      </tiny-slot>
+      <tiny-slot slot="css">
+@font-palette-values --myCustomPalette {
+  font-family: 'FontWithASyntaxHighlighter';
+  override-colors: 
+    0 red, /* keywords, {} */
+    1 lightblue, /* comments */
+    2 yellow, /* literals */
+    3 purple, /* numbers */
+    4 green, /* functions, [] */
+    5 orange, /* js others */
+    6 black, /* not in use */
+    7 hotpink, /* inside quotes, css properties, few chars */
+    8 lime /* few chars */
+  ; 
+}
+code {
+  font-family: "FontWithASyntaxHighlighter", monospace;
+  font-palette: --myCustomPalette;
+}
+body {
+  color: white;
+  background: #1d1d1d;
+}
+@font-face {
+  font-family: 'FontWithASyntaxHighlighter';
+  src: 
+    url('/assets/fonts/FontWithASyntaxHighlighter-Regular.woff2') 
+    format('woff2')
+  ;
+}
+  </tiny-slot>
+</tiny-box>
+
+## Potential future
+
+Many people suggested that this concept could be taken one step further with [harfbuzz-wasm](https://github.com/harfbuzz/harfbuzz-wasm-examples). With harfbuzz-wasm a real parser could be used instead of my crazy opentype lookups. Essentially all the cons could be eliminated... Any harfbuzz-wasm experts who wants to take this on? ;)
+
+## More examples
+
+---
+
+    as, in, of, if, for, while, finally, var, new, function,
+    do, return, void, else, break, catch, instanceof, with,
+    throw, case, default, try, switch, continue, typeof, delete,
+    let, yield, const, class, get, set, debugger, async, await,
+    static, import, from, export, extends
+
+    true, false, null, undefined, NaN, Infinity
+
+    Object, Function, Boolean, Symbol, Math, Date, Number, BigInt, 
+    String, RegExp, Array, Float32Array, Float64Array, Int8Array, 
+    Uint8Array, Uint8ClampedArray, Int16Array, Int32Array, Uint16Array, 
+    Uint32Array, BigInt64Array, BigUint64Array, Set, Map, WeakSet,
+    WeakMap, ArrayBuffer, SharedArrayBuffer, Atomics, DataView, 
+    JSON, Promise, Generator, GeneratorFunction, AsyncFunction, 
+    Reflect, Proxy, Intl, WebAssembly, Error, EvalError, InternalError, 
+    RangeError, ReferenceError, SyntaxError, TypeError, URIError, 
+    setInterval, setTimeout, clearInterval, clearTimeout, require, 
+    exports, eval, isFinite, isNaN, parseFloat, parseInt, decodeURI, 
+    decodeURIComponent, encodeURI, encodeURIComponent, escape, 
+    unescape, arguments, this, super, console, window, document, 
+    localStorage, sessionStorage, module, global
+
+--- 
+
+    <!-- this is a comment! -->
+    /* and this */
+    // and this
+    <!-- however...
+    it all breaks when your code goes to a newline
+    -->
+    <!-- so keep it --> 
+    <!-- just 1 comment per line --> ok, boss!
+
+--- 
+
+    <!-- can't disable highlighting JS keywords in between tags -->
+    <p>
+      give me a break...
+    </p>
+
+--- 
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Syntax Highlighter Example</title>
+      <style>
+        body {
+          background-color: rgb(255, 0, 0);
+          font-family: 'Arial Narrow', sans-serif;
+          line-height: 1.44;
+          color: #333;
+        }
+      </style>
+    </head>
+    <body>
+      <header>
+        <h1>Welcome to the Syntax Highlighter Test</h1>
+      </header>
+      <nav>
+        <ul>
+          <li><a href="#section1">Section 1</a>
+        </ul>
+      </nav>
+      <main>
+        <section id="section1">
+          <h2>Section 1</h2>
+          <p>This is a <span class="highlight">highlighted</span> paragraph.</p>
+          <img src="/api/placeholder/300/200" alt="Placeholder image">
+        </section>
+      </main>
+      <script>
+        console.log("This is a JavaScript comment");
+        function greet(name) {
+          return `Hello, ${name}!`;
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+          console.log(greet('Syntax Highlighter'));
+        });
+      </script>
+    </body>
+    </html>
+
+---
+
+    .crazyBackground {
+      /* don't try this at home */
+      background:
+        radial-gradient(
+          100% 50% at 50% 50%,
+          hsl(90 90% 45%) 0% 5%,
+          hsl(250 70% 40%) 50%,
+          hsl(50 50% 50%)
+        ),
+        radial-gradient(
+          100% 100% at 50% 25%,
+          hsl(90 40% 85%) 30%,
+          hsl(40 80% 20%) 60% 90%,
+          transparent
+        ),
+        linear-gradient(
+          90deg,
+          hsl(150 90% 90%) 0 10%,
+          hsl(10 10% 20%),
+          hsl(150 90% 90%) 90% 100%
+        )
+      ;
+      background-size:
+        5% 10%,
+        10% 200%,
+        25% 100%
+      ;
+      background-blend-mode:
+        color-dodge,
+        difference,
+        normal
+      ;
+      animation: fire2 60s linear infinite;
+    }
+    
+    @keyframes fire2 {
+      from {
+        background-position: 0% 0%, 0 30%, 0 0;
+      }
+
+      to {
+        background-position: 0% -100%, -100% 30%, 200% 0%;
+      }
+    }
+
+---
+
+    // Variables and constants
+    let variable = 'Hello';
+    const CONSTANT = 42;
+
+    // Template literals
+    const name = 'World';
+    console.log(`${variable}, ${name}!`);
+
+    // Function declaration
+    function greet(name) {
+      return `Hello, ${name}!`;
+    }
+
+    // Arrow function
+    const multiply = (a, b) => a * b;
+
+    // Class definition
+    class Person {
+      constructor(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      sayHello() {
+        console.log(`Hello, my name is ${this.name}`);
+      }
+    }
+
+    // Object literal
+    const config = {
+      apiKey: 'abc123',
+      maxRetries: 3,
+      timeout: 5000
+    };
+
+    // Array methods
+    const numbers = [1, 2, 3, 4, 5];
+    const doubled = numbers.map(num => num * 2);
+    const sum = numbers.reduce((acc, curr) => acc + curr, 0);
+
+    // Async/await
+    async function fetchData(url) {
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+
+    // Destructuring
+    const { apiKey, maxRetries } = config;
+    const [first, second, ...rest] = numbers;
+
+    // Spread operator
+    const newArray = [...numbers, 6, 7, 8];
+
+    // Conditional (ternary) operator
+    const isAdult = age >= 18 ? 'Adult' : 'Minor';
+
+    // Switch statement
+    function getDayName(dayNumber) {
+      switch (dayNumber) {
+        case 0: return 'Sunday';
+        case 1: return 'Monday';
+        // ... other cases
+        default: return 'Invalid day';
+      }
+    }
+
+    // Regular expression
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Symbol
+    const uniqueKey = Symbol('description');
+
+    // Set and Map
+    const uniqueNumbers = new Set(numbers);
+    const userRoles = new Map([['admin', 'full'], ['user', 'limited']]);
+
+    // Promises
+    const promise = new Promise((resolve, reject) => {
+      setTimeout(() => resolve('Done!'), 1000);
+    });
+
+    // Export statement
+    export { greet, Person };
+
+## Acknowledgements
+
+Thanks to jfk13 on hn, and [@pixelambacht](https://typo.social/@kizu@front-end.social/112960336521542558) on Mastodon for pointing out that 'calt' is turned on by default, and that 'colr' is not an opentype feature that needs to be "turned on".
+
+Thanks to [penteract](https://news.ycombinator.com/item?id=41259124) on hn and [@behdad](https://typo.social/@behdad/112967180363218632) on Mastodon for suggesting better substitution rules.
+
+Thanks to [@kizu](https://typo.social/@kizu@front-end.social/112960336521542558) and [@pixelambacht](https://typo.social/@kizu@front-end.social/112960336521542558) on Mastodon for suggesting color theming with `override-colors` CSS rule.
+
+Thanks to all who send messages and commented! :)
