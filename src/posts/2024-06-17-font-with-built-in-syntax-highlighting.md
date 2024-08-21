@@ -8,7 +8,7 @@ tags:
     - Blog
     - Type Design
     - Fonts
-webcomponent: 'tinybox'
+webcomponent: 'tiny-box'
 ---
 
 ::: wrap note
@@ -81,39 +81,44 @@ This method opens up some interesting possibilities...
 9. Works in `<textarea>` and `<input>`! Syntax highlighting inside `<textarea>` has been [previously impossible](https://css-tricks.com/creating-an-editable-textarea-that-supports-syntax-highlighted-code/), because textareas and inputs can only contain plain text. This is where the interesting possibilities lie. As a demo, I made this tiny HTML, CSS & JS sandbox, with native undo and redo, in a single, [~200 line web component](/assets/webcomponents/tinybox.js).
 
 <tiny-box class="u-screen-size">
- <tiny-slot slot="html">
-<div class="container">
-  <!-- Edit the content! -->
-  <p>
-    tiny HTML & CSS sandbox =)
-  </p>
-</div>
-      </tiny-slot>
-      <tiny-slot slot="css">
-.container {
-  height: 100%;
-  width: 100%;
-  display: grid;
-  place-content: center;
-  background:
-    /* evening sunset over ocean horizon */
-    linear-gradient(
-      lch(40 50 290),
-      lch(60 50 60) 50%,
-      lch(60 55 30) 70%,
-      lch(20 20 290) 70.2%,
-      lch(40 30 60)
-    )
-  ;
-}
-p {
-  font-size: clamp(16px, 2vw, 32px);
-  color: lch(10 40 290);
-}
-  </tiny-slot>
-  <tiny-slot slot="js">
-document.querySelector('p').style.background = 'yellow';
-  </tiny-slot>
+  <template>
+    <style>
+      .container {
+        height: 100%;
+        width: 100%;
+        display: grid;
+        place-content: center;
+        background:
+          /* evening sunset over ocean horizon */
+          linear-gradient(
+            lch(40 50 290),
+            lch(60 50 60) 50%,
+            lch(60 55 30) 70%,
+            lch(20 20 290) 70.2%,
+            lch(40 30 60)
+          )
+        ;
+      }
+      p {
+        font-size: clamp(16px, 2vw, 32px);
+        color: lch(10 40 290);
+      }
+      html, body {
+        width:100%;
+        height:100%;
+        margin:0;
+      }
+    </style>
+    <div class="container">
+      <!-- Edit the content! -->
+      <p>
+        tiny HTML & CSS sandbox =)
+      </p>
+    </div>
+    <script>
+      document.querySelector('p').style.background = 'yellow';
+    </script>
+  </template>
 </tiny-box>
 
 ### Cons
@@ -153,7 +158,7 @@ The two other colors I used for symbols `& | $ + − = ~ [] () {} / ; : " @ %` a
 
 ### OpenType contextual alternates
 
-The second required feature is OpenType contextual alternates. [Here's a great indepth guide to advanced contextual alternates for Glyphs](https://glyphsapp.com/learn/features-part-3-advanced-contextual-alternates).
+The second required feature is OpenType contextual alternates. [Here's a great introductory guide to advanced contextual alternates for Glyphs](https://glyphsapp.com/learn/features-part-3-advanced-contextual-alternates).
 
 Contextual alternates makes characters "aware" of their adjacent characters. An example would be fonts that emulate continuous hand writing, where *how* a letter connects depends on which letter it connects to. There is a [nice article covering possible uses here](https://ilovetypography.com/2011/04/01/engaging-contextuality/).
 
@@ -169,21 +174,40 @@ In English:
 2. When i.alt2 is followed by f, substitute the default f with an alternate (f.alt2).
 3. As a result, every "if" in text gets substituted with `if`.
 
-OpenType doesn't support many-to-many substitutions directly, but I found a nice workaround. Here's the substitution rule for the keyword `localStorage`:
+OpenType doesn't support many-to-many substitutions directly, but [@behdad](https://typo.social/@behdad/112967180363218632) on Mastodon had a great suggestion: keywords could be elegantly colored by *chaining* contextual substitutions.
 
-    lookup LOCALSTORAGE useExtension {
-      ignore sub @AllLetters l' o c a l S t o r a g e, l' o c a l S t o r a g e @AllLetters;
-      sub l' o c a l S t o r a g e by l.alt3 o.alt3 c.alt3 a.alt3 l.alt3 S.alt3 t.alt3 o.alt3 r.alt3 a.alt3 g.alt3;
-      sub l.alt3 o.alt3 c.alt3 a.alt3 l.alt3 S.alt3 t.alt3 o.alt3 r.alt3 a.alt3 g.alt3 o' c' a' l' S' t' o' r' a' g' e' by e.alt3;
-    } LOCALSTORAGE;
+To do this, I made a lookup which substitutes each letter with its colored variant.
 
-First line tells it to ignore strings like `XlocalStorage` or `localStorages`, but not if there's a period like `localStorage.setItem()`.
+    lookup ALT_SUBS {
+        sub a by a.alt; 
+        sub b by b.alt; 
+        sub c by c.alt; 
+        [etc.]
+        sub Y by Y.alt;
+        sub Z by Z.alt;
+    } ALT_SUBS;
 
-The second line substitutes the first letter `l` with characters `localStorag` in their alternate color, resulting in a weird in-between state `localStoragocalStorage`.
+I moved this lookup rule to the [Prefix](https://handbook.glyphsapp.com/layout/standalone-lookups/) section, which just means it doesn't get applied automatically unlike the other lookups.
 
-The third line substitutes the all of the remaining `ocalStorage` with a single, alternate color `e`. The final result is `localStorage`.
+Then, I made a lookup rule for each keyword in the contextual alternates section. Here's one for `console`:
 
-Identifying basic JavaScript keywords is fairly straightforward. The logic is the same for each keyword. I used a python script to generate them.
+    lookup console {
+        ignore sub @AllLetters c' o' n' s' o' l' e';
+        ignore sub c' o' n' s' o' l' e' @AllLetters;
+        sub c' lookup ALT_SUBS
+            o' lookup ALT_SUBS
+            n' lookup ALT_SUBS
+            s' lookup ALT_SUBS
+            o' lookup ALT_SUBS
+            l' lookup ALT_SUBS
+            e' lookup ALT_SUBS;
+    } console;
+
+First two lines tells it to ignore strings like `Xconsole` or `consoles`, but not if there's a period like `console.log()`.
+
+The third line starts by replacing the first letter 'c' with its colored variant `c`, by using definitions from the other lookup table "ALT_SUBS". This repeats until each letter is replaced by its color variant, and the result is `console`.
+
+Identifying JavaScript keywords is fairly straightforward. Logic is the same for each keyword, and I used a python script to generate them.
 
 #### HTML & CSS syntax rules
 
@@ -262,60 +286,64 @@ The full process is a little bit too convoluted to go into step-by-step, but if 
 You can even change the color theme with CSS [`override-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-palette-values/override-colors)! Browser support is great.
 
 <tiny-box class="u-screen-size">
- <tiny-slot slot="html">
-<div class="container">
-  <!-- Edit the content! -->
-  <pre><code>
-    var const let for while
-    function() linear-gradient()
-    .myDiv{ background-color: pink; }
-    console.log("hello", true)
-    /* comment */
-    & | $ + − = ~ [] () {} / ; : " @ % 
-    0 1 2 3 4 5 6 7 8 9
-  </code></pre>
-</div>
-      </tiny-slot>
-      <tiny-slot slot="css">
-@font-palette-values --myCustomPalette {
-  font-family: 'FontWithASyntaxHighlighter';
-  override-colors: 
-    0 red, /* keywords, {} */
-    1 lightblue, /* comments */
-    2 yellow, /* literals */
-    3 purple, /* numbers */
-    4 green, /* functions, [] */
-    5 orange, /* js others */
-    6 black, /* not in use */
-    7 hotpink, /* inside quotes, css properties, few chars */
-    8 lime /* few chars */
-  ; 
-}
-code {
-  font-family: "FontWithASyntaxHighlighter", monospace;
-  font-palette: --myCustomPalette;
-}
-body {
-  color: white;
-  background: #1d1d1d;
-}
-@font-face {
-  font-family: 'FontWithASyntaxHighlighter';
-  src: 
-    url('/assets/fonts/FontWithASyntaxHighlighter-Regular.woff2') 
-    format('woff2')
-  ;
-}
-  </tiny-slot>
+  <template>
+    <style>
+      @font-palette-values --myCustomPalette {
+        font-family: 'FontWithASyntaxHighlighter';
+        override-colors: 
+          0 red, /* keywords, {} */
+          1 lightblue, /* comments */
+          2 yellow, /* literals */
+          3 purple, /* numbers */
+          4 green, /* functions, [] */
+          5 orange, /* js others */
+          6 black, /* not in use */
+          7 hotpink, /* inside quotes, css properties, few chars */
+          8 lime /* few chars */
+        ; 
+      }
+      code {
+        font-family: "FontWithASyntaxHighlighter", monospace;
+        font-palette: --myCustomPalette;
+      }
+      body {
+        color: white;
+        background: #1d1d1d;
+      }
+      @font-face {
+        font-family: 'FontWithASyntaxHighlighter';
+        src: 
+          url('/assets/fonts/FontWithASyntaxHighlighter-Regular.woff2') 
+          format('woff2')
+        ;
+      }
+    </style>
+    <div class="container">
+      <!-- Edit the content! -->
+      <pre><code>
+        var const let for while
+        function() linear-gradient()
+        .myDiv{ background-color: pink; }
+        console.log("hello", true)
+        /* comment */
+        & | $ + − = ~ [] () {} / ; : " @ % 
+        0 1 2 3 4 5 6 7 8 9
+      </code></pre>
+    </div>
+  </template>
 </tiny-box>
 
 ## Potential future
 
-Many people suggested that this concept could be taken one step further with [harfbuzz-wasm](https://github.com/harfbuzz/harfbuzz-wasm-examples). With harfbuzz-wasm a real parser could be used instead of my crazy opentype lookups. Essentially all the cons could be eliminated... Any harfbuzz-wasm experts who wants to take this on? ;)
+Many people suggested that this concept could be taken one step further with [harfbuzz-wasm](https://github.com/harfbuzz/harfbuzz-wasm-examples). With harfbuzz-wasm a real parser could be used instead of my crazy opentype lookup rules. Essentially, all the cons could be eliminated... Any harfbuzz-wasm experts who wants to take this on? 
+
+## Licence
+
+The original font ([MonaSpace](https://monaspace.githubnext.com/)) has [SIL open font license v1.1](https://github.com/githubnext/monaspace/blob/main/LICENSE), which carries over to my modified version. So, you're free to use the font in any way that the SIL v1.1 license permits.
+
+As for the code examples, they are MIT licensed. The tiny sandbox web component can be found here: [https://github.com/hlotvonen/tinybox](https://github.com/hlotvonen/tinybox)
 
 ## More examples
-
----
 
     as, in, of, if, for, while, finally, var, new, function,
     do, return, void, else, break, catch, instanceof, with,
@@ -345,10 +373,9 @@ Many people suggested that this concept could be taken one step further with [ha
     /* and this */
     // and this
     <!-- however...
-    it all breaks when your code goes to a newline
+    it breaks when your code goes to a newline.
+    there's no way to keep context line to line...
     -->
-    <!-- so keep it --> 
-    <!-- just 1 comment per line --> ok, boss!
 
 --- 
 
@@ -547,4 +574,6 @@ Thanks to [penteract](https://news.ycombinator.com/item?id=41259124) on hn and [
 
 Thanks to [@kizu](https://typo.social/@kizu@front-end.social/112960336521542558) and [@pixelambacht](https://typo.social/@kizu@front-end.social/112960336521542558) on Mastodon for suggesting color theming with `override-colors` CSS rule.
 
-Thanks to all who send messages and commented! :)
+As said earlier, if you have any ideas, suggestions or feedback, let me know. You can reach me at `hlotvonen@gmail.com` or leave a comment on [Mastodon](https://typo.social/@gdc/112959308500800771).
+
+Thanks to all who sent emails, messages and commented!
