@@ -139,7 +139,7 @@ OpenType COLR table makes multi-colored fonts possible. [There is a good guide o
 
 I made a palette with 8 colors. 
 
-I duplicated letters `A`&thinsp;`–`&thinsp;`Z`, numbers `0`&thinsp;`–`&thinsp;`9` and the characters `.` `#` `*` `-` and `_` four times. Each duplicated character is then suffixed with .alt, .alt2, .alt3 or .alt4, and then assigned a color from the palette. For example, all .alt1 glyphs are `this` lime-yellow.
+I duplicated letters `A`&thinsp;`–`&thinsp;`Z`, numbers `0`&thinsp;`–`&thinsp;`9` and the characters `.` `#` `*` `-` and `_` four times. Each duplicated character is then suffixed with .alt, .alt2, .alt3 or .alt4, and then assigned a color from the palette. For example, all .alt1 glyphs are `this` color.
 
 I also duplicated all characters twice, and gave them suffices .alt1 and .alt5 and assigned them colors used in `<!-- comment blocks -->` and `"strings within quotes"`
 
