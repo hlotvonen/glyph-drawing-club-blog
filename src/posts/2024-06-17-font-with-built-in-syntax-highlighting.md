@@ -333,6 +333,20 @@ You can even change the color theme with CSS [`override-colors`](https://develop
   </template>
 </tiny-box>
 
+## Projects using this font
+
+Here's some cool projects using this font:
+
+1. [Holograph is a visual coding tool built on tldraw](https://www.holograph.so/) & [its GitHub page](https://github.com/dennishansen/holograph)
+2. [@celine/celine is library for building reactive HTML notebooks](https://maxbo.me/celine/) & [its GitHub page](https://github.com/MaxwellBo/celine) & [blogpost](https://maxbo.me/a-html-file-is-all-you-need.html)
+3. [Shaders art made with pure CSS](https://chenglou.me/pure-css-shaders-art/) & [its GitHub Page](https://github.com/chenglou/pure-css-shaders-art)
+4. [Mdit, a simple Markdown previewer](https://mdit.pages.dev/) & [its GitHub Page](https://github.com/roblesdotdev/mdit)
+5. [Web Component for making a Textarea element into a syntax highlighted codeblock](https://github.com/JRJurman/textarea-code-block)
+6. Not well implemented (yet), but it's used in [a rich text editor extension with related Taiga UI components](https://taiga-family.github.io/editor/highlight/code)
+7. It might also be used as an example for displaying the potential uses for color fonts in the W3C [CSS Fonts Module Level 4 specification](https://github.com/w3c/csswg-drafts/tree/main/css-fonts-4)
+8. [<code-pen> Web Component with syntax highlighting](https://codepen.io/daviddarnes/pen/poXpaLB?editors=1100)
+9. (Did you make a project using this font, or know a project that uses it? Let me know please!)
+
 ## Potential future
 
 Many people suggested that this concept could be taken one step further with [harfbuzz-wasm](https://github.com/harfbuzz/harfbuzz-wasm-examples). With harfbuzz-wasm a real parser could be used instead of my crazy opentype lookup rules. Essentially, all the cons could be eliminated... Any harfbuzz-wasm experts who wants to take this on? 
@@ -342,6 +356,10 @@ Many people suggested that this concept could be taken one step further with [ha
 The original font ([MonaSpace](https://monaspace.githubnext.com/)) has [SIL open font license v1.1](https://github.com/githubnext/monaspace/blob/main/LICENSE), which carries over to my modified version. So, you're free to use the font in any way that the SIL v1.1 license permits.
 
 As for the code examples, they are MIT licensed. The tiny sandbox web component can be found here: [https://github.com/hlotvonen/tinybox](https://github.com/hlotvonen/tinybox)
+
+## Source
+
+The source .glyphs file is [hosted in this GitHub repository](https://github.com/hlotvonen/FontWithASyntaxHighlighter). You need [Glyphs 3](https://glyphsapp.com/) to modify it. Or possibly with [some scripting](https://forum.glyphsapp.com/t/script-outside-glyphapp/22454).
 
 ## More examples
 
