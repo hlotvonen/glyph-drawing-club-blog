@@ -125,9 +125,16 @@ This method opens up some interesting possibilities...
 
 There are, of course, some limitations to this method. It is not a direct replacement to the more robust syntax highligting libraries, but works well enough for simple needs.
 
-1. Making modifications to the syntax highligher, like adding more language supports or changing the look of the font, requires modifying the font file. This is inaccessible for most people. I used Glyphs to modify this font, but it only works on Mac, and costs ~300 euros.
+1. Making modifications to the syntax highligher, like adding more language supports or changing the look of the font, requires modifying the font file. This requires some knowledge of font production, which most people don't have.
 2. It only works where OpenType is supported. Fortunately, that's all major browsers and most modern programs. However, something like PowerPoint doesn't support OpenType.
-3. Finding patterns in text with OpenType contextual alternates is quite basic, and is no match for scripts that use regular expressions. For example, words within `<p>` tags that are JS keywords will be always highlighted: `<p>if I throw this Object through the window, catch it, for else it’ll continue to Infinity & break</p>`. Comment blocks can't have new lines etc.
+3. Finding patterns in text with OpenType contextual alternates is quite basic, and is no match for scripts that use regular expressions. For example, words within `<p>` tags that are JS keywords will be always highlighted: `<p>if I throw this Object through the window, catch it, for else it’ll continue to Infinity & break</p>`. 
+4. Multiline highlighting with manual line breaks will sadly not work. 
+
+    This is a common, for example, in comment blocks and template literals:
+
+        <!-- This line gets highlighted...
+        but not this, because I made a manual line break...
+        -->
 
 ## How does it actually work?
 
@@ -279,11 +286,15 @@ The last line is the important one. The lookup will just continue replacing char
 
 ### End note
 
-The full process is a little bit too convoluted to go into step-by-step, but if you're a type designer who wants to do this with their own font, don't hesitate to contact me. I'm also not an OpenType expert, so I'm sure the substitution logics could be improved upon. I'm open to sharing the modified source file to anyone interested. If you have any ideas, suggestions or feedback, let me know. You can reach me at `hlotvonen@gmail.com` or leave a comment on [Mastodon](https://typo.social/@gdc/112959308500800771).
+The full process is a little bit too convoluted to go into step-by-step, but if you're a type designer who wants to do this with their own font, don't hesitate to contact me. 
+
+I'm also not an OpenType expert, so I'm sure the substitution logics could be improved upon. If you're interested in learning more about OpenType, I recommend reading [The OpenType Cookbook](https://opentypecookbook.com/) and the complete [OpenType™ Feature File Specification](https://adobe-type-tools.github.io/afdko/OpenTypeFeatureFileSpecification.html).
+
+If you have any ideas, suggestions or feedback, let me know. You can reach me at `hlotvonen@gmail.com` or leave a comment on [Mastodon](https://typo.social/@gdc/112959308500800771).
 
 ## Changing the color theme
 
-You can even change the color theme with CSS [`override-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-palette-values/override-colors)! Browser support is great.
+You can change the color theme with CSS [`override-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-palette-values/override-colors)! [Browser support](https://caniuse.com/?search=font-palette) is great at ~94%.
 
 <tiny-box class="u-screen-size">
   <template>
@@ -333,6 +344,12 @@ You can even change the color theme with CSS [`override-colors`](https://develop
   </template>
 </tiny-box>
 
+## Alternative built-in color themes
+
+Additionally, two alternative color themes *Night Owl*, and *Light Owl* were added by [niutech](https://typo.social/@niutech@fosstodon.org). You can download them from the [FontWithASyntaxHighlighter GitHub page](https://github.com/hlotvonen/FontWithASyntaxHighlighter). [Night Owl theme](https://github.com/sdras/night-owl-vscode-theme) is made by [Sarah Drasner](https://github.com/sdras).
+
+In order to modify the built-in color palette, you have to edit the font source file. To do so, you can edit the color palettes values in lines 112-120 of the [FontWithASyntaxHighlighter.glyphs](https://github.com/hlotvonen/FontWithASyntaxHighlighter/blob/main/FontWithASyntaxHighlighter.glyphs) file and then build the font with [fontmake](https://github.com/googlefonts/fontmake).
+
 ## Projects using this font
 
 Here's some cool projects using this font:
@@ -359,7 +376,7 @@ As for the code examples, they are MIT licensed. The tiny sandbox web component 
 
 ## Source
 
-The source .glyphs file is [hosted in this GitHub repository](https://github.com/hlotvonen/FontWithASyntaxHighlighter). You need [Glyphs 3](https://glyphsapp.com/) to modify it. Or possibly with [some scripting](https://forum.glyphsapp.com/t/script-outside-glyphapp/22454).
+The original source .glyphs file is [hosted in this GitHub repository](https://github.com/hlotvonen/FontWithASyntaxHighlighter). UFO files were kindly added by [niutech](https://typo.social/@niutech@fosstodon.org). Or, you can modify the font with [some scripting](https://forum.glyphsapp.com/t/script-outside-glyphapp/22454) & build with [fontmake](https://github.com/googlefonts/fontmake).
 
 ## More examples
 
