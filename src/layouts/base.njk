@@ -21,8 +21,10 @@
         {% include "footer.njk" %}
     </div>
 
-    {% if webcomponent %}
-        <script type="text/javascript" src="{{'/assets/webcomponents/' + webcomponent + '.js'  | url }}" defer></script>
+    {% if webcomponents %}
+        {% for component in webcomponents %}
+            <script type="text/javascript" src="{{ '/assets/webcomponents/' + component + '.js' | url }}" defer></script>
+        {% endfor %}
     {% endif %}
     <script type="text/javascript" src="{{ '/assets/scripts/main.js' | url }}"></script>
     <script type="text/javascript">

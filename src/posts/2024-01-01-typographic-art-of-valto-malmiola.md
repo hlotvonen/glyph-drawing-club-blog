@@ -12,17 +12,9 @@ tags:
     - Typography
 ---
 
-## Introduction
-
-Typography is often seen as the practice of arranging letters to make written language clear and visually appealing. However, this view overlooks a rich tradition of decorative elements like printer’s flowers, flourishes, and ornaments that have been part of typography for centuries. While these elements don’t convey written language per se, they are a part of the broader field of typography, which is concerned with the artful presentation of type in various forms. If we broaden our understanding of typography and view it as a comprehensive field serving multiple purposes, that includes these decorative practices, we can start appreciating typography as a form of art full of expressive potential.
-
-My aim is to highlight this expanded view of typography, found especially in the often joyous **pictorial typography**—a form of art arranging printing type into decorative patterns or pictorial compositions. This approach challenges conventional rules of typography and pushes the boundaries of what is thought possible with letterpress, transforming it into an artistic tool. I begin with Valto Malmiola, a Finnish typographer from the early 20th century, as he is the only *Finnish* typographer I know who has extensively experimented with pictorial typography. 
-
-There have been others across the globe and through the ages who have experimented with similar unconventional techniques, but their contributions have often been marginalized in typographic history. By writing about these artists and showcasing their work, I hope to offer a new, more playful perspective on what we consider as typography, and to encourage a more inclusive approach to design.
-
 ## Typographic Portrait of Jean Sibelius Composed Entirely of Brass Rule
 
-In the dimly lit “printing cellar” of [Media Museum and Archives Merkki](https://merkkiin.fi/) is a remarkable and curious object. It’s a mosaic of tightly arranged brass rule and spacing material, made by Valto Malmiola in 1937. Note, it’s **not** a single piece of metal, and it’s neither engraved nor etched… it’s thousands of individual metal bits, pieced together by hand, and locked tightly into a frame for printing.
+In the dimly lit “printing cellar” of [Media Museum and Archives Merkki](https://merkkiin.fi/) is a remarkable and curious object. It’s a mosaic of tightly arranged brass rule and spacing material, made by a Finnish typographer Valto Malmiola in 1937. Note, it’s **not** a single piece of metal, and it’s neither engraved nor etched… it’s thousands of individual metal bits, pieced together by hand, and locked tightly into a frame for printing.
 
 <figure class="u-image-small">
     {% image

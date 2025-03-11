@@ -18,6 +18,40 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Topaz_Plus_a1200';
+    src: url('/assets/fonts/Topaz_Plus_a1200.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+@font-face {
+    font-family: 'Topaz_Plus_a1200_CP437';
+    src: url('/assets/fonts/Topaz_Plus_a1200_CP437.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+@font-face {
+    font-family: 'Topaz_Plus_a1200_CP437_color';
+    src: url('/assets/fonts/Topaz_Plus_a1200_CP437_color.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+.amiga, .entry-content .amiga {
+    font-family: 'Topaz_Plus_a1200_CP437';
+    line-height: 1;
+    font-size:#{"min(calc((100vw - 2rem) / 40), 16px)"};
+    max-width:fit-content;
+}
+.amiga.highlight {
+    font-family: 'Topaz_Plus_a1200_CP437_color';
+}
+.amiga.amiga-inline {
+    vertical-align: bottom;
+    line-height: inherit;
+}
 
 // Typography Variables
 //
@@ -279,7 +313,6 @@ p.summary a:hover {
     margin: 2rem auto 0;
 }
 
-
 .entry-content h4 {
     margin: 2rem auto 0;
     position: relative;
@@ -293,6 +326,15 @@ p.summary a:hover {
     background: linear-gradient(0.25turn, var(--color-2), var(--color-1));
     z-index: -1;
     bottom: 0.25rem;
+}
+
+.entry-content h5 {
+    margin: 1rem auto 0;
+    text-transform: uppercase;
+    color:var(--color-6);
+}
+.entry-content h5 + p {
+    margin-top: 0;
 }
 
 .entry-content h1,
@@ -377,27 +419,6 @@ p.summary a:hover {
 .entry-content table th {
     border-bottom: 2px solid var(--color-8);
     font-weight: normal;
-}
-
-.entry-content .setuptable thead tr:first-child td,
-.entry-content .setuptableclass + table thead tr:first-child td {
-    border-bottom: 0;
-}
-
-.entry-content .setuptable td,
-.entry-content .setuptable th,
-.entry-content .setuptableclass + table td,
-.entry-content .setuptableclass + table th {
-    padding-left: 5%;
-}
-
-.entry-content .setuptable td:first-child,
-.entry-content .setuptable th:first-child,
-.entry-content .setuptableclass + table td:first-child,
-.entry-content .setuptableclass + table th:first-child {
-    width: 100px;
-    border-right: 2px solid;
-    padding-left: 0;
 }
 
 p.summary {

@@ -8,7 +8,8 @@ tags:
     - Blog
     - Type Design
     - Fonts
-webcomponent: 'tiny-box'
+webcomponents: 
+    - tiny-box
 ---
 
 ::: wrap note

@@ -30,7 +30,7 @@ module.exports = function (config) {
     // Plugins
     config.addPlugin(pluginRss)
     config.addPlugin(pluginNavigation)
-	config.addPlugin(anchors_plugin);
+	  config.addPlugin(anchors_plugin);
 
     // Filters
     Object.keys(filters).forEach((filterName) => {
@@ -45,6 +45,11 @@ module.exports = function (config) {
     // Shortcodes
     Object.keys(shortcodes).forEach((shortcodeName) => {
         config.addShortcode(shortcodeName, shortcodes[shortcodeName])
+        config.addPairedShortcode("asciiart", function(content) {
+          return content
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+        })
     })
 
     config.addNunjucksAsyncShortcode("shareImageUri", shareImageShortcode)
@@ -63,6 +68,10 @@ module.exports = function (config) {
         })
         .use(require('markdown-it-footnote'))
         .use(markdownItContainer, 'wrap', {
+            // A "note" div, use it like this:
+            // ::: wrap some-class-name
+            // Your content here
+            // ::: 
             validate: function(params) {
               return params.trim().match(/^wrap\s+(.*)$/);
             },
@@ -88,6 +97,7 @@ module.exports = function (config) {
     config.addPassthroughCopy('src/site.webmanifest')
     config.addPassthroughCopy('src/assets/icons')
     config.addPassthroughCopy('src/assets/fonts')
+    config.addPassthroughCopy('src/assets/bitmapfonts')
     config.addPassthroughCopy('src/assets/webcomponents')
 
     // Deep-Merge
