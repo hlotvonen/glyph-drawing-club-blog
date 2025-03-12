@@ -48,9 +48,11 @@
 .amiga.highlight {
     font-family: 'Topaz_Plus_a1200_CP437_color';
 }
-.amiga.amiga-inline {
+.amiga-inline {
+    font-family: 'Topaz_Plus_a1200_CP437';
     vertical-align: bottom;
     line-height: inherit;
+    font-size:inherit;
 }
 
 // Typography Variables
@@ -189,6 +191,7 @@ pre:has(code) {
 }
 code, kbd {
     font-family: "FontWithASyntaxHighlighter", monospace;
+    word-break: break-all;
 }
 @media screen and (prefers-color-scheme: light) {
     code {
@@ -485,21 +488,32 @@ hr {
     margin: 3rem 0;
 }
 
-.footnote {
+.footnotes {
     font-size: 0.8rem;
     padding-top: 0.5rem;
-    width: 80%;
-    max-width: 33rem;
+    width: 100%;
+    max-width: 40rem;
     margin: auto;
 }
-.footnote ol {
+.footnotes ol {
     width: 100%;
 }
-.footnote p {
+.footnotes ol li {
+    margin: 0.25rem 0 0.25rem 2rem;
+    padding:0.25rem;
+}
+.footnotes ol li::marker {
+    font-family: "U001", "Arial", sans-serif;
+    font-size: 1rem;
+}
+.footnotes p {
     line-height: 1.2;
     word-wrap: break-word;
     margin: 0;
     width: 100%;
+}
+.footnotes a {
+    word-break: break-word;
 }
 
 sup {

@@ -35,8 +35,8 @@ class PaperTape extends HTMLElement {
       {'BINARY': [1,1,0,0,1], 'LETTERS': 'B', 'FIGURES': '?'},
       {'BINARY': [0,1,1,0,0], 'LETTERS': 'N', 'FIGURES': ','},
       {'BINARY': [1,1,1,0,0], 'LETTERS': 'M', 'FIGURES': '.'},
-      {'BINARY': [1,1,0,1,1], 'LETTERS': '␎', 'FIGURES': '␎'},
-      {'BINARY': [1,1,1,1,1], 'LETTERS': '␏', 'FIGURES': '␏'}
+      {'BINARY': [1,1,0,1,1], 'LETTERS': '⨂', 'FIGURES': '⨂'},
+      {'BINARY': [1,1,1,1,1], 'LETTERS': '⨀', 'FIGURES': '⨀'}
     ];
 
     this.cursorPosition = 0;
@@ -53,7 +53,7 @@ class PaperTape extends HTMLElement {
     return `
       :host {
         display: block;
-        font-family: monospace;
+        container-type:inline-size;
       }
       
       .container {
@@ -105,7 +105,7 @@ class PaperTape extends HTMLElement {
       
       .bit.letter {
         color: var(--color-7);
-        font-size: 0.7rem;
+        font-size: min(2.5cqw, 14px);
       }
       
       .bit.punched {
@@ -359,7 +359,7 @@ class PaperTape extends HTMLElement {
     this.ita2Table.forEach(entry => {
       const btn = document.createElement('button');
       btn.className = 'key-btn';
-      if (entry.LETTERS === '␠' || entry.LETTERS === '␍' || entry.LETTERS === '␊' || entry.LETTERS === '␎' || entry.LETTERS === '␏' || entry.LETTERS === '␀') {
+      if (entry.LETTERS === '␠' || entry.LETTERS === '␍' || entry.LETTERS === '␊' || entry.LETTERS === '⨂' || entry.LETTERS === '⨀' || entry.LETTERS === '␀') {
         btn.textContent = entry.LETTERS;
       } else {
         btn.textContent = entry.LETTERS + ' ' + entry.FIGURES;

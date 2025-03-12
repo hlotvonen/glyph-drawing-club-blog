@@ -1,7 +1,7 @@
 ---
-title: The character DEL (0x7F) and its Legacy in Amiga ASCII art
+title: The origins of DEL (0x7F) and its Legacy in Amiga ASCII art
 date: 2025-01-06
-description: "An exploration of the origins of the DEL character and its legacy in ASCII art"
+description: "A micro-history of the character DEL (0x7F) as it appears in Amiga's Topaz font, and explorations on its use in Amiga ASCII art."
 eleventyExcludeFromCollections: true
 cover: './src/assets/images/cover-syntax-highlighter.png'
 permalink: '/{{ title | slugify }}/'
@@ -17,9 +17,24 @@ webcomponents:
     - ansi-viewer
     - textarea-nobs
 ---
+## Summary / tl;dr
 
-# PART 1
-# What is DEL (0x7F)?
+The DELETE character (0x7F) in Amiga's default font Topaz is represented as a glyph with diagonal lines (<span class="amiga-inline">⌂</span>), *despite* ISO/IEC 8859-1 standard defining it as a **non-printable** control character. This contradiction is thoroughly examined in this article. 
+
+I trace the evolution of character encodings from early telegraph systems to ASCII standardization, and look at how DELETE originated in 5-bit ITA2 code as a way to obliterate errors on punched tape, but was also used as a timing control for mechanical printers. DELETE was given a standardized visual representation through ECMA-17 in 1968 to aid in debugging code. The chosen representation was a symbol of shading with diagonal lines, deriving from the recommendations given by British computer pioneer Hugh McGregor Ross in the early 1960's. ECMA-17 was implemented in full, or just for the DELETE character, in many early computing systems in the 1970's and 1980's, which indicates that Amiga's representation was part of a popular trend rather than an idiosyncrasy.
+
+After the fairly definitive conclusion to the question why Amiga's <span class="amiga-inline">⌂</span> looks like it does, I analyze 3,153 Amiga ASCII artworks, identifying how DELETE was used between 1993–2005, and present a curated collection of what I think are some interesting uses for the character.
+
+**Keywords**: DELETE character (0x7F), text art, Amiga, ASCII art, bitmap fonts, character encodings, control characters, ASCII standards, ECMA-17, punched tape
+
+::: wrap note
+If you find any errors minor or major, incorrect understandings or if you think I've simplified some things too much, or if you have some information that you think would be valuable to add, or have any comments or thoughts at all, please send me an email at **hlotvonen@gmail.com**. I greatly appreaciate any and all such contacts, and if something needs fixing I would gladly update the article with proper credit.
+
+I would like to sincerely thank [Michael Walden](https://mw.rat.bz/), who made me aware of the weirdness of DEL and **greatly** helped me with this research, and [VileR](https://int10h.org/blog/), whose insights on bitmap fonts and DEL were invaluable.
+:::
+---
+
+# PART 1 <br> What is DEL (0x7F)?
 
 <ansi-viewer content="[0m                                                                                [0m
                                                                                 [0m
@@ -45,15 +60,15 @@ webcomponents:
 
 One day I received an unexpected email from Michael Walden.
 
-He had read my BA thesis on [Amiga ASCII art](https://blog.glyphdrawing.club/amiga-ascii-art/) and wanted to point out something curious that I had missed. The character set used in AmigaOS is identical to the <abbr title="Latin alphabet No. 1">ISO/IEC 8859-1</abbr> character encoding standard^[[ISO/IEC 8859-1](https://en.wikipedia.org/wiki/ISO/IEC_8859-1#History) is probably better known nowdays as Latin Alphabet No.1 or just Latin-1, and when Commodore adopted it, it was known as ECMA-94. Other aliases for it are iso-ir-100, csISOLatin1, latin1, l1, IBM819 and CP819.], *except* for one character: the character at code point 0x7F. 
+He had read my BA thesis on [Amiga ASCII art](https://blog.glyphdrawing.club/amiga-ascii-art/) and wanted to point out something curious that I had missed. The character set used in AmigaOS is identical to the <abbr title="Latin alphabet No. 1">ISO/IEC 8859-1</abbr> character encoding standard^[[ISO/IEC 8859-1](https://en.wikipedia.org/wiki/ISO/IEC_8859-1#History) is probably better known nowdays as Latin Alphabet No.1 or just Latin-1, and when Commodore adopted it, it was known as ECMA-94.], *except* for one character: the character at code point 0x7F. 
 
 This observation might seem trivial, but I was intrigued. This character has always been somewhat of a mystery to me. Let me explain.
 
-### Diagonals in Amiga ASCII art
+### Diagonals in Amiga ASCII Art
 
-The default font of Amiga, Topaz, is really good for making ASCII art in "outline" style because many of its characters "touch" the edges of the 8&times;16 pixel textmode cell. Slashes placed diagonally form a continuous slanting line, and rows of underscores or macrons (overlines) form straight horizontal lines. These characters define the basis of Amiga ASCII art, but in total there are 256 characters to play with. Combined in a textmode grid, these characters can be assembled into an endless variety of shapes. The seamless connectivity of the glyphs, as a result of their systematic familiarity, is what makes the unique aesthetic of Amiga ASCII art:
+The default font of Amiga, Topaz, is really good for making ASCII art in "outline" style because many of its characters "touch" the edges of the 8&times;16 pixel textmode cell. Slashes placed diagonally form a continuous slanting line, and rows of underscores form straight horizontal lines. Combined in a textmode grid, these characters can be assembled into an endless variety of shapes, forming the basis for the majority of Amiga ASCII art. The seamless connectivity of the glyphs, as a result of their systematic familiarity, is what makes the unique aesthetic of Amiga ASCII art:
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                
         _____  _______  _________  _____     _____  _____  _____  ________     
        _\__  \/       \/___/     \_\__  \   _\__  \/     \/     \/___/___/     
@@ -63,7 +78,7 @@ The default font of Amiga, Topaz, is really good for making ASCII art in "outlin
                                                                                
 </pre>
 
-All diagonals in Topaz follow the same rule. Two pixels up, one to the side^[There are a few Topaz versions that slighly differ from eachother, but the 8&times;16 Topaz+ fonts, and its variants, are the de facto font for Amiga ASCII art]. All, but the character at code point 0x7F. 
+Besides the slashes and underscores, there's a total of 256 characters to play with. Every diagonal in every character (e.g <span class="amiga-inline">{% asciiart %}< > / \ % X Y Z K ^ 2 4{% endasciiart %}</span>) of Topaz follows the same basic rule: two pixels up, one to the side^[There are a few Topaz versions that slighly differ from each other, but the 8&times;16 Topaz+ fonts, and its variants, are the de facto font for Amiga ASCII art]. All, except the character at code point 0x7F.
 
 <figure class="u-image-float-right-inline">
     {% image
@@ -75,13 +90,14 @@ All diagonals in Topaz follow the same rule. Two pixels up, one to the side^[The
     %}
 </figure>
 
-Topaz represents 0x7F as two diagonal lines (&thinsp;<span class="amiga amiga-inline">{% asciiart %}⌂{% endasciiart %}</span>&thinsp;)^[Different Kickstart ROM versions shipped with slightly different versions of the Topaz font, but all of them have checker pattern or diagonal lines at 0x7F. Check the comparisons at [Heckmeck's blog post on Amiga Topaz](https://heckmeck.de/blog/amiga-topaz-1.4/)], which makes it very distinct compared to all the other characters because of its unusual angle: <span class="amiga amiga-inline">{% asciiart %}⌂{% endasciiart %}</span> is the *only* glyph where the diagonals go two pixels up and **two** pixels to the side at 45˚. Because 0x7F doesn't follow the "inherent rules" of Topaz, it's quite challenging to use well in Amiga ASCII art—but it's also what makes it interesting.
+Topaz represents 0x7F as two diagonal lines (&thinsp;<span class="amiga-inline">⌂</span>&thinsp;)^[Different Kickstart ROM versions shipped with slightly different versions of the Topaz font, but all of them have checker pattern or diagonal lines at 0x7F. Check the comparisons at [Heckmeck's blog post on Amiga Topaz](https://heckmeck.de/blog/amiga-topaz-1.4/)], which makes it very distinct compared to all the other characters because of its unusual angle: <span class="amiga-inline">⌂</span> is the *only* glyph where the diagonals go two pixels up and **two** pixels to the side at 45˚. Because 0x7F doesn't follow the "inherent rules" of Topaz, it's quite challenging to use well in Amiga ASCII art—but it's also what makes it interesting.
 
-Even though I had used <span class="amiga amiga-inline">{% asciiart %}⌂{% endasciiart %}</span> extensively in my own ASCII art, and had seen it used by others, I had never realized that it's not supposed to exist as a graphical glyph, at least according to the character encoding standard. 0x7F is part of the ASCII character encoding standard and assigned to the DELETE control character (DEL). By definition "it is supposed to do nothing"^[Definitions of DEL: [Wikipedia](https://en.wikipedia.org/wiki/Delete_character) and [Aivosto](https://www.aivosto.com/articles/control-characters.html#DEL)], and as such, is a *non-printable* character, meaning that its glyph is supposed to be empty, undefined. This code position and definition has carried all the way to the current version of Unicode. If I try to print 0x7F here as an HTML entity, it will display a generic symbol for "unrepresentable character" &#x7F; instead.
+### The Contradiction of a Non-Printable Glyph
+But as I was taking a closer look at the ISO/IEC 8859-1 standard, I realized that 0x7F is assigned to the DELETE control character (DEL), which is a character that "is supposed to do nothing"^[Definitions of DEL: [Wikipedia](https://en.wikipedia.org/wiki/Delete_character) and [Aivosto](https://www.aivosto.com/articles/control-characters.html#DEL)], and as such, is a *non-printable* character. In other words, the graphical representation of DEL is *supposed* to be empty and undefined. Even though I had used <span class="amiga-inline">⌂</span> extensively in my own ASCII art, and had seen it used by others, I had never realized that it's not supposed to represented as a graphical glyph.
 
-But... if 0x7F is supposed to do nothing, and look like nothing, then why does Topaz have a glyph for it? A glyph, that even on its own is quite strange for being so fundamentally different to all the other characters. If a character has a visual representation, am I wrong to assume that it is tied to some meaning or function, so it must do *something*? What is it? Why did Topaz's creators think that 0x7F is so significant that it warrants deviating from the standard they otherwise follow?
+But... if 0x7F is supposed to do nothing, and look like nothing, then why does Topaz have a glyph for it? A glyph, that even on its own is quite strange for being so fundamentally different to all the other characters? If a character has a visual representation, I assume it is tied to *some* meaning or function, so it must do *something*? What is it? Why did Topaz's creators think that 0x7F is so significant that it warrants deviating from the standard they otherwise follow? 
 
-Maybe Walden is onto something.
+Everything about this strange glyph seemed to be in contradiction. Maybe Walden is onto something.
 
 <figure class="u-image-full-width">
     {% image
@@ -91,8 +107,26 @@ Maybe Walden is onto something.
         "(min-width: 30em) 50vw, 100vw",
         true
     %}
-    <figcaption>Comparison between ASCII, Amiga TOPAZ and IBM PC CP437</figcaption>
+    <figcaption>Comparison between ASCII (standard) and Amiga TOPAZ (font) </figcaption>
 </figure>
+
+These questions kept bugging me, so I wanted to get to the bottom of understanding the reasons for <span class="amiga-inline">⌂</span> existance in Amiga's Topaz at the code point 0x7F. I wanted to know: **what is 0x7F, and why does it look like it does?** Because I'm mainly interested in the typographic and artistic application of the character set in making Amiga ASCII art, I also wanted to know: **what is the creative potential of <span class="amiga-inline">⌂</span> in Amiga ASCII art**? 
+
+## Brief Overview 
+
+I've divided this article into three parts. 
+
+In [part 1](#what-is-0x7f), **"What is 0x7F"**, I try to form a comprehensive understanding of what 0x7F is. I examine how the early telegraph code ITA2 worked and was used in practice, specifically focusing on how errors were handled in paper tape, and how it all affected the development of the ASCII standard.
+
+::: wrap note
+Part 1 is somewhat long and technical, so if you rather read about Amiga specific graphics, you might want to skip straight to [part 2](#part-2) or [part 3](#part-3).
+:::
+
+In [part 2](#part-2), **"The graphics of DEL"**, I take a closer look at what lead to the development of graphic representations for the normally non-printing characters like DELETE. 
+
+[Part 3](#part-3), **"DEL in Amiga ASCII art"**, is all about the particular shape and design of Topaz's <span class="amiga-inline">⌂</span>. I explore all the different ways <span class="amiga-inline">⌂</span> has been, and could be, used in Amiga ASCII art.
+
+All in all, this article aims to be detailed (but not exhaustive) micro-history on the specific rendition of the character DEL as it appears in Amiga's Topaz font, and on its use in Amiga ASCII art. 
 
 ## What is 0x7F?
 
@@ -102,11 +136,11 @@ Aivosto's comprehensive article on [Control characters in ASCII and Unicode](htt
 
 > "Outdated. An ignorable character originally intended for erasing an erroneous or unwanted character in punched tape. In this standard use, DEL wouldn't affect the information content of data, even though it may have affected the information layout and the control of equipment. Standards also allowed DEL to be used as media-fill or time-fill (even though a NUL may be more appropriate)."
 
-I roughly know what punched tape is, but I was born too late to truly understand how it was used, so this definition raises more questions than it answers. What does it mean it's outdated? What does it mean that it's ignorable? What does it mean that it "doesn't affect content, but may affect layout"? What is "control of equipment"? What are media-fill and time-fill? What is NUL and why would it be more appropriate? Wikipedia entry on [Delete character](https://en.wikipedia.org/wiki/Delete_character) states that "it is supposed to do nothing", while the 1987 *C programmer's guide to serial communications*^[Campbell, Joe (1987): [C programmer's guide to serial communications](https://archive.org/details/cprogrammersguid00camp/page/22/mode/2up), p.22] says that DEL is like NUL in almost everything, but NUL is **not** interchangeable with the word "null", which **is** a synonym for "nothing". There's just a lot of very confusing terms and concepts here.
+I roughly know what punched tape is, but I was born too late to truly understand how it was used, so this definition raises more questions than it answers. What does it mean it's outdated? What does it mean that it's ignorable? What does it mean that it "doesn't affect content, but may affect layout"? What is "control of equipment"? What are media-fill and time-fill? What is NUL and why would it be more appropriate? Wikipedia doesn't help much. The entry on [Delete character](https://en.wikipedia.org/wiki/Delete_character) states that "it is supposed to do nothing", while the 1987 *C programmer's guide to serial communications*^[Campbell, Joe (1987): [C programmer's guide to serial communications](https://archive.org/details/cprogrammersguid00camp/page/22/mode/2up), p.22] says that DEL is like NUL in almost everything, but NUL is **not** interchangeable with the word "null", which **is** a synonym for "nothing". There's a lot of very confusing terms and concepts here.
 
-To understand all this, and work my way up to answering the question of "why is DEL represented as <span class="amiga amiga-inline">{% asciiart %}⌂{% endasciiart %}</span> in AmigaOS", I needed to ask more basic questions: How did early telecommunication systems develop and what effect did it have on the design of computers and text processing?
+To understand all this, and work my way up to answering the question of "why is DEL represented as <span class="amiga-inline">{% asciiart %}⌂{% endasciiart %}</span> in AmigaOS", I needed to ask more basic questions: How did early telecommunication systems develop and what effect did it have on the design of modern digital communications?
 
-### The evolution of character encodings
+### The Evolution of Character Encodings
 
 It all starts in the early 1800s when scientists discovered that electric current could transmit signals nearly instantaneously over long distances, which lead to the idea of using it for sending messages. There was a problem though: how do you *encode* the alphabet into a format that could be sent over a wire, and reliably *decoded* and reconstructed on the other end?
 
@@ -114,11 +148,11 @@ There were multiple experiments, Morse code being the most successful at first. 
 
 Bits can be represented with any mechanism capable of being in two mutually exclusive states. In written format, they are most often represented with numbers 0 and 1. Transmitted, it could be implemented as electric current switching between on-and-off states, or as distinct frequency shifts in telephone or radio transmission. On paper tape, a bit sequence can be represented as a combination of holes and spaces. In this article I will use characters that combine both numeric and circle shapes: ⓪-bit is an unpunched space, and a ❶-bit is a hole punched through the paper.
 
-#### The 5-bit code of ITA2
+#### The 5-bit Code of ITA2
 
 In the 1870's a french telegraph engineer, Émile Baudot, develops the Baudot code, and in 1901 Donald Murray refines it into what became known as *ITA2* (International Telegraph Alphabet No. 2). ITA2 is a 5-bit code, which means that each character is assigned to a specific sequence of five bits. 
 
-On its own, five bits can represent only 32 elements (2<sup>5</sup> = 32 code points), which is not quite enough to handle all letters, numerals and punctuation needed for basic communication in English. To alleviate the limited space available in five bits, ITA2 employs a "locking shift scheme" to switch between two modes: in **letter** mode, bit sequences represent letters from the Roman alphabet, and in **figure** mode the same bit sequences  represent numerals and various punctuation marks. This effectively doubles the amount of printable characters to 56 (some are reserved for special characters). The two shifts resemble the modern day use of the SHIFT key to access lowercase and uppercase characters.
+On its own five bits can represent only 32 elements (2<sup>5</sup> = 32 code points), which is not quite enough to handle all letters, numerals and punctuation needed for basic communication in English. To alleviate the limited space available in five bits, ITA2 employs a "locking shift scheme" to switch between two modes: in **letter** mode bit sequences represent letters from the Roman alphabet, and in **figure** mode the same bit sequences represent numerals and various punctuation marks. This effectively doubles the amount of printable characters to 56 (some are reserved for special characters). The two shifts resemble the modern day use of the SHIFT key to access lowercase and uppercase characters.
 
 <figure class="u-image-full-width">
     {% image
@@ -144,7 +178,7 @@ ITA2 code was mostly used in specialized telegraph machines equipped with keyboa
     <figcaption>A paper reperforator would also print the characters on the tape, which must have been quite useful! From the 1947 <a href="https://archive.org/details/nrf_Model_14_Typing_and_Nontyping_Reperforators_TM_11-2223_1947/page/14/mode/1up" target="_blank">Model 14 Typing and Nontyping Reperforators</a> technical manual.</figcaption>
 </figure>
 
-#### Correction of errors on punched tape
+#### Correction of Errors on Punched Tape
 
 Writing messages like this is slow and error-prone. There is no "undo" on punching a hole through paper. A teleprinter manual from 1958 estimates that "in manually-prepared unchecked tape one error may be expected to occur in every 300 to 2000 characters."^[Creed & Company Limited (1958): [*An introduction to Creed teleprinters and punched tape equipment*](http://www.samhallas.co.uk/repository/telegraph/introduction_teleprinters_1958.pdf) p.42], which is quite a lot, but probably way less than what it for a typical person today. In the textbox below I've disabled the use of <kbd>Backspace</kbd>. Try to write this paragraph and see how it feels:
 
@@ -160,29 +194,31 @@ Sidenote: This process was also known as "rub-out" (a skeumorphic word that stem
 
 The improved ITA2 solved the problem of correcting an error before transmission with a clever trick: all the operator had to do, is to reel back the tape by pressing a lever, backtrack to the typo, and strike the letter-shift key over it. This action punches the erroneous part of the tape full of holes (❶❶❶❶❶), obliterating the wrong character. Even better, this action can be performed on **any** letter, because every (other) character in the code is **fixed-length** (5 bits), and include at least one unpunched ⓪-bit.
 
-#### Sending and receiving "nothing" in telegraphs
-
 After an operator has written their message and punched out any errors in it, the finished paper tape is fed into an automatic transmitter. The transmitter converts the code on the paper tape into electrical signals and sends them through telegraph lines to a receiving machine. The receiving telegraph machines are kept idle, ready to receive messages at any time. This is achieved by keeping the electrical current flowing (in what is called the "marking" state), producing a steady stream of ones (❶❶❶❶❶❶❶❶❶❶...). In this state the machine doesn't advance the paper tape or cause any printing action—in other words, the machine did *nothing*. But when the machine receives its first zero bit (❶❶❶❶❶❶❶❶❶❶**⓪**...), it knows that a message is incoming. As the machine "listens" to the electrical pulses, the message is decoded by mechanical operations: a printer prints it as text, and/or the perforation device recreates the original tape.
 
-When the receiving machine encounters an all-ones pattern (❶❶❶❶❶) within the message, it does one of two things: it idles, or it shifts to letter mode. And that's why the error correcting trick works: because shifting to letter mode does nothing if it's *already* in letter mode, the machine idles, and continues printing from the next character. As a result, no trace of the typo, not even a blank space, appears in the printed message.^[Herbert, T. E. (1920). [Telegraphy: A detailed exposition of the telegraph system of the British Post Office (p.482). ](https://archive.org/details/TelegraphyADetailedExposition/page/481/mode/2up?q=%22rub%20out%22)] 
+When the receiving machine encounters an all-ones pattern (❶❶❶❶❶) within the message, it does one of two things: it idles, or it shifts to letter mode. And that's why the error correcting trick works: because shifting to letter mode does nothing if it's *already* in letter mode, the machine idles, and continues printing from the next character. As a result, no trace of the typo, not even a blank space, appears in the printed message.^[Herbert, T. E. (1920). [Telegraphy: A detailed exposition of the telegraph system of the British Post Office](https://archive.org/details/TelegraphyADetailedExposition/page/481/mode/2up?q=%22rub%20out%22) (p.482)] 
 
-Here's a simplified ITA2 tape perforator simulator, try writing something. *SO* shifts the mode to figure mode, and *SI* shifts it back to letter mode. Press *Reset* to start a new message. To correct a typo, *Reel* to the unwanted character, and press *SI* on it.
+Here's a simplified ITA2 tape perforator simulator, try writing something. **⨂** shifts the mode to figure mode, and **⨀** shifts it back to letter mode. Press *Reset* to start a new message. To correct a typo, *Reel* to the unwanted character, and press **⨀** on it.
 
 <paper-tape></paper-tape>
 
+#### The Usefulness of Wasting Time
+
 In addition to being used for fixing typos, DEL had another useful function. Sometimes it was necessary to tell the machine to just idle. This could be achieved with the DEL character, as sending a pattern of all-ones was effectively the same as telling the machine to be in its marking state. In this context DEL is called "line-fill", because it fills the line (circuit), indicating that the line is active but telling the machine to otherwise idle.^[Jennings, Tom (2023): [An annotated history of some character codes](https://www.sensitiveresearch.com/Archive/CharCodeHist/index.html#DEL) 19.02.2025]
 
-Typically telegraph machines and teletypewriters processed data to consistent "beat", rather than waiting for each operation to complete before doing the next. This meant that being able to tell the receiving machine to idle was needed to accommodate the various timings operations took to complete. For example, when a printer carriage moves back to the left margin to start a new line (imagine how a typewriter works), triggered by a combination of CR (carriage return) and LF (line feed), the horizontal movement of the carriage took **longer** than the time it took to process subsequent characters. This could cause a timing mismatch, resulting in data loss or incorrect positioning of printed characters. By inserting DEL characters right after CR and LF (so the sequence becomes CR LF DEL), the printing device had enough time to complete the movement of the carriage before continuing. 
+Typically telegraph machines and teletypewriters processed data to a consistent "beat", rather than waiting for each operation to complete before doing the next. This meant that being able to tell the receiving machine to idle was needed to accommodate the various timings operations took to complete. For example, when a printer carriage moves back to the left margin to start a new line (imagine how a typewriter works), triggered by a combination of CR (carriage return) and LF (line feed), the horizontal movement of the carriage took **longer** than the time it took to process subsequent characters. This could cause a timing mismatch, resulting in data loss or incorrect positioning of printed characters. By inserting DEL characters right after CR and LF (so the sequence becomes CR LF DEL), the printing device had enough time to complete the movement of the carriage before continuing. 
 
 The brief processing delay caused by each DEL character was used to "synchronize" the data stream with the printer's physical capabilities, and is why DEL is also referred to as a "time-waster" or "time-fill" character.^[[ASCII-1977](https://nvlpubs.nist.gov/nistpubs/Legacy/FIPS/fipspub1-2-1977.pdf)] For this reason, the ASCII standards also state that the "addition or removal of [DEL] characters may affect the information layout or the control of equipment, or both,"^[[ANSI X3.4-1977](https://nvlpubs.nist.gov/nistpubs/Legacy/FIPS/fipspub1-2-1977.pdf), p.11] meaning that DEL characters could have a very important role in determining *where and when* text was printed, and should not be removed from the data.
 
 Understanding how DEL actually works, and how it was used, clears up the the confusion I had with the statement that DEL is "ignorable" and "supposed to do nothing". I was thinking of these terms in the way they are used in everyday language ("there's nothing in my pocket" or "ignore what he has to say"). But in the context of paper tape, mechanical devices and character encodings, "nothing" doesn't mean that it has no purpose, and "ignorable" doesn't mean that it could be discarded. These terms just describe how this character should be processed: when encountering DEL in a data stream, nothing should be done about it (to *ignore* it), and that can be a very useful feature.
 
 ::: wrap note
-##### Sidenote #1: DEL as media-fill?
-It wasn't always clear which end of a paper tape was the beginning and which one was the end. Media-fill refers to the practice of punching half-a-dozen or more DEL characters as a visual indicator at the end of a tape, making it easy to see which way the tape should be inserted into a tape-reader.^[https://archive.org/details/bitsavers_ferrantipemingMan1962_40324310/page/n135/mode/2up] It was also used as a "padding" to extend the tape a bit further if necessary.
+##### Sidenote #1: DEL as Media-fill
+DEL was also used as an easily noticeable visual mark. It wasn't always clear which end of a paper tape was the beginning and which one was the end. Media-fill refers to the practice of punching half-a-dozen or more DEL characters as a visual indicator at the end of a tape, making it clear which way the tape should be inserted into a tape-reader.^[https://archive.org/details/bitsavers_ferrantipemingMan1962_40324310/page/n135/mode/2up] It was also used as a "padding" to extend the tape a bit further if necessary.
+:::
 
-##### Sidenote #2: Is DEL as a control character?
+::: wrap note
+##### Sidenote #2: Is DEL a Control Character?
 The status of DEL as a control character is debatable. Some sources label DEL as a control character, others explicitly reject this categorization, and some just give up and call it a "special" character, or simply refer to it as "DEL" without taking a stance one way or another. According to the ASCII-1968 standard, "in the strict sense, DEL is not a control character", probably referring to the fact that it is not part of the control characters group (code points 0–31, also known as the C0 set) in the ASCII table, and doesn't directly control any device operations. But it's not a printable character either, so it's not to be categorized with the rest of the graphic characters. The SPACE character is also not a graphic character, but it does have an important function in the language, unlike DEL. NUL, which is quite similiar to DEL, is part of the control characters group, but it's similarly debatable if NUL is an actual control character or not. But, NUL and DEL do have a significant and practical influence on the *timing* of operations. The processing of NUL and DEL characters takes time, which is **not** nothing.^[Campbell, J. (1987). C Programmer’s Guide to Serial Communications (p.21). [Internet Archive](https://archive.org/details/cprogrammersguid00camp/mode/1up)] For this reason, the way I see it, DEL *is* a control character—it controls time. For practical reasons it is not part of the C0 set, but that shouldn't affect its status as a control character.
 :::
 
@@ -313,7 +349,7 @@ Because the designs of early bitmap fonts were constrained by small cell sizes, 
 Sidenote: I was originally planning on writing a lot more about the weird history of IBM PC's "house" ( ⌂ ) character at 0x7F, and of its use in PC ASCII, but had to cut it to get out of the never ending rabbit hole.
 :::
 
-In comparison, AmigaOS's diagonal lines glyph <span class="amiga amiga-inline">{% asciiart %}⌂{% endasciiart %}</span> for 0x7F doesn't seem like an outlier after all. Instead, they were following a popular convention, based (partly) on another official standard, with roots set decades earlier by Hugh McGregor Ross at Ferranti. 
+In comparison, AmigaOS's diagonal lines glyph <span class="amiga-inline">{% asciiart %}⌂{% endasciiart %}</span> for 0x7F doesn't seem like an outlier after all. Instead, they were following a popular convention, based (partly) on another official standard, with roots set decades earlier by Hugh McGregor Ross at Ferranti. 
 
 But does AmigaOS follow the ISO/IEC 8859-1 standard? If a character code standard like ISO/IEC 8859-1 doesn't explicitly define a graphical representation for a character (like DEL), but a system like Amiga implements its own graphical representation (based on another standard, like ISO 2047) for it, is it compliant with the standard or not? 
 
@@ -352,13 +388,13 @@ This is all to say: the many varied and contradicting functions, interpretations
 
 #### DEL in AmigaOS
 
-But what about Amiga then? When the DELETE key is pressed on an Amiga system, the raw keycode is translated by the system into the <span class="amiga amiga-inline">{% asciiart %}⌂{% endasciiart %}</span> character OR action based on the current keymap and console device handling. To my knowledge, by default it invokes a CSI escape sequence that deletes the character at its current position. The raw keycode can be captured though, as noted in the Amiga 500 user manual: "Keys can be program-controlled-that is, their use can be defined by the software being used".^[Commodore Amiga 500 User Manual. [Scan online](https://www.manualslib.com/manual/932575/Commodore-Amiga-500.html?page=238#manual) p.238] One could program a software to find any non-printable character and return 0x7F, displaying the <span class="amiga amiga-inline">{% asciiart %}⌂{% endasciiart %}</span> character. This is the case for example in the *RAWKEY keymapping example* on AmigaOS wiki^[AmigaOS Wiki: [Intuition keyboard](https://wiki.amigaos.net/wiki/Intuition_Keyboard)] which is a program that converts raw keycodes to ASCII, and replaces any unprintable or control characters with <span class="amiga amiga-inline">{% asciiart %}⌂{% endasciiart %}</span>. In this program, printing the DEL key as a visually highly distinct character is more informative than printing nothing, a space, or a string of escape sequences from directly outputting control characters. On the other hand, Amiga Workbench 3.1 has a menu option to "Insert ASCII" by providing the index (0-255) of the character's code point. If I wanted to insert 0x7F, I would write 127 in the prompt. But when I draw Amiga ASCII art on macOS using contemporary specialized ASCII editors (like Moebius), all the characters are simply listed in a table which can be mapped to function keys F1–F12. 
+But what about Amiga then? When the DELETE key is pressed on an Amiga system, the raw keycode is translated by the system into the <span class="amiga-inline">{% asciiart %}⌂{% endasciiart %}</span> character OR action based on the current keymap and console device handling. To my knowledge, by default it invokes a CSI escape sequence that deletes the character at its current position. The raw keycode can be captured though, as noted in the Amiga 500 user manual: "Keys can be program-controlled-that is, their use can be defined by the software being used".^[Commodore Amiga 500 User Manual. [Scan online](https://www.manualslib.com/manual/932575/Commodore-Amiga-500.html?page=238#manual) p.238] One could program a software to find any non-printable character and return 0x7F, displaying the <span class="amiga-inline">{% asciiart %}⌂{% endasciiart %}</span> character. This is the case for example in the *RAWKEY keymapping example* on AmigaOS wiki^[AmigaOS Wiki: [Intuition keyboard](https://wiki.amigaos.net/wiki/Intuition_Keyboard)] which is a program that converts raw keycodes to ASCII, and replaces any unprintable or control characters with <span class="amiga-inline">{% asciiart %}⌂{% endasciiart %}</span>. In this program, printing the DEL key as a visually highly distinct character is more informative than printing nothing, a space, or a string of escape sequences from directly outputting control characters. On the other hand, Amiga Workbench 3.1 has a menu option to "Insert ASCII" by providing the index (0-255) of the character's code point. If I wanted to insert 0x7F, I would write 127 in the prompt. But when I draw Amiga ASCII art on macOS using contemporary specialized ASCII editors (like Moebius), all the characters are simply listed in a table which can be mapped to function keys F1–F12. 
 
 ## Displaying Amiga ASCII art on the web
 
 Nowdays to *actually* type the character at code point 0x7F requires the use of "alt codes". On Windows, this can be done by holding down the <kbd>Alt</kbd> key, then typing the decimal number of DEL <kbd>1</kbd><kbd>2</kbd><kbd>7</kbd> using the keyboard's numeric keypad, and then releasing <kbd>Alt</kbd>. On Mac this is not possible by default, but can be done by enabling *Unicode Hex Input* as text input source ([instructions](https://poynton.ca/notes/misc/mac-unicode-hex-input.html)), then holding down the <kbd>Option</kbd> key, then typing the Unicode hexadecimal of DEL <kbd>0</kbd><kbd>0</kbd><kbd>7</kbd><kbd>f</kbd>, and then releasing <kbd>Option</kbd>. These will produce the code 0x7F.
 
-However, as I mentioned in the introduction, displaying the glyph at 0x7F is not always possible—it's wholly dependant on the application. For example, here's DEL (0x7F) using the Topaz font: <span class="amiga amiga-inline"></span>. If you view this on Chrome, you will see the glyph. However, if you view this on Firefox, it will not display, because it's blocked at the browser level (for what reason I don't exactly know). On the web, it's more common to display Unicode characters using HTML entities like <code>\&#x7F;</code> or <code>\&#127;</code>, but these methods produce the generic symbol for "unrepresentable character", even on Chrome: <span class="amiga amiga-inline">&#x007F; &#127;</span>. Using a Javascript snippet <code>document.write(String.fromCharCode(0x7F));</code> displays the glyph correctly on Chrome, but not on Firefox: <span class="amiga amiga-inline"><script>document.write(String.fromCharCode(0x7F));</script></span>. 
+However, as I mentioned in the introduction, displaying the glyph at 0x7F is not always possible—it's wholly dependant on the application. For example, here's DEL (0x7F) using the Topaz font: <span class="amiga-inline"></span>. If you view this on Chrome, you will see the glyph. However, if you view this on Firefox, it will not display, because it's blocked at the browser level (for what reason I don't exactly know). On the web, it's more common to display Unicode characters using HTML entities like <code>\&#x7F;</code> or <code>\&#127;</code>, but these methods produce the generic symbol for "unrepresentable character", even on Chrome: <span class="amiga-inline">&#x007F; &#127;</span>. Using a Javascript snippet <code>document.write(String.fromCharCode(0x7F));</code> displays the glyph correctly on Chrome, but not on Firefox: <span class="amiga-inline"><script>document.write(String.fromCharCode(0x7F));</script></span>. 
 
 This is of course a big problem for displaying Amiga ASCII art containing DEL characters on the web. Even asciiarena.se, THE website dedicated to archiving, sharing and displaying Amiga ASCII art, haven't been able (or aren't bothered) to solve this issue. Artworks containing DEL characters simply don't display them. For example, the rendering for [SNAFUALV.TXT](https://www.asciiarena.se/release/SNAFUALV.TXT) by sNAFu from 1995 is completely broken on the site. (However, the artworks on asciiarena.se *could* be shown correctly at least on Chrome, but the DEL glyph is not even assigned to *any* code point in the Topaz font they use.)
 
@@ -379,13 +415,13 @@ The other option, as employed by the site 16colo.rs, is to render ASCII art as i
 
 Is there really no way to display ASCII art, including DEL characters, reliably as text on the web? 
 
-The answer is no, if we want to use the original code points. But a way to preserve ASCII art as text, while being able to display DEL and other control characters, is to convert the troublesome characters to their Unicode equivalents or best-fit approximations. A similar glyph to <span class="amiga amiga-inline">⌂</span> could be ▨ (U+25A8), 🮙 (U+1FB99), ␥ (U+2425), ▒ (U+2592), 🮕 (U+1FB95) or maybe it could even be mapped to ␡ (U+2421). In 2022 the Terminals Working Group at Unicode made a *Proposal to add further characters from legacy computers and teletext to the UCS*^[Bettencourt, Rebecca; Ewell, Doug; Bánffy, Ricardo; Everson, Michael; Hietaniemi, Jarkko; Silva, Eduardo Marín; Mårtenson, Elias; Shoulson, Mark; Steele, Shawn; Turner, Rebecca (2021-12-20): [Proposal to add further characters from legacy computers and teletext to the UCS](https://www.unicode.org/L2/L2021/21235-terminals-supplement.pdf)], adding hundreds of new graphic characters to provide compatibility with a wide range of home computers manufactured from the mid-1970s to the mid-1980s. Even though Amiga was not among them, three new specific symbols for delete were added: symbol for delete in the Apple II character set ␧ (U+2427), in the TRS-80 character set ␨ (U+2428), and in the Amstrad CPC character set ␩ (U+2429). These were accepted to Unicode version 16.0 which was officialy released just last year in 2024. In my opinion, the closest graphic approximation for Topaz's DEL would be 🮙 (U+1FB99), but its name is a generic "upper right to lower left fill", while semantically better fit would be the new ␩ (U+2429), which is a "symbol for delete medium shade form". 
+The answer is no, if we want to use the original code points. But a way to preserve ASCII art as text, while being able to display DEL and other control characters, is to convert the troublesome characters to their Unicode equivalents or best-fit approximations. A similar glyph to <span class="amiga-inline">⌂</span> could be ▨ (U+25A8), 🮙 (U+1FB99), ␥ (U+2425), ▒ (U+2592), 🮕 (U+1FB95) or maybe it could even be mapped to ␡ (U+2421). In 2022 the Terminals Working Group at Unicode made a *Proposal to add further characters from legacy computers and teletext to the UCS*^[Bettencourt, Rebecca; Ewell, Doug; Bánffy, Ricardo; Everson, Michael; Hietaniemi, Jarkko; Silva, Eduardo Marín; Mårtenson, Elias; Shoulson, Mark; Steele, Shawn; Turner, Rebecca (2021-12-20): [Proposal to add further characters from legacy computers and teletext to the UCS](https://www.unicode.org/L2/L2021/21235-terminals-supplement.pdf)], adding hundreds of new graphic characters to provide compatibility with a wide range of home computers manufactured from the mid-1970s to the mid-1980s. Even though Amiga was not among them, three new specific symbols for delete were added: symbol for delete in the Apple II character set ␧ (U+2427), in the TRS-80 character set ␨ (U+2428), and in the Amstrad CPC character set ␩ (U+2429). These were accepted to Unicode version 16.0 which was officialy released just last year in 2024. In my opinion, the closest graphic approximation for Topaz's DEL would be 🮙 (U+1FB99), but its name is a generic "upper right to lower left fill", while semantically better fit would be the new ␩ (U+2429), which is a "symbol for delete medium shade form". 
 
 Converting ASCII to Unicode is not trivial though. There needs to be some program or process to do it, and the font needs to map the right unicodes to the corresponding glyphs. 
 
 For this site I ended up using a much simpler, although improper, method. My preferred ASCII art tool Moebius, which is predominantly programmed for creating PC ANSI art, already has an ASCII to Unicode conversion feature. I can either save the file as "Unicode ANSI", or simply copy-paste from the program to another text editor, and it will convert any control characters to unicode. However, PC ASCII uses IBM's code page 437, so the conversion is specific to it. For example, 0x7F gets automatically converted to the unicode equivalent of code page 437's symbol for DEL ( ⌂ ) at [U+2302](https://graphemica.com/%E2%8C%82), rather than to any of the aforementioned symbols that would better fit Amiga's DEL symbol. The ease of use is too great for me to care though, especially because semantic correctness for control characters is not a priority (for me) in Amiga ASCII art.
 
-To then display ASCII art on the site, I made a font of Topaz glyphs, and mapped the <span class="amiga amiga-inline">⌂</span> glyph to U+2302. This way I can make Amiga ASCII art with Moebius, then simply copy paste it to my code editor, wrap it with a <code>\<pre class="amiga"></code> element, give it two lines of CSS, and it just works:
+To then display ASCII art on the site, I made a font of Topaz glyphs, and mapped the <span class="amiga-inline">⌂</span> glyph to U+2302. This way I can make Amiga ASCII art with Moebius, then simply copy paste it to my code editor, wrap it with a <code>\<pre class="amiga"></code> element, give it two lines of CSS, and it just works:
 
     .amiga {
       font-family: 'Topaz_Plus_a1200_CP437';
@@ -432,13 +468,13 @@ The earliest file containing DEL is from 93, although the character is actually 
 
 Below I have curated a selection of artworks that incorporate DEL in one way or another. The files are grouped by year. The individual artworks are usually part of larger collections ("collys"), some of which have a unified layout or theme. Crudely copy-pasting them here inevitablty removes them from their original contexts, so I recommend viewing them in full using a dedicated ASCII software. For this the Windows only ASCII art editor / viewer [PabloDraw](https://picoe.ca/products/pablodraw/) is best, as it includes a browsable folder view.
 
-If trying to spot the <span class="amiga amiga-inline">⌂</span> characters is too time consuming, **clicking on the ASCII art highlights the DEL characters!** Other than that, I will let the art speak for itself. Enjoy!
+If trying to spot the <span class="amiga-inline">⌂</span> characters is too time consuming, **clicking on the ASCII art highlights the DEL characters!** Other than that, I will let the art speak for itself. Enjoy!
 
 ## 1994
 
 #### 1994/dss_xcz!.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -483,7 +519,7 @@ If trying to spot the <span class="amiga amiga-inline">⌂</span> characters is 
 
 #### 1994/pss_rw.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -526,7 +562,7 @@ If trying to spot the <span class="amiga amiga-inline">⌂</span> characters is 
 
 #### 1994/xcz-phq.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -565,7 +601,7 @@ If trying to spot the <span class="amiga amiga-inline">⌂</span> characters is 
 
 #### 1995/cor-vns.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -611,7 +647,7 @@ If trying to spot the <span class="amiga amiga-inline">⌂</span> characters is 
 
 #### 1995/ds!-hopp.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -654,7 +690,7 @@ If trying to spot the <span class="amiga amiga-inline">⌂</span> characters is 
 
 #### 1995/ds!-bob4.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -678,7 +714,7 @@ If trying to spot the <span class="amiga amiga-inline">⌂</span> characters is 
 
 #### 1995/cnb-sch.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -720,7 +756,7 @@ If trying to spot the <span class="amiga amiga-inline">⌂</span> characters is 
 
 First colly in which the 0x7F is used extensively as the "main" character. It's completely broken on (asciiarena.se)[https://www.asciiarena.se/release/SNAFUALV.TXT]
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -854,7 +890,7 @@ _______________ ______________ _____________ ______________ _______ _______
 
 #### 1995/-t-satc3.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -902,7 +938,7 @@ _____\_\_____________  ______\____\______________\_\___:__________       __  :
 
 #### 1995/e^d-name.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -942,7 +978,7 @@ _____\_\_____________  ______\____\______________\_\___:__________       __  :
 
 #### 1995/e^d-blc.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -988,7 +1024,7 @@ _____\_\_____________  ______\____\______________\_\___:__________       __  :
 
 The colly includes *"Ping Pong"* and *Pac-Man* in a similar style.
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -1028,7 +1064,7 @@ The colly includes *"Ping Pong"* and *Pac-Man* in a similar style.
 
 #### 1995/m's-sign.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -1143,7 +1179,7 @@ The colly includes *"Ping Pong"* and *Pac-Man* in a similar style.
 
 #### 1996/os!-eotw.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -1170,7 +1206,7 @@ The colly includes *"Ping Pong"* and *Pac-Man* in a similar style.
 
 #### 1996/ed_fc.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -1201,7 +1237,7 @@ The colly includes *"Ping Pong"* and *Pac-Man* in a similar style.
 
 #### 1996/-t-ap3e.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -1233,7 +1269,7 @@ The colly includes *"Ping Pong"* and *Pac-Man* in a similar style.
 
 #### 1996/beuty.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -1268,7 +1304,7 @@ The colly includes *"Ping Pong"* and *Pac-Man* in a similar style.
 
 #### 1996/hos-dts!.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -1293,7 +1329,7 @@ l_____\      \____________\_____\      \___________l |    ⌂  .
 
 #### 1996/-t-loved.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -1335,7 +1371,7 @@ ___________________J-#»L╠πQ_╪dC2 M╤E╤¼«QKJ┤J╤K_'&/╛QK_________
 
 #### 1996/-t-tatf2.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -1365,7 +1401,7 @@ ___________________J-#»L╠πQ_╪dC2 M╤E╤¼«QKJ┤J╤K_'&/╛QK_________
 
 #### 1996/-t-tatf3.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -1405,7 +1441,7 @@ ___________________J-#»L╠πQ_╪dC2 M╤E╤¼«QKJ┤J╤K_'&/╛QK_________
 
 #### 1996/e^d-t0!7.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -1449,7 +1485,7 @@ _/_   \    _/_    /   _/_   _/   _/_   _/_   _/   _/_   _/_   \____\(_ _   (_|
 
 #### 1996/e^d-barc.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -1487,7 +1523,7 @@ _/_   \    _/_    /   _/_   _/   _/_   _/_   _/   _/_   _/_   \____\(_ _   (_|
 
 #### 1997/u'r-bomb.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -1531,7 +1567,7 @@ _/_   \    _/_    /   _/_   _/   _/_   _/_   _/   _/_   _/_   \____\(_ _   (_|
 
 #### 1997/se-atrip.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -1570,7 +1606,7 @@ _/_   \    _/_    /   _/_   _/   _/_   _/_   _/   _/_   _/_   \____\(_ _   (_|
 
 #### 1997/se-pain.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -1599,7 +1635,7 @@ _/_   \    _/_    /   _/_   _/   _/_   _/_   _/   _/_   _/_   \____\(_ _   (_|
 
 #### 1997/p^d-ambb.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -1639,7 +1675,7 @@ _/_   \    _/_    /   _/_   _/   _/_   _/_   _/   _/_   _/_   \____\(_ _   (_|
 
 #### 1998/la!-mia.txt 
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -1683,7 +1719,7 @@ _/_   \    _/_    /   _/_   _/   _/_   _/_   _/   _/_   _/_   \____\(_ _   (_|
 
 #### 1998/l124-iso.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -1775,7 +1811,7 @@ _/_   \    _/_    /   _/_   _/   _/_   _/_   _/   _/_   _/_   \____\(_ _   (_|
 
 #### 1998/l124-m98.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -1805,7 +1841,7 @@ _/_   \    _/_    /   _/_   _/   _/_   _/_   _/   _/_   _/_   \____\(_ _   (_|
 
 #### 1998/la!-tdh.txt 
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -1844,7 +1880,7 @@ _/_   \    _/_    /   _/_   _/   _/_   _/_   _/   _/_   _/_   \____\(_ _   (_|
 
 #### 1998/dzn-pac.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -1869,7 +1905,7 @@ _/_   \    _/_    /   _/_   _/   _/_   _/_   _/   _/_   _/_   \____\(_ _   (_|
 
 #### 1998/blz-devs.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -1906,7 +1942,7 @@ _/_   \    _/_    /   _/_   _/   _/_   _/_   _/   _/_   _/_   \____\(_ _   (_|
 
 #### 1998/cp!-hom.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -1940,7 +1976,7 @@ _/_   \    _/_    /   _/_   _/   _/_   _/_   _/   _/_   _/_   \____\(_ _   (_|
 
 #### 1999/k0-st8wa.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -1978,7 +2014,7 @@ ___(      /_ __(      /__ __(___   /__⌂__(  \/  /__ __\_____ )__ __(      /___
 
 #### 1999/sea-erre.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -2035,7 +2071,7 @@ ascii colly entitled  ╜ .  .  .  .  .  .  .  .  .  .  . ╜  ascii colly entit
 
 #### 1999/la-cld.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -2073,7 +2109,7 @@ ascii colly entitled  ╜ .  .  .  .  .  .  .  .  .  .  . ╜  ascii colly entit
 
 #### 1999/c½w-purefeelings.txt 
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -2126,7 +2162,7 @@ ascii colly entitled  ╜ .  .  .  .  .  .  .  .  .  .  . ╜  ascii colly entit
 
 #### 1999/c½w-purefeelings.txt 
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -2204,7 +2240,7 @@ ascii colly entitled  ╜ .  .  .  .  .  .  .  .  .  .  . ╜  ascii colly entit
 
 #### 1999/c½w-klam.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -2232,7 +2268,7 @@ ascii colly entitled  ╜ .  .  .  .  .  .  .  .  .  .  . ╜  ascii colly entit
 
 #### 2000/lot-rave.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -2273,7 +2309,7 @@ ascii colly entitled  ╜ .  .  .  .  .  .  .  .  .  .  . ╜  ascii colly entit
 
 #### 2000/lot-noco.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -2305,7 +2341,7 @@ ascii colly entitled  ╜ .  .  .  .  .  .  .  .  .  .  . ╜  ascii colly entit
 
 #### 2001/1oo-apoc.txt
 
-<pre class="amiga" onpointerdown="this.classList.toggle('highlight')">
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                 
                                                                                 
                                                                                 
@@ -2335,3 +2371,11 @@ ascii colly entitled  ╜ .  .  .  .  .  .  .  .  .  .  . ╜  ascii colly entit
                                                                                 
                                                                                 
 </pre>
+
+## Further readings
+
+There's a lot more to say about DEL, especially about the technical aspects of character codes. I left most of that out on purpose to center my attention on the *visual* aspects of the glyph. However, if you are interested, there are many well written and extremely detailed articles on the minute details of telegraph machines, character code standards, control characters, early computing history and so on. 
+
+On coded character sets and ASCII, there's the massive 535 page [*Coded Character Sets, History and Development*](https://archive.org/details/mackenzie-coded-char-sets/page/n6/mode/1up?q=delete) by Charles E. Mackenzie (1980), the slighly more approachable [*An annotated history of some character codes*](https://www.sensitiveresearch.com/Archive/CharCodeHist/index.html) by Tom Jennings (1999, last update 2023) and [*The Evolution of Character Codes, 1874-1968*](https://archive.org/details/enf-ascii/mode/2up) by Eric Fischer (2000). Aivosto's [*Control characters in ASCII and Unicode*](https://www.aivosto.com/articles/control-characters.html) (2011, last update 2022) is an excellent and in-depth look focused on control characters. David M. MacMillan's [*Codes that Don't Count*](https://www.circuitousroot.com/artifice/telegraphy/tty/codes/) is more about the telegraph codes with a particular attention on teletypsetters. The most invaluable source of material has been [*Source documents on the history of character codes*](https://archive.org/search?query=creator%3A%22Compiled+by+Eric+Fischer%22) compiled by Eric Fischer and shared gratuitously on the Internet Archive. But if I were to recommend something more "enjoyable" and thought-provoking to read, it would be [*The machine in the ghost: digitality and its consequences*](https://archive.org/details/machineinghostdi0000boas/) by Robin Boast (2017), which takes a more social and human approach to the developments of digital communication. 
+
+For texts on ASCII, there's not much unfortunately. On text art, there's [WiderScreen's](https://widerscreen.fi/widerscreen-1-2-2017-tekstitaide-text-art/) 2017 issue on text art as both an object of study and artistic work, and the book [*From ASCII Art to Comic Sans: Typography and Popular Culture in the Digital Age*](https://direct.mit.edu/books/oa-monograph/5649/From-ASCII-Art-to-Comic-SansTypography-and-Popular) by Karin Wagner (2023). VileR has a great article on [*Game Font Forensics*](https://int10h.org/blog/2024/02/game-font-forensics/) (2024) which has a somewhat similar theme investigating old bitmap fonts. On Amiga ASCII art specifically, there's my own BA thesis on [*Amiga ASCII art*](https://blog.glyphdrawing.club/amiga-ascii-art/) from 2015, which I translated to English an published here on my blog in 2023. 

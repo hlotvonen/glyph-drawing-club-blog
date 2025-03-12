@@ -17,6 +17,7 @@ class TextareaNoBS extends HTMLElement {
                   height:5lh;
                   margin:0 auto;
                   padding: 10px;
+                  box-sizing:border-box;
               }
           </style>
           <textarea placeholder="${placeholder}"></textarea>
