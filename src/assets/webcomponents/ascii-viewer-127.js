@@ -181,18 +181,18 @@ class AsciiViewer127 extends HTMLElement {
             bitColumn.className = 'bit-column';
             bitColumn.dataset.column = col;
             
-            // Create 7 bits
-            for (let bit = 0; bit <= 6; bit++) {
+            // Create 7 bits (bits 0-6)
+            for (let bit = 0; bit < 7; bit++) {
                 const bitElement = document.createElement('div');
-                bitElement.className = `bit ${bit > 4 ? 'bit-0-1' : ''}`;
+                bitElement.className = `bit ${bit <= 1 ? 'bit-0-1' : ''}`;
                 bitElement.dataset.bit = bit;
                 bitElement.dataset.col = col;
                 
-                // Show static bits for 0-5
-                if (bit <= 5) {
-                    const colBits = col.toString(2).padStart(7, '0');
-                    bitElement.textContent = colBits[6-bit];
-                    if (colBits[6-bit] === '1') bitElement.classList.add('bit-1');
+                // Show static bits for 2-6
+                if (bit >= 2) {
+                    const colBits = col.toString(2).padStart(5, '0');  // 5 bits for 2-6
+                    bitElement.textContent = colBits[bit-2];  // Simply use bit-2 to index from start
+                    if (colBits[bit-2] === '1') bitElement.classList.add('bit-1');
                 } else {
                     bitElement.textContent = '-';
                 }
@@ -234,14 +234,14 @@ class AsciiViewer127 extends HTMLElement {
             // Update bit patterns for bits 0-1 for all columns
             const rowBits = row.dataset.bits;
             bitPattern.querySelectorAll('.bit-column').forEach(column => {
-                const bit0Element = column.children[6];
-                const bit1Element = column.children[5];
+                const bit0Element = column.children[0];
+                const bit1Element = column.children[1];
                 
-                bit0Element.textContent = rowBits[1];
-                bit1Element.textContent = rowBits[0];
+                bit0Element.textContent = rowBits[0];
+                bit1Element.textContent = rowBits[1];
                 
-                bit0Element.classList.toggle('bit-1', rowBits[1] === '1');
-                bit1Element.classList.toggle('bit-1', rowBits[0] === '1');
+                bit0Element.classList.toggle('bit-1', rowBits[0] === '1');
+                bit1Element.classList.toggle('bit-1', rowBits[1] === '1');
             });
         });
 
@@ -267,8 +267,8 @@ class AsciiViewer127 extends HTMLElement {
             }
             const currentColumn = cell.dataset.column;
             const currentBitColumn = bitPattern.querySelector(`.bit-column[data-column="${currentColumn}"]`);
-            const bit0 = currentBitColumn.children[6];
-            const bit1 = currentBitColumn.children[5];
+            const bit0 = currentBitColumn.children[0];
+            const bit1 = currentBitColumn.children[1];
             this.originalBitStates[currentColumn] = {
                 bit0: { text: bit0.textContent, isSet: bit0.classList.contains('bit-1') },
                 bit1: { text: bit1.textContent, isSet: bit1.classList.contains('bit-1') }
@@ -276,14 +276,14 @@ class AsciiViewer127 extends HTMLElement {
 
             // Update bit pattern only for the hovered column
             const rowBits = cell.closest('.ascii-row').dataset.bits;
-            const bit0Element = currentBitColumn.children[6];
-            const bit1Element = currentBitColumn.children[5];
+            const bit0Element = currentBitColumn.children[0];
+            const bit1Element = currentBitColumn.children[1];
             
-            bit0Element.textContent = rowBits[1];
-            bit1Element.textContent = rowBits[0];
+            bit0Element.textContent = rowBits[0];
+            bit1Element.textContent = rowBits[1];
             
-            bit0Element.classList.toggle('bit-1', rowBits[1] === '1');
-            bit1Element.classList.toggle('bit-1', rowBits[0] === '1');
+            bit0Element.classList.toggle('bit-1', rowBits[0] === '1');
+            bit1Element.classList.toggle('bit-1', rowBits[1] === '1');
         });
 
         // Clear hover highlights when mouse leaves the grid
@@ -321,15 +321,15 @@ class AsciiViewer127 extends HTMLElement {
             Object.entries(this.originalBitStates).forEach(([column, data]) => {
                 const bitColumn = bitPattern.querySelector(`.bit-column[data-column="${column}"]`);
                 if (bitColumn) {
-                    const bit0Element = bitColumn.children[6];
-                    const bit1Element = bitColumn.children[5];
+                    const bit0Element = bitColumn.children[0];
+                    const bit1Element = bitColumn.children[1];
                     
                     if (this.clickedRowBits) {
                         // If we have a clicked row, use its bits
-                        bit0Element.textContent = this.clickedRowBits[1];
-                        bit1Element.textContent = this.clickedRowBits[0];
-                        bit0Element.classList.toggle('bit-1', this.clickedRowBits[1] === '1');
-                        bit1Element.classList.toggle('bit-1', this.clickedRowBits[0] === '1');
+                        bit0Element.textContent = this.clickedRowBits[0];
+                        bit1Element.textContent = this.clickedRowBits[1];
+                        bit0Element.classList.toggle('bit-1', this.clickedRowBits[0] === '1');
+                        bit1Element.classList.toggle('bit-1', this.clickedRowBits[1] === '1');
                     } else {
                         // Otherwise restore the original state
                         bit0Element.textContent = data.bit0.text;

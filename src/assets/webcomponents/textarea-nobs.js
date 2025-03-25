@@ -1,4 +1,3 @@
-// Define the web component
 class TextareaNoBS extends HTMLElement {
   constructor() {
     super();
@@ -7,36 +6,49 @@ class TextareaNoBS extends HTMLElement {
     const placeholder = this.getAttribute('placeholder') || '';
 
     this.shadowRoot.innerHTML = `
-          <style>
-              :host {
-                  display: block;
-              }
-              textarea {
-                  width: 100%;
-                  max-width:40rem;
-                  height:5lh;
-                  margin:0 auto;
-                  padding: 10px;
-                  box-sizing:border-box;
-              }
-          </style>
-          <textarea placeholder="${placeholder}"></textarea>
-      `;
+      <style>
+        :host {
+          display: block;
+        }
+        textarea {
+          width: 100%;
+          max-width: 40rem;
+          height: 5lh;
+          margin: 0 auto;
+          padding: 10px;
+          box-sizing: border-box;
+        }
+      </style>
+      <textarea placeholder="${placeholder}"></textarea>
+    `;
 
     // Get the textarea element
     this.textarea = this.shadowRoot.querySelector('textarea');
 
     // Bind the event handler
-    this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+    this.lastValue = '';
 
     // Add event listener
-    this.textarea.addEventListener('keydown', this.handleKeyDown);
+    this.textarea.addEventListener('input', this.handleInput);
+    
+    // Store initial value
+    this.lastValue = this.textarea.value;
   }
 
-  // Event handler to prevent backspace
-  handleKeyDown(event) {
-    if (event.key === 'Backspace' || event.keyCode === 8) {
-      event.preventDefault();
+  // Event handler to catch all input including backspace
+  handleInput(event) {
+    // If the new length is less than the previous length, backspace was likely used
+    if (this.textarea.value.length < this.lastValue.length) {
+      // Restore the previous value
+      this.textarea.value = this.lastValue;
+      
+      // Optionally, move the cursor to the end
+      this.textarea.selectionStart = this.textarea.value.length;
+      this.textarea.selectionEnd = this.textarea.value.length;
+    } else {
+      // Update the last value with the new value
+      this.lastValue = this.textarea.value;
     }
   }
 
@@ -48,6 +60,7 @@ class TextareaNoBS extends HTMLElement {
   // Setter for the textarea value
   set value(val) {
     this.textarea.value = val;
+    this.lastValue = val; // Update lastValue as well
   }
 
   // Handle attribute changes
@@ -59,6 +72,11 @@ class TextareaNoBS extends HTMLElement {
     if (name === 'placeholder' && this.textarea) {
       this.textarea.placeholder = newValue;
     }
+  }
+
+  // Clean up event listeners when element is removed
+  disconnectedCallback() {
+    this.textarea.removeEventListener('input', this.handleInput);
   }
 }
 

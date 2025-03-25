@@ -98,6 +98,7 @@
     margin-bottom:0.5rem;
     margin-left: #{"max(calc(50% - 30rem), 0%)"};
     max-width: #{"min(20rem, 50%)"};
+    clear:both;
     img {
         max-width: 100%;
         height: auto;
@@ -113,6 +114,7 @@
     margin-bottom:0.5rem;
     margin-right: #{"max(calc(50% - 30rem), 0%)"};
     max-width: #{"min(20rem, 50%)"};
+    clear:both;
     img {
         max-width: 100%;
         height: auto;
