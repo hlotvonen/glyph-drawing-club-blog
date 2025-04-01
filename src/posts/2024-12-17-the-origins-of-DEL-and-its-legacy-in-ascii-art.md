@@ -21,19 +21,15 @@ webcomponents:
 
 ## Brief Summary
 
-tl;dr: This article is a detailed (but not exhaustive) micro-history on the character DEL (0x7F) as it appears in Amiga's Topaz font (<span class="amiga-inline"> ⌂ </span>), and on its use in Amiga ASCII art. 
+tl;dr: This article is a detailed (but not exhaustive) micro-history on the character DEL (0x7F) as it appears in Amiga's Topaz font (<span class="amiga-inline"> ⌂ </span>), and how it was used in Amiga ASCII art between 1993–2005.
 
-In [part 1](#part-1), **"What is 0x7F"**, I try to form a comprehensive understanding of how DEL(ETE) originated as a way to obliterate errors on punched tape, and how it found use as a timing control for mechanical printers.
+In [part 1](#part-1), **"What is DEL"**, I try to form a comprehensive understanding of how DEL(ETE) originated as a way to obliterate errors on punched tape, and how it found use as a timing control for mechanical printers.
 
-::: wrap note
-Part 1 is a technical explanation of how early telegraph machines worked, so if you rather read about Amiga specific graphics, skip straight to [part 2](#part-2) or if you just want to look at some nice ASCII art, skip to [part 3](#part-3).
-:::
+In [part 2](#part-2), **"The graphics of DEL"**, I take a closer look at how normally non-printing characters, like DEL, were given a standardized visual representation through ECMA-17 in 1968, and how DEL was *actually* represented in various early bitmap fonts between 1970s–1990s.
 
-In [part 2](#part-2), **"The graphics of DEL"**, I take a closer look at how normally non-printing characters like DEL were given a standardized visual representation through ECMA-17 in 1968 to aid in debugging. The chosen representation for DEL was a symbol of shading with diagonal lines, deriving from the recommendations given by British computer pioneer Hugh McGregor Ross in the early 1960s. The DEL glyph was included in many early bitmap fonts in the 1970s and 1980s, indicating that Amiga's representation was part of a popular trend rather than an idiosyncrasy.
+[Part 3](#part-3), **"DEL in Amiga ASCII art"**, is about the particular shape and design of Topaz's <span class="amiga-inline">⌂</span>. I analyze over 3000 Amiga ASCII artworks made between 1993–2005 to see how DEL was used, and showcase some of them.
 
-[Part 3](#part-3), **"DEL in Amiga ASCII art"**, is about the particular shape and design of Topaz's <span class="amiga-inline">⌂</span>. I explore different ways <span class="amiga-inline">⌂</span> has been, and could be, used in Amiga ASCII art. I also analyze 3153 Amiga ASCII artworks, identifying how DEL was used between 1993–2005, and present a curated collection of some interesting uses for the character.
-
-**Keywords**: DELETE character (0x7F), text art, Amiga, ASCII art, bitmap fonts, character encodings, control characters, ASCII standards, ECMA-17, punched tape
+**Keywords**: DELETE character, Amiga ASCII art, textmode, bitmap fonts, character sets, control characters, ASCII, ECMA-17, punched tape, telegraph, ITA2
 
 ::: wrap note
 If you find any errors, incorrect understandings, or if you think I've simplified some things too much, or if you have some information that you think would be valuable to add, or have any comments or thoughts at all, please send me an email at **hlotvonen@gmail.com**. I greatly appreaciate all contacts, and if something needs fixing I would gladly update the article with proper credit.
@@ -71,11 +67,11 @@ One day I received an unexpected email from Michael Walden.
 
 He had read my BA thesis on [Amiga ASCII art](https://blog.glyphdrawing.club/amiga-ascii-art/) and wanted to point out something curious that I had missed. The character set used in AmigaOS is identical to the  <abbr title="Latin alphabet No. 1">ISO/IEC 8859-1</abbr> character encoding standard^[[ISO/IEC 8859-1](https://en.wikipedia.org/wiki/ISO/IEC_8859-1#History) is probably better known nowdays as Latin Alphabet No.1 or just Latin-1, and when Commodore adopted it, it was known as ECMA-94.], *except* for one character: the character at code point 0x7F. 
 
-This observation might seem trivial, but I was intrigued. This character has always been somewhat of a mystery to me. Let me explain.
+This observation might seem trivial, but I was intrigued. This character has always been somewhat of a mystery to me. Let me explain&hellip;
 
 ### Diagonals in Amiga ASCII Art
 
-The default font of Amiga, Topaz, is really good for making ASCII art in "outline" style because many of its characters "touch" the edges of the 8&times;16 pixel textmode cell. Slashes placed diagonally form a continuous slanting line, and rows of underscores form straight horizontal lines. Combined in a textmode grid, these characters can be assembled into an endless variety of shapes, forming the basis for the majority of Amiga ASCII art. The seamless connectivity of the glyphs, as a result of their systematic familiarity, is what makes the unique aesthetic of Amiga ASCII art:
+The default font of Amiga, Topaz, is really good for making ASCII art in "outline" style because many of its characters "touch" the edges of the 8&times;16 pixels-per-character cell. Slashes placed diagonally form a continuous slanting line, and rows of underscores form straight horizontal lines. Combined in a textmode grid, these characters can be assembled into an endless variety of shapes, forming the basis for the majority of Amiga ASCII art. The seamless connectivity of the glyphs, as a result of their systematic familiarity, is what makes the unique aesthetic of Amiga ASCII art:
 
 <pre class="amiga" onclick="this.classList.toggle('highlight')">
                                                                                
@@ -87,7 +83,7 @@ The default font of Amiga, Topaz, is really good for making ASCII art in "outlin
                                                                                
 </pre>
 
-Besides the slashes and underscores, there's a total of 256 characters to play with. Every diagonal in every character (e.g <span class="amiga-inline">{% asciiart %}< > / \ % X Y Z K ^ 2 4{% endasciiart %}</span>) of Topaz follows the same basic rule: two pixels up, one to the side^[There are a few Topaz versions that slighly differ from each other, but the 8&times;16 Topaz+ fonts, and its variants, are the de facto font for Amiga ASCII art]. All, except the character at code point 0x7F.
+Besides the slashes and underscores, there's a total of 256 characters to play with. Every diagonal in every character of Topaz follows the same basic rule: two pixels up, **one** to either side (e.g <span class="amiga-inline">{% asciiart %}< > / \ % X Y Z K ^ 2 4{% endasciiart %}</span>)^[There are a few Topaz versions that slighly differ from each other, but the 8&times;16 Topaz+ fonts, and its variants, are the de facto font for Amiga ASCII art]. All, *except* for one character: the character at code point 0x7F. 
 
 <figure class="u-image-float-right-inline">
     {% image
@@ -99,14 +95,25 @@ Besides the slashes and underscores, there's a total of 256 characters to play w
     %}
 </figure>
 
-Topaz represents 0x7F as two diagonal lines (&thinsp;<span class="amiga-inline">⌂</span>&thinsp;)^[Different Kickstart ROM versions shipped with slightly different versions of the Topaz font, but all of them have checker pattern or diagonal lines at 0x7F. Check the comparisons at [Heckmeck's blog post on Amiga Topaz](https://heckmeck.de/blog/amiga-topaz-1.4/)], which makes it very distinct compared to all the other characters because of its unusual angle: <span class="amiga-inline">⌂</span> is the *only* glyph where the diagonals go two pixels up and **two** pixels to the side at 45˚. Because 0x7F doesn't conform to Topaz's inherent geometric "rules", it's tricky to incorporate effectively into Amiga ASCII art. It's an outlier—like a puzzle piece that belongs to a different set—yet this mismatch makes finding uses for it an interesting challenge.
+Topaz represents 0x7F as two diagonal lines (&thinsp;<span class="amiga-inline">⌂</span>&thinsp;)^[Different Kickstart ROM versions shipped with slightly different versions of the Topaz font, but all of them have checker pattern or diagonal lines at 0x7F. Check the comparisons at [Heckmeck's blog post on Amiga Topaz](https://heckmeck.de/blog/amiga-topaz-1.4/)], which makes it very distinct compared to all the other characters because of its unusual angle: <span class="amiga-inline">⌂</span> is the only glyph where the diagonals go two pixels up and **two** pixels to the right. Because 0x7F doesn't follow Topaz's inherent geometric "rules", it doesn't tile well, which makes it tricky to use in Amiga ASCII art. It's like a puzzle piece that belongs to a different set, yet finding uses for it is an interesting challenge (I'll come back to this in [part-3](#part-3)).
+
+<pre class="amiga" onclick="this.classList.toggle('highlight')">
+                                          
+   /      ⌂⌂ ⌂⌂⌂⌂⌂ ///// /\/\/ ⌂\⌂\⌂ ⌂\⌂/⌂ 
+  /     ⌂⌂   ⌂⌂⌂⌂⌂ ///// \/\/\ ⌂\⌂\⌂ /⌂\⌂\ 
+ /    ⌂⌂     ⌂⌂⌂⌂⌂ ///// /\/\/ ⌂\⌂\⌂ ⌂/⌂\⌂ 
+/   ⌂⌂       ⌂⌂⌂⌂⌂ ///// \/\/\ ⌂\⌂\⌂ \⌂/⌂/ 
+                                          
+</pre>
+
+Is it a coincidence that the *same* character that deviates from the standards, is also the character that deviates visually from all the other characters? Or is there something more to it?
 
 ### The Contradiction of a Non-Printable Glyph
-But as I was taking a closer look at the <abbr title="Latin alphabet No. 1">ISO/IEC 8859-1</abbr> standard, I realized that 0x7F is assigned to the DELETE control character (DEL), which is a character that "is supposed to do nothing"^[Definitions of DEL: [Wikipedia](https://en.wikipedia.org/wiki/Delete_character) and [Aivosto](https://www.aivosto.com/articles/control-characters.html#DEL)], and as such, is a *non-printable* character. In other words, the graphical representation of DEL is *supposed* to be empty and undefined. Even though I had used <span class="amiga-inline">⌂</span> extensively in my own ASCII art, and had seen it used by others, I had never realized that it's not supposed to represented as a glyph.
+As I was taking a closer look at the <abbr title="Latin alphabet No. 1">ISO/IEC 8859-1</abbr> standard, I realized that 0x7F is the code point for the control character DELETE (DEL), which is a **non-printable** character! According to DEL's definition, it's a character that "is supposed to do nothing"^[Definitions of DEL: [Wikipedia](https://en.wikipedia.org/wiki/Delete_character) and [Aivosto](https://www.aivosto.com/articles/control-characters.html#DEL)], so its visual representation is *supposed* to be empty and undefined. 
 
-But... if 0x7F is supposed to do nothing, and look like nothing, then why does Topaz have a glyph for it? A glyph, that even on its own is quite strange for being so fundamentally different to all the other characters? If a character has a visual representation, I assume it is tied to *some* meaning or function, so it must do *something*? What is it? Why did Topaz's creators think that 0x7F is so significant that it warrants deviating from the standard they otherwise follow? 
+But... if DEL is supposed to do nothing, and look like nothing, then **why does Topaz have a glyph for it?** I would assume that if a character has a visual representation, then it must have *some* meaning or function, right? But if so: what is it? What reasons did Topaz's designers have that justified diverging from the standards, and give DEL a distinct visual representation? Why not follow the standards and just leave it empty?
 
-Everything about this strange glyph seemed to be in contradiction. Maybe Walden is onto something.
+Even though I had used <span class="amiga-inline">⌂</span> quite a bit in ASCII art, I had never realized that *everything* about this strange glyph—from its design to its mere existence—seemed to be in contradiction. Maybe Walden is onto something.
 
 <figure class="u-image-full-width">
     {% image
@@ -119,12 +126,11 @@ Everything about this strange glyph seemed to be in contradiction. Maybe Walden 
     <figcaption>Comparison between ASCII (standard) and Amiga TOPAZ (font) </figcaption>
 </figure>
 
-These questions kept bugging me, so I wanted to get to the bottom of understanding the reasons for <span class="amiga-inline">⌂</span> existance in Amiga's Topaz at the code point 0x7F. I wanted to know: **what is 0x7F, and why does it look like it does?** Because I'm mainly interested in the typographic and artistic application of the character set in making Amiga ASCII art, I also wanted to know: **what is the creative potential of <span class="amiga-inline">⌂</span> in Amiga ASCII art**? 
+These questions kept bugging me, so I wanted to get to the bottom of understanding the reasons for <span class="amiga-inline">⌂</span> existance in Amiga's Topaz at the code point 0x7F. I wanted to know: **what is 0x7F, and why does it look like it does?** Because I'm mainly interested in the typographic and artistic application of Topaz in making Amiga ASCII art, I also wanted to know: **what is the creative potential of <span class="amiga-inline">⌂</span> in Amiga ASCII art**? 
 
+## What is DEL?
 
-## What is 0x7F?
-
-What even is 0x7F? Why does it exist? What is its purpose? 
+What even is DEL? Why does it exist? What is its purpose? 
 
 Aivosto's comprehensive article on [Control characters in ASCII and Unicode](https://www.aivosto.com/articles/control-characters.html#DEL) defines it as follows:
 
@@ -179,7 +185,7 @@ ITA2 code was mostly used in special telegraph machines equipped with keyboards 
 
 Writing messages like this is slow and error-prone. There is no "undo" on punching a hole through paper. A teleprinter manual from 1958 estimates that "in manually-prepared unchecked tape one error may be expected to occur in every 300 to 2000 characters."^[Creed & Company Limited (1958): [*An introduction to Creed teleprinters and punched tape equipment*](http://www.samhallas.co.uk/repository/telegraph/introduction_teleprinters_1958.pdf) p.42], which seems like a lot, but is likely far fewer than what a typical person would make today. 
 
-To illustrate this, try writing the previous paragraph and see how few errors make (I've disabled the <kbd>Backspace</kbd> key):
+Write the previous paragraph in the textbox below to see how few you errors make while typing (I've disabled the <kbd>Backspace</kbd> key):
 
 <textarea-nobs placeholder="Type something, like the paragraph above"></textarea-nobs>
 
@@ -194,9 +200,9 @@ The manual tape-cutting process was also known as "rub-out" (a skeumorphic word 
 
 The improved ITA2 solved the problem with a clever trick: precisely *because* there is no "undo" on punching holes, all the operator has to do, is punch any erroneous part *full* of holes. This is done by reeling back the tape by pressing a lever, backtracking to the typo, and striking the letter-shift key (❶❶❶❶❶) over it. Conveniently, this action works on **any** character as they're all the same length in bits, and each includes at least one unpunched ⓪-bit.
 
-What makes this solution so clever is how it exploits the fundamental way the telegraph system works. In normal operation, telegraph machines are kept idle in a "marking" state, with electrical current flowing continuously, producing a steady stream of ones (❶❶❶❶❶❶❶❶❶❶...). In this state, the machine doesn't advance the paper tape or cause any printing action—it does *nothing*. Only when the machine receives a zero bit (❶❶❶❶❶❶❶❶❶❶**⓪**...), it knows that a message is incoming.
+What makes this solution so clever is how it exploits the fundamental way the telegraph system works. In normal operation, telegraph machines are kept idle in a "marking" state, with electrical current flowing continuously, producing a steady stream of ones (❶❶❶❶❶❶❶❶❶❶...). In this state, the machine doesn't advance the paper tape or cause any printing action; it does *nothing*. Only when the machine receives a zero bit (❶❶❶❶❶❶❶❶❶❶**⓪**...), it knows that a message is incoming.
 
-So when the receiving machine encounters an all-ones pattern (❶❶❶❶❶) within a message, it either idles (just like in marking state) or, if it was in figure mode, shifts to letter mode. But if the machine is *already* in letter mode, shifting to letter mode again does nothing—the machine simply ignores those bits and continues from the next character. As a result, no trace of deleted typo, not even a blank space, appears in the final printed message.^[Herbert, T. E. (1920). [Telegraphy: A detailed exposition of the telegraph system of the British Post Office](https://archive.org/details/TelegraphyADetailedExposition/page/481/mode/2up?q=%22rub%20out%22) (p.482)]
+So when the receiving machine encounters an all-ones pattern (❶❶❶❶❶) within a message, it either idles (just like in marking state) or, if it was in figure mode, shifts to letter mode. But if the machine is *already* in letter mode, shifting to letter mode again does nothing; the machine simply ignores those bits and continues from the next character. As a result, no trace of the deleted typo, not even a blank space, appears in the final printed message.^[Herbert, T. E. (1920). [Telegraphy: A detailed exposition of the telegraph system of the British Post Office](https://archive.org/details/TelegraphyADetailedExposition/page/481/mode/2up?q=%22rub%20out%22) (p.482)]
 
 Here's a simplified ITA2 tape perforator simulator to demonstrate this. Try writing something. Press *Reset* to start a new message. **⨂** shifts to figure mode, and **⨀** shifts to letter mode. To correct a typo, *Reel* to the unwanted character, and press the letter mode symbol **⨀** on it.
 
@@ -204,9 +210,9 @@ Here's a simplified ITA2 tape perforator simulator to demonstrate this. Try writ
 
 #### The Usefulness of Wasting Time
 
-Besides removing typing errors and shifting to letter mode, DEL is used as a "time-waster" character. Telegraph machines and teletypewriters typically process data at fixed timing intervals (like a metronome), rather than waiting for each operation to finish before starting the next one. This creates a timing problem—different operations take different amounts of time to complete. The DEL character solves this with its ability to tell the receiving machine to idle.
+Besides removing typing errors and shifting to letter mode, DEL is used as a "time-waster" character. Telegraph machines and teletypewriters typically process data at fixed timing intervals (like a metronome), rather than waiting for each operation to finish before starting the next one. This creates a timing problem: different operations take different amounts of time to complete. The DEL character solves this with its ability to tell the receiving machine to idle.
 
-An operation that often needs such timing accommodations is when the printer carriage (= the mechanism that holds the paper) moves back to the left margin to start a new line—triggered by a combination of CR (carriage return) and LF (line feed). Because the **horizontal movement** of the carriage takes **longer** than the time it takes to process subsequent characters, the following character could be printed mid-movement, resulting in misaligned text (e.g., overlapping characters or text appearing at the wrong horizontal position). By inserting a DEL character right after CR and LF, the machine is instructed to idle for a brief moment, as the carriage completes its movement, before continuing printing. The processing delay caused by DEL characters, used to "synchronize" the data stream with the printer's physical capabilities, is why DEL is referred to as a "time-waster" or "time-fill" character.^[ANSI X3.4-1977: American National Standards Institute. ASCII Format for Information Interchange. [Adopted in FIPS PUB 1-2 by NIST, 1977.](https://nvlpubs.nist.gov/nistpubs/Legacy/FIPS/fipspub1-2-1977.pdf)]
+An operation that often needs such timing accommodations is when the printer carriage (= the mechanism that holds the paper) moves back to the left margin to start a new line, triggered by a combination of CR (carriage return) and LF (line feed). Because the **horizontal movement** of the carriage takes **longer** than the time it takes to process subsequent characters, the following character could be printed mid-movement, resulting in misaligned text (e.g., overlapping characters or text appearing at the wrong horizontal position). By inserting a DEL character right after CR and LF, the machine is instructed to idle for a brief moment, as the carriage completes its movement, before continuing printing. The processing delay caused by DEL characters, used to "synchronize" the data stream with the printer's physical capabilities, is why DEL is referred to as a "time-waster" or "time-fill" character.^[ANSI X3.4-1977: American National Standards Institute. ASCII Format for Information Interchange. [Adopted in FIPS PUB 1-2 by NIST, 1977.](https://nvlpubs.nist.gov/nistpubs/Legacy/FIPS/fipspub1-2-1977.pdf)]
 
 For this reason, the ASCII standards also state that the "addition or removal of [DEL] characters may affect the information layout or the control of equipment, or both"^[ANSI X3.4-1977: American National Standards Institute. ASCII Format for Information Interchange. [Adopted in FIPS PUB 1-2 by NIST, 1977.](https://nvlpubs.nist.gov/nistpubs/Legacy/FIPS/fipspub1-2-1977.pdf), p.11], meaning that DEL characters could have a very important role in determining *where and when* text is printed, and should not be removed from the data.
 
@@ -225,9 +231,9 @@ The status of DEL as a control character is debatable. Some sources label DEL as
 
 ### ASCII immortalizes DEL
 
-By 1960, there were at least 25 different codes being used in computers and other systems in the US alone, and they were mostly incompatible with each other. A new unifying standard had to be developed for defining how bit combinations should be interpreted as characters. The rationale was clear: first, having multiple codes that all tried to achive the same basic goal, but in slighly different ways, was taxing, and secondly, some large organisations might have had multiple systems use different codes, unable to talk to each other directly.^[Ross, Hugh McGregor (1961): Considerations in Choosing a Character Code for Computers and Punched Tapes. Included in the "Source documents on the history of character codes, 1960-1961", compiled by Eric Fischer, [on Internet Archive](https://archive.org/details/enf-ascii-1960-1961/page/n5/mode/2up)] And so, in August 1960, this task was taken on by the American Standards Association (ASA), creating the *X3.2 subcommittee for Coded Character Sets and Data Format*.
+While ITA2 remained in use in telegraphy, the limited range of characters possible with 5-bit encoding was insufficient for the needs of emerging data processing technologies. By 1960, over 25 different character codes were used in computers and other systems in the US alone—most of them incompatible with each other. This created two pressing problems: individuals struggled to learn multiple, slightly different codes, while large organizations faced inefficiencies from maintaining incompatible systems that couldn't directly exchange data.^[Ross, Hugh McGregor (1961): Considerations in Choosing a Character Code for Computers and Punched Tapes. Included in the "Source documents on the history of character codes, 1960-1961", compiled by Eric Fischer, [on Internet Archive](https://archive.org/details/enf-ascii-1960-1961/page/n5/mode/2up)] A new unifying character set was urgently needed: one that would establish a standard for mapping bit combinations to characters. And so, in August 1960, this task was taken on by the American Standards Association (ASA), forming the *X3.2 subcommittee on Coded Character Sets and Data Format*.
 
-The result was the *American Standard Code for Information Interchange*, a 7-bit (2<sup>7</sup> = 128 code points) character encoding system better known by its acronym ASCII. In the 1960s, computers relied primarily on physical media like punch cards, paper tape, and teletypewriters, so ASCII dedicated 33 of the 128 code points for managing these devices. ASCII preserved the earlier convention from ITA2 in assigning the final code point (127, where all seven bits are ❶) to *DELETE*—maintaining its function as a physical obliteration of an undesirable punching on paper tape. 
+The result was the *American Standard Code for Information Interchange*, a 7-bit (2<sup>7</sup> = 128 code points) character encoding system better known by its acronym ASCII. In the 1960s, computers relied primarily on physical media like punch cards, paper tape, and teletypewriters, so ASCII dedicated 33 of the 128 code points for managing these devices. ASCII preserved the earlier convention from ITA2 in assigning the final code point (127, where all seven bits are ❶) to *DEL*, maintaining its function as a physical obliteration of an undesirable punching on paper tape. 
 
 Although ASCII only requires 7 bits, its values are commonly represented using two hexadecimal digits (equivalent to 8 bits). DEL's all-holes-punched pattern ❶❶❶❶❶❶❶ is thus padded with an extra ⓪-bit to become ⓪❶❶❶❶❶❶❶. In hexadecimal notation this pattern is written as **0x7F**, where *7* represents the first four bits (⓪❶❶❶) and *F* the last four bits (❶❶❶❶). The prefix *0x* is a convention from programming languages to denote hexadecimal numbers—without it, a value like 10 could be interpreted either as 10 (decimals) or 16 (hexadecimals).
 
@@ -236,9 +242,9 @@ Although ASCII only requires 7 bits, its values are commonly represented using t
     <figcaption>ASCII table laid out in four rows, combined with "paper tape" representation of the binary sequences, makes its system more understandable—even <a href="https://danq.me/2024/07/21/ascii/" target="_blank">elegant</a>. The first two bits (first two rows) vary, and the last five bits are static. This means that all control characters (par DEL) can be identified by two leading ⓪-bits, and that all uppercase and lowercase characters are identical, except uppercase characters start with ❶⓪ and lowercase characters with ❶❶. It's also the reason why in <a href="https://en.wikipedia.org/wiki/Caret_notation" target="_blank">caret notation</a> ESC is ^[, and DEL is ^?</figcaption>
 </figure>
 
-ASCII became immensely popular in facilitating the transfer of textual information across various systems and devices. Almost all of computer and character encoding systems developed after 1960s are based on ASCII (or are mostly ASCII compatible, IBM's [EBCDIC](https://en.wikipedia.org/wiki/EBCDIC) being a notable exception) for the first 127 code positions.^[*Control characters in ASCII and Unicode*, [Aivosto](https://www.aivosto.com/articles/control-characters.html) 19.2.2025] ASCII remained the most commonly used character set on the Internet until 2007 when it was overtaken by UTF-8^[Dubost, Karl (2008): UTF-8 Growth On The Web. W3C Blog. World Wide Web Consortium. [http://www.w3.org/blog/2008/05/utf8-web-growth/](http://www.w3.org/blog/2008/05/utf8-web-growth/) 19.2.2025.]. Even though ASCII itself is not widely used anymore, Unicode inherits the ASCII code points, thus cementing DELETE to the 0x7F position in perpetuity.
+ASCII became immensely popular in facilitating the transfer of textual information across various systems and devices. Almost all of computer and character encoding systems developed after 1960s are based on ASCII (or are mostly ASCII compatible, IBM's [EBCDIC](https://en.wikipedia.org/wiki/EBCDIC) being a notable exception) for the first 127 code positions.^[*Control characters in ASCII and Unicode*, [Aivosto](https://www.aivosto.com/articles/control-characters.html) 19.2.2025] ASCII remained the most commonly used character set on the Internet until 2007 when it was overtaken by UTF-8^[Dubost, Karl (2008): UTF-8 Growth On The Web. W3C Blog. World Wide Web Consortium. [http://www.w3.org/blog/2008/05/utf8-web-growth/](http://www.w3.org/blog/2008/05/utf8-web-growth/) 19.2.2025.]. Even though ASCII itself is not widely used anymore, Unicode inherits the ASCII code points, thus cementing DEL to the 0x7F position in perpetuity.
 
-But, neither ASCII nor Unicode defines the graphical representation of 0x7F, because it's a *non-printable* character. So the question remains—why does Amiga have a diagonally striped glyph in it? 
+But, neither ASCII nor Unicode defines the graphical representation of DEL, because it's a *non-printable* character. So the question remains: why does Amiga represent DEL with a diagonally striped glyph?
 
 ---
 
@@ -270,21 +276,19 @@ But, neither ASCII nor Unicode defines the graphical representation of 0x7F, bec
                                                                                 [0m
 "></ansi-viewer>
 
-## DEL as tool for debugging
+## DEL as a tool for debugging
 
-With the rise of digital data processing and computer programming in the 1960s, error management became increasingly critical. While typing mistakes in ordinary documents or messages was inconvenient, they rarely had consequenses for how the systems operated. In programming, even a single mistake in the code could cause mission-critical failures, crashes or incorrect outputs, and avoiding these errors became paramount. 
-
-This shift of typing errors from a mere nuisance in written text to being a fundamental aspect of computing, brought in a new skill: debugging. Often typing errors are detected when they occur or soon after and fixing them is simple, but if they go undetected, the process of finding them could require copious amounts of tiresome analysis over each character. But what do you do if the error is caused by an invisible character, like the DEL? 
+With the rise of digital data processing and computer programming in the 1960s, managing errors became essential. While typos in everyday documents are inconvenient, in programming, even a single mistake could lead to system crashes, mission-critical failures, or incorrect outputs. Most typing errors are noticed and corrected immediately. But what if the error is caused by an invisible control character like the DEL? 
 
 In a letter to the director of production development at the Teletype Corporation in 1962, British computer pioneer Hugh McGregor Ross suggests a solution to the problem: the normally non-printing DEL should have graphic representation, as a way to highlight errors in print:
 
 > "Experience shows that when these errors are being corrected it is all too easy to make further mistakes. It is considered most important that at all stages the occurence of any error, together with its correction, should be **highlighted** in some way to permit a third overall scrutiny and check. [...] To accord with the computer principle that all errors be highlighted, **a printing symbol needs to be associated with the Delete character**."^[Ross, Hugh McGregor (1962): Letter 441/HMcGR/DB. Included in the "Source documents on the history of character codes, 1963-02", compiled by Eric Fischer, [on Internet Archive](https://archive.org/details/enf-ascii-1963-02/page/n39/mode/2up)]
 
-But which symbol? *Survey of Coded Character Representation*, complied by another ASCII pioneer Bob Bemer in 1960, reveals that nearly none of the ~70 machines of that era had a clear printing symbol for DEL.^[Bemer, R. W. (1960): Survey of coded character representation. Communications of the ACM Volume 3, Issue 12 (Dec. 1960), 639–642. [https://doi.org/10.1145/367487.367493](https://doi.org/10.1145/367487.367493)] A heavy asterisk or a star (🞷), suggesting obliteration, had been used for DEL in the 1958 Ferranti Pegasus computer^[Felton, G.E. (1962): [*The Pegasus Programming Manual*](https://archive.org/details/bitsavers_ferrantipemingMan1962_40324310/page/n127/mode/2up?q=erase) Ferranti Ltd], but Ross, who worked at Ferranti, didn't like this. (For the reasons "why", he doesn't elaborate, but maybe the star/asterisk symbol could have been mistaken for something else. While probably not directly related, in the APL programming language, which was also developed during the 1960s, star [ ⋆ ] is the symbol for the power/exponent function ^[Power (function) at [Aplwiki](https://aplwiki.com/wiki/Power_(function))].)
+But which symbol? A 1960 *Survey of Coded Character Representation* by Bob Bemer ("the father of ASCII"), reveals that almost none of the roughly 70 machines at the time had a clearly defined printing symbol for DEL.^[Bemer, R. W. (1960): Survey of coded character representation. Communications of the ACM Volume 3, Issue 12 (Dec. 1960), 639–642. [https://doi.org/10.1145/367487.367493](https://doi.org/10.1145/367487.367493)] An exception was the 1958 Ferranti Pegasus computer, which used a heavy asterisk (🞷) to represent obliteration.^[Felton, G.E. (1962): [*The Pegasus Programming Manual*](https://archive.org/details/bitsavers_ferrantipemingMan1962_40324310/page/n127/mode/2up?q=erase) Ferranti Ltd] However, Ross, who worked at Ferranti, opposed this choice. Though he doesn't explicitly state his reasons, he may have worried that the asterisk could be misinterpreted, as it already had multiple different meanings and uses, but none that were strongly associated with deleting.
 
 ### ECMA-17 and the symbol of shading
 
-Instead, Ross suggests a "symbol of shading" to represent DELETE. At Ferranti, Ross implemented this in the 7-track flexowriters (a combined typewriter, printer and perforator) for the Orion and Atlas computer systems in 1961.^[Ross, Hugh McGregor (1961): Considerations in Choosing a Character Code for Computers and Punched Tapes. Included in the "Source documents on the history of character codes, 1960-1961", compiled by Eric Fischer, [on Internet Archive](https://archive.org/details/enf-ascii-1960-1961/page/n5/mode/2up)] The symbol can also be found in Ross' *Punched tape codes* document from 1961, in which he proposes various standard codes for paper tapes. In these proposals, the character for ERASE (aka DELETE) includes a familiar looking character, a symbol marked with 45˚ diagonal lines at the all-holes punched position.^[Ross, Hugh McGregor (1961): Punched tape codes. Available online at [chilton-computing.org.uk](https://www.chilton-computing.org.uk/acl/literature/chapman/p015.htm) 06.03.2025]
+To replace the heavy asterisk, Ross proposed a "symbol of shading" to visually represent ERASE (aka DELETE). While working at Ferranti in 1961, he implemented this symbol for their 7-track flexowriters (= devices that combined a typewriter, printer, and paper tape puncher) used with the Orion and Atlas computer systems.^[Ross, Hugh McGregor (1961): Considerations in Choosing a Character Code for Computers and Punched Tapes. Included in the "Source documents on the history of character codes, 1960-1961", compiled by Eric Fischer, [on Internet Archive](https://archive.org/details/enf-ascii-1960-1961/page/n5/mode/2up)] The symbol also appears in his 1961 document *Punched tape codes*, where he proposed standardized encodings for paper tape. In his hand drawn designs, the symbol of shading for ERASE is represented by evenly spaced 45˚ diagonal lines—a design strikingly similar to Amiga's DEL at the same all-holes-punched position.^[Ross, Hugh McGregor (1961): Punched tape codes. Available online at [chilton-computing.org.uk](https://www.chilton-computing.org.uk/acl/literature/chapman/p015.htm) 06.03.2025] (Whether Ross invented the design or adapted it from somewhere, is unclear.)
 
 <figure class="u-image-full-width">
     {% image
@@ -294,12 +298,10 @@ Instead, Ross suggests a "symbol of shading" to represent DELETE. At Ferranti, R
         "(min-width: 30em) 50vw, 100vw",
         true
     %}
-    <figcaption>Proposal for the 7-track tape code standard by Hugh McGregor Ross in 1961 includes the "symbol of reverse shading" for ERASE (DELETE).</figcaption>
+    <figcaption>Proposal for the 7-track tape code standard by Hugh McGregor Ross in 1961 includes the "symbol of shading" for ERASE (aka DELETE).</figcaption>
 </figure>
 
-Interested in promoting his ideas for character codes and furthering the cause, Ross joined the <abbr title="Technical Committee 1">TC-1</abbr> committee at <abbr title="The European Computer Manufacturers Association">ECMA</abbr>. TC-1 was tasked to define common character sets and their coded representations for input/output media and data transmission, and in 1963 it was officially decided that a printed representation should be allocated for Delete.^[ECMA (1963): Ecma philosophy on codes. Included in the "Source documents on the history of character codes, 1963-02", compiled by Eric Fischer, [on Internet Archive](https://archive.org/details/enf-ascii-1963-02/page/n21/mode/1up)] This work culminated in 1968 when the committee issued ECMA-17, which introduced graphical representations not only for DEL, but for all control characters and space. The purpose of this standard was to provide visual symbols for the normally invisible operations, so they could be analysed, troubleshooted and documented. ^[ECMA (1968): ECMA Standard for the Graphic Representation of Control Characters of the ECMA 7 bit Coded Character Set for Information Interchange. [Online scan](https://ecma-international.org/wp-content/uploads/ECMA-17_1st_edition_november_1968.pdf) 07.03.2025]
-
-For the DEL character, the chosen symbol was a pattern of diagonal lines, as suggested by Ross in 1961. Because Ross was a key contributor and had a leading role in TC-1, it is likely that Ross' proposal is the origin for the symbol. ^[Ross, Hugh McGregor (1962): Punched tape codes. Included in the "Source documents on the history of character codes, 1963-02", compiled by Eric Fischer, [on Internet Archive](https://archive.org/details/enf-ascii-1961/page/n40/mode/1up)]
+Ross was active in promoting his ideas for character codes, so he joined the *Technical Committee 1* (TC-1) committee at *The European Computer Manufacturers Association* (ECMA). TC-1's task was to define common character sets and their coded representations for input/output media and data transmission. In 1963, the committee officially decided that DEL should have a a printed representation^[ECMA (1963): Ecma philosophy on codes. Included in the "Source documents on the history of character codes, 1963-02", compiled by Eric Fischer, [on Internet Archive](https://archive.org/details/enf-ascii-1963-02/page/n21/mode/1up)], and started working on assigning graphical symbols for all non-printing control characters. This allowed control characters to be analysed, troubleshot and documented visually. Their work culminated in 1968 with the **ECMA-17** standard, which introduced graphical symbols for control characters—including DEL and space. With this standard, Ross's design of evenly spaced 45˚ diagonal lines became the official representation for DEL. ^[ECMA (1968): ECMA Standard for the Graphic Representation of Control Characters of the ECMA 7 bit Coded Character Set for Information Interchange. [Online scan](https://ecma-international.org/wp-content/uploads/ECMA-17_1st_edition_november_1968.pdf) 07.03.2025] The ECMA-17 standard was adopted into both US and international standards with minimal changes, becoming **ANSI X3.32-1973** in the United States in 1973, and **ISO 2047** internationally in 1975.^[Wikipedia: [ISO 2047](https://en.wikipedia.org/wiki/ISO_2047) 07.03.2025]
 
 <figure class="u-image-full-width">
     {% image
@@ -329,9 +331,7 @@ Side note: Bizarrely, in 1969, the US Department of Defense suggested the heart 
 
 #### The adoption of ECMA-17
 
-The ECMA-17 standard was adopted almost unchanged in the US in 1973 as ANSI X3.32-1973, and internationally in 1975 as ISO 2047. ^[Wikipedia: [ISO 2047](https://en.wikipedia.org/wiki/ISO_2047) 07.03.2025] 
-
-In 1975, Motorola created the *MCM6570* character generator chip, with preprogammed versions adhering to the ECMA-17 standard (excluding the SPACE triangle).^[[MCM6570 Datasheet, ROM, Motorola](https://datasheetspdf.com/datasheet/MCM6570.html)] A similar chip, the *MCM6674*, was used in one of the earliest mass-produced retail home computers, the 1977 TRS-80 Model I.^[Hoard of Bitmap fonts repository has [bitmap dumps of the TRS-80 Model I, Model III, Model 4 character sets](https://github.com/robhagemans/hoard-of-bitfonts/tree/master/trs-80)] However, this did not spread awarness of the ECMA-17 standard because the TRS-80's video display was incapable of displaying control (and lower case) characters without hardware modifications.^[Matthew Reed's TRS-80.org: [Why was the Model I uppercase only?](http://www.trs-80.org/why-was-the-model-i-uppercase-only/)] But even if it could have, the intended purpose of these graphical control characters was unclear, as demonstrated by Motorola mistakenly advertising the chip as containing "math symbols"^[Electronic Design V26 N10 (1978) [Scan on Internet Archive](https://archive.org/details/bitsavers_ElectronicignV26N1019780510_129741478/page/12/mode/1up?q=mcm6674) p. 12. 07.03.2025]. This lack of knowledge of the ECMA-17 symbols continues to this day, with a modern [TRS-80 cloning project](https://www.glensstuff.com/trs80/docco/trs80model1clone.pdf) calling them "hieroglyph-like", the TRS-80 expert RetroStack calling them ["odd symbols"](https://github.com/RetroStack/chargen/blob/main/src/chargen/TRS80/Model1.ts) and KreativeKorp's the ["most complete TRS-80 text font"](https://www.kreativekorp.com/software/fonts/trs80/) categorizing them as mathematical, technical or geometric. I don't blame them though. The symbols are very clearly tied to their use in paper tape and mechanical printers (like ⍾ symbolizing an electric bell) and don't make much sense in the context of fully digital systems.
+In 1975, Motorola incorporated the ECMA-17 control character symbols into their *MCM6570* character generator chip (= a dedicated component that converted ASCII codes into bitmapped text for computer screens)^[[MCM6570 Datasheet, ROM, Motorola](https://datasheetspdf.com/datasheet/MCM6570.html)]. In 1977, its successor, the *MCM6674*, was used in the *TRS-80 Model I*, one of the earliest mass-produced retail home computers.^[Hoard of Bitmap fonts repository has [bitmap dumps of the TRS-80 Model I, Model III, Model 4 character sets](https://github.com/robhagemans/hoard-of-bitfonts/tree/master/trs-80)] 
 
 <figure class="u-image-full-width">
     {% image
@@ -344,7 +344,9 @@ In 1975, Motorola created the *MCM6570* character generator chip, with preprogam
     <figcaption>The character patterns generated by Motorola's MCM6674 chip.</figcaption>
 </figure>
 
-Beyond appearing in the 1984 Amstrad CPC^[CPC wiki on [Amstrad CPC Character Set ROMs](https://www.cpcwiki.eu/index.php?title=Keyboard_Versions#Character_Set_ROMs)], the ECMA-17 standard largely faded into obscurity. However, one of its 34 characters managed to endure: DELETE. Even though graphical symbols for control characters 0–31 were not widely adopted, many systems and software included the diagonal lines symbol (or a similar representation) at the 0x7F position.
+Despite TRS-80's decent commercial success, it failed to make the ECMA-17 symbols known to a wider audience. Even though the ECMA-17 symbols were present inside the MM6674 character generator chip, the TRS-80 wasn't capable of displaying them (and lowercase letters) without hardware modifications.^[Matthew Reed's TRS-80.org: [Why was the Model I uppercase only?](http://www.trs-80.org/why-was-the-model-i-uppercase-only/)]. But even when modified (mainly to enable lowercase letters), the purpose of the ECMA-17 symbols were not understood very well. Even Motorola itself mistakenly advertised them as "math symbols"^[Electronic Design V26 N10 (1978) [Scan on Internet Archive](https://archive.org/details/bitsavers_ElectronicignV26N1019780510_129741478/page/12/mode/1up?q=mcm6674) p. 12. 07.03.2025]. This lack of awareness of the ECMA-17 symbols continues to this day: a recent [TRS-80 cloning project](https://www.glensstuff.com/trs80/docco/trs80model1clone.pdf) calls them "hieroglyph-like"; the TRS-80 expert RetroStack calls them ["odd symbols"](https://github.com/RetroStack/chargen/blob/main/src/chargen/TRS80/Model1.ts); and ["the most complete TRS-80 text font"](https://www.kreativekorp.com/software/fonts/trs80/) by KreativeKorp misclassifies them as mathematical, technical or geometric shapes. The confusion likely stems from being stripped of their original context. The symbols were designed for electromechanical systems (e.g. ⍾ symbolizing an electric bell) and paper tape workflows, not digital displays. As TRS-80 was squarely a digital computer, the ECMA-17 symbols became cryptic artifacts, hidden in the TRS-80's character set.
+
+Beyond appearing in the 1984 Amstrad CPC^[CPC wiki on [Amstrad CPC Character Set ROMs](https://www.cpcwiki.eu/index.php?title=Keyboard_Versions#Character_Set_ROMs)], the ECMA-17 standard largely faded into obscurity. However, one of its 34 characters managed to endure: DEL. Even though graphical symbols for control characters 0–31 were not widely adopted, many systems and software included the diagonal lines symbol (or a similar representation) at the 0x7F position.
 
 Because the designs of early bitmap fonts were constrained by small cell sizes, sometimes as small as 5 &times; 7 pixels, the diagonal lines were rendered as a symbol looking more like a checkerboard pattern ( ▒ ). This pattern can be found in character sets for *Apple II* (1977), *Exidy Sorcerer* (1978), various systems that used the *TMS9918* video display controller by Texas Instruments (1979)^[[TMS9918 datasheet](https://web.archive.org/web/20180717212934/https://emu-docs.org/VDP%20TMS9918/Datasheets/TMS9918.pdf)], *Elektuur Junior* (1980), *Kaypro II* (1982), in many "RAMfonts" bundled with the *Hercules Plus* graphics card (1986), and in some software, like SEI Soft's *FontEdit II* (1994). HP had specifically designed "symbol sets" for printers, and many of them included the checkerboard pattern at 0x7F, first appearing in 1978 in the *HP Roman* encoding.^[HP Roman on [Wikipedia](https://en.wikipedia.org/wiki/HP_Roman)] Various Teletext character sets^[Wikipedia, [Teletext character sets](https://en.wikipedia.org/wiki/Teletext_character_set) 07.03.2025], *Mattel Aquarius*, *Robotron Z9001*, *Otrona Attache* chargen fonts, the morse set of *RM Nimbus PC-186* and *Canon AS-100 (CP/M)* among many display DEL as a full block ( █ ) instead. *FM-Towns* and the *DEC VT220* terminal displays DEL as "DL". The word processor *Wang Professional* renders 0x7F as ¢, for some reason. And last but not least, IBM PC's infamous *Code Page 437* has a glyph representing a "house" ( ⌂ ) at 0x7F.
 
@@ -354,150 +356,15 @@ The following chart displays the visual representation of 0x7F from 1259 charact
   <character-viewer></character-viewer>
 </div>
 
-The overwhelming amount of ⌂ characters skews the chart, but if we disregard those and compare the remaining sets, it seems the standard choice for visually representing 0x7F was either as a symbol of shading in the form of diagonal lines <span class="amiga-inline">( ⌂ )</span>, checkerboard ( ▒ ), full block ( █ ), or as a symbol combining the letters *DT*, *DL* or *7F*. In this context, AmigaOS's choice for representing 0x7F as diagonal lines glyph <span class="amiga-inline">⌂</span> doesn't seem like an outlier after all. Instead, they were following a popular convention, based (partly) on the official ECMA-17 standard, with roots set decades earlier by Hugh McGregor Ross at Ferranti. 
+The overwhelming amount of ⌂ characters skews the chart, but if we disregard those and compare the remaining sets, it seems the standard choice for visually representing DEL was either as a symbol of shading in the form of diagonal lines <span class="amiga-inline">( ⌂ )</span>, checkerboard ( ▒ ), full block ( █ ), or as a symbol combining the letters *DT*, *DL* or *7F*. In this context, AmigaOS's choice for representing DEL as diagonal lines glyph <span class="amiga-inline">⌂</span> doesn't seem like an outlier after all. Instead, they were following a popular convention, based (partly) on the official ECMA-17 standard, with roots set decades earlier by Hugh McGregor Ross at Ferranti. 
 
-This research originated from Michael Walden's claim that the AmigaOS character set is identical to the <abbr title="Latin alphabet No. 1">ISO/IEC 8859-1</abbr> standard, except for the DEL character. So, does AmigaOS follow the <abbr title="Latin alphabet No. 1">ISO/IEC 8859-1</abbr> standard or not? Or perhaps a more accurate question is: if a character code standard like <abbr title="Latin alphabet No. 1">ISO/IEC 8859-1</abbr> doesn't explicitly define a graphical representation for a character (like DEL), but a system like Amiga implements its own graphical representation (based on another standard, like ECMA-17), is it compliant with the standard or not? **There answer might simply be a matter of perspective.** Keeping in mind that character code standards are primarily concerned with the binary values attached to characters and their semantic meaning or function and not their exact rendering, and that by definition DEL's visual representation is *undefined*, and that DEL was also largely obsolete by 1980s yet still an inseparable piece of the ASCII standard, then representing DEL visually might not be not strictly compliant with ISO/IEC 8859-1, but *also* not contradicting it. Personally, I think that AmigaOS **does** follow the <abbr title="Latin alphabet No. 1">ISO/IEC 8859-1</abbr> standard, just *extending* it in a compatible and useful way by visually representing 0x7F with the diagonal lines from ECMA-17 (or ISO 2047 / ANSI X3.32-1973), like many of its contemporaries.
-
-::: wrap note
-Sidenote: The symbol set HP Gothic-1 (code page 1053)^[[HP PCL 5 Comparison Guide (2003)](http://www.hp.com/ctg/Manual/bpl13206.pdf#page=234)] is identical to AmigaOS character set^[[Code Page 01053](https://web.archive.org/web/20130121104245/http://www-03.ibm.com/systems/resources/systems_i_software_globalization_pdf_cp01053z.pdf)], including the exception at code point 0x7F—but HP adopted ISO-8859-1 later than the Amiga. 
-:::
-
-## IBM's "house" at 0x7F
-
-Now, even though the main focus of this article is the Amiga, it would be weird not to talk at least a little bit more about IBM PC's "house" ( <span class="cp437-inline">⌂</span> ) character at 0x7F, as it's so prevalent in the comparison chart.
-
-Released in 1981, the *IBM Personal Computer* (PC) launched IBM's first microcomputer model line. Alongside it, they introduced an 8-bit character set known as *Code Page 437* (CP437). Unlike earlier IBM machines, the PC was built using off-the-shelf components instead of proprietary IBM technology, which spawned a wave of third-party clones marketed as "IBM-compatible" systems. IBM PC architecture quickly became the dominant global computing standard. By the end of the '80s, 84% of all sold microcomputers were either IBM PC's or its clones.^[Jeremy Reimer (2005): [Total Share: 30 Years of Computer Market Share Figures](http://arstechnica.com/old/content/2005/12/total-share.ars/), Ars Technica. 20.3.2025] Consequently the rise of PC also meant the widespread adoption of CP437, making it one of the most copied and recognizable character sets ever. VileR's [Ultimate Oldschool PC Font Pack](https://int10h.org/oldschool-pc-fonts/) lists over 200 fonts from various IBM PCs and compatibles adhering to the CP437.
-
-<figure class="u-image-full-width">
-    {% image
-        "./src/assets/images/0x7f/amigavspc.png",
-        "crisp",
-        "Comparison between Amiga TOPAZ and IBM PC CP437",
-        "(min-width: 30em) 50vw, 100vw",
-        true
-    %}
-    <figcaption>Comparison between Amiga TOPAZ and IBM PC's code page 437</figcaption>
-</figure>
-
-Code Page 437 was based on the printable characters of ASCII, which in itself was a big change for IBM who had previously used the fundamentally different EBCDIC standard. But as ASCII only covers 96 of the total 256 characters, IBM had to figure out what to do with the rest of them. Instead of following any predefined standards or copying others, they decided (yet again) to do their own thing. The extended bits (characters 128–255) contain mainly a mishmash of international text characters, box drawing shapes and mathematical symbols. But for the undefined control characters they did something wildly different. Dr. David J. Bradley, one of the creators of the IBM PC, recounts in an email conversation with Benj Edwards:^[[Edwards, Benj (2015): Origins of the ASCII Smiley Character: An Email Exchange With Dr. David Bradley (2011)](https://www.vintagecomputing.com/index.php/archives/790/the-ibm-smiley-character-turns-30#more-790) 19.3.2025]
-
-> "Now, what to do about the first 32 characters (x00-x1F)? ASCII defines them as control codes, carriage return, line feed, tab… These characters originated with teletype transmission. But we could display them on the character based screens. So we added a set of “not serious” characters. They were intended as display only characters, not for transmission or storage. Their most probable use would be in character based games."
-
-The first 32 characters (x00-x1F) of CP437 mentioned by Bradley include smileys, playing card suits, musical notes, a solar symbol, gender symbols and arrows—characters meant to be fun additions for the new era of *personal* computers. Even though Bradley doesn't explicitly mention 0x7F, I think we can safely assume that DEL's "house" ( <span class="cp437-inline">⌂</span> ) is part of the "non-serious" group of characters. These characters were not based on any existing official standard, and according to Bradley, slightly exaggerating, were developed during a 4-hour plane travel. But just because they were designed in a relatively short time, doesn't necessarily mean they were designed with no thought. Arguably, adding "non-serious" characters was a much better business decision than to "waste" precious space with the ambiguous and hard-to-use ECMA-17 control characters. Characters like the smiley face at 0x01 became iconic by offering a simple way to represent player characters in text-based games like [Rogue](https://en.wikipedia.org/wiki/Rogue_(video_game)) and [ZZT](https://en.wikipedia.org/wiki/ZZT). 
-
-IBM was not the first to include "non-serious" characters. Commodore's PETSCII character set from 1977 is famous for its graphical shapes which also include card suites. Even the X3.2 committee considered an official 8-bit extension for ASCII, which would have included some "non-serious" symbols. Bob Bemer defends their inclusion in an article for the *Interface Age* in July 1978:^[R.W. Bemer (1978): Inside ASCII, part 3 of 3 parts. Included in the "Source documents on the history of character codes, 1977-1981", compiled by Eric Fischer, [on Internet Archive](https://archive.org/details/enf-ascii-1977-1981/page/n40/mode/1up)]
-
-> "Presumably the card suits will strike your eye, and you will wonder why so many other useful symbols were ignored in favor of these. Don't worry, they will always come in handy; it's sometimes useful to have symbols whose meaning you can reassign without harm to programming languages, etc." 
-
-This is definitely the case with CP437's house symbol. It is ambiguous enough that it can resemble many different things. For example, in the DOS games [*By Fire & Sword*](https://www.mobygames.com/game/16049/by-fire-sword/) (1985) it's a **town**, in [*ZZT*](https://cheerfulghost.com/jdodson/posts/1179/zzt-an-epic-dos-ansi-adventure) (1991) it stands for **"energizers"**, in [*Bugs!*](https://www.mobygames.com/game/67110/bugs/) (1982) it's the **player's gun**, in [*Target*](https://www.mobygames.com/game/72491/ibm-personal-computer-basic-compiler-included-game/) (1982) it represents **player's ammo**, and in [*Numjump*](https://sparcie.wordpress.com/2018/03/28/numjump-for-dos/) (2017) they're deadly **spikes**.
-
-<figure class="u-image-full-width">
-    {% image
-        "./src/assets/images/0x7f/numjump.png",
-        "crisp",
-        "Screenshot from Numjump. In this game, the house symbols represent spikes.",
-        "(min-width: 30em) 50vw, 100vw",
-        true
-    %}
-    <figcaption>In the 2017 homebrew DOS game <em>Numjump</em> by Daniel Remar, the house symbols represent spikes.</figcaption>
-</figure>
-
-In PC ASCII art (especially in "newskool" / filled ASCII), the house symbol has been mainly used for its specific shape and size in the classic 8&times;16 pixels-per-character IBM VGA font. Combining <span class="cp437-inline">⌂</span> with other characters that are just slighly larger or smaller cab create an illusion of a continuous shape: <span class="cp437-inline">·∙•↔*⌂S§¼╣$♫b%⌂≈+←·</span>. It has been used to create some incredibly smooth curves, as seen in ddrj's [drj-mmc.ans](https://16colo.rs/pack/mimic73/drj-mmc.ans) from 2004:
-
-<figure class="u-image-full-width">
-    {% image
-        "./src/assets/images/0x7f/2004_mimic73.zip_drj-mmc-modified.png",
-        "crisp",
-        "Screenshot from Numjump. In this game, the house symbols represent spikes.",
-        "(min-width: 30em) 50vw, 100vw",
-        true
-    %}
-    <figcaption>drj-mmc.ans. Colors have been changed from original to highlight the use of 0x7F.</figcaption>
-</figure>
-
-### Why a house?
-
-But... why a house of all things? Why did IBM, first of all, decide to even include a symbol representing a house in their character set? And why specifically at 0x7F? There are no definitive answers, but I do have some theories. These theories are based on my email correspondances with both VileR and Michael Walden.
-
-##### Theory #1: House as a symbol for home computers
-Maybe the house symbol was included as a symbol for IBM's new line of *home* computers? It would make some sense, considering that other "non-serious" glyphs, like the smiley, were purposefuly added with text-based games in mind. So maybe they added the house glyph for the same reason? This is a pure guess, and there's nothing to support this claim.
-
-##### Theory #2: It's related to backspace
-VileR entertained the idea if the house character itself was associated with the action of deleting text, or related to the backspace symbol ⌫ (U+232B). If you rotate ⌫ 90˚ clockwise, you do get a house ⌂ (with an &times; in it). It's an interesting idea, but there doesn't seem to be nothing to support this claim either.
-
-##### Theory #3: It comes from Blissymbolics
-
-What I've always found weird about the house symbol is that its representation is somewhat atypical for a house. Wouldn't a more intuitive house icon have a [roof with an overhang](https://www.google.com/search?q=iconography%20house&udm=2)? Instead, the CP437 house glyph <span class="cp437-inline">⌂</span> is a simple box with a triangular top.
-
-<figure class="u-image-float-right-inline">
-    {% image
-        "./src/assets/images/0x7f/hotel.jpg",
-        "",
-        "An icon for a hotel resembles CP437's house glyph",
-        "(min-width: 30em) 50vw, 100vw",
-        true
-    %}
-</figure>
-
-Henry Dreyfuss *Symbol sourcebook* debunks my assumption: of course both presentations have been used in iconography well before CP437. For example, a hotel icon used by the <abbr title="International Civil Aviation Organization">ICAO</abbr> in the 1970s is very similar to CP437 representation of the house. 
-
-<figure class="u-image-float-right-inline">
-    {% image
-        "./src/assets/images/0x7f/house.jpg",
-        "",
-        "A house symbol from blissymbolics",
-        "(min-width: 30em) 50vw, 100vw",
-        true
-    %}
-</figure>
-
-Also a nearly direct match associated with the word *house* and the specific symbol can be found from Blissymbolics—a constructed language based on graphic symbols created by Charles Bliss in 1949. While initially published in Bliss's book *Semantography*, Blissymbolics gained some popularity after 1971 when it was used to teach children with cerebral palsy how to communicate.^[Radiolab (2012): [Mr.Bliss](https://radiolab.org/podcast/257194-man-became-bliss)] This popularity surge led to workshops worldwide, including throughout the United States, and a [comprehensive book published in 1980](https://archive.org/details/OTUED_8-2-3-3/page/21/mode/1up) displaying these symbols. Is it possible that while researching which symbols to include to CP437, David Bradley or another IBM developer looked at Blissymbolics and incorporated the house symbol, either deliberately or unconsciously?
-
-I presented this idea to VileR, and I have to agree with his assessment that this theory, while intriguing, is probably a long shot. However, VileR points out that there is something both Blissymbolics and tiny character cell designs have in common: both are very economical in detail—they tend to use as few strokes as possible for the sake of clarity, and have the glyphs conform to a grid (albeit for different reasons). So, while a roof overhang would instinctively make sense, it isn't *strictly* necessary, in neither Bliss's symbols nor in bitmap fonts. 
+This research originated from Michael Walden's claim that the AmigaOS character set is identical to the <abbr title="Latin alphabet No. 1">ISO/IEC 8859-1</abbr> standard, except for the DEL character. So, does AmigaOS follow the <abbr title="Latin alphabet No. 1">ISO/IEC 8859-1</abbr> standard or not? Or perhaps a more accurate question is: if a character code standard like <abbr title="Latin alphabet No. 1">ISO/IEC 8859-1</abbr> doesn't explicitly define a graphical representation for a character (like DEL), but a system like Amiga implements its own graphical representation (based on another standard, like ECMA-17), is it compliant with the standard or not? **There answer might simply be a matter of perspective.** Keeping in mind that character code standards are primarily concerned with the binary values attached to characters and their semantic meaning or function and not their exact rendering, and that by definition DEL's visual representation is *undefined*, and that DEL was also largely obsolete by 1980s yet still an inseparable piece of the ASCII standard, then representing DEL visually might not be not strictly compliant with ISO/IEC 8859-1, but *also* not contradicting it. Personally, I think that AmigaOS **does** follow the <abbr title="Latin alphabet No. 1">ISO/IEC 8859-1</abbr> standard, just *extending* it in a compatible and useful way by visually representing DEL with the diagonal lines from ECMA-17 (or ISO 2047 / ANSI X3.32-1973), like many of its contemporaries.
 
 ::: wrap note
-Sidenote: There's a [recent proposal](https://www.unicode.org/L2/L2020/20271-n5149-blissymbols-kbd.pdf) to add Blissymbolics to Unicode!
+Sidenote: The symbol set HP Gothic-1 (code page 1053)^[[HP PCL 5 Comparison Guide (2003)](http://www.hp.com/ctg/Manual/bpl13206.pdf#page=234)] is identical to AmigaOS character set^[[Code Page 01053](https://web.archive.org/web/20130121104245/http://www-03.ibm.com/systems/resources/systems_i_software_globalization_pdf_cp01053z.pdf)], including the exception at code point 0x7F, but HP adopted ISO-8859-1 later than the Amiga.
 :::
 
-##### Theory #3: It's borrowed from System/23 Datamaster
-In the Benj Edwards' email interview, David Bradley mentions that the choice of "serious characters" was based on the immediate ancestor of PC at IBM, the System/23 Datamaster.^[[Edwards, Benj (2015): Origins of the ASCII Smiley Character: An Email Exchange With Dr. David Bradley (2011)](https://www.vintagecomputing.com/index.php/archives/790/the-ibm-smiley-character-turns-30#more-790) 19.3.2025] VileR found the Datamaster [character ROM image](https://forum.vcfed.org/index.php?threads/ibm-system-23-datamaster-display-and-character-generation.1247762/), which confirms that some character sequences were copied to CP437 unchanged (üéâäàåçêëèïî)—but there is no house symbol, or anything resembling it.
-
-##### Theory #4: It's borrowed from Wang word processing machines
-In a blog post [Weird Tales](https://www.os2museum.com/wp/weird-tales/), Michal Necasek of OS/2 Museum examines claims made by Bill Gates that Microsoft wanted IBM to copy some Wang word processing characters ("smiley faces and boxes and triangles and stuff") into the IBM PC's character set because they were considering creating their own Wang clone. Necasek half-debunks and half-confirms these claims, as none of the Wang character sets have smileys, yet do share some strikingly similiar characters with CP437 that are unlikely to be a coincidence, including left/right triangles, a box, a diamond, double exclamation mark, and several arrows.^[Necasek, Michal (2021): [Weird Tales](https://www.os2museum.com/wp/weird-tales/), OS/2 Museum. 19.3.2025] But again, none of the Wang character sets include a house symbol.
-
-##### Theory #5: Botched copy of a dot-stretched Wang delta
-However, Viler made an interesting observation: a 1979 Wang character set for the *2236DE terminal* includes a delta symbol ( Δ ) at position 0x9A. At first glance this seemed unrelated to IBM's house symbol at 0x7F. But after viewing the ROM data as a bitmap, VileR discovered that the pixels were spaced-out, implying that the glyphs relied on some sort of dot-stretching effect in the display circuitry. Rendering the bitmap with his [CRT emulator](https://int10h.org/blog/2021/01/simulating-crt-monitors-ffmpeg-pt-1-color/) revealed that Wang's delta didn't actually look like a clean equilateral triangle: the triangle's sides were slightly cropped to fit it into the 7&times;7 pixels-per-character space, and in combination with the CRT effect, makes the delta resemble IBM's blocky house symbol. VileR also notes that even though Wang could have created a less ambiguous delta triangle by making the sides steeper, the designers of early bitmap fonts were often very reluctant to use angles other than 45/90 degrees in their glyphs, because uneven displacements between scanlines produce very obvious "jaggies" on low-res CRTs.
-
-So, if Bill Gates was correct about IBM copying characters from Wang, it's entirely possible that the people at IBM who were copying glyphs directly from Wang's misinterpreted the delta as a house, especially considering, as Bradley notes, that the whole process was rushed. This is of course not a definitive proof, but a compelling theory nonetheless!
-
-<figure class="u-image-full-width">
-    {% image
-        "./src/assets/images/0x7f/wang-rom-crt.png",
-        "crisp",
-        "Comparison between Wang's character set as raw ROM data and CRT emulated",
-        "(min-width: 30em) 50vw, 100vw",
-        true
-    %}
-    <figcaption>Comparison between Wang's character set as raw ROM data and CRT emulated. Is this the origin of IBM PC's house? Compiled from images by VileR.</figcaption>
-</figure>
-
-##### Theory #6: It IS delta
-In another email conversation, Michael Walden speculated that it might not even be a coincidence that the DELete character would have a DELta as its printable character glyph. Delta as a symbol ( Δ ), of course, has many meanings, but it originates from the Greek alphabet. CP437 already includes some Greek characters in the 0xEO–0xEB range, notably 0xEB being the symbol for Greek *small* delta ( δ ). These characters were not included to support Greek language, but mainly as math symbols. In mathematics and other sciences, the uppercase delta is often used to denote a "change of any changeable quantity", which might have been a reason to include it in the character set. 
-
-##### Theory #7: The delta is from APL
-Delta doesn't only appear in Wang's character set, but in many character sets before it. For example, APL, which originated at IBM in the 1960s, uses a delta symbol, and an inverted delta as well, which IBM curiously named "DEL".^[Wikipedia article [https://en.wikipedia.org/wiki/Digital_encoding_of_APL_symbols#Character_repertoire](Digital encoding of APL symbols)]. The APL symbols, including delta and DEL, appeared on some early IBM APL keyboards, like in the 1971 [IBM 3270](https://geekhack.org/index.php?topic=104046.0). VileR also notes that IBM's first desktop machines, the [5100/5110/5120](https://voidstar.blog/the-ibm-5100-5110-mame-emulators-how-to/), the first of which came out in 1975, were intended for APL from the get go, but there's no evidence that they ever influenced the development of IBM PC in any way. Furthermore, IBM's APL character sets, like the [Code Page 909](https://web.archive.org/web/20130121103608/http://www-03.ibm.com/systems/resources/systems_i_software_globalization_pdf_cp00909z.pdf), sometimes include both delta *and* the house symbol. So, it doesn't seem like there's any direct connection to APL at all.
-
-##### Fact #1: Even IBM was confused whether it's a house or a delta!
-What DO we know? The
-
-
-
-
-#### Blissymbolics
-
-I have another (wild) theory…! What has always rubbed me wrong about the house symbol is that—to me at least—it doesn’t really look like a typical house. Wouldn’t it represent a house better if the roof was more pronounced…? There’s an image attached of what I mean. For some reason, as far as I know, the house symbol is not represented like this in any character set. It’s almost always like a delta or drawn in the same manner as code page 437, where the house’s roof has no overshoot. Where does this representation of the house come from? Not from any earlier character set, like Wang’s, that’s almost for sure… What if it instead came from graphic design / semiotics? I have a candidate for that: blissymbolics. Blissymbolics is a constructed language based on graphic symbols, and one of the core symbols is a house… drawn exactly the same as code page 437 house symbol! Blissymbolics was originally published by Charles Bliss in 1949 in his book Semantography, but only gained some traction in 1971 after it was used to teach children with cerebral palsy how to communicate. After that it became quite popular and there was a surge of excitement about it, resulting in an organisation that was hosting workshops around the world, including various states in the US. There was also a book published in 1980 on Blissymbolics, which has all these symbols drawn nicely on a grid. https://archive.org/details/OTUED_8-2-3-1/mode/2up?q= Could it be possible that David Bradley or someone else from IBM was aware of Blissymbolics, and copied the house symbol from there, either subconsciously or consciously? Bliss also dreamed of making a blissymbolics typewriter, and interestingly enough, there’s a recent unicode document detailing the keyboard inputting possibilities of blissymbolics https://www.unicode.org/L2/L2020/20271-n5149-blissymbols-kbd.pdf
-
-## What does the DELETE key do?
+## What does the Delete key do?
 
 At this point I had still one straggling question in mind regarding the DEL character. How does one actually input DEL? My Windows keyboard has a key for <kbd>Delete</kbd>, <kbd>Del</kbd> and <kbd>Backspace</kbd>, and my Mac keyboard has a <kbd>Delete</kbd> key where <kbd>Backspace</kbd> usually is. On the Windows keyboard, when I press the <kbd>Backspace</kbd> key, the character to the left is deleted, and when I press <kbd>Delete</kbd>, the character to the right is deleted. On Mac it's the opposite, pressing <kbd>Delete</kbd> removes the character to the left, but I can do <kbd>Fn</kbd>+<kbd>Delete</kbd> to forward delete. I can also press <kbd>Ctrl</kbd>+<kbd>H</kbd> to delete backwards, or <kbd>Ctrl</kbd>+<kbd>D</kbd> to delete forwards. On Windows, the Numpad <kbd>Del</kbd> does a forward delete if <kbd>Numlock</kbd> is off. But how are they related to the DEL character? If I have a font with a visual representation for DEL, how can I type it?
 
@@ -521,11 +388,11 @@ where ⌂ = DEL character, BS = Backspace character and SP = Space character.
 
 The differing interpretations on how to deal with DEL in various media had lasting effects. What worked on paper-based media proved problematic for the digital screen-based text input and output. Ultimately, the question on *how* exactly to use and interpret DEL was (and still is) context dependant, lacking a clear consensus. This ambiguity has lead to much confusion, as illustrated by the following examples. The 1978 video terminal VT100 worked similarly to the "line reconstruction" example, but many UNIX systems behaved differently. In UNIX, by default the <kbd>Backspace</kbd> key would send the actual DEL character (0x7F), but many terminal drivers and applications were configured to interpret it as "move the cursor back one position *and* delete the character at the cursor position". On the other hand, the <kbd>Delete</kbd> key would behave *like* DEL (forward delete), but actually generate an escape code ESC[3~, which is a command to the terminal to perform a "forward delete". Confusingly, there were also terminal emulators (like xterm) based on the completely different VT100 behaviour: <kbd>Backspace</kbd> key would send the BS character and <kbd>Delete</kbd> key would send DEL (0x7F). This discrepancy caused problems on how these characters should be interpreted. Should <kbd>Backspace</kbd> be interpreted as forward or as backward delete? What about DEL then? These confusions lead to situations where the sender's screen might show deletions correctly while the receiver's might not, or vice versa. On top of that, some Unix-like systems, like HP-UX interpreted DEL as a "interrupt process" (similiar to modern CTRL+C)^[A relevant discussion on ["What is DEL for?"](https://unicode.org/mail-arch/unicode-ml/Archives-Old/UML025/1090.html)]. Many guides have been written on how to deal with the issue of Backspace and Delete keys doing unexpected things.^[See Sebastiano Vigna's [Linux Backspace/Delete mini-HOWTO](https://tldp.org/HOWTO/BackspaceDelete/index.html), Anne Baretta's [Consistent BackSpace and Delete Configuration](https://web.archive.org/web/20181022000151/http://ibb.net/%7Eanne/keyboard.html) and Kermit FAQ's [My Backspace Key doesn't work!](http://www.columbia.edu/kermit/backspace.html)]. 
 
-This is all to say: the many varied and contradicting functions, interpretations and implementations of DEL is a total mess. So, when I press the <kbd>Delete</kbd> key on my keyboard, the keyboard sends a scan code for the DELETE key, the operating system translates this to virtual key code based on the currently active keyboard layout, and this virtual key code is interpreted differently based on the application—and this could be literally anything from printing the DEL character to deleting a file. The physical key has nothing to do with the ASCII DEL character, other than having a shared history and name. 
+This is all to say: the many varied and contradicting functions, interpretations and implementations of DEL is a total mess. So, when I press the <kbd>Delete</kbd> key on my keyboard, the keyboard sends a scan code for the <kbd>Delete</kbd> key, the operating system translates this to virtual key code based on the currently active keyboard layout, and this virtual key code is interpreted differently based on the application—and this could be literally anything from printing the DEL character to deleting a file. The physical key has nothing to do with the ASCII DEL character, other than having a shared history and name. 
 
 ::: wrap note 
 ##### Sidenote: DEL in the 1979 EasyWriter for Apple II
-I did find one example where DEL printed the glyph! In EasyWriter, released in 1979 as the first word processor for the Apple II, pressind DELETE inserts a checkerboard pattern ( ▒ ). To actually delete a character, I need to move the cursor over a character and then hit <kbd>Control</kbd>+<kbd>D</kbd>.
+I did find one example where DEL printed the glyph! In EasyWriter, released in 1979 as the first word processor for the Apple II, pressing <kbd>Delete</kbd> inserts a checkerboard pattern ( ▒ ). To actually delete a character, I need to move the cursor over a character and then hit <kbd>Control</kbd>+<kbd>D</kbd>.
 
 <figure class="u-image-full-width">
     {% image
@@ -542,7 +409,7 @@ I did find one example where DEL printed the glyph! In EasyWriter, released in 1
 
 #### DEL in AmigaOS
 
-But what about Amiga then? When the DELETE key is pressed on an Amiga system, the raw keycode is translated by the system into the <span class="amiga-inline">{% asciiart %}⌂{% endasciiart %}</span> character OR action based on the current keymap and console device handling. To my knowledge, by default it invokes a CSI escape sequence that deletes the character at its current position. The raw keycode can be captured though, as noted in the Amiga 500 user manual: "Keys can be program-controlled-that is, their use can be defined by the software being used".^[Commodore Amiga 500 User Manual. [Scan online](https://www.manualslib.com/manual/932575/Commodore-Amiga-500.html?page=238#manual) p.238] One could program a software to find any non-printable character and return 0x7F, displaying the <span class="amiga-inline">{% asciiart %}⌂{% endasciiart %}</span> character. This is the case for example in the *RAWKEY keymapping example* on AmigaOS wiki^[AmigaOS Wiki: [Intuition keyboard](https://wiki.amigaos.net/wiki/Intuition_Keyboard)] which is a program that converts raw keycodes to ASCII, and replaces any unprintable or control characters with <span class="amiga-inline">{% asciiart %}⌂{% endasciiart %}</span>. In this program, printing the DEL key as a visually highly distinct character is more informative than printing nothing, a space, or a string of escape sequences from directly outputting control characters. On the other hand, Amiga Workbench 3.1 has a menu option to "Insert ASCII" by providing the index (0-255) of the character's code point. If I wanted to insert 0x7F, I would write 127 in the prompt. But when I draw Amiga ASCII art on macOS using contemporary specialized ASCII editors (like Moebius), all the characters are simply listed in a table which can be mapped to function keys F1–F12. 
+But what about Amiga then? When the <kbd>Delete</kbd> key is pressed on an Amiga system, the raw keycode is translated by the system into the <span class="amiga-inline">{% asciiart %}⌂{% endasciiart %}</span> character OR action based on the current keymap and console device handling. To my knowledge, by default it invokes a CSI escape sequence that deletes the character at its current position. The raw keycode can be captured though, as noted in the Amiga 500 user manual: "Keys can be program-controlled-that is, their use can be defined by the software being used".^[Commodore Amiga 500 User Manual. [Scan online](https://www.manualslib.com/manual/932575/Commodore-Amiga-500.html?page=238#manual) p.238] One could program a software to find any non-printable character and return 0x7F, displaying the <span class="amiga-inline">{% asciiart %}⌂{% endasciiart %}</span> character. This is the case for example in the *RAWKEY keymapping example* on AmigaOS wiki^[AmigaOS Wiki: [Intuition keyboard](https://wiki.amigaos.net/wiki/Intuition_Keyboard)] which is a program that converts raw keycodes to ASCII, and replaces any unprintable or control characters with <span class="amiga-inline">{% asciiart %}⌂{% endasciiart %}</span>. In this program, printing the DEL key as a visually highly distinct character is more informative than printing nothing, a space, or a string of escape sequences from directly outputting control characters. On the other hand, Amiga Workbench 3.1 has a menu option to "Insert ASCII" by providing the index (0-255) of the character's code point. If I wanted to insert 0x7F, I would write 127 in the prompt. But when I draw Amiga ASCII art on macOS using contemporary specialized ASCII editors (like Moebius), all the characters are simply listed in a table which can be mapped to function keys F1–F12. 
 
 ## Displaying Amiga ASCII art on the web
 
@@ -2533,3 +2400,395 @@ There's a lot more to say about DEL, especially about the technical aspects of c
 On coded character sets and ASCII, there's the massive 535 page [*Coded Character Sets, History and Development*](https://archive.org/details/mackenzie-coded-char-sets/page/n6/mode/1up?q=delete) by Charles E. Mackenzie (1980), the slighly more approachable [*An annotated history of some character codes*](https://www.sensitiveresearch.com/Archive/CharCodeHist/index.html) by Tom Jennings (1999, last update 2023) and [*The Evolution of Character Codes, 1874-1968*](https://archive.org/details/enf-ascii/mode/2up) by Eric Fischer (2000). Aivosto's [*Control characters in ASCII and Unicode*](https://www.aivosto.com/articles/control-characters.html) (2011, last update 2022) is an excellent and in-depth look focused on control characters. David M. MacMillan's [*Codes that Don't Count*](https://www.circuitousroot.com/artifice/telegraphy/tty/codes/) is more about the telegraph codes with a particular attention on teletypsetters. The most invaluable source of material has been [*Source documents on the history of character codes*](https://archive.org/search?query=creator%3A%22Compiled+by+Eric+Fischer%22) compiled by Eric Fischer and shared gratuitously on the Internet Archive. But if I were to recommend something more "enjoyable" and thought-provoking to read, it would be [*The machine in the ghost: digitality and its consequences*](https://archive.org/details/machineinghostdi0000boas/) by Robin Boast (2017), which takes a more social and human approach to the developments of digital communication. 
 
 For texts on ASCII, there's not much unfortunately. On text art, there's [WiderScreen's](https://widerscreen.fi/widerscreen-1-2-2017-tekstitaide-text-art/) 2017 issue on text art as both an object of study and artistic work, and the book [*From ASCII Art to Comic Sans: Typography and Popular Culture in the Digital Age*](https://direct.mit.edu/books/oa-monograph/5649/From-ASCII-Art-to-Comic-SansTypography-and-Popular) by Karin Wagner (2023). VileR has a great article on [*Game Font Forensics*](https://int10h.org/blog/2024/02/game-font-forensics/) (2024) which has a somewhat similar theme investigating old bitmap fonts. On Amiga ASCII art specifically, there's my own BA thesis on [*Amiga ASCII art*](https://blog.glyphdrawing.club/amiga-ascii-art/) from 2015, which I translated to English an published here on my blog in 2023. 
+
+---
+
+# BONUS PART
+# The "small house" of IBM's Code Page 437
+
+<pre class="cp437">
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                     ~°ⁿ┘*⌂⌂⌂*└²"                               
+                            .,┌┌┌┌┐┌┐,._                                        
+                           $$§S⌂≈*┘┘²°°^^~                                      
+                           °~                                                   
+                             ·∙•↔*⌂S§¼╣$♫b%⌂≈+←·                                
+                                                                                
+                                 _..,▬¬sg%%@@S§$$                               
+                           ⌂S§$$$$$$jY⌂*┘ⁿ"²└*⌂S$                               
+                           $$$$$│P┘'                                            
+                           ⌂*┘²°                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+</pre>
+
+Now, even though the main focus of this article is the Amiga, it would be weird not to talk at least a little bit more about IBM PC's "house" ( <span class="cp437-inline">⌂</span> ) character at 0x7F, as it's so prevalent in the comparison chart.
+
+Released in 1981, the *IBM Personal Computer* (PC) launched IBM's first microcomputer model line. Alongside it, they introduced an 8-bit character set known as *Code Page 437* (CP437). Unlike earlier IBM machines, the PC was built using off-the-shelf components instead of proprietary IBM technology, which spawned a wave of third-party clones marketed as "IBM-compatible" systems. IBM PC architecture quickly became the dominant global computing standard. By the end of the '80s, 84% of all sold microcomputers were either IBM PC's or its clones.^[Jeremy Reimer (2005): [Total Share: 30 Years of Computer Market Share Figures](http://arstechnica.com/old/content/2005/12/total-share.ars/), Ars Technica. 20.3.2025] Consequently the rise of PC also meant the widespread adoption of CP437, making it one of the most copied and recognizable character sets ever. VileR's [Ultimate Oldschool PC Font Pack](https://int10h.org/oldschool-pc-fonts/) lists over 200 fonts from various IBM PCs and compatibles adhering to the CP437.
+
+<figure class="u-image-full-width">
+    {% image
+        "./src/assets/images/0x7f/amigavspc.png",
+        "crisp",
+        "Comparison between Amiga TOPAZ and IBM PC CP437",
+        "(min-width: 30em) 50vw, 100vw",
+        true
+    %}
+    <figcaption>Comparison between Amiga TOPAZ and IBM PC's code page 437</figcaption>
+</figure>
+
+Code Page 437 was based on the printable characters of ASCII, which in itself was a big change for IBM who had previously used the fundamentally different EBCDIC standard. But as ASCII only covers 96 of the total 256 characters, IBM had to figure out what to do with the rest of them. Instead of following any predefined standards or copying others, they decided (yet again) to do their own thing. The extended bits (characters 128–255) contain mainly a mishmash of international text characters, box drawing shapes and mathematical symbols. But for the undefined control characters they did something wildly different. Dr. David J. Bradley, one of the creators of the IBM PC, recounts in an email conversation with Benj Edwards:^[[Edwards, Benj (2015): Origins of the ASCII Smiley Character: An Email Exchange With Dr. David Bradley (2011)](https://www.vintagecomputing.com/index.php/archives/790/the-ibm-smiley-character-turns-30#more-790) 19.3.2025]
+
+> "Now, what to do about the first 32 characters (x00-x1F)? ASCII defines them as control codes, carriage return, line feed, tab… These characters originated with teletype transmission. But we could display them on the character based screens. So we added a set of “not serious” characters. They were intended as display only characters, not for transmission or storage. Their most probable use would be in character based games."
+
+The first 32 characters (x00-x1F) of CP437 mentioned by Bradley include smileys, playing card suits, musical notes, a solar symbol, gender symbols and arrows; characters meant to be fun additions for the new era of *personal* computers. Even though Bradley doesn't explicitly mention 0x7F, I think we can safely assume that DEL's "house" ( <span class="cp437-inline">⌂</span> ) is part of the "non-serious" group of characters. These characters were not based on any existing official standard, and according to Bradley, slightly exaggerating, were developed during a 4-hour plane travel. But just because they were designed in a relatively short time, doesn't necessarily mean they were designed with no thought. Arguably, adding "non-serious" characters was a much better business decision than to "waste" precious space with the ambiguous and hard-to-use ECMA-17 control characters. Characters like the smiley face at 0x01 became iconic by offering a simple way to represent player characters in text-based games like [Rogue](https://en.wikipedia.org/wiki/Rogue_(video_game)) and [ZZT](https://en.wikipedia.org/wiki/ZZT). 
+
+IBM was not the first to include "non-serious" characters. Commodore's PETSCII character set from 1977 is famous for its graphical shapes which also include card suites. Even the X3.2 committee considered an official 8-bit extension for ASCII, which would have included some "non-serious" symbols. Bob Bemer defends their inclusion in an article for the *Interface Age* in July 1978:^[R.W. Bemer (1978): Inside ASCII, part 3 of 3 parts. Included in the "Source documents on the history of character codes, 1977-1981", compiled by Eric Fischer, [on Internet Archive](https://archive.org/details/enf-ascii-1977-1981/page/n40/mode/1up)]
+
+> "Presumably the card suits will strike your eye, and you will wonder why so many other useful symbols were ignored in favor of these. Don't worry, they will always come in handy; it's sometimes useful to have symbols whose meaning you can reassign without harm to programming languages, etc." 
+
+This is definitely the case with CP437's house symbol. It is ambiguous enough that it can resemble many different things. For example, in the DOS games [*By Fire & Sword*](https://www.mobygames.com/game/16049/by-fire-sword/) (1985) it's a **town**, in [*ZZT*](https://cheerfulghost.com/jdodson/posts/1179/zzt-an-epic-dos-ansi-adventure) (1991) it stands for **"energizers"**, in [*Bugs!*](https://www.mobygames.com/game/67110/bugs/) (1982) it's the **player's gun**, in [*Target*](https://www.mobygames.com/game/72491/ibm-personal-computer-basic-compiler-included-game/) (1982) it represents **player's ammo**, and in [*Numjump*](https://sparcie.wordpress.com/2018/03/28/numjump-for-dos/) (2017) they're deadly **spikes**.
+
+<figure class="u-image-full-width">
+    {% image
+        "./src/assets/images/0x7f/numjump.png",
+        "crisp",
+        "Screenshot from Numjump. In this game, the house symbols represent spikes.",
+        "(min-width: 30em) 50vw, 100vw",
+        true
+    %}
+    <figcaption>In the 2017 homebrew DOS game <em>Numjump</em> by Daniel Remar, the house symbols represent spikes.</figcaption>
+</figure>
+
+In PC ASCII art (especially in "newskool" / filled ASCII), the house symbol has been mainly used for its specific shape and size in the classic 8&times;16 pixels-per-character IBM VGA font. Combining <span class="cp437-inline">⌂</span> with other characters that are just slighly larger or smaller cab create an illusion of a continuous shape: <span class="cp437-inline">·∙•↔*⌂S§¼╣$♫b%⌂≈+←·</span>. It has been used to create some incredibly smooth curves, as seen in ddrj's [drj-mmc.ans](https://16colo.rs/pack/mimic73/drj-mmc.ans) from 2004:
+
+<figure class="u-image-full-width">
+    {% image
+        "./src/assets/images/0x7f/2004_mimic73.zip_drj-mmc-modified.png",
+        "crisp",
+        "Screenshot from Numjump. In this game, the house symbols represent spikes.",
+        "(min-width: 30em) 50vw, 100vw",
+        true
+    %}
+    <figcaption>drj-mmc.ans. Colors have been changed from original to highlight the use of 0x7F.</figcaption>
+</figure>
+
+### Why a house?
+
+But... why a house of all things? Why did IBM decide to include a symbol representing a house in their character set? And why specifically at 0x7F? I can't provide definitive answers, but I do have some theories. These theories are based on my email correspondances with both VileR and Michael Walden.
+
+#### Theory #1: House as a symbol for home computers
+Maybe the house symbol was included as a symbol for IBM's new line of *home* computers? It would make some sense, considering that other "non-serious" glyphs, like the smiley, were purposefuly added with text-based games in mind. So maybe they added the house glyph for the same reason? This is a pure guess, and there's nothing to support this claim.
+
+#### Theory #2: It's related to backspace
+VileR entertained the idea if the house character itself was associated with the action of deleting text, or related to the backspace symbol ⌫ (U+232B). If you rotate ⌫ 90˚ clockwise, you do get a house ⌂ (with an &times; in it). It's an interesting idea, but there doesn't seem to be nothing to support this claim either.
+
+#### Theory #3: It comes from Blissymbolics
+
+What I've always found weird about the house symbol is that its representation is somewhat atypical for a house. Wouldn't a more intuitive house icon have a [roof with an overhang](https://www.google.com/search?q=iconography%20house&udm=2)? Instead, the CP437 house glyph <span class="cp437-inline">⌂</span> is a simple box with a triangular top.
+
+<figure class="u-image-float-right-inline">
+    {% image
+        "./src/assets/images/0x7f/hotel.jpg",
+        "",
+        "An icon for a hotel resembles CP437's house glyph",
+        "(min-width: 30em) 50vw, 100vw",
+        true
+    %}
+</figure>
+
+Henry Dreyfuss *Symbol sourcebook* debunks my assumption: of course both presentations have been used in iconography well before CP437. For example, a hotel icon used by the <abbr title="International Civil Aviation Organization">ICAO</abbr> in the 1970s is very similar to CP437 representation of the house. 
+
+<figure class="u-image-float-right-inline">
+    {% image
+        "./src/assets/images/0x7f/house.jpg",
+        "",
+        "A house symbol from blissymbolics",
+        "(min-width: 30em) 50vw, 100vw",
+        true
+    %}
+</figure>
+
+Also a nearly direct match associated with the word *house* and the specific symbol can be found from Blissymbolics, a constructed language based on graphic symbols created by Charles Bliss in 1949. While initially published in Bliss's book *Semantography*, Blissymbolics gained some popularity after 1971 when it was used to teach children with cerebral palsy how to communicate.^[Radiolab (2012): [Mr.Bliss](https://radiolab.org/podcast/257194-man-became-bliss)] This popularity surge led to workshops worldwide, including throughout the United States, and a [comprehensive book published in 1980](https://archive.org/details/OTUED_8-2-3-3/page/21/mode/1up) displaying these symbols. Is it possible that while researching which symbols to include to CP437, David Bradley or another IBM developer looked at Blissymbolics and incorporated the house symbol, either deliberately or unconsciously?
+
+I presented this idea to VileR, and I have to agree with his assessment that this theory, while intriguing, is probably a long shot. However, VileR points out that there is something both Blissymbolics and tiny character cell designs have in common: both are very economical in detail by using as few strokes as possible for the sake of clarity, and have the glyphs conform to a grid (albeit for different reasons). So, while a roof overhang would instinctively make sense, it isn't *strictly* necessary, in neither Bliss's symbols nor in bitmap fonts. 
+
+::: wrap note
+Sidenote: There's a [recent proposal](https://www.unicode.org/L2/L2020/20271-n5149-blissymbols-kbd.pdf) to add Blissymbolics to Unicode!
+:::
+
+#### Theory #4: It's borrowed from System/23 Datamaster
+In the Benj Edwards' email interview, David Bradley mentions that the choice of "serious characters" was based on the immediate ancestor of PC at IBM, the System/23 Datamaster.^[[Edwards, Benj (2015): Origins of the ASCII Smiley Character: An Email Exchange With Dr. David Bradley (2011)](https://www.vintagecomputing.com/index.php/archives/790/the-ibm-smiley-character-turns-30#more-790) 19.3.2025] VileR found the Datamaster [character ROM image](https://forum.vcfed.org/index.php?threads/ibm-system-23-datamaster-display-and-character-generation.1247762/), which confirms that some character sequences were copied to CP437 unchanged (üéâäàåçêëèïî). But, there is no house symbol, or anything resembling it.
+
+#### Theory #5: It's borrowed from Wang word processing machines
+In a blog post [Weird Tales](https://www.os2museum.com/wp/weird-tales/), Michal Necasek of OS/2 Museum examines claims made by Bill Gates that Microsoft wanted IBM to copy some Wang word processing characters ("smiley faces and boxes and triangles and stuff") into the IBM PC's character set because they were considering creating their own Wang clone. Necasek half-debunks and half-confirms these claims, as none of the Wang character sets have smileys, yet do share some strikingly similiar characters with CP437 that are unlikely to be a coincidence, including left/right triangles, a box, a diamond, double exclamation mark, and several arrows.^[Necasek, Michal (2021): [Weird Tales](https://www.os2museum.com/wp/weird-tales/), OS/2 Museum. 19.3.2025] But again, none of the Wang character sets include a house symbol.
+
+#### Theory #6: Botched copy of a dot-stretched Wang delta
+However, Viler made an interesting observation: a 1979 Wang character set for the *2236DE terminal* includes a delta symbol ( Δ ) at position 0x9A. At first glance this seemed unrelated to IBM's house symbol at 0x7F. But after viewing the ROM data as a bitmap, VileR discovered that the pixels were spaced-out, implying that the glyphs relied on some sort of dot-stretching effect in the display circuitry. Rendering the bitmap with his [CRT emulator](https://int10h.org/blog/2021/01/simulating-crt-monitors-ffmpeg-pt-1-color/) revealed that Wang's delta didn't actually look like a clean equilateral triangle: the triangle's sides were slightly cropped to fit it into the 7&times;7 pixels-per-character space, and in combination with the CRT effect, makes the delta resemble IBM's blocky house symbol. VileR also notes that even though Wang could have created a less ambiguous delta triangle by making the sides steeper, the designers of early bitmap fonts were often very reluctant to use angles other than 45/90 degrees in their glyphs, because uneven displacements between scanlines produce very obvious "jaggies" on low-res CRTs.
+
+So, if Bill Gates was correct about IBM copying characters from Wang, it's entirely possible that the people at IBM who were copying glyphs directly from Wang's misinterpreted the delta as a house, especially considering, as Bradley notes, that the whole process was rushed. This is of course not a definitive proof, but a compelling theory nonetheless!
+
+<figure class="u-image-full-width">
+    {% image
+        "./src/assets/images/0x7f/wang-rom-crt.png",
+        "crisp",
+        "Comparison between Wang's character set as raw ROM data and CRT emulated",
+        "(min-width: 30em) 50vw, 100vw",
+        true
+    %}
+    <figcaption>Comparison between Wang's character set as raw ROM data and CRT emulated. Is this the origin of IBM PC's house? Compiled from images by VileR.</figcaption>
+</figure>
+
+#### Theory #7: It IS delta
+In another email conversation, Michael Walden speculated that it might not even be a coincidence that the DELete character would have a DELta as its printable character glyph. Delta as a symbol ( Δ ) originates from the Greek alphabet. CP437 already includes some Greek characters in the 0xEO–0xEB range, notably 0xEB being the symbol for Greek *small* delta ( δ ). These characters were not included to support Greek language, but as math symbols. In mathematics and other sciences, the uppercase delta is often used to denote a "change of any changeable quantity", which might have been a reason to include it in the character set.
+
+#### Theory #8: The delta is from APL
+Delta doesn't only appear in Wang's character set, but in many character sets before it. For example, the Array-oriented Programming Language (APL), which originated at IBM in the 1960s, uses delta, and inverted delta ( ∇ ) in its syntax. As an unrelated but curious coincidence, IBM named the inverted delta "DEL".^[Wikipedia article [https://en.wikipedia.org/wiki/Digital_encoding_of_APL_symbols#Character_repertoire](Digital encoding of APL symbols)]. 
+
+The APL symbols, including delta and DEL, appeared on some early IBM APL keyboards, like in the 1971 [IBM 3270](https://geekhack.org/index.php?topic=104046.0). VileR also notes that IBM's first desktop machines from the mid 1970s, the [5100/5110/5120](https://voidstar.blog/the-ibm-5100-5110-mame-emulators-how-to/), were intended for APL from the get go, but there's no evidence that they ever influenced the development of IBM PC in any way. Furthermore, IBM's APL character sets, like the [Code Page 909](https://web.archive.org/web/20130121103608/http://www-03.ibm.com/systems/resources/systems_i_software_globalization_pdf_cp00909z.pdf), sometimes include both delta *and* the house symbol. As such, it doesn't seem like there's any connection between the house and APL.
+
+#### Fact #1: Even IBM was confused whether 0x7F should be a house or a delta
+The only thing we know for certain, is that even IBM was confused (or just didn't care) whether 0x7F should be a delta or a house.
+
+The first edition of the IBM PC [*Technical Reference*](https://www.minuszerodegrees.net/manuals/IBM_5150_Technical_Reference_6025005_AUG81.pdf) from 1981 displays 0x7F as **delta**&hellip;
+
+<figure class="u-image-full-width">
+    {% image
+        "./src/assets/images/0x7f/ibmpc-technicalreference.png",
+        "crisp",
+        "0x7F is displayed as delta",
+        "(min-width: 30em) 50vw, 100vw",
+        true
+    %}
+    <figcaption>1981 IBM PC Technical Reference</figcaption>
+</figure>
+
+&hellip;while the 1982 edition of [*IBM BASIC Manual*](https://archive.org/details/IBMBASICAV1.10Manual/page/n483/mode/2up) displays 0x7F as a **house**.
+
+<figure class="u-image-full-width">
+    {% image
+        "./src/assets/images/0x7f/ibm-basic.png",
+        "crisp",
+        "IBM BASIC Manual displays 0x7F as house",
+        "(min-width: 30em) 50vw, 100vw",
+        true
+    %}
+    <figcaption>1982 IBM BASIC Manual</figcaption>
+</figure>
+
+Maybe the 1981 Technical Reference was printed in error, and corrected later? Nope—in the [1983 PC/XT](https://erikarn.github.io/pcxt/PC-XT.pdf), [1984 PC](https://archive.org/details/IBMPCIBM5150TechnicalReference6322507APR84/page/n246/mode/1up), and [1986 PC/AT](https://bitsavers.org/pdf/ibm/pc/at/6183355_PC_AT_Technical_Reference_Mar86.pdf) *Technical References*, 0x7F is both displayed in the character set table, and labeled in the System BIOS character generator routines as **delta**.
+
+<figure class="u-image-full-width">
+    {% image
+        "./src/assets/images/0x7f/IBM_5150_Technical_Reference_6322507_APR84_0246.png",
+        "crisp",
+        "0x7F is displayed as delta",
+        "(min-width: 30em) 50vw, 100vw",
+        true
+    %}
+    <figcaption>1984 IBM PC Technical Reference</figcaption>
+</figure>
+
+At the same time, the actual [IBM PC System BIOS fonts](https://int10h.org/oldschool-pc-fonts/fontlist/font?ibm_bios) clearly render it as a **house**. But the rendering isn't consistent either: for example, the 1986 *IBM PC Convertible* system font renders it as **delta**. To complicate things even more, in 1984, IBM's own authoritative registry of glyph names ([GCGID](https://public.dhe.ibm.com/software/globalization/gcoc/attachments/CP00437.txt)) for CP437 officially names 0x7F as **"small house"**, contradicting the System BIOS label.
+
+But *how* the characters look is, after all, just a matter of interpretation. The character at code point 0x7F in the 1981 IBM PC's System BIOS font might *look like* a **house**, but we can't definitely claim that it was *intended* to look like a house. The *only* thing we can say for sure, is that IBM PC's System BIOS has *labeled* 0x7F as **delta** since 1981, while IBM's official registry named it **small house** in 1984.
+
+What does this tell us? The consistent *inconsistencies* in IBM's technical documentations, fonts, and registries, makes it look like a classic case of miscommunication between the different departments of IBM. Did the font's designers intend 0x7F to represent a house, but the engineers interpreted it as a delta? Or did the designers intend it to be delta, but the scuffed rendering made it look like a house, and publications like the *IBM BASIC Manual* perpetuated the wrong interpretation of it as house, until IBM decided to make it official in the registry?
+
+Whether IBM meant 0x7F to be a delta, or a house, remains a mystery. But also, it doesn't really matter. In the end, the legacy of CP437 is not defined by IBM's intentions, but by all the different ways designers, programmers, ASCII artists and other users adopted it. It *is* delta *and* house, but *also* rocket, players ammo, gun, spike, energizer, or whatever we want it to be. In the hands of PC ASCII artists, the character itself has no intrinsic meaning, it's just a shape. To see how <span class="cp437-inline">⌂</span> was used in PC ASCII art, I wrote a script that scanned the [16colo.rs](https://16colo.rs/) archive for any use of 0x7F. Here are some of my favourites:
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/1997_clit-63.zip_dy1-pen.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>1997_clit-63.zip_dy1-pen.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/1997_labia314.zip_dy1-bed.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>1997_labia314.zip_dy1-bed.ans</figcaption>
+</figure>
+
+--- 
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/1999_bj-creep.zip_bjasc147.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>1999_bj-creep.zip_bjasc147.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/1999_mimic11.zip_ess#0002.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>1999_mimic11.zip_ess#0002.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/1999_mimic15.zip_dy-blue.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>1999_mimic15.zip_dy-blue.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/1999_mimic16.zip_bjasc159.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>1999_mimic16.zip_bjasc159.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/1999_mimic17.zip_bjasc168.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>1999_mimic17.zip_bjasc168.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/1999_rmrs-29.zip_tum-egun.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>1999_rmrs-29.zip_tum-egun.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/1999_rmrs-29.zip_tum-jule.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>1999_rmrs-29.zip_tum-jule.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/2000_mimic25.zip_us-bj189.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>2000_mimic25.zip_us-bj189.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/2000_mimic27.zip_dr-mmc27.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>2000_mimic27.zip_dr-mmc27.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/2000_mimic30.zip_tb-epic.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>2000_mimic30.zip_tb-epic.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/2000_mimic30.zip_us-tw.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>2000_mimic30.zip_us-tw.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/2001_bommc01.zip_mmc10-12.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>2001_bommc01.zip_mmc10-12.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/2001_mimic33.zip_ko-cats.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>2001_mimic33.zip_ko-cats.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/2001_mimic34.zip_h4-soap.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>2001_mimic34.zip_h4-soap.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/2002_mimic44.zip_h4-tune.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>2002_mimic44.zip_h4-tune.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/2003_buzina6.zip_crs-hmes.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>2003_buzina6.zip_crs-hmes.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/2003_galza-18.zip_shd-sx09.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>2003_galza-18.zip_shd-sx09.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/2003_mimic57.zip_ko-taima.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>2003_mimic57.zip_ko-taima.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/2003_mimic61.zip_us-m.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>2003_mimic61.zip_us-m.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/2003_mimic66.zip_jf-fukk.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>2003_mimic66.zip_jf-fukk.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/2003_mimic66.zip_jf-inn2.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>2003_mimic66.zip_jf-inn2.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/2004_mimic69.zip_us-nons.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>2004_mimic69.zip_us-nons.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/2004_mimic73.zip_drj-mmc.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>2004_mimic73.zip_drj-mmc.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/2004_mimic77.zip_je-eul.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>2004_mimic77.zip_je-eul.ans</figcaption>
+</figure>
+
+---
+
+<figure class="u-image-full-width">
+    {% image "./src/assets/images/0x7f/0x7f-pcascii/2018_impure69.zip_arl-radio_final.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
+    <figcaption>2018_impure69.zip_arl-radio_final.ans</figcaption>
+</figure>

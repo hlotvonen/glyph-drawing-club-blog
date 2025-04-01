@@ -61,11 +61,12 @@
     line-height: inherit;
     font-size:inherit;
 }
-.cp437 {
+.cp437, .entry-content .cp437 {
     --scale:1;
     font-family: 'WebPlus_IBM_VGA_8x16';
     line-height: 1;
     font-size:#{"min(calc((100vw - 2rem) / 40), calc(var(--scale) * 16px))"};
+    max-width:fit-content;
 }
 .cp437-inline {
     font-family: 'WebPlus_IBM_VGA_8x16';
@@ -178,6 +179,9 @@ h2 {
 h3 {
     color:var(--color-7);
 }
+h5 {
+    font-size:0.9rem;
+}
 
 p {
     margin: 0 0 2rem 0;
@@ -210,8 +214,27 @@ pre:has(code) {
 }
 code, kbd {
     font-family: "FontWithASyntaxHighlighter", monospace;
-    word-break: break-all;
+    word-break: break-word;
 }
+kbd {
+    // Adapted from https://dylanatsmith.com/wrote/styling-the-kbd-element
+    background-color: var(--color-2);
+    color: var(--color-8);
+    border-radius: 0.25rem;
+    border: 1px solid color-mix(in srgb, var(--color-2), #aaa);
+    box-shadow: 0 2px 0 1px color-mix(in srgb, var(--color-2), #aaa);
+    cursor: default;
+    font-family: inherit;
+    font-size: 0.75em;
+    line-height: 1;
+    min-width: 0.75rem;
+    display: inline-block;
+    text-align: center;
+    padding: 2px 5px;
+    position:relative;
+    top:-1px;
+}
+  
 @media screen and (prefers-color-scheme: light) {
     code {
         background-color: black;
@@ -368,7 +391,7 @@ p.summary a:hover {
     margin: 1rem auto;
 }
 
-.entry-content > p:first-child::first-letter {
+.entry-content > p:first-child::first-letter, .initial > p:first-child::first-letter {
     font-family: $font-family-display;
     font-size: 3rem;
     line-height: 1rem;
@@ -425,6 +448,9 @@ p.summary a:hover {
     margin-top: 0.5em;
     font-size: 0.8rem;
     line-height: 1.44;
+    max-width:40rem;
+    margin:0 auto;
+    color:var(--color-6);
 }
 
 .entry-content table {
