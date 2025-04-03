@@ -3,7 +3,6 @@ title: Why is there a "small house" in IBM's Code page 437?
 date: 2025-01-06
 description: "There's a small house in the moddle of IBM's Code Page 437. Why?"
 cover: './src/assets/images/cp437house.png'
-eleventyExcludeFromCollections: true
 permalink: '/{{ title | slugify }}/'
 tags:
     - Essay
@@ -29,7 +28,7 @@ If you want to comment on something (minor or major), please send me an email at
 
 # a-b-c-d-x-y-z...HOUSE?
 
-There's a small house ( <span class="cp437-inline">⌂</span> ) in the middle of IBM's infamous character set Code Page 437. **"Small house"**—that's the official IBM name given to the glyph at code position 0x7F. It's cute, but a little strange. I wonder, how did it get there? Why did IBM include a *house*, of all things, in their character set?
+There's a small house ( <span class="cp437-inline">⌂</span> ) in the middle of IBM's infamous character set Code Page 437. **"Small house"**—that's the official IBM name given to the glyph at code position 0x7F, where a control character for "Delete" (DEL) should logically exist. It's cute, but a little strange. I wonder, how did it get there? Why did IBM represent DEL as a *house*, of all things?
 
 :::
 
@@ -44,15 +43,11 @@ There's a small house ( <span class="cp437-inline">⌂</span> ) in the middle of
     <figcaption>IBM PC's Code Page 437</figcaption>
 </figure>
 
-## The Urban Sprawl of IBM PC
+## The rise of Code Page 437
 
-Released in 1981, the *IBM Personal Computer* (PC) launched IBM's first microcomputer model line. Alongside it, they introduced an 8-bit character set known as *Code Page 437* (CP437). Unlike earlier IBM machines, the PC was built using off-the-shelf components instead of proprietary IBM technology, which spawned a wave of third-party clones marketed as "IBM-compatible" systems. IBM PC architecture quickly became the dominant global computing standard. By the end of the '80s, 84% of all sold microcomputers were either IBM PC's or its clones.^[Jeremy Reimer (2005): [Total Share: 30 Years of Computer Market Share Figures](http://arstechnica.com/old/content/2005/12/total-share.ars/), Ars Technica. 20.3.2025] 
+Released in 1981, the *IBM Personal Computer* (PC) launched IBM's first microcomputer model line. Alongside it, they introduced an 8-bit character set known as *Code Page 437* (CP437). Unlike earlier IBM machines, the PC was built using off-the-shelf components instead of proprietary IBM technology, which spawned a wave of third-party clones marketed as "IBM-compatible" systems. IBM PC architecture quickly became the dominant global computing standard. By the end of the '80s, 84% of all sold microcomputers were either IBM PC's or its clones.^[Reimer, Jeremy (2005): [Total Share: 30 Years of Computer Market Share Figures](http://arstechnica.com/old/content/2005/12/total-share.ars/), *Ars Technica*. 20.3.2025] 
 
 The rise of PC also meant the widespread adoption of CP437, making it one of the most copied and recognizable character sets ever. VileR's [Ultimate Oldschool PC Font Pack](https://int10h.org/oldschool-pc-fonts/) lists over 200 fonts based on CP437 from various IBM PC models and their clones.
-
-<div class="u-image-full-width">
-  <character-viewer-cp437></character-viewer-cp437>
-</div>
 
 CP437 was based on *American Standard Code for Information Interchange* (ASCII), which defines the first 127 characters. This was a big change for IBM who had previously used the fundamentally different EBCDIC standard. But as ASCII covers only 96 *printable* characters of the total 256 available in 8-bit code, IBM had to figure out what to do with the rest of them. Instead of basing their choices on any predefined standards extending ASCII, or copying others, they decided (yet again) to do their own thing. 
 
@@ -60,7 +55,7 @@ CP437 was based on *American Standard Code for Information Interchange* (ASCII),
 
 The extended bits (characters 128–255) of CP437 contain mainly a mishmash of international text characters, box drawing shapes and mathematical symbols. But for the undefined control characters they did something wildly different. Dr. David J. Bradley, one of the creators of the IBM PC, recounts the [*origins of the ASCII smiley character*](https://www.vintagecomputing.com/index.php/archives/790/the-ibm-smiley-character-turns-30) in an email conversation with Benj Edwards of vintagecomputing.com:
 
-> "Now, what to do about the first 32 characters (x00-x1F)? ASCII defines them as control codes, carriage return, line feed, tab… These characters originated with teletype transmission. But we could display them on the character based screens. So we added a set of “not serious” characters. They were intended as display only characters, not for transmission or storage. Their most probable use would be in character based games."^[[Edwards, Benj (2015): Origins of the ASCII Smiley Character: An Email Exchange With Dr. David Bradley (2011)](https://www.vintagecomputing.com/index.php/archives/790/the-ibm-smiley-character-turns-30#more-790) 19.3.2025]
+> "Now, what to do about the first 32 characters (x00-x1F)? ASCII defines them as control codes, carriage return, line feed, tab… These characters originated with teletype transmission. But we could display them on the character based screens. So we added a set of “not serious” characters. They were intended as display only characters, not for transmission or storage. Their most probable use would be in character based games."^[Edwards, Benj (2015): [Origins of the ASCII Smiley Character: An Email Exchange With Dr. David Bradley (2011)](https://www.vintagecomputing.com/index.php/archives/790/the-ibm-smiley-character-turns-30#more-790), *vintagecomputing.com*. 19.3.2025]
 
 The first 32 characters (x00-x1F) of CP437 mentioned by Bradley include smileys, playing card suits, musical notes, a solar symbol, gender symbols and arrows. What Bradley doesn't explicitly mention is the character at 0x7F, which is also a (sort-of) control character used in teletype transmission. It's assigned to the Delete character, which was used to obliterate undesirable characters on paper tape by punching it full of holes. The all-holes pattern in ASCII is at the 127th code point, represented by 0x7F in hexadecimal. This character is like all the other 32 control characters in that it doesn't have a defined visual representation, nor any particular use in digital computers like the IBM PC. So, even though Bradley doesn't explicitly mention 0x7F, it's represented in CP437 as a "not serious" house glyph ( <span class="cp437-inline">⌂</span> ), suggesting it also belongs to the "not serious" group of characters.
 
@@ -151,11 +146,10 @@ Its angled top makes it useful for creating curves, as seen in ddrj's [drj-mmc.a
     <figcaption>drj-mmc.ans. Colors have been changed from original to highlight the use of 0x7F.</figcaption>
 </figure>
 
-But what about IBM? Did they actually intend it to represent a house... or something else? 
 
-## Why a house?
+## Theories on the origins of CP437's house
 
-So, to get back to the question at hand, why did IBM decide to include a symbol representing a house in their character set? And why specifically at 0x7F? 
+But what about IBM? Why did IBM decide to include a symbol representing a house in their character set? It's a strange glyph; smileys and playing card suits have existed in prior character sets, but a house—as far as I can tell—it didn't exist as a glyph before IBM's Code Page 437. It seems to come from nowhere. To my knowledge, there are no (surviving) documents on the design process of Code Page 437. The little bit we know comes from a few interviews, like the one with David J. Bradley, and from meticulous research done by people like [VileR](https://int10h.org/blog/2024/10/missing-ibm-pc-localization-disks-roms/). So, the only thing I can do is speculate. Here are my thoughts:
 
 ::: wrap note
 #### Acknowledgements
@@ -163,14 +157,20 @@ Most of these theories are based on my conversations with VileR and Michael Wald
 :::
 
 #### Theory #1: House as a symbol for home computers
-My first thought was that maybe the house was included as a symbol for IBM's new line of personal *home* computers? Before IBM PC's launch in 1981, IBM had largely been known for their business computers. So, it makes sense that, as IBM was entering the growing market of personal computers, they wanted to signal to the home users that their PC had soemthing *fun* to offer—hence the "not serious" glyphs, like the smiley, which were added with text-based games in mind. So maybe they added the house glyph for the same reason? Surely the smileys have to have a house they live in? It's compelling to think this might be true, but to be clear, this is pure speculation, and there's nothing substantial to support this claim.
+My first thought was that maybe the house was included as a symbol for IBM's new line of personal **home** computers? Before IBM PC's launch in 1981, IBM had largely been known for their business computers. So, it makes sense that, as IBM was entering the growing market of personal computers, they wanted to signal to the home users that their PC had something *fun* to offer—hence the "not serious" glyphs, like the smiley, which were added with text-based games in mind. So maybe they added the house glyph for the same reason? Surely the smileys have to have a house they live in? It's compelling to think this might be true, but to be clear, this is pure speculation, and there's nothing substantial to support this claim.
 
 #### Theory #2: It's related to backspace
 Another "hunch" was suggested by VileR. He entertained the idea that the house character itself was associated with the action of deleting text, or related to the backspace symbol ⌫ (U+232B). If you rotate ⌫ 90˚ clockwise, you do get a house ⌂ (with an &times; in it). It's an interesting idea, but there doesn't seem to be nothing to support this claim either.
 
-#### Theory #3: It comes from Blissymbolics
+#### Theory #3: It's borrowed from System/23 Datamaster
+In the Benj Edwards' email interview, David Bradley also mentions that the choice of "serious characters" was based on the immediate ancestor of PC at IBM, the System/23 Datamaster.^[Edwards, Benj (2015): [Origins of the ASCII Smiley Character: An Email Exchange With Dr. David Bradley (2011)](https://www.vintagecomputing.com/index.php/archives/790/the-ibm-smiley-character-turns-30#more-790), *vintagecomputing.com*. 19.3.2025] VileR found the Datamaster [character ROM image](https://forum.vcfed.org/index.php?threads/ibm-system-23-datamaster-display-and-character-generation.1247762/), which confirms that some character sequences *were* copied to CP437 unchanged (üéâäàåçêëèïî). But, there is no house symbol, or anything resembling it.
 
-What I've always found weird about the house symbol is that its representation is somewhat atypical for a house. Wouldn't a more intuitive house icon have a [roof with an overhang](https://www.google.com/search?q=iconography%20house&udm=2)? Instead, the CP437 house glyph <span class="cp437-inline">⌂</span> is a simple box with a triangular top.
+#### Theory #4: It's borrowed from Wang word processing machines
+In a blog post [Weird Tales](https://www.os2museum.com/wp/weird-tales/), Michal Necasek of OS/2 Museum examines claims made by Bill Gates that Microsoft wanted IBM to copy some Wang word processing characters ("smiley faces and boxes and triangles and stuff") into the IBM PC's character set because they were considering creating their own Wang clone. Necasek half-debunks and half-confirms these claims, as none of the Wang character sets have smileys, yet they do share some strikingly similiar characters with CP437, that are unlikely to be a coincidence. These include left/right triangles, a box, a diamond, double exclamation mark, and several arrows.^[Necasek, Michal (2021): [Weird Tales](https://www.os2museum.com/wp/weird-tales/), *OS/2 Museum*. 19.3.2025] But again, none of the Wang character sets include a house symbol, so IBM couldn't have copied it from there.
+
+#### Theory #5: It comes from Blissymbolics
+
+So, IBM didn't get the house glyph by copying it from other character sets. But it's unlikely that IBM's team designed the house symbol in a vacuum. If it's not from another computer system, then maybe they found it by looking at books for existing symbol systems and iconography?
 
 <figure class="u-image-float-right-inline">
     {% image
@@ -182,7 +182,7 @@ What I've always found weird about the house symbol is that its representation i
     %}
 </figure>
 
-Henry Dreyfuss *Symbol sourcebook* debunks my assumption: of course both presentations have been used in iconography well before CP437. For example, a hotel icon used by the <abbr title="International Civil Aviation Organization">ICAO</abbr> in the 1970s is very similar to CP437 representation of the house. 
+For example, a hotel icon used by the <abbr title="International Civil Aviation Organization">ICAO</abbr> in the 1970s is quite similar in shape to CP437's house.^[Dreyfuss, Henry (1972): [*Symbol sourcebook : an authoritative guide to international graphic symbols*](https://archive.org/details/symbolsourcebook0000henr/page/n9/mode/2up)]
 
 <figure class="u-image-float-right-inline">
     {% image
@@ -194,19 +194,12 @@ Henry Dreyfuss *Symbol sourcebook* debunks my assumption: of course both present
     %}
 </figure>
 
-Also a nearly direct match associated with the word *house* and the specific symbol, can be found from Blissymbolics. It's a constructed language based on graphic symbols, introduced in 1949 by Charles Bliss in his book *Semantography*. Blissymbolics remained in obscurity for decades, but gained some popularity after 1971 when it was used to teach children with cerebral palsy how to communicate.^[Radiolab (2012): [Mr.Bliss](https://radiolab.org/podcast/257194-man-became-bliss)] This led to workshops worldwide, including the United States, and a new [book published in 1980](https://archive.org/details/OTUED_8-2-3-3/page/21/mode/1up) displaying these symbols. Is it possible, that while researching which symbols to include to CP437, David Bradley or another IBM developer looked at Blissymbolics and incorporated the house symbol, either deliberately or unconsciously?
-
-I presented this idea to VileR, and I have to agree with his assessment. This theory, while intriguing, is probably a long shot. However, VileR points out that there is something both Blissymbolics and tiny character cell designs have in common: both are very economical in detail, by using as few strokes as possible for the sake of clarity, and have the glyphs conform to a grid (albeit for different reasons). So, while a roof overhang would instinctively make sense, it isn't *strictly* necessary, in neither Bliss's symbols nor in bitmap fonts. 
+Another possibile influence is Blissymbolics. It was originally developed in 1949, but gained some renewed popularity in the 1970s and 1980s.^[Radiolab (2012): [Mr.Bliss](https://radiolab.org/podcast/257194-man-became-bliss)] The Blissymbolics house glyph is striking similarity to IBM's character at 0x7F.^[Blissymbolics Communication Institute (1980): [*Teaching and Using Blissymbolics*](https://archive.org/details/OTUED_8-2-3-3/page/21/mode/1up)] If IBM was looking at symbol books, searching for inspiration for their new character set, it's possible they would have come upon Blissymbolics. The timeline fits: a book *Teaching and Using Blissymbolics* was published in 1980, at the time when IBM was developing CP437.
 
 ::: wrap note
-Sidenote: There's a [recent proposal](https://www.unicode.org/L2/L2020/20271-n5149-blissymbols-kbd.pdf) to add Blissymbolics to Unicode!
+##### Sidenote
+There's a [recent proposal](https://www.unicode.org/L2/L2020/20271-n5149-blissymbols-kbd.pdf) to add Blissymbolics to Unicode!
 :::
-
-#### Theory #4: It's borrowed from System/23 Datamaster
-In the Benj Edwards' email interview, David Bradley also mentions that the choice of "serious characters" was based on the immediate ancestor of PC at IBM, the System/23 Datamaster.^[[Edwards, Benj (2015): Origins of the ASCII Smiley Character: An Email Exchange With Dr. David Bradley (2011)](https://www.vintagecomputing.com/index.php/archives/790/the-ibm-smiley-character-turns-30#more-790) 19.3.2025] VileR found the Datamaster [character ROM image](https://forum.vcfed.org/index.php?threads/ibm-system-23-datamaster-display-and-character-generation.1247762/), which confirms that some character sequences *were* copied to CP437 unchanged (üéâäàåçêëèïî). But, there is no house symbol, or anything resembling it.
-
-#### Theory #5: It's borrowed from Wang word processing machines
-In a blog post [Weird Tales](https://www.os2museum.com/wp/weird-tales/), Michal Necasek of OS/2 Museum examines claims made by Bill Gates that Microsoft wanted IBM to copy some Wang word processing characters ("smiley faces and boxes and triangles and stuff") into the IBM PC's character set because they were considering creating their own Wang clone. Necasek half-debunks and half-confirms these claims, as none of the Wang character sets have smileys, yet they do share some strikingly similiar characters with CP437, that are unlikely to be a coincidence. These include left/right triangles, a box, a diamond, double exclamation mark, and several arrows.^[Necasek, Michal (2021): [Weird Tales](https://www.os2museum.com/wp/weird-tales/), OS/2 Museum. 19.3.2025] But again, none of the Wang character sets include a house symbol, so IBM couldn't have copied it from there.
 
 #### Theory #6: Botched copy of a dot-stretched Wang delta
 Or maybe it does come from Wang? Viler makes an interesting observation: a 1979 Wang character set for the *2236DE terminal* includes a delta symbol ( Δ ) at position 0x9A. At first glance this seemed unrelated to IBM's house symbol at 0x7F. But after viewing the ROM data as a bitmap, VileR discovered that the pixels were spaced-out, implying that the glyphs relied on some sort of dot-stretching effect in the display circuitry. Rendering the bitmap with his [CRT emulator](https://int10h.org/blog/2021/01/simulating-crt-monitors-ffmpeg-pt-1-color/) revealed that Wang's delta didn't actually look like a clean equilateral triangle: the triangle's sides were slightly cropped to fit it into the 7&times;7 pixels-per-character space, and in combination with the CRT effect, makes the delta resemble IBM's blocky house symbol. VileR also notes that even though Wang could have created a less ambiguous delta triangle by making the sides steeper, the designers of early bitmap fonts were often very reluctant to use angles other than 45/90 degrees in their glyphs, because uneven displacements between scanlines produce very obvious "jaggies" on low-res CRTs.
@@ -224,20 +217,20 @@ So, if Bill Gates was correct about IBM copying characters from Wang, it's entir
     <figcaption>Comparison between Wang's character set as raw ROM data and CRT emulated. Is this the origin of IBM PC's house? Compiled from images by VileR.</figcaption>
 </figure>
 
-#### Theory #7: It IS delta
-But, in another email conversation, Michael Walden speculates that it might not even be a coincidence that the DELete character has DELta as its printable character glyph. Delta as a symbol ( Δ ) originates from the Greek alphabet. CP437 already includes some Greek characters in the 0xEO–0xEB range, notably 0xEB being the symbol for Greek *small* delta ( δ ). These characters were not included to support Greek language, but as math symbols. In mathematics and other sciences, the uppercase delta is often used to denote a "change of any changeable quantity", which might have been a reason to include it in the character set.
+#### Theory #7: Is it delta?
+But, in an email conversation, Michael Walden speculates that it might not even be a coincidence that the DELete character has DELta as its printable character glyph. 
 
-#### Theory #8: The delta is from APL
-Delta doesn't only appear in Wang's character set, but in many character sets before it. For example, the Array-oriented Programming Language (APL), which originated at IBM in the 1960s, uses delta, and inverted delta ( ∇ ) in its syntax. As an unrelated but curious coincidence, IBM named the inverted delta "DEL".^[Wikipedia article [https://en.wikipedia.org/wiki/Digital_encoding_of_APL_symbols#Character_repertoire](Digital encoding of APL symbols)]. 
+Delta as a symbol ( Δ ) originates from the Greek alphabet. CP437 already includes some Greek characters in the 0xEO–0xEB range, notably 0xEB being the symbol for Greek *small* delta ( δ ). These characters were not included to support Greek language, but as math symbols. In mathematics and other sciences, the uppercase delta is often used to denote a "change of any changeable quantity", which might have been a reason to include it in the character set.
 
-The APL symbols, including delta and DEL, appeared on some early IBM APL keyboards, like in the 1971 [IBM 3270](https://geekhack.org/index.php?topic=104046.0). VileR also notes that IBM's first desktop machines from the mid 1970s, the [5100/5110/5120](https://voidstar.blog/the-ibm-5100-5110-mame-emulators-how-to/), were intended for APL from the get go, but there's no evidence that they ever influenced the development of IBM PC in any way. Furthermore, IBM's APL character sets, like the [Code Page 909](https://web.archive.org/web/20130121103608/http://www-03.ibm.com/systems/resources/systems_i_software_globalization_pdf_cp00909z.pdf), sometimes include both delta *and* the house symbol. As such, it doesn't seem like there's any connection between the house and APL.
+Delta doesn't only appear in Wang's character set, but in many character sets before it. For example, the Array-oriented Programming Language (APL), which originated at IBM in the 1960s, includes delta ( Δ ), and inverted delta ( ∇ ) in its syntax. As a curious but unrelated coincidence, the IBM name for the inverted delta is DEL—the same as the control character DEL (Delete) at 0x7F.^[Wikipedia article [Digital encoding of APL symbols](https://en.wikipedia.org/wiki/Digital_encoding_of_APL_symbols#Character_repertoire) 3.4.2025]
 
-#### Theory #9: It IS delta?
+The APL symbols appeared on some early IBM APL keyboards, like in the 1971 [IBM 3270](https://geekhack.org/index.php?topic=104046.0). VileR also notes that IBM's first desktop machines from the mid 1970s, the [5100/5110/5120](https://voidstar.blog/the-ibm-5100-5110-mame-emulators-how-to/), were intended for APL from the get go, but there's no evidence that they ever influenced the development of IBM PC in any way, even if they are in the same model numbering system (IBM PC is 5150). It's also worth noting that IBM's APL character sets, like the [Code Page 909](https://web.archive.org/web/20130121103608/http://www-03.ibm.com/systems/resources/systems_i_software_globalization_pdf_cp00909z.pdf), sometimes include both delta *and* the house symbol. As such, it doesn't seem like there's a strong connection between the house and APL's delta.
 
-Hold up—how can we be absolutely certain that IBM meant it to represent a house? I mean, it loooks like a house. Wikipedia says it's a house. 
+#### Theory #8: It IS delta?!
 
-Surely, we can confirm that by looking at the original 1981 [*Technical Reference*](https://www.minuszerodegrees.net/manuals/IBM_5150_Technical_Reference_6025005_AUG81.pdf) manual for IBM PC... but there's no mention of a house. There's not even symbol representing a house. The character listed at 0x7F is a different symbol entirely: it's **delta** ( Δ )!
+Hold on... let's examine our basic assumptions. How can we be *absolutely certain* that IBM even intended for the glyph <span class="cp437-inline">⌂</span> at 0x7F to represent a house? What if the whole premise is wrong?
 
+When I browsed through the original 1981 [*Technical Reference*](https://www.minuszerodegrees.net/manuals/IBM_5150_Technical_Reference_6025005_AUG81.pdf) manual for IBM PC, I realized that there's no mention of a "house" anywhere. In fact, the character explicitly listed at position 0x7F isn't a house at all—it's a delta ( Δ )!
 <figure class="u-image-full-width">
     {% image
         "./src/assets/images/0x7f/ibmpc-technicalreference.png",
@@ -249,7 +242,9 @@ Surely, we can confirm that by looking at the original 1981 [*Technical Referenc
     <figcaption>1981 IBM PC Technical Reference</figcaption>
 </figure>
 
-But... the 1982 edition of [*IBM BASIC Manual*](https://archive.org/details/IBMBASICAV1.10Manual/page/n483/mode/2up) displays 0x7F definitely as a **house**! What is going on?
+Was it intended to be delta all along?
+
+But of course it's not so simple. The 1982 edition of [*IBM BASIC Manual*](https://archive.org/details/IBMBASICAV1.10Manual/page/n483/mode/2up) displays the very same code point 0x7F very unambiguously as a **house**!
 
 <figure class="u-image-full-width">
     {% image
@@ -262,7 +257,7 @@ But... the 1982 edition of [*IBM BASIC Manual*](https://archive.org/details/IBMB
     <figcaption>1982 IBM BASIC Manual</figcaption>
 </figure>
 
-Maybe the 1981 Technical Reference was printed in error, and corrected later? Nope—the [1983 PC/XT](https://erikarn.github.io/pcxt/PC-XT.pdf), the [1984 PC](https://archive.org/details/IBMPCIBM5150TechnicalReference6322507APR84/page/n246/mode/1up), and the [1986 PC/AT](https://bitsavers.org/pdf/ibm/pc/at/6183355_PC_AT_Technical_Reference_Mar86.pdf) *Technical References* display 0x7F as **delta** in the character set tables. 
+What is going on? Was the 1981 Technical Reference was printed in error, and corrected later? It doesn't seem like it: the 1984 revised edition of the [IBM PC *Technical Reference*](https://archive.org/details/IBMPCIBM5150TechnicalReference6322507APR84/page/n246/mode/1up) still display 0x7F as **delta**. There's no mistake, even the **text label** of 0x7F is "delta", as listed in the printed System BIOS character generator routines.
 
 <figure class="u-image-full-width">
     {% image
@@ -275,27 +270,38 @@ Maybe the 1981 Technical Reference was printed in error, and corrected later? No
     <figcaption>1984 IBM PC Technical Reference</figcaption>
 </figure>
 
-Maybe they just didn't have a proper font to display the house symbol? Nope again—it's even *labeled* as **delta** in the System BIOS character generator routines listed in the *Technical References*.
+Still, the original 1981 [IBM PC System BIOS fonts](https://int10h.org/oldschool-pc-fonts/fontlist/font?ibm_bios) clearly renders it as a **house**: <span class="cp437-inline">⌂</span>. It seems very unlikely that anybody would actually associate the shape of it with the delta character—let alone use the house character *as* delta in any scientific syntax. 
 
-At the same time, the actual [IBM PC System BIOS fonts](https://int10h.org/oldschool-pc-fonts/fontlist/font?ibm_bios) clearly renders it as a **house**. But the rendering isn't consistent either: for example, the 1986 *IBM PC Convertible* system font renders it as **delta**. 
+Maybe it's just some careless disparity between printed material and the actual font rendering? It isn't so either: 0x7F isn't consistently rendered as a house in every CP437 font, as can be seen from the following chart, which display the 0x7F character from various [CP437-compatible VGA fonts](https://github.com/viler-int10h/vga-text-mode-fonts/releases/tag/2020-11-25): 
 
-So, it's actually a delta? Nope yet again—in 1984, IBM's own authoritative registry of glyph names ([GCGID](https://public.dhe.ibm.com/software/globalization/gcoc/attachments/CP00437.txt)) for CP437 officially names 0x7F as **"small house"**, contradicting the System BIOS label.
+<div class="u-image-full-width">
+  <character-viewer-cp437></character-viewer-cp437>
+</div>
 
-It seems the only thing we know for certain, is that even IBM was confused (or just didn't care) whether 0x7F should be a delta or a house.
+While most of the fonts render 0x7F as a house, some of them are quite undeniably deltas (listed near the bottom of the chart). 
+
+To make matters more confusing (or maybe in an attempt to prevent further confusion?), in 1984, IBM's own authoritative registry of glyph names ([GCGID](https://public.dhe.ibm.com/software/globalization/gcoc/attachments/CP00437.txt)) officially names 0x7F in CP437 as **"small house"**. But even this wasn't enough to correct its rendering. In 1986, the [*IBM PC Convertible*](https://int10h.org/oldschool-pc-fonts/fontlist/font?ibm_conv) system font renders 0x7F as **delta**, and the 1986 [IBM PC/AT *Technical Reference*](https://bitsavers.org/pdf/ibm/pc/at/6183355_PC_AT_Technical_Reference_Mar86.pdf) still lists and labels 0x7F as delta.
 
 ### What DO we know?
 
-*How* the house character looks like is, after all, just a matter of interpretation. The character at code point 0x7F in the 1981 IBM PC's System BIOS font might *look like* a **house**, but we can't definitely claim that it was *intended* to look like a house. The *only* thing we can say for sure, is that IBM PC's System BIOS has *labeled* 0x7F as **delta** since 1981, while IBM's official registry named it **small house** in 1984.
+It seems the only thing we know for certain is that even IBM was confused, or just didn't care, whether 0x7F should be a delta, or a house. The character at code point 0x7F in the 1981 IBM PC's System BIOS font might look like a house, but we can't definitely claim that it was *intended* to look like a house. The *only* thing we can say for sure, is that 0x7F has been labeled as "delta" in the IBM PC's System BIOS since 1981, and that the IBM's official registry named it "small house" in 1984.
 
-What does this tell us? The consistent *inconsistencies* in IBM's technical documentations, fonts, and registries, sounds like a classic case of miscommunication between the different departments of IBM. Did the font's designers intend 0x7F to represent a house, but the engineers interpreted it as a delta? Or did the designers intend it to be delta, but the scuffed rendering made it look like a house, and publications like the *IBM BASIC Manual* perpetuated the wrong interpretation of it as house, until IBM decided to make it official in the registry? Or what? There is no satisfying conclusion.
+What does this tell us? The consistent *inconsistencies* in IBM's technical documentations, fonts, and registries, sounds like a classic case of miscommunication between the different departments of IBM. Did the font's designers intend 0x7F to be a house, but the engineers interpreted it as a delta, mislabeling it in the System BIOS? Or did the designers intend it to be delta, but the botched rendering made it look like a house, and publications like the *IBM BASIC Manual* perpetuated the wrong interpretation until IBM decided to make it official in the registry? Or what? There is no clear answer.
 
-Whether IBM meant 0x7F to be a delta, or a house, remains a mystery. But it doesn't really matter. It sounds lame, but in the end, the legacy of CP437 is not defined by IBM's intentions, but by all the different ways designers, programmers, ASCII artists and other users adopted it. It *is* delta *and* house, but *also* rocket, players ammo, gun, spike, energizer, or whatever else we want it to be. As IBM engineer Charles E. Mackenzie observes in *Coded Character Sets, History and Development*: 
+::: wrap note
 
-> "There is an aspect of human nature which surfaces in data processing. Experience has shown that if graphics are provided on a computing system, they will be used in one way or another by customers, even if they have no intrinsic meaning."
+##### Sidenote
+The house symbol ( ⌂ ) was added to Unicode in [version 1.1.0](https://www.unicode.org/versions/Unicode1.1.0/appI.pdf) in 1993. It was given the unicode [U+2302](https://graphemica.com/%E2%8C%82).
 
-This is probably best exemplified by how the house character was used in PC ASCII art. In the hands of ASCII artists, the character itself has no meaning, it's just an abstract shape. And *that* is the beauty of written language. Character shapes are just that: shapes. Shapes themselves don't mean anything, until we give them meaning.
+:::
 
-To see all the ways <span class="cp437-inline">⌂</span> was used in PC ASCII art, I wrote a script that scanned the [16colo.rs](https://16colo.rs/) archive for any use of 0x7F. Here are some of my favourites:
+Whether IBM meant 0x7F to be a delta, or a house, remains a mystery. But it doesn't really matter. *How* the house character looks like, is, after all, just a matter of interpretation. The legacy of CP437 is not defined by IBM's intentions, but by all the different ways designers, programmers, ASCII artists and other users adopted it. It is delta *and* house, but *also* rocket, players ammo, gun, spike, energizer, or whatever else we want it to be. As IBM engineer Charles E. Mackenzie observes in *Coded Character Sets, History and Development*: 
+
+> "There is an aspect of human nature which surfaces in data processing. Experience has shown that if graphics are provided on a computing system, they will be used in one way or another by customers, even if they have no intrinsic meaning."^[Mackenzie, Charles E. (1980): [*Coded Character Sets, History and Development*](https://archive.org/details/mackenzie-coded-char-sets/page/99/mode/1up)]
+
+This is probably best exemplified by how the house character is used in PC ASCII art. In the hands of ASCII artists, the character goes *beyond* meaning and returns to pure form, demonstrating that there is no shape that has an "intrinsic" meaning, until we give them meaning.
+
+To see how <span class="cp437-inline">⌂</span> was used in PC ASCII art, I wrote a script that scanned the [16colo.rs](https://16colo.rs/) archive for any artwork containing 0x7F. Here are some of my favourites:
 
 <figure class="u-image-full-width">
     {% image "./src/assets/images/0x7f/0x7f-pcascii/1997_clit-63.zip_dy1-pen.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}

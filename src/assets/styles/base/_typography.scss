@@ -51,6 +51,7 @@
     line-height: 1;
     font-size:#{"min(calc((100vw - 2rem) / 40), 16px)"};
     max-width:fit-content;
+    -webkit-font-smoothing:grayscale;
 }
 .amiga.highlight {
     font-family: 'Topaz_Plus_a1200_CP437_color';
@@ -60,6 +61,7 @@
     vertical-align: bottom;
     line-height: inherit;
     font-size:inherit;
+    -webkit-font-smoothing:grayscale;
 }
 .cp437, .entry-content .cp437 {
     --scale:1;
@@ -67,12 +69,14 @@
     line-height: 1;
     font-size:#{"min(calc((100vw - 2rem) / 40), calc(var(--scale) * 16px))"};
     max-width:fit-content;
+    -webkit-font-smoothing:grayscale;
 }
 .cp437-inline {
     font-family: 'WebPlus_IBM_VGA_8x16';
     vertical-align: bottom;
     line-height: inherit;
     font-size:inherit;
+    -webkit-font-smoothing:grayscale;
 }
 
 // Typography Variables

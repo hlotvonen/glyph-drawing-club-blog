@@ -2,8 +2,7 @@
 title: The origins of DEL (0x7F) and its Legacy in Amiga ASCII art
 date: 2025-01-06
 description: "A micro-history of the character DEL (0x7F) as it appears in Amiga's Topaz font, and explorations on its use in Amiga ASCII art."
-eleventyExcludeFromCollections: true
-cover: './src/assets/images/cover-syntax-highlighter.png'
+cover: './src/assets/images/topaz-thumb.png'
 permalink: '/{{ title | slugify }}/'
 tags:
     - Essay
@@ -28,6 +27,8 @@ In [part 1](#part-1), **"What is DEL"**, I try to form a comprehensive understan
 In [part 2](#part-2), **"The graphics of DEL"**, I take a closer look at how normally non-printing characters, like DEL, were given a standardized visual representation through ECMA-17 in 1968, and how DEL was *actually* represented in various early bitmap fonts between 1970s–1990s.
 
 [Part 3](#part-3), **"DEL in Amiga ASCII art"**, is about the particular shape and design of Topaz's <span class="amiga-inline">⌂</span>. I analyze over 3000 Amiga ASCII artworks made between 1993–2005 to see how DEL was used, and showcase some of them.
+
+I also wrote an bonus article focusing specifically on IBM PC's DEL: [Why is there a "small house" in IBM's Code page 437?](https://blog.glyphdrawing.club/why-is-there-a-small-house-in-ibm-s-code-page-437/).
 
 **Keywords**: DELETE character, Amiga ASCII art, textmode, bitmap fonts, character sets, control characters, ASCII, ECMA-17, punched tape, telegraph, ITA2
 
@@ -349,6 +350,13 @@ Despite TRS-80's decent commercial success, it failed to make the ECMA-17 symbol
 Beyond appearing in the 1984 Amstrad CPC^[CPC wiki on [Amstrad CPC Character Set ROMs](https://www.cpcwiki.eu/index.php?title=Keyboard_Versions#Character_Set_ROMs)], the ECMA-17 standard largely faded into obscurity. However, one of its 34 characters managed to endure: DEL. Even though graphical symbols for control characters 0–31 were not widely adopted, many systems and software included the diagonal lines symbol (or a similar representation) at the 0x7F position.
 
 Because the designs of early bitmap fonts were constrained by small cell sizes, sometimes as small as 5 &times; 7 pixels, the diagonal lines were rendered as a symbol looking more like a checkerboard pattern ( ▒ ). This pattern can be found in character sets for *Apple II* (1977), *Exidy Sorcerer* (1978), various systems that used the *TMS9918* video display controller by Texas Instruments (1979)^[[TMS9918 datasheet](https://web.archive.org/web/20180717212934/https://emu-docs.org/VDP%20TMS9918/Datasheets/TMS9918.pdf)], *Elektuur Junior* (1980), *Kaypro II* (1982), in many "RAMfonts" bundled with the *Hercules Plus* graphics card (1986), and in some software, like SEI Soft's *FontEdit II* (1994). HP had specifically designed "symbol sets" for printers, and many of them included the checkerboard pattern at 0x7F, first appearing in 1978 in the *HP Roman* encoding.^[HP Roman on [Wikipedia](https://en.wikipedia.org/wiki/HP_Roman)] Various Teletext character sets^[Wikipedia, [Teletext character sets](https://en.wikipedia.org/wiki/Teletext_character_set) 07.03.2025], *Mattel Aquarius*, *Robotron Z9001*, *Otrona Attache* chargen fonts, the morse set of *RM Nimbus PC-186* and *Canon AS-100 (CP/M)* among many display DEL as a full block ( █ ) instead. *FM-Towns* and the *DEC VT220* terminal displays DEL as "DL". The word processor *Wang Professional* renders 0x7F as ¢, for some reason. And last but not least, IBM PC's infamous *Code Page 437* has a glyph representing a "house" ( ⌂ ) at 0x7F.
+
+::: wrap note
+
+##### A companion article
+IBM PC's "house" glyph 0x7F is a mystery in itself, so I wrote a companion article on it: [Why is there a "small house" in IBM's Code page 437?](https://blog.glyphdrawing.club/why-is-there-a-small-house-in-ibm-s-code-page-437/).
+
+:::
 
 The following chart displays the visual representation of 0x7F from 1259 character sets, compiled from Rob Hagemans' [*hoard of bitfonts*](https://github.com/robhagemans/hoard-of-bitfonts) and from VileR's [*VGA textmode fonts*](https://github.com/viler-int10h/vga-text-mode-fonts/releases/tag/2020-11-25). It's ordered purely based on the visual properties of the characters. Click on the glyps to display more information about them. (Note that some characters might have extra whitespace around them which might not appear in real hardware.)
 
