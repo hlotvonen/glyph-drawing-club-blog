@@ -19,7 +19,7 @@ This post is a short companion piece to my article [The origins of DEL (0x7F) an
 
 This article wouldn't have happened without the great help and insights of [Michael Walden](https://mw.rat.bz/) and [VileR](https://int10h.org/blog/), thank you!
 
-If you want to comment on something (minor or major), please send me an email at **hlotvonen@gmail.com**. I would greatly it, and if something needs fixing I would gladly update the article with proper credit.
+If you want to comment on something (minor or major), please send me an email at **hlotvonen@gmail.com**. I would greatly appreciate it, and if something needs fixing I would gladly update the article with proper credit.
 :::
 
 ---
@@ -55,9 +55,9 @@ CP437 was based on *American Standard Code for Information Interchange* (ASCII),
 
 The extended bits (characters 128–255) of CP437 contain mainly a mishmash of international text characters, box drawing shapes and mathematical symbols. But for the undefined control characters they did something wildly different. Dr. David J. Bradley, one of the creators of the IBM PC, recounts the [*origins of the ASCII smiley character*](https://www.vintagecomputing.com/index.php/archives/790/the-ibm-smiley-character-turns-30) in an email conversation with Benj Edwards of vintagecomputing.com:
 
-> "Now, what to do about the first 32 characters (x00-x1F)? ASCII defines them as control codes, carriage return, line feed, tab… These characters originated with teletype transmission. But we could display them on the character based screens. So we added a set of “not serious” characters. They were intended as display only characters, not for transmission or storage. Their most probable use would be in character based games."^[Edwards, Benj (2015): [Origins of the ASCII Smiley Character: An Email Exchange With Dr. David Bradley (2011)](https://www.vintagecomputing.com/index.php/archives/790/the-ibm-smiley-character-turns-30#more-790), *vintagecomputing.com*. 19.3.2025]
+> "Now, what to do about the first 32 characters (x00-x1F)? ASCII defines them as control codes, carriage return, line feed, tab… These characters originated with teletype transmission. But we could display them on the character based screens. So we added a set of “not serious” characters. They were intended as display only characters, not for transmission or storage. Their most probable use would be in [text] character based games."^[Edwards, Benj (2015): [Origins of the ASCII Smiley Character: An Email Exchange With Dr. David Bradley (2011)](https://www.vintagecomputing.com/index.php/archives/790/the-ibm-smiley-character-turns-30#more-790), *vintagecomputing.com*. 19.3.2025]
 
-The first 32 characters (x00-x1F) of CP437 mentioned by Bradley include smileys, playing card suits, musical notes, a solar symbol, gender symbols and arrows. What Bradley doesn't explicitly mention is the character at 0x7F, which is also a (sort-of) control character used in teletype transmission. It's assigned to the Delete character, which was used to obliterate undesirable characters on paper tape by punching it full of holes. The all-holes pattern in ASCII is at the 127th code point, represented by 0x7F in hexadecimal. This character is like all the other 32 control characters in that it doesn't have a defined visual representation, nor any particular use in digital computers like the IBM PC. So, even though Bradley doesn't explicitly mention 0x7F, it's represented in CP437 as a "not serious" house glyph ( <span class="cp437-inline">⌂</span> ), suggesting it also belongs to the "not serious" group of characters.
+The first 32 characters (x00-x1F) of CP437 mentioned by Bradley include smileys, playing card suits, musical notes, a solar symbol, gender symbols and arrows. What Bradley doesn't explicitly mention is the character at 0x7F, which is also a (sort-of) control character used in teletype transmission. It's assigned to the Delete character, which was used to obliterate undesirable characters on paper tape by punching it full of holes. The all-holes pattern in ASCII is at the 127th code point, represented by 0x7F in hexadecimal. This character is like all the other 32 control characters in that it doesn't have a defined visual representation, nor any particular use in digital computers like the IBM PC. So, even though Bradley doesn't explicitly mention 0x7F, it's represented in CP437 as a tiny pixel-house ( <span class="cp437-inline">⌂</span> ), suggesting it also belongs to the "not serious" group of characters.
 
 <figure class="u-image-full-width">
     {% image
@@ -72,9 +72,9 @@ The first 32 characters (x00-x1F) of CP437 mentioned by Bradley include smileys,
 
 According to Bradley, the "not serious" characters were developed during a 4-hour plane travel. He's of course exaggerating, but gave it as an "indication of the rapidity in which many significant decisions were undertaken". But even though they developed them relatively quickly, they must have based them on *something*.
 
-IBM could implemented the visual representation for control character from ANSI X3.32-1973 standard—but they are ambiguous and hard-to-use (see part 2 of [The origins of DEL (0x7F) and its Legacy in Amiga ASCII art](../the-origins-of-del-0x7f-and-its-legacy-in-amiga-ascii-art/#part-2)). Instead, going with these "not serious" characters was arguably a better choice, at least as a business decision. Characters like the smiley face at 0x01 became iconic, precicely because they offered a simple way to represent player characters in text-based games like [Rogue](https://en.wikipedia.org/wiki/Rogue_(video_game)) and [ZZT](https://en.wikipedia.org/wiki/ZZT).
+What is this something? IBM could have followed an existing standard and taken the graphics for control characters from ANSI X3.32-1973—but they are ambiguous and hard-to-use (see part 2 of [The origins of DEL (0x7F) and its Legacy in Amiga ASCII art](../the-origins-of-del-0x7f-and-its-legacy-in-amiga-ascii-art/#part-2)). Instead, going with these "not serious" characters was arguably a better choice, especially as a business decision. Characters like the smiley face at 0x01 became iconic, precicely because they offered a simple way to represent player characters in text-based games like [Rogue](https://en.wikipedia.org/wiki/Rogue_(video_game)) and [ZZT](https://en.wikipedia.org/wiki/ZZT).
 
-IBM was by no means the first to include "non-serious" characters. For example, Commodore's PETSCII character set from 1977 is known for its graphical shapes which also include card suites.^[Reunanen, Markku; Heikkinen, Tero; Carlsson, Anders (2019): [*PETSCII – A Character Set and a Creative Platform*](https://acris.aalto.fi/ws/portalfiles/portal/39040680/PETSCII_A_Character_Set_and_a_Creative_Platform.pdf)] 
+IBM was by no means the first to include "not serious" characters. For example, Commodore's PETSCII character set from 1977 is known for its graphical shapes which also include card suites.^[Reunanen, Markku; Heikkinen, Tero; Carlsson, Anders (2019): [*PETSCII – A Character Set and a Creative Platform*](https://acris.aalto.fi/ws/portalfiles/portal/39040680/PETSCII_A_Character_Set_and_a_Creative_Platform.pdf)] 
 
 <figure class="u-image-full-width">
     {% image
@@ -100,7 +100,7 @@ Even the American National Standards Institute's (ANSI) X3.2 committee considere
     <figcaption>Proposal for an 8-bit extension for ASCII. It didn't get standardized. The closest to an "official" 8-bit extension to ASCII is ISO 8859-1 (also called ISO Latin-1), which extended support for additional Latin based languages, standardized by the International Organization for Standardization (ISO) in 1987.</figcaption>
 </figure>
 
-But, why add these quirky characters, when arguably more useful characters (like exteding support for additional languages or writing systems) could be added? Bob Bemer ("The Father of ASCII") defends their inclusion in an article for the *Interface Age* in July 1978:
+But, why add these quirky characters, when arguably more useful characters, like exteding support for additional languages or writing systems, could be added? Bob Bemer ("The Father of ASCII") defends their inclusion in an article for the *Interface Age* in July 1978:
 
 > "Presumably the card suits will strike your eye, and you will wonder why so many other useful symbols were ignored in favor of these. Don't worry, they will always come in handy; it's sometimes useful to have symbols whose meaning you can reassign without harm to programming languages, etc."^[R.W. Bemer (1978): Inside ASCII, part 3 of 3 parts. Included in the "Source documents on the history of character codes, 1977-1981", compiled by Eric Fischer, [on Internet Archive](https://archive.org/details/enf-ascii-1977-1981/page/n40/mode/1up)]
 
@@ -116,6 +116,18 @@ This is definitely the case with Code Page 437's house symbol ( <span class="cp4
     %}
     <figcaption>In the 2017 homebrew DOS game <em>Numjump</em> by Daniel Remar, the house symbols represent spikes.</figcaption>
 </figure>
+
+<figure class="u-image-full-width">
+    {% image
+        "./src/assets/images/0x7f/zzt.gif",
+        "crisp",
+        "Screenshot from ZZT. In this game, the house symbols represent energizers.",
+        "(min-width: 30em) 50vw, 100vw",
+        true
+    %}
+    <figcaption>Screenshot from ZZT, made by Tim Sweeney (the CEO of Epic Games!) in 1991. In this game, the house symbols represent energizers (on the right edge of the game view).</figcaption>
+</figure>
+
 
 PC ASCII artists have used the house symbol, not as a specific thing with meaning, but purely for its shape and size, to create what is called "newskool", or filled ASCII art. In the classic 8&times;16 pixels-per-character IBM VGA font, it's one of the few characters that sit one pixel *higher* from the baseline.
 
@@ -149,7 +161,7 @@ Its angled top makes it useful for creating curves, as seen in ddrj's [drj-mmc.a
 
 ## Theories on the origins of CP437's house
 
-But what about IBM? Why did IBM decide to include a symbol representing a house in their character set? It's a strange glyph; smileys and playing card suits have existed in prior character sets, but a house—as far as I can tell—it didn't exist as a glyph before IBM's Code Page 437. It seems to come from nowhere. To my knowledge, there are no (surviving) documents on the design process of Code Page 437. The little bit we know comes from a few interviews, like the one with David J. Bradley, and from meticulous research done by people like [VileR](https://int10h.org/blog/2024/10/missing-ibm-pc-localization-disks-roms/). So, the only thing I can do is speculate. Here are my thoughts:
+But what about IBM? Why did IBM decide to include a symbol representing a house in their character set? It's a strange glyph; adding a smiley is readily arguable, and playing card suits have existed in prior character sets, but a house—as far as I can tell—it didn't exist as a glyph anywhere before IBM's Code Page 437. It seems to come out of thin air. To my knowledge, there are no (surviving) documents on the design process of Code Page 437. The little bit we know comes from a few interviews, like the one with David J. Bradley, and from meticulous research done by people like [VileR](https://int10h.org/blog/2024/10/missing-ibm-pc-localization-disks-roms/). So, the only thing I can do is speculate. Here are my thoughts:
 
 ::: wrap note
 #### Acknowledgements
@@ -157,7 +169,7 @@ Most of these theories are based on my conversations with VileR and Michael Wald
 :::
 
 #### Theory #1: House as a symbol for home computers
-My first thought was that maybe the house was included as a symbol for IBM's new line of personal **home** computers? Before IBM PC's launch in 1981, IBM had largely been known for their business computers. So, it makes sense that, as IBM was entering the growing market of personal computers, they wanted to signal to the home users that their PC had something *fun* to offer—hence the "not serious" glyphs, like the smiley, which were added with text-based games in mind. So maybe they added the house glyph for the same reason? Surely the smileys have to have a house they live in? It's compelling to think this might be true, but to be clear, this is pure speculation, and there's nothing substantial to support this claim.
+My first thought was that maybe the house was included as a symbol for IBM's new line of personal **home** computers? Before IBM PC's launch in 1981, IBM had largely been known for their business computers. So, it makes sense that, as IBM was entering the growing market of personal computers, they wanted to signal to the home users that their PC had something *fun* to offer—hence the "not serious" glyphs, like the smiley, which were added with text-based games in mind. So maybe they added the house glyph for the same reason? Surely the smileys must have a house they live in! It's compelling to think this might be true, but to be clear, this is pure speculation, and there's nothing to support this claim.
 
 #### Theory #2: It's related to backspace
 Another "hunch" was suggested by VileR. He entertained the idea that the house character itself was associated with the action of deleting text, or related to the backspace symbol ⌫ (U+232B). If you rotate ⌫ 90˚ clockwise, you do get a house ⌂ (with an &times; in it). It's an interesting idea, but there doesn't seem to be nothing to support this claim either.
@@ -194,7 +206,7 @@ For example, a hotel icon used by the <abbr title="International Civil Aviation 
     %}
 </figure>
 
-Another possibile influence is Blissymbolics. It was originally developed in 1949, but gained some renewed popularity in the 1970s and 1980s.^[Radiolab (2012): [Mr.Bliss](https://radiolab.org/podcast/257194-man-became-bliss)] The Blissymbolics house glyph is striking similarity to IBM's character at 0x7F.^[Blissymbolics Communication Institute (1980): [*Teaching and Using Blissymbolics*](https://archive.org/details/OTUED_8-2-3-3/page/21/mode/1up)] If IBM was looking at symbol books, searching for inspiration for their new character set, it's possible they would have come upon Blissymbolics. The timeline fits: a book *Teaching and Using Blissymbolics* was published in 1980, at the time when IBM was developing CP437.
+Another possibile influence is Blissymbolics. It was originally developed in 1949, but gained some renewed popularity in the 1970s and 1980s.^[Radiolab (2012): [Mr.Bliss](https://radiolab.org/podcast/257194-man-became-bliss)] The Blissymbolics house glyph is striking similar to IBM's character at 0x7F.^[Blissymbolics Communication Institute (1980): [*Teaching and Using Blissymbolics*](https://archive.org/details/OTUED_8-2-3-3/page/21/mode/1up)] If IBM was looking at symbol books, searching for inspiration for their new character set, it's possible they would have come upon Blissymbolics. The timeline fits: a book *Teaching and Using Blissymbolics* was published in 1980, at the time when IBM was developing CP437.
 
 ::: wrap note
 ##### Sidenote
@@ -202,9 +214,7 @@ There's a [recent proposal](https://www.unicode.org/L2/L2020/20271-n5149-blissym
 :::
 
 #### Theory #6: Botched copy of a dot-stretched Wang delta
-Or maybe it does come from Wang? Viler makes an interesting observation: a 1979 Wang character set for the *2236DE terminal* includes a delta symbol ( Δ ) at position 0x9A. At first glance this seemed unrelated to IBM's house symbol at 0x7F. But after viewing the ROM data as a bitmap, VileR discovered that the pixels were spaced-out, implying that the glyphs relied on some sort of dot-stretching effect in the display circuitry. Rendering the bitmap with his [CRT emulator](https://int10h.org/blog/2021/01/simulating-crt-monitors-ffmpeg-pt-1-color/) revealed that Wang's delta didn't actually look like a clean equilateral triangle: the triangle's sides were slightly cropped to fit it into the 7&times;7 pixels-per-character space, and in combination with the CRT effect, makes the delta resemble IBM's blocky house symbol. VileR also notes that even though Wang could have created a less ambiguous delta triangle by making the sides steeper, the designers of early bitmap fonts were often very reluctant to use angles other than 45/90 degrees in their glyphs, because uneven displacements between scanlines produce very obvious "jaggies" on low-res CRTs.
-
-So, if Bill Gates was correct about IBM copying characters from Wang, it's entirely possible that the people at IBM, who were copying glyphs directly from Wang's, misinterpreted the delta as a house, especially considering, as Bradley notes, that the whole process was rushed. This is of course not a definitive proof, but a compelling theory nonetheless!
+Or maybe it *does* come from Wang? Viler makes an interesting observation: a 1979 Wang character set for the *2236DE terminal* includes a delta symbol ( Δ ) at position 0x9A. At first glance this seemed unrelated to IBM's house symbol at 0x7F. But after viewing the ROM data as a bitmap, VileR discovered two interesting things. First, Wang's delta wasn't a clean equilateral triangle (angles at 60°, 60°, 60°); to avoid uneven displacements between scanlines, which could produce very obvious "jaggies" on low-res CRTs, the delta was instead rendered as a right triangle (angles 45°, 90°, 45°). However, because of this, the triangle's side-corners had to be chopped off, to fit it into its 7&times;7 pixels-per-character space. Secondly, VileR discovered that the bitmap's pixels were spaced-out, implying that the glyphs relied on some sort of dot-stretching effect in the display circuitry. After these realizations, rendering the bitmap with his [CRT emulator](https://int10h.org/blog/2021/01/simulating-crt-monitors-ffmpeg-pt-1-color/) revealed that Wang's delta actually resembles IBM's blocky house symbol.
 
 <figure class="u-image-full-width">
     {% image
@@ -216,6 +226,8 @@ So, if Bill Gates was correct about IBM copying characters from Wang, it's entir
     %}
     <figcaption>Comparison between Wang's character set as raw ROM data and CRT emulated. Is this the origin of IBM PC's house? Compiled from images by VileR.</figcaption>
 </figure>
+
+So, if Bill Gates was correct about IBM copying characters from Wang, it's entirely possible that the people at IBM, who were copying glyphs directly from a Wang terminal screen, misinterpreted the delta as a house, especially considering, as Bradley notes, that the whole process was rushed. This is not a definitive proof, but a compelling theory nonetheless!
 
 #### Theory #7: Is it delta?
 But, in an email conversation, Michael Walden speculates that it might not even be a coincidence that the DELete character has DELta as its printable character glyph. 
@@ -244,7 +256,7 @@ When I browsed through the original 1981 [*Technical Reference*](https://www.min
 
 Was it intended to be delta all along?
 
-But of course it's not so simple. The 1982 edition of [*IBM BASIC Manual*](https://archive.org/details/IBMBASICAV1.10Manual/page/n483/mode/2up) displays the very same code point 0x7F very unambiguously as a **house**!
+But of course it's not so simple. The 1982 edition of [*IBM BASIC Manual*](https://archive.org/details/IBMBASICAV1.10Manual/page/n483/mode/2up) displays the code point 0x7F quite unambiguously as a **house**!
 
 <figure class="u-image-full-width">
     {% image
