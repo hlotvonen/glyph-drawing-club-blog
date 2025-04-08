@@ -106,6 +106,7 @@ class PaperTape extends HTMLElement {
       .bit.letter {
         color: var(--color-7);
         font-size: min(2.5cqw, 14px);
+        color:var(--color-1);
       }
       
       .bit.punched {
@@ -132,6 +133,7 @@ class PaperTape extends HTMLElement {
       button {
         cursor: pointer;
         background:var(--color-7);
+        color:var(--color-1);
         border:2px outset var(--color-7);
         font-family: monospace;
       }

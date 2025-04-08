@@ -24,3 +24,18 @@
     from = "*"
     to = "/404"
     status = 404
+
+[[redirects]]
+    from = "/how-to-clean-up-your-drawing-in-adobe-illustrator/"
+    to = "/how-to-clean-up-your-glyph-drawing-in-adobe-illustrator/"
+    status = 301
+
+[[redirects]]
+    from = "/tutorial-for-glyph-drawing-club/"
+    to = "/usage-tutorial-for-glyph-drawing-club/"
+    status = 301
+
+[[redirects]]
+    from = "/typographic-art-of-valto-malmiola/"
+    to = "/typographic-pictures-composed-entirely-of-brass-rule/"
+    status = 301

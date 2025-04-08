@@ -58,35 +58,39 @@ module.exports = function (config) {
     config.addWatchTarget('./src/assets')
 
     // Markdown
-    config.setLibrary(
-        'md',
-        markdownIt({
-            html: true,
-            breaks: true,
-            linkify: true,
-            typographer: false
-        })
-        .use(require('markdown-it-footnote'))
-        .use(markdownItContainer, 'wrap', {
-            // A "note" div, use it like this:
-            // ::: wrap some-class-name
-            // Your content here
-            // ::: 
-            validate: function(params) {
-              return params.trim().match(/^wrap\s+(.*)$/);
-            },
-            render: function(tokens, idx) {
-              var m = tokens[idx].info.trim().match(/^wrap\s+(.*)$/);
-              if (tokens[idx].nesting === 1) {
-                // opening tag
-                return '<div class="' + m[1] + '">\n';
-              } else {
-                // closing tag
-                return '</div>\n';
-              }
-            }
-        })
-    )
+    const md = markdownIt({
+        html: true,
+        breaks: true,
+        linkify: true,
+        typographer: false
+    })
+    .use(require('markdown-it-footnote'))
+    .use(markdownItContainer, 'wrap', {
+        // A "note" div, use it like this:
+        // ::: wrap some-class-name
+        // Your content here
+        // ::: 
+        validate: function(params) {
+          return params.trim().match(/^wrap\s+(.*)$/);
+        },
+        render: function(tokens, idx) {
+          var m = tokens[idx].info.trim().match(/^wrap\s+(.*)$/);
+          if (tokens[idx].nesting === 1) {
+            // opening tag
+            return '<div class="' + m[1] + '">\n';
+          } else {
+            // closing tag
+            return '</div>\n';
+          }
+        }
+    })
+    
+    // Customize the footnote renderer
+    md.renderer.rules.footnote_block_open = function() {
+      return '<hr><h2>Footnotes</h2>\n<section class="footnotes">\n<ol class="footnotes-list">\n';
+    };
+
+    config.setLibrary('md', md);
 
     // Layouts
     config.addLayoutAlias('base', 'base.njk')

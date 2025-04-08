@@ -1379,7 +1379,8 @@ class CharacterViewer extends HTMLElement {
         .current-font-name {
           position: sticky;
           top: 0;
-          background-color: var(--color-2);
+          background-color: var(--color-7);
+          color:var(--color-1);
           text-align: center;
           z-index: 10;
         }
@@ -1427,7 +1428,8 @@ class CharacterViewer extends HTMLElement {
           display: flex;
           flex-direction: column;
           align-items: center;
-          background-color: var(--color-2);
+          background-color: var(--color-7);
+          color:var(--color-1);
           height:fit-content;
         }
 

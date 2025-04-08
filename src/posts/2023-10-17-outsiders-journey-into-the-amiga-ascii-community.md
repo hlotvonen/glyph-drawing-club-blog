@@ -75,7 +75,7 @@ The first ASCII images I made with Sublime Text code editor using the basic codi
     <figcaption>The logo that intrigued me.</figcaption>
 </figure>
 
-I liked the way the lines connected to each other without leaving a gap and the extended character set of Topaz had nice details and symbols. Researching further, I found asciiarena.net (_note from 2023: currently hosted at [asciiarena.se](https://asciiarena.se/) altough it's frequently down. I've added a note at the end on how to view the Amiga ASCII archives nowdays_ ) and felt like I had found a hidden gem. It was such a cool website with thousands of Amiga ASCII collys with elaborate logos and illustrations (I miss that place. Can someone bring it back?). 
+I liked the way the lines connected to each other without leaving a gap and the extended character set of Topaz had nice details and symbols. Researching further, I found asciiarena.net (_note from 2023: currently hosted at [asciiarena.se](https://asciiarena.se/) altough it's frequently down. I've added a note at the end on how to view the Amiga ASCII archives nowadays_ ) and felt like I had found a hidden gem. It was such a cool website with thousands of Amiga ASCII collys with elaborate logos and illustrations (I miss that place. Can someone bring it back?). 
 
 I was fascinated with how much they were focused on type and logo design and how many different lettering styles were possible with just a handful of different typographic symbols. The logos were also more similar to graffiti, where the goal of typesetting wasn't to make the text legible, rather to make the characters as abstract as possible while still somewhat resembling the letters they were supposed to depict. 
 

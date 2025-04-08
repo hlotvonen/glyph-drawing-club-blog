@@ -1,5 +1,5 @@
 ---
-title: Typographic Art of Valto Malmiola
+title: Typographic Pictures Composed Entirely of Brass Rule
 date: 2024-01-01
 cover: './src/assets/images/cover-malmiola.jpg'
 description: The strange art of arranging typographic rule into pictorial compositions. 

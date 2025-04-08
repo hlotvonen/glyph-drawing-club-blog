@@ -37,7 +37,10 @@ body {
     background: linear-gradient(180deg, var(--color-2), var(--color-2), transparent);
     display: flex;
     flex-direction: column;
-    padding-top: 2rem;
+    padding: 2rem 0;
+    h1 {
+        display:block;
+    }
     div {
         flex: 1;
     }
@@ -73,11 +76,23 @@ body {
             text-align: center;
         }
     }
+    .date {
+        display:block;
+        text-align:center;
+        color: var(--color-6);
+    }
     @include mq(md) {
         background: linear-gradient(90deg, var(--color-2), var(--color-2), transparent);
         flex-direction: row;
         padding-top: 0;
+        h1 {
+            display:inline;
+        }
+        .date {
+            display:inline;
+        }
     }
+    
 }
 
 .tags-list {

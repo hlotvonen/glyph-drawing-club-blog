@@ -19,7 +19,11 @@ layout: base
         </div>
         <div class="title">
             <h1 class="u-float-right">{{ title | wrapFirstLetters | safe }}</h1>
+            <div class="date">
+                {{ date.getUTCFullYear() }}&#xEFD1;{{ (date.getUTCMonth() + 1).toString().padStart(2, '0') }}&#xEFD1;{{ date.getUTCDate().toString().padStart(2, '0') }}
+            </div>
         </div>
+
     </header>
 
     <ul class="tags-list"> 

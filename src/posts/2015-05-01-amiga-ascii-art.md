@@ -402,7 +402,7 @@ Amiga ASCII is part of a broader phenomenon called the demoscene. The demoscene 
 
 Amiga ASCII art can be seen as a continuation of PETSCII art made on Commodore's earlier Commodore 64 computer. PETSCII refers to the character set of the Commodore 64, which was well-suited for text art. The technologically advanced Amiga, however, replaced the Commodore 64, and many PETSCII artists began to create text art on Amiga computers. However, the popularity of Amiga ASCII art is mainly based on the culture and social communities formed around BBS[^36]. For this reason, I will mainly focus on discussing Amiga ASCII during the BBS era, leaving out the similarities of PETSCII art to Amiga ASCII.
 
-Nowdays Amiga ASCII is mostly created on PC, Mac or Linux computers. The only defining factor for Amiga ASCII art today seems to be the method of creating the image using the Amiga font.
+Nowdaays Amiga ASCII is mostly created on PC, Mac or Linux computers. The only defining factor for Amiga ASCII art today seems to be the method of creating the image using the Amiga font.
 
 [^32]: Carlsson & Miller, online source
 [^33]: Hischer 2015, interview
@@ -616,7 +616,7 @@ The largest archive site for Amiga ASCII collies, _asciiarena.com_[^55], lists a
 <div class="note-from-the-future">
   <h4>Note from 2023:</h4>
   <p>
-    Asciiarena.com is nowdays <a href="https://asciiarena.se">asciiarena.se</a>, but unfortunately it seems to be down every once in a while. Archives containing all the released collys from 1992–2015 can be found on <a href="https://github.com/textmodes/archive-amiga">github</a>
+    Asciiarena.com is nowadays <a href="https://asciiarena.se">asciiarena.se</a>, but unfortunately it seems to be down every once in a while. Archives containing all the released collys from 1992–2015 can be found on <a href="https://github.com/textmodes/archive-amiga">github</a>
   </p>
 </div>
 
@@ -747,7 +747,7 @@ I refined the ASCII images I had made and constructed the colly using the PabloD
 <div class="note-from-the-future">
   <h4>Note from 2023:</h4>
   <p>
-    Nowdays I would recommend using <a href="https://blocktronics.github.io/moebius/">Moebius</a> instead of PabloDraw.
+    Nowadays I would recommend using <a href="https://blocktronics.github.io/moebius/">Moebius</a> instead of PabloDraw.
   </p>
 </div>
 
