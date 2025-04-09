@@ -24,7 +24,7 @@ tl;dr: This article is a detailed (but not exhaustive) micro-history on the char
 
 In [part 1](#part-1), **"What is DEL"**, I try to form a comprehensive understanding of how DEL(ETE) originated as a way to obliterate errors on punched tape, and how it found use as a timing control for mechanical printers.
 
-In [part 2](#part-2), **"The graphics of DEL"**, I take a closer look at how normally non-printing characters, like DEL, were given a standardized visual representation through ECMA-17 in 1968, and how DEL was *actually* represented in various early bitmap fonts between 1970s–1990s.
+In [part 2](#part-2), **"The graphics of DEL"**, I take a closer look at how normally non-printing characters, like DEL, were given a standardized graphical representation through ECMA-17 in 1968, and how DEL was *actually* represented in various early bitmap fonts between 1970s–1990s.
 
 [Part 3](#part-3), **"DEL in Amiga ASCII art"**, is about the particular shape and design of Topaz's <span class="amiga-inline">⌂</span>. I analyze over 3000 Amiga ASCII artworks made between 1993–2005 to see how DEL was used, and showcase some of them.
 
@@ -110,9 +110,9 @@ Topaz represents 0x7F as two diagonal lines (&thinsp;<span class="amiga-inline">
 Is it a coincidence that the *same* character that deviates from the standards, is also the character that deviates visually from all the other characters? Or is there something more to it?
 
 ### The Contradiction of a Non-Printable Glyph
-As I was taking a closer look at the <abbr title="Latin alphabet No. 1">ISO/IEC 8859-1</abbr> standard, I realized that 0x7F is the code point for the control character DELETE (DEL), which is a **non-printable** character! To quote directly from Wikipedia, the Delete character "is supposed to do nothing"^[Wikipedia: [Delete character](https://en.wikipedia.org/wiki/Delete_character) 07.04.2025], thus its visual representation is *supposed* to be empty and undefined.
+As I was taking a closer look at the <abbr title="Latin alphabet No. 1">ISO/IEC 8859-1</abbr> standard, I realized that 0x7F is the code point for the control character DELETE (DEL), which is a **non-printable** character! To quote directly from Wikipedia, the Delete character "is supposed to do nothing"^[Wikipedia: [Delete character](https://en.wikipedia.org/wiki/Delete_character) 07.04.2025], thus its graphical representation is *supposed* to be empty and undefined.
 
-But... if DEL is supposed to do nothing, and look like nothing, then **why does Topaz have a glyph for it?** I would assume that if a character has a visual representation, then it must have *some* meaning or function, right? But if so: what is it? What reasons did Topaz's designers have that justified diverging from the standards, and give DEL a distinct visual representation? Why not follow the standards and just leave it empty?
+But... if DEL is supposed to do nothing, and look like nothing, then **why does Topaz have a glyph for it?** I would assume that if a character has a graphical representation, then it must have *some* meaning or function, right? But if so: what is it? What reasons did Topaz's designers have that justified diverging from the standards, and give DEL a distinct graphical representation? Why not follow the standards and just leave it empty?
 
 Even though I had used <span class="amiga-inline">⌂</span> quite a bit in ASCII art, I had never realized that *everything* about this strange glyph—from its design to its mere existence—seemed to be in contradiction. Maybe Walden is onto something.
 
@@ -349,7 +349,7 @@ Because electro-mechanical printers were extremely slow, with "print rates of pe
     <figcaption>Screencaptures from the film <em>The Mark of Man</em>. The electron beam is shot trough a character stencil, taking its shape. A reversed "symbol of shading" can be found (bottom right) in one of the featured stencils.</figcaption>
 </figure>
 
-A similar character matrix was also used in the Stromberg-Carlson S-C 5000 printer (["the first printer to start a fire"](https://en.wikipedia.org/wiki/Lp0_on_fire)) ^[de Beauclair (1968): [*Rechnen mit Maschinen*](https://archive.org/details/rechnenmitmaschidebe/page/283/mode/1up?q=%22SC%205000%22)], produced somewhere between 1957 to late 1960s.
+And then it appears again, in the Stromberg-Carlson S-C 5000 printer (["the first printer to start a fire"](https://en.wikipedia.org/wiki/Lp0_on_fire)) ^[de Beauclair (1968): [*Rechnen mit Maschinen*](https://archive.org/details/rechnenmitmaschidebe/page/283/mode/1up?q=%22SC%205000%22)], produced somewhere between 1957 to late 1960s.
 
 <figure class="u-image-full-width">
     {% image
@@ -359,10 +359,10 @@ A similar character matrix was also used in the Stromberg-Carlson S-C 5000 print
         "(min-width: 30em) 50vw, 100vw",
         true
     %}
-    <figcaption>Character set for the S-C 5000 high speed printer. The printer was produced as early as 1957, but it's not clear if this particular character set was introduced then, or later.</figcaption>
+    <figcaption>Character set for the S-C 5000 high speed printer. The printer was produced as early as 1957, but it's not clear if this particular character set was introduced then, or later—this image is from the book <a href="https://archive.org/details/rechnenmitmaschidebe/page/283/mode/1up?q=%22SC%205000%22" target="_blank"><em>Rechnen mit Maschinen</em></a>, published in 1968.</figcaption>
 </figure>
 
-Likely inspired by the Charactron tubes, some Raytheon Symbolray monoscope character sets from the late 60s to early 70s also included the "symbol of shading". This tube (CK1414) was used in some early computer terminals, including Raytheon’s DIDS-400 from 1967.^[Tubetime.us (2018): [A Vacuum Tube ROM?](https://tubetime.us/index.php/2018/06/04/a-vacuum-tube-rom/) 8.4.2025]
+Charactron inspired other similarly weird tech, like Raytheon's Symbolray monoscopes, which were used to display graphics in their DIDS-400 computer terminals in 1967. Instead of drawing text directly on screen, it shot electron beams at a metal plate stencilled with tiny characters. The beams were "collected", and converted into an analog video signal corresponding to the stencil characters. Yet again, we can find Ross' symbol of shading in some of the Symbolray character sets.^[Tubetime.us (2018): [A Vacuum Tube ROM?](https://tubetime.us/index.php/2018/06/04/a-vacuum-tube-rom/) 8.4.2025]
 
 <figure class="u-image-full-width">
     {% image
@@ -377,9 +377,10 @@ Likely inspired by the Charactron tubes, some Raytheon Symbolray monoscope chara
 
 ### DEL represented by a checkerboard symbol
 
-The Charactron and monoscope methods of displaying characters on screens had several fundamental problems. First, it was extremely difficult to accurately align the beam to pass through the correct character stencil, and then align it again to hit the intended position on the screen. Even the smallest drift would degrade the clarity of the displayed text. Second, beam movement caused an annoying flicker and blurring (as shown in this [Youtube demonstration of Charactron](https://www.youtube.com/watch?v=PsWM1pIHVRc)). 
+Even though the Charactron and monoscope methods could display almost any kind of shape on screen (as long as there was a stencil made for it), they had a few fundamental problems. First, it was extremely difficult to accurately align the beams to hit the correct character stencils, and then to display it on the intended position on the screen. Even the smallest drift in the beam would degrade the clarity of the displayed text. Second, beam movement caused an annoying flicker and blurring (as shown in this [Youtube demonstration of Charactron](https://www.youtube.com/watch?v=PsWM1pIHVRc)).
 
-To overcome these problems, in 1969, MIT's Paul Allen King Jr. (not to be confused with Microsoft's Paul Allen) developed one of the first dot-matrix character generators for CRTs. Instead of shaping the beam through a stencil, the characters were stored as predefined dots in a grid (typically 5 &times; 7) in Read-Only Memory (ROM). This approach simply turned the electron beam on and off based on the stored patterns during the left-to-right, top-to-bottom screen scanning process. It also made it possible to be used with any standard low-cost CRT (like those used for TVs), while producing a much sharper text.^[Paul Allen King, Jr. (1969): [*A Novel Solid State Character Generator.*](https://archive.org/details/ERIC_ED031274/page/n102/mode/1up). Massachusetts Institute of Technology.] 
+To overcome these problems, a student at MIT in 1969 developed one of the first dot-matrix character generators for CRTs. Instead of using a character set stencil, the characters were generated as dots in a grid (typically 5 &times; 7) and stored in a solid state Read-Only Memory (ROM). With this approach, the electron beam was simply turned on or off based on the stored patterns during the raster scanning process, and could be used with any standard low-cost CRT (like TVs), while producing a much sharper text.^[Paul Allen King, Jr. (1969): [*A Novel Solid State Character Generator.*](https://archive.org/details/ERIC_ED031274/page/n102/mode/1up). Massachusetts Institute of Technology.] Ross' symbol of shading is included in the scientific symbols set of this early dot-matrix character generator.
+
 
 <figure class="u-image-full-width">
     {% image
@@ -392,7 +393,7 @@ To overcome these problems, in 1969, MIT's Paul Allen King Jr. (not to be confus
     <figcaption>The raw ROM capture of King's dot-matrix character generator shows the "symbol of shading" in the scientific symbols set.</figcaption>
 </figure>
 
-The scientific symbols set of Paul Allen King Jr's dot-matrix character generator included a "symbol of shading". But because the designs of these early bitmap fonts were constrained by their small cell sizes, often 5 &times; 7 pixels-per-character, the 45° diagonal lines could not be rendered clearly. If the diagonal lines were placed too close to each other, the character would end up looking more like a checkerboard symbol ( ▒ ) rather than clearly separate diagonal lines.
+The trade-off for clarity and simplicity was a loss of fidelity in what kind of shapes could be drawn. Because the designs of these early bitmap fonts were constrained by their small cell sizes, often 5 &times; 7 pixels-per-character, the diagonal lines of the symbol of shading could not be rendered clearly anymore. If the diagonal lines were placed too close to each other, the character would end up looking more like a checkerboard symbol ( ▒ ) rather than clearly separate diagonal lines. But, while the checkerboard pattern didn't accurately resemble Ross' symbol of shading anymore, it still fulfilled its purpose as a symbol of *shading*.
 
 <figure class="u-image-full-width">
     {% image
@@ -406,7 +407,7 @@ The scientific symbols set of Paul Allen King Jr's dot-matrix character generato
 
 ### The mass manufacture of character generator chips
 
-During the 1970s computer components got smaller in size, their production costs reduced, and manufacturing volumes increased. This development lead to the creation of desktop-sized computers, and in turn, mass production of computers. One such manufacturer was Motorola, who started producing cheap dot-matrix character generator ROM chips. Their 1975 *MCM6570* character generator chip was based on the the full set of ECMA-17 control character symbols^[[MCM6570 Datasheet, ROM, Motorola](https://datasheetspdf.com/datasheet/MCM6570.html)], including the "symbol of shading". In 1977, its successor, the *MCM6674*, was used in the *TRS-80 Model I*, one of the earliest mass-produced retail home computers.^[Hoard of Bitmap fonts repository has [bitmap dumps of the TRS-80 Model I, Model III, Model 4 character sets](https://github.com/robhagemans/hoard-of-bitfonts/tree/master/trs-80)] 
+During the 1970s computer components got smaller in size, their production costs reduced, and manufacturing volumes increased. This development lead to the mass production of desktop-sized computers. One such manufacturer of computer components was Motorola, who started producing cheap dot-matrix character generator ROM chips. Their 1975 *MCM6570* character generator chip was based on the ECMA-17 standard, which included graphic symbols for all control characters and DEL, rendered again as a checkerboard pattern.^[[MCM6570 Datasheet, ROM, Motorola](https://datasheetspdf.com/datasheet/MCM6570.html)] In 1977, its successor, the *MCM6674*, was used in the *TRS-80 Model I*, one of the earliest mass-produced retail home computers.^[Hoard of Bitmap fonts repository has [bitmap dumps of the TRS-80 Model I, Model III, Model 4 character sets](https://github.com/robhagemans/hoard-of-bitfonts/tree/master/trs-80)] 
 
 <figure class="u-image-full-width">
     {% image
@@ -419,7 +420,11 @@ During the 1970s computer components got smaller in size, their production costs
     <figcaption>The character patterns generated by Motorola's MCM6674 chip. This shipped with many TRS-80 Model I computers.</figcaption>
 </figure>
 
-Despite TRS-80's decent commercial success, it failed to make the ECMA-17 symbols known to a wider audience. Even though the ECMA-17 symbols were present inside the MM6674 character generator chip, the TRS-80 wasn't capable of displaying them (or lowercase letters) without hardware modifications.^[Matthew Reed's TRS-80.org: [Why was the Model I uppercase only?](http://www.trs-80.org/why-was-the-model-i-uppercase-only/)]. But even when modified (usually to enable those lowercase letters), the purpose of the ECMA-17 symbols were not understood very well. Even Motorola itself mistakenly advertised them as "math symbols"^[Electronic Design V26 N10 (1978) [Scan on Internet Archive](https://archive.org/details/bitsavers_ElectronicignV26N1019780510_129741478/page/12/mode/1up?q=mcm6674) p. 12. 07.03.2025]. This lack of awareness of the ECMA-17 symbols continues to this day: a recent [TRS-80 cloning project](https://www.glensstuff.com/trs80/docco/trs80model1clone.pdf) calls them "hieroglyph-like"; the TRS-80 expert RetroStack calls them ["odd symbols"](https://github.com/RetroStack/chargen/blob/main/src/chargen/TRS80/Model1.ts); and ["the most complete TRS-80 text font"](https://www.kreativekorp.com/software/fonts/trs80/) by KreativeKorp misclassifies them as mathematical, technical or geometric shapes. The confusion likely stems from being stripped of their original context. The symbols were designed for electromechanical systems (e.g. ⍾ symbolizing an electric bell) and paper tape workflows, not digital displays. As TRS-80 was squarely a digital computer, the ECMA-17 symbols became cryptic artifacts, hidden in the TRS-80's character set.
+Despite TRS-80's decent commercial success, it failed to make the symbol of shading, or any other ECMA-17 symbol, known to a wider audience. Even though the ECMA-17 symbols were present inside the MM6674 character generator chip, the TRS-80 wasn't capable of displaying them (or lowercase letters) without hardware modifications.^[Matthew Reed's TRS-80.org: [Why was the Model I uppercase only?](http://www.trs-80.org/why-was-the-model-i-uppercase-only/)]. But even when modified (usually to enable those lowercase letters), the purpose of the ECMA-17 symbols were not understood very well. Even Motorola itself mistakenly advertised them as "math symbols"^[Electronic Design V26 N10 (1978) [Scan on Internet Archive](https://archive.org/details/bitsavers_ElectronicignV26N1019780510_129741478/page/12/mode/1up?q=mcm6674) p. 12. 07.03.2025]. This lack of awareness of the ECMA-17 symbols continues to this day: a recent [TRS-80 cloning project](https://www.glensstuff.com/trs80/docco/trs80model1clone.pdf) calls them "hieroglyph-like"; the TRS-80 expert RetroStack calls them ["odd symbols"](https://github.com/RetroStack/chargen/blob/main/src/chargen/TRS80/Model1.ts); and ["the most complete TRS-80 text font"](https://www.kreativekorp.com/software/fonts/trs80/) by KreativeKorp misclassifies them as mathematical, technical or geometric shapes. 
+
+This confusion is understandable. The ECMA-17 symbols, including Ross' symbol of shading, were designed for paper tape and electromechanical systems (e.g. ⍾ symbolizing an electric bell), not digital displays. As TRS-80 was squarely a digital computer, the ECMA-17 symbols seemed like some cryptic artifacts, locked inside the TRS-80's character generator chip.
+
+### The legacy of DEL
 
 Beyond appearing in the 1984 Amstrad CPC^[CPC wiki on [Amstrad CPC Character Set ROMs](https://www.cpcwiki.eu/index.php?title=Keyboard_Versions#Character_Set_ROMs)], the ECMA-17 standard largely faded into obscurity. However, one of its 34 characters managed to endure: DEL. Even though graphical symbols for control characters 0–31 were not widely adopted, many systems and software continued to include the diagonal lines symbol (or a similar representation) at the 0x7F position.
 
@@ -447,7 +452,7 @@ This checkerboard pattern can be found in character sets for *Apple II* (1977)^[
     <figcaption>Screenshots from w2hx's youtube video <a href="https://www.youtube.com/watch?v=Z0DmeANmv0I&t=121s" target="_blank">LA-120 Decwriter III - Self Test Problem and Fix!</a>. The DECwriter III was a 1977 computer terminal, which didn't use a screen, but printed everything on paper. Its dot-matrix character generator includes the checkerboard DEL symbol. (Thanks to Michael Walden for sharing this video.)</figcaption>
 </figure>
 
-The 1983 remote display terminal system UNIVAC UTS 20 included a "line monitoring" function, which displayed all characters graphically for "troubleshooting communications problems".^[SPERRY UNIVAC (1983): [*Universal Terminal System 20 (UTS 20) Single Station System Description*](https://bitsavers.org/pdf/univac/terminals/UTS_20/UP-9134r2_UTS_20_Single_Station_System_Description_Apr83.pdf)]
+An interesting example showing the utility of graphically representing control characters can be found from the 1983 remote display terminal system UNIVAC *UTS 20*. It included a line monitoring function, which displayed all characters graphically for "troubleshooting communications problems".^[SPERRY UNIVAC (1983): [*Universal Terminal System 20 (UTS 20) Single Station System Description*](https://bitsavers.org/pdf/univac/terminals/UTS_20/UP-9134r2_UTS_20_Single_Station_System_Description_Apr83.pdf)] 
 
 <figure class="u-image-full-width">
     {% image
@@ -457,47 +462,78 @@ The 1983 remote display terminal system UNIVAC UTS 20 included a "line monitorin
         "(min-width: 30em) 50vw, 100vw",
         true
     %}
-    <figcaption>Line monitor display for the UNIVAC UTS 20. The user manual says "the user may convey the line monitor information over the telephone to a customer services representative to aid in failure analysis." Imagine having to do that nowadays to debug your problems!</figcaption>
+    <figcaption>Line monitor display for the UNIVAC UTS 20. The user manual says "the user may convey the line monitor information over the telephone to a customer services representative to aid in failure analysis." Imagine having to verbally explain to someone what happens in this screen!</figcaption>
 </figure>
 
-Various Teletext character sets^[Wikipedia, [Teletext character sets](https://en.wikipedia.org/wiki/Teletext_character_set) 07.03.2025], *Mattel Aquarius*, *Robotron Z9001*, *Otrona Attaché* chargen fonts, the morse set of *RM Nimbus PC-186* and *Canon AS-100 (CP/M)* among many display DEL as a full block ( █ ) instead. *FM-Towns* and the *DEC VT220* terminal displays DEL as "DL". The word processor *Wang Professional* renders 0x7F as ¢, for some reason. 
+However, the graphic representation for DEL wasn't necessarily always a glyph of diagonal lines, or a checkerboard pattern. Some are close enough that the glyph's function remains roughly the same. For example, many Teletext character sets^[Wikipedia, [Teletext character sets](https://en.wikipedia.org/wiki/Teletext_character_set) 07.03.2025], *Mattel Aquarius*^[text-mode.org (2025): [Mattel Aquarius (1983) character graphics set.](https://text-mode.tumblr.com/post/776754751787433984/text-mode-mattel-aquarius-1983-character) 9.4.2025], *Robotron Z9001*, *Otrona Attaché*, the morse set of *RM Nimbus PC-186* and *Canon AS-100 (CP/M)* among many display DEL as a full block ( █ ) instead. *FM-Towns* and the *DEC VT220* terminal displays DEL as a glyph containing the letters "DL". 
 
-And last but not least, IBM PC's infamous *Code Page 437* has a glyph representing a "house" ( ⌂ ) at 0x7F.
+And then there's the 1981 *IBM PC*: its infamous *Code Page 437* represents DEL as a "small house" ( ⌂ ). This is such a weird deviation from all other character sets that I had to write a separate article on it: [Why is there a "small house" in IBM's Code page 437?](https://blog.glyphdrawing.club/why-is-there-a-small-house-in-ibm-s-code-page-437/)
 
-::: wrap note
-
-##### A bonus article on IBM's "house" glyph
-IBM PC's "house" glyph at 0x7F is so strange that it required its own article: [Why is there a "small house" in IBM's Code page 437?](https://blog.glyphdrawing.club/why-is-there-a-small-house-in-ibm-s-code-page-437/)
-
-:::
-
-The following chart displays the visual representation of 0x7F from 1259 character sets, compiled from Rob Hagemans' [*hoard of bitfonts*](https://github.com/robhagemans/hoard-of-bitfonts) and from VileR's [*VGA textmode fonts*](https://github.com/viler-int10h/vga-text-mode-fonts/releases/tag/2020-11-25). It's ordered purely based on the visual properties of the characters. Click on the glyps to display more information about them. (Note that some characters might have extra whitespace around them which might not appear in real hardware.)
+To get a more complete picture on how DEL appears in all the various microcomputer systems, I put together the following chart. It displays the graphical representation of 0x7F from 1259 character sets, compiled from Rob Hagemans' [*hoard of bitfonts*](https://github.com/robhagemans/hoard-of-bitfonts) and from VileR's [*VGA textmode fonts*](https://github.com/viler-int10h/vga-text-mode-fonts/releases/tag/2020-11-25). It's ordered purely based on the visual properties of the characters. Click on the glyps to display more information about them. (Note that some characters might have extra whitespace around them which might not appear in real hardware.)
 
 <div class="u-image-full-width">
   <character-viewer></character-viewer>
 </div>
 
-The overwhelming amount of ⌂ characters skews the chart, but if we disregard those and compare the remaining sets, it seems the standard choice for visually representing DEL was either as a symbol of shading in the form of diagonal lines <span class="amiga-inline">( ⌂ )</span>, checkerboard ( ▒ ), full block ( █ ), or as a symbol combining the letters *DT*, *DL* or *7F*. 
+The overwhelming amount of ⌂ characters skews the chart, but if we disregard those and compare the remaining sets, it seems clear that the standard choice for visually representing DEL was either as a symbol of shading in the form of diagonal lines <span class="amiga-inline">( ⌂ )</span>, checkerboard ( ▒ ), full block ( █ ), or as a symbol combining the letters *DT*, *DL* or *7F*. 
+
+### The graphical representation of DEL in Amiga's Topaz fonts
+
+Amiga computers were produced in a few different models by Commodore from 1985 until the company's bankruptcy in 1994. When the Amiga first starts up, the only fonts available to use are *Topaz-8* and *Topaz-9*, both of which are stored in the "Kickstart" Read-Only Memory (ROM). 
+
+<figure class="u-image-float-right-inline">
+    {% image
+        "./src/assets/images/0x7f/del-vs-slash-8x8.png",
+        "crisp",
+        "Angle comparison between DEL and slash characters",
+        "(min-width: 30em) 50vw, 100vw",
+        true
+    %}
+</figure>
+
+The number, Topaz-*8*, refers to the font's height, which means that the font is *actually* 8&times;8 pixels-per-character in size, and not 8&times;16 as I claimed in the introduction. But, because Amiga's default video mode was 640&times;200 (NTSC) or 640&times;256 (PAL), each pixel was "stretched" vertically to fill the screen. This meant that, in effect, each pixel had an aspect ratio closer to 2:1, resulting in the font *looking* like it was 16 pixels tall. This is the reason for it's modern appearance as a 8&times;16 px font, and for its consistent look and two-pixel line thickness. So, the raw ROM version of the characters like the slash ( <span class="amiga-inline">/</span> ) have diagonals at 45˚ angle, while DEL doesn't. But when stretched to 2:1, the DEL gets transformed into its more familiar 45˚ diagonal lines form <span class="amiga-inline">⌂</span>.
+
+The Kickstart firmware has seen several updates since its release. Alongside those updates, Amiga's Topaz fonts have also gone through an evolution. The original serif versions of Topaz (Kickstart versions up to 1.4) were designed by Bob Burns and the original sans-serif versions (Kickstart versions from 1.4 onwards) were designed by Peter J Cherna.^[Limi, Alex (2023): [TopazDouble](https://github.com/amigavision/TopazDouble?tab=readme-ov-file)] 
+
+When comparing the differences between each Kickstart version, I was surprised to find out that Topaz-8 initially rendered DEL as a checkerboard, from Kickstart 0.7 (released in 1985) until Kickstart 1.4 (released in 1990).^[heckmeck.de (2024): [Amiga Topaz 1.4](https://heckmeck.de/blog/amiga-topaz-1.4/) 9.4.2025]
+
+<figure class="u-image-full-width">
+    {% image
+        "./src/assets/images/0x7f/topaz8-kickstart-versions.png",
+        "crisp",
+        "",
+        "(min-width: 30em) 50vw, 100vw",
+        true
+    %}
+    <figcaption>Topaz-8 font's evolution between the different Kickstart versions.</figcaption>
+</figure>
+
+On the other hand, the Topaz-9 font has always included the same diagonal lines symbol for DEL.
+
+<figure class="u-image-full-width">
+    {% image
+        "./src/assets/images/0x7f/topaz9-kickstart-versions.png",
+        "crisp",
+        "",
+        "(min-width: 30em) 50vw, 100vw",
+        true
+    %}
+    <figcaption>Topaz-9 font's evolution between the different Kickstart versions.</figcaption>
+</figure>
 
 ## Conclusion on the graphics of DEL
 
-This research originated from [Michael Walden's claim](https://mw.rat.bz/ascii/#AmigaOS) that the AmigaOS character set is identical to the <abbr title="Latin alphabet No. 1">ISO/IEC 8859-1</abbr> standard, except for the DEL character. 
+This research originated from [Michael Walden's claim](https://mw.rat.bz/ascii/#AmigaOS) that the AmigaOS character set is identical to the <abbr title="Latin alphabet No. 1">ISO/IEC 8859-1</abbr> standard, except for the DEL character. This lead to the follow-up questions, **why does Topaz have a glyph for DEL**, and **why represent it as diagonal lines**. I didn't expect I'd be writing nearly 14,000 words to answer these questions, but I think I've finally come to a conclusion.
 
-So, does AmigaOS follow the <abbr title="Latin alphabet No. 1">ISO/IEC 8859-1</abbr> standard or not? Or perhaps a more accurate question is: if a character code standard like <abbr title="Latin alphabet No. 1">ISO/IEC 8859-1</abbr> doesn't explicitly define a graphical representation for a character (like DEL), but a system like Amiga implements its own graphical representation (based on another standard, like ECMA-17), is it compliant with the standard or not? **There answer might simply be a matter of perspective.** Keeping in mind that character code standards are primarily concerned with the binary values attached to characters and their semantic meaning or function and not their exact rendering, and that by definition DEL's visual representation is *undefined*, and that DEL was also largely obsolete by 1980s yet still an inseparable piece of the ASCII standard, then representing DEL visually might not be not strictly compliant with ISO/IEC 8859-1, but *also* not contradicting it. 
+As the evolution of the diagonal lines glyph <span class="amiga-inline">⌂</span> is traced throughout the history, from Hugh McGregor Ross's proposal for DEL to be represented as a "symbol of shading" in 1961, to its standardisation in ECMA-17 in 1968, and to its adoption in so many different character sets, AmigaOS's choice for representing DEL as diagonal lines doesn't seem like an outlier after all. Instead, it's clear they were just following a decades long convention. On the other hand, nearly every bitmap font since the first dot-matrix character generator in 1969 (that represented DEL with some kind of "symbol of shading), rendered DEL as a checkerboard. To my knowledge, Amiga is the first to actually represent DEL as Ross had intended it, with *diagonal lines*. Was Topaz's designer, Bob Burns, aware of ECMA-17, or was it just coincidental attempt to represent "shading" somewhat differently? This question remains open.
 
-Additionally, as the evolution of the diagonal lines glyph <span class="amiga-inline">⌂</span> is traced throughout the history to its origins, from Hugh McGregor Ross's proposal from the 1961, to its standardisation in 1968 in ECMA-17, and adoption in so many different character sets, AmigaOS's choice for representing DEL as such doesn't seem like an outlier after all. Instead, it's clear they were just following a popular convention.
-
-In conclusion, I think that AmigaOS **does** follow the <abbr title="Latin alphabet No. 1">ISO/IEC 8859-1</abbr> standard, just *extending* it in a compatible and useful way by visually representing DEL with the diagonal lines from ECMA-17 (or ISO 2047 / ANSI X3.32-1973), like many of its contemporaries.
-
-::: wrap note
-Sidenote: The symbol set HP Gothic-1 (code page 1053)^[[HP PCL 5 Comparison Guide (2003)](http://www.hp.com/ctg/Manual/bpl13206.pdf#page=234)] is identical to AmigaOS character set^[[Code Page 01053](https://web.archive.org/web/20130121104245/http://www-03.ibm.com/systems/resources/systems_i_software_globalization_pdf_cp01053z.pdf)], including the exception at code point 0x7F, but HP adopted ISO-8859-1 later than the Amiga.
-:::
+Then, coming back to Walden's claim: does AmigaOS follow the <abbr title="Latin alphabet No. 1">ISO/IEC 8859-1</abbr> standard or not? Or perhaps a more accurate question is: if a character code standard like ISO/IEC 8859-1 doesn't explicitly define a graphical representation for a character (like DEL), but a system like Amiga implements its own graphical representation (based on another standard, like ECMA-17), is it compliant with the standard or not? **The answer might simply be a matter of perspective.** Keeping in mind that character encoding standards are primarily concerned with the binary values attached to characters and their semantic meaning or function and not their exact rendering, and that by definition DEL's graphical representation is *undefined*, and that DEL was also largely obsolete by 1980s, yet still an inseparable piece of the ASCII standard, then representing DEL visually might not be *strictly* compliant with ISO/IEC 8859-1, but *also* not contradicting it. Therefore, I think that AmigaOS **does** follow the ISO/IEC 8859-1 standard, just *extends* it in a standards-compatible and useful way, by visually representing DEL with the checkerboard/diagonal lines glyph.
 
 ## What does the Delete key do?
 
-At this point I had still one straggling question in mind regarding the DEL character. **How does one actually input DEL?** 
+At this point I had still one lingering question in mind regarding the DEL character. I know what DEL is. I know why it can have a graphical reprsentation. But, **how do I actually input or use the DEL character?**
 
-My Windows keyboard has a key for <kbd>Delete</kbd>, <kbd>Del</kbd> and <kbd>Backspace</kbd>, and my Mac keyboard has a <kbd>Delete</kbd> key where <kbd>Backspace</kbd> usually is. On the Windows keyboard, when I press the <kbd>Backspace</kbd> key, the character to the left of the cursor is deleted, and when I press <kbd>Delete</kbd>, the character to the right of the cursor is deleted. On Mac it's the opposite, pressing <kbd>Delete</kbd> removes the character to the left, but I can do <kbd>Fn</kbd>+<kbd>Delete</kbd> to forward delete. I can also press <kbd>Ctrl</kbd>+<kbd>H</kbd> to delete backwards, or <kbd>Ctrl</kbd>+<kbd>D</kbd> to delete forwards. On Windows, the Numpad <kbd>Del</kbd> does a forward delete if <kbd>Numlock</kbd> is off. But how are they related to the DEL character? If I have a font with a visual representation for DEL, how can I type it?
+My Windows keyboard has a key for <kbd>Delete</kbd>, <kbd>Del</kbd> and <kbd>Backspace</kbd>, and my Mac keyboard has a <kbd>Delete</kbd> key where <kbd>Backspace</kbd> usually is. On the Windows keyboard, when I press the <kbd>Backspace</kbd> key, the character to the left of the cursor is deleted, and when I press <kbd>Delete</kbd>, the character to the right of the cursor is deleted. On Mac it's the opposite, pressing <kbd>Delete</kbd> removes the character to the left, but I can do <kbd>Fn</kbd>+<kbd>Delete</kbd> to forward delete. I can also press <kbd>Ctrl</kbd>+<kbd>H</kbd> to delete backwards, or <kbd>Ctrl</kbd>+<kbd>D</kbd> to delete forwards. On Windows, the Numpad <kbd>Del</kbd> does a forward delete if <kbd>Numlock</kbd> is off. But how are they related to the DEL character? If I have a font with a graphical representation for DEL, how can I type it?
 
 #### BS and DEL
 
@@ -541,7 +577,7 @@ But when I draw Amiga ASCII art on macOS using contemporary specialized ASCII ed
 
 Nowadays to *actually* type the character at code point 0x7F requires the use of "alt codes". On Windows, this can be done by holding down the <kbd>Alt</kbd> key, then typing the decimal number of DEL <kbd>1</kbd><kbd>2</kbd><kbd>7</kbd> using the keyboard's numeric keypad, and then releasing <kbd>Alt</kbd>. On Mac this is not possible by default, but can be done by enabling *Unicode Hex Input* as text input source ([instructions](https://poynton.ca/notes/misc/mac-unicode-hex-input.html)), then holding down the <kbd>Option</kbd> key, then typing the Unicode hexadecimal of DEL <kbd>0</kbd><kbd>0</kbd><kbd>7</kbd><kbd>f</kbd>, and then releasing <kbd>Option</kbd>. These will produce the code 0x7F.
 
-However, as I mentioned in the introduction, displaying the glyph at 0x7F is not always possible—it's wholly dependent on the application. For example, here's DEL (0x7F) using the Topaz font: <span class="amiga-inline"></span>. If you view this on Chrome, you will see the glyph. However, if you view this on Firefox, it will not display, because it's blocked at the browser level (for what reason I don't exactly know). On the web, it's more common to display Unicode characters using HTML entities like <code>\&#x7F;</code> or <code>\&#127;</code>, but these methods produce the generic symbol for "unrepresentable character", even on Chrome: <span class="amiga-inline">&#x007F; &#127;</span>. Using a Javascript snippet <code>document.write(String.fromCharCode(0x7F));</code> displays the glyph correctly on Chrome, but not on Firefox: <span class="amiga-inline"><script>document.write(String.fromCharCode(0x7F));</script></span>. 
+However, displaying the glyph at 0x7F is not always possible—it's wholly dependent on the application. For example, here's DEL (0x7F) using the Topaz font: <span class="amiga-inline"></span>. If you view this on Chrome, you will see the glyph. However, if you view this on Firefox, it will not display, because it's blocked at the browser level (for what reason I don't exactly know). On the web, it's more common to display Unicode characters using HTML entities like <code>\&#x7F;</code> or <code>\&#127;</code>, but these methods produce the generic symbol for "unrepresentable character", even on Chrome: <span class="amiga-inline">&#x007F; &#127;</span>. Using a Javascript snippet <code>document.write(String.fromCharCode(0x7F));</code> displays the glyph correctly on Chrome, but not on Firefox: <span class="amiga-inline"><script>document.write(String.fromCharCode(0x7F));</script></span>. 
 
 This is of course a big problem for displaying Amiga ASCII art containing DEL characters on the web. Even asciiarena.se, THE website dedicated to archiving, sharing and displaying Amiga ASCII art, haven't been able (or aren't bothered) to solve this issue. Artworks containing DEL characters simply don't display them. For example, the rendering for [SNAFUALV.TXT](https://www.asciiarena.se/release/SNAFUALV.TXT) by sNAFu from 1995 is completely broken on the site. (However, the artworks on asciiarena.se *could* be shown correctly at least on Chrome, but the DEL glyph is not even assigned to *any* code point in the Topaz font they use.)
 
