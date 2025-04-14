@@ -142,7 +142,7 @@ PC ASCII artists have used the house symbol, not as a specific thing with meanin
     %}
 </figure>
 
-When combined with other characters that are just slighly larger or smaller creates an illusion of a continuous shape: <span class="cp437-inline">·∙•↔*⌂S§¼╣$♫b%⌂≈←·</span>. 
+When combined with other characters that are just slightly larger or smaller creates an illusion of a continuous shape: <span class="cp437-inline">·∙•↔*⌂S§¼╣$♫b%⌂≈←·</span>. 
 
 It's also fairly wide and "dark" in its typographic color, so it fills the space it occupies, without leaving any considerable gaps of negative space. In other words, it doesn't stand out when used carefully.
 
@@ -162,7 +162,7 @@ Its angled top makes it useful for creating curves, as seen in ddrj's [drj-mmc.a
 
 ## Theories on the origins of CP437's house
 
-But what about IBM? Why did IBM decide to include a symbol representing a house in their character set? It's a strange glyph; adding a smiley is readily arguable, and playing card suits have existed in prior character sets, but a house—as far as I can tell—it didn't exist as a glyph anywhere before IBM's Code Page 437. It seems to come out of thin air. To my knowledge, there are no (surviving) documents on the design process of the character set. The little bit we know comes from a few interviews, like the one with David J. Bradley, and from meticulous research done by people like [VileR](https://int10h.org/blog/2024/10/missing-ibm-pc-localization-disks-roms/). So, the only thing I can do is speculate. Here are my thoughts:
+But what about IBM? Why did IBM decide to include a symbol representing a house in their character set? It's a strange glyph; adding a smiley is readily arguable, and playing card suits have existed in prior character sets, but a house—as far as I can tell—didn't exist as a glyph anywhere before IBM's Code Page 437. It seems to come out of thin air. To my knowledge, there are no (surviving) documents on the design process of the character set. The little bit we know comes from a few interviews, like the one with David J. Bradley, and from meticulous research done by people like [VileR](https://int10h.org/blog/2024/10/missing-ibm-pc-localization-disks-roms/). So, the only thing I can do is speculate. Here are my thoughts:
 
 ::: wrap note
 #### Acknowledgements
@@ -270,7 +270,7 @@ But of course it's not so simple. The 1982 edition of [*IBM BASIC Manual*](https
     <figcaption>1982 IBM BASIC Manual</figcaption>
 </figure>
 
-What is going on? Was the 1981 Technical Reference was printed in error, and corrected later? It doesn't seem like it: the 1984 revised edition of the [IBM PC *Technical Reference*](https://archive.org/details/IBMPCIBM5150TechnicalReference6322507APR84/page/n246/mode/1up) still display 0x7F as **delta**. There's no mistake, even the **text label** of 0x7F is "delta", as listed in the printed System BIOS character generator routines.
+What is going on? Was the 1981 Technical Reference printed in error, and corrected later? It doesn't seem like it: the 1984 revised edition of the [IBM PC *Technical Reference*](https://archive.org/details/IBMPCIBM5150TechnicalReference6322507APR84/page/n246/mode/1up) still display 0x7F as **delta**. There's no mistake, even the **text label** of 0x7F is "delta", as listed in the printed System BIOS character generator routines.
 
 <figure class="u-image-full-width">
     {% image
@@ -283,7 +283,18 @@ What is going on? Was the 1981 Technical Reference was printed in error, and cor
     <figcaption>1984 IBM PC Technical Reference</figcaption>
 </figure>
 
-Still, the original 1981 [IBM PC System BIOS fonts](https://int10h.org/oldschool-pc-fonts/fontlist/font?ibm_bios) clearly renders it as a **house**: <span class="cp437-inline">⌂</span>. It seems very unlikely that anybody would actually associate the shape of it with the delta character—let alone use the house character *as* delta in any scientific syntax. 
+<figure class="u-image-full-width">
+    {% image
+        "./src/assets/images/0x7f/systembios.png",
+        "crisp",
+        "0x7F is labeled as delta",
+        "(min-width: 30em) 50vw, 100vw",
+        true
+    %}
+    <figcaption>All IBM PC Technical References since 1981 label 0x7F as delta in the system BIOS character generator routines.</figcaption>
+</figure>
+
+Still, the original 1981 [IBM PC System BIOS](https://int10h.org/oldschool-pc-fonts/fontlist/font?ibm_bios) *font* clearly renders it as a **house**: <span class="cp437-inline">⌂</span>. It seems very unlikely that anybody would actually associate the shape of it with the delta character—let alone use the house character *as* delta in any scientific syntax. (Or would you? Here's some random math with houses as deltas: <span class="cp437-inline">⌂x = ⌂t * (⌂t)²</span>)
 
 Maybe it's just some careless disparity between printed material and the actual font rendering? It isn't so either: 0x7F isn't consistently rendered as a house in every CP437 font, as can be seen from the following chart, which display the 0x7F character from various [CP437-compatible VGA fonts](https://github.com/viler-int10h/vga-text-mode-fonts/releases/tag/2020-11-25): 
 
@@ -293,9 +304,9 @@ Maybe it's just some careless disparity between printed material and the actual 
 
 While most of the fonts render 0x7F as a house, some of them are quite undeniably deltas (listed near the bottom of the chart). 
 
-To make matters more confusing (or maybe in an attempt to prevent further confusion?), in 1984, IBM's own authoritative registry of glyph names ([GCGID](https://public.dhe.ibm.com/software/globalization/gcoc/attachments/CP00437.txt)) officially names 0x7F in CP437 as **"small house"**. In fact, originally *the whole character set had no name*, until this registration. Code Page 437 was not born as a real code page at all—it was merely a bunch of graphical glyphs, stored in the Read-Only Memory (ROM) of the System BIOS, available for the computer to use immediately on booting. Because the characters were implemented in the hardware, the font, and its derivatives, were often just called "OEM fonts", where OEM stands for "Original Equipment Manufacturer". All "official" IBM names, for the character set and its glyphs, were given retroactively in 1984.
+To make matters more confusing (or maybe in an attempt to prevent further confusion?), in 1984, IBM's own authoritative registry of glyph names ([GCGID](https://public.dhe.ibm.com/software/globalization/gcoc/attachments/CP00437.txt)) officially names 0x7F in CP437 as **"small house"**. In fact, as Michael Walden pointed out to me, originally *the whole character set had no name*, until this registration. Code Page 437 was not born as a real code page at all—it was merely a bunch of graphical glyphs, stored in the Read-Only Memory (ROM) of the System BIOS, available for the computer to use immediately on booting. Because the characters were implemented in the hardware, the font, and its derivatives, were often just called "OEM fonts", where OEM stands for "Original Equipment Manufacturer". All "official" IBM names, for the character set and its glyphs, were given retroactively in 1984.
 
-But even officially naming the Code Page 437 and its glyphs wasn't enough to correct their rendering. In 1986, the [*IBM PC Convertible*](https://int10h.org/oldschool-pc-fonts/fontlist/font?ibm_conv) system font renders 0x7F as **delta**, and the 1986 [IBM PC/AT *Technical Reference*](https://bitsavers.org/pdf/ibm/pc/at/6183355_PC_AT_Technical_Reference_Mar86.pdf) still lists and labels 0x7F as delta. Even in 1989, the Olivetti [*MS-DOS Software Installation Guide*](https://www.minuszerodegrees.net/manuals/Olivetti/Olivetti%20-%20MS-DOS%203.30%20-%20Software%20Installation%20Guide.pdf) renders the 0x7F as delta.
+But even officially naming the Code Page 437, and its glyphs, was not enough to correct their rendering. In 1986, the [*IBM PC Convertible*](https://int10h.org/oldschool-pc-fonts/fontlist/font?ibm_conv) system font renders 0x7F as delta, and the 1986 [IBM PC/AT *Technical Reference*](https://bitsavers.org/pdf/ibm/pc/at/6183355_PC_AT_Technical_Reference_Mar86.pdf) still lists and labels 0x7F as delta. Even in 1989, the Olivetti [*MS-DOS Software Installation Guide*](https://www.minuszerodegrees.net/manuals/Olivetti/Olivetti%20-%20MS-DOS%203.30%20-%20Software%20Installation%20Guide.pdf) renders the 0x7F as delta.
 
 #### Theory #9: It MUST be a delta because even the GREEK delta looks like a house!
 
@@ -312,7 +323,7 @@ As I was taking another look at VileR's oldschool PC fonts page on the original 
     <figcaption>The Greek variant of IBM PC's font (Code Page 737) renders the greek delta as a house!</figcaption>
 </figure>
 
-If even the actual Greek uppercase delta is, quite unmistakenly, rendered as a house, then the theory that DEL is just a badly formed uppercase Greek delta character with the bottom corners cut off (due to a lack of horizontal pixels) starts to seem more and more convincing.
+That can't be a mistake, can it? If even the actual Greek uppercase delta is, quite unmistakenly, rendered as a house, then the theory that DEL is just a badly formed uppercase Greek delta character with the bottom corners cut off (due to a lack of horizontal pixels) starts to seem more and more convincing. (The rendering was later corrected. The 1987 IBM VGA version of the font renders it like <span class="cp437-inline">Δ</span>)
 
 #### Delta theory doubt
 
