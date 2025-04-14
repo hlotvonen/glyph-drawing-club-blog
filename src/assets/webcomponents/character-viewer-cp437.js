@@ -1092,8 +1092,6 @@ class CharacterViewerCP437 extends HTMLElement {
         :host {
           display: block;
           max-width: 80rem;
-          content-visibility: auto;
-          contain-intrinsic-size: auto 1100px;
         }
         
         .container {
