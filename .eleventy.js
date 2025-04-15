@@ -30,12 +30,56 @@ module.exports = function (config) {
     // Plugins
     config.addPlugin(pluginRss)
     config.addPlugin(pluginNavigation)
-	  config.addPlugin(anchors_plugin);
+    config.addPlugin(anchors_plugin);
 
     // Filters
     Object.keys(filters).forEach((filterName) => {
         config.addFilter(filterName, filters[filterName])
     })
+
+    // Add custom RSS sanitization filter
+    config.addFilter("sanitizeForRSS", function(content) {
+      if (!content) return "";
+      
+      // Remove any custom web components completely
+      content = content.replace(/<ansi-viewer[\s\S]*?<\/ansi-viewer>/g, 
+        '<!-- ANSI content removed for RSS compatibility -->');
+      
+      // Define problematic classes - only exact matches
+      const problematicClasses = ['amiga'];
+      
+      for (const className of problematicClasses) {
+        // Match class attribute patterns more precisely
+        // This looks for class="amiga" or class="something amiga something-else"
+        // But won't match class="amiga-inline"
+        
+        // First pattern: class="amiga" (exact match)
+        let pattern1 = new RegExp(`<[^>]*class=["']${className}["'][^>]*>[\\s\\S]*?<\\/[^>]*>`, 'g');
+        content = content.replace(pattern1, `<!-- Content with class '${className}' removed for RSS compatibility -->`);
+        
+        // Second pattern: class="something amiga" (class at the end with space before)
+        let pattern2 = new RegExp(`<[^>]*class=["'][^"']*\\s+${className}["'][^>]*>[\\s\\S]*?<\\/[^>]*>`, 'g');
+        content = content.replace(pattern2, `<!-- Content with class '${className}' removed for RSS compatibility -->`);
+        
+        // Third pattern: class="amiga something" (class at the beginning with space after)
+        let pattern3 = new RegExp(`<[^>]*class=["']${className}\\s+[^"']*["'][^>]*>[\\s\\S]*?<\\/[^>]*>`, 'g');
+        content = content.replace(pattern3, `<!-- Content with class '${className}' removed for RSS compatibility -->`);
+        
+        // Fourth pattern: class="something amiga something-else" (class in the middle with spaces on both sides)
+        let pattern4 = new RegExp(`<[^>]*class=["'][^"']*\\s+${className}\\s+[^"']*["'][^>]*>[\\s\\S]*?<\\/[^>]*>`, 'g');
+        content = content.replace(pattern4, `<!-- Content with class '${className}' removed for RSS compatibility -->`);
+      }
+      
+      // Also remove custom elements that might cause issues
+      content = content.replace(/<([a-z]+-[a-z][a-z0-9]*)[^>]*>[\s\S]*?<\/\1>/g, 
+        (match, tagName) => `<!-- Custom element '${tagName}' removed for RSS compatibility -->`);
+      
+      // Handle self-closing custom elements too
+      content = content.replace(/<([a-z]+-[a-z][a-z0-9]*)[^>]*\/>/g,
+        (match, tagName) => `<!-- Self-closing custom element '${tagName}' removed for RSS compatibility -->`);
+      
+      return content;
+    });
 
     // Transforms
     Object.keys(transforms).forEach((transformName) => {
