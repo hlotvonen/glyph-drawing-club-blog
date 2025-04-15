@@ -294,7 +294,7 @@ What is going on? Was the 1981 Technical Reference printed in error, and correct
     <figcaption>All IBM PC Technical References since 1981 label 0x7F as delta in the system BIOS character generator routines.</figcaption>
 </figure>
 
-Still, the original 1981 [IBM PC System BIOS](https://int10h.org/oldschool-pc-fonts/fontlist/font?ibm_bios) *font* clearly renders it as a **house**: <span class="cp437-inline">⌂</span>. It seems very unlikely that anybody would actually associate the shape of it with the delta character—let alone use the house character *as* delta in any scientific syntax. (Or would you? Here's some random math with houses as deltas: <span class="cp437-inline">⌂x = ⌂t * (⌂t)²</span>)
+Still, the original 1981 [IBM PC System BIOS](https://int10h.org/oldschool-pc-fonts/fontlist/font?ibm_bios) *font* clearly renders it as a **house**: <span class="cp437-inline">⌂</span>. It seems very unlikely that anybody would actually associate the shape of it with the delta character—let alone use the house character *as* delta in any scientific syntax.
 
 Maybe it's just some careless disparity between printed material and the actual font rendering? It isn't so either: 0x7F isn't consistently rendered as a house in every CP437 font, as can be seen from the following chart, which display the 0x7F character from various [CP437-compatible VGA fonts](https://github.com/viler-int10h/vga-text-mode-fonts/releases/tag/2020-11-25): 
 
@@ -323,7 +323,13 @@ As I was taking another look at VileR's oldschool PC fonts page on the original 
     <figcaption>The Greek variant of IBM PC's font (Code Page 737) renders the greek delta as a house!</figcaption>
 </figure>
 
-That can't be a mistake, can it? If even the actual Greek uppercase delta is, quite unmistakenly, rendered as a house, then the theory that DEL is just a badly formed uppercase Greek delta character with the bottom corners cut off (due to a lack of horizontal pixels) starts to seem more and more convincing. (The rendering was later corrected. The 1987 IBM VGA version of the font renders it like <span class="cp437-inline">Δ</span>)
+That can't be a mistake, can it? If even the actual Greek uppercase delta is, quite unmistakenly, rendered as a house, then the theory that DEL is just a badly formed uppercase Greek delta character with the bottom corners cut off (due to a lack of horizontal pixels) starts to seem more and more convincing.
+
+#### Theory #10: It's no mistake
+
+And then, a [commenter on hackernews](https://news.ycombinator.com/item?id=43669273) pointed out that nearly all characters that have steep diagonal lines are rendered the same. The Greek capital letter lambda (Λ) is similarly drawn as the house character: <span class="ibmpcbios-inline">Λ</span>. The increment symbol, represented by delta (∆), also looks like the house: <span class="ibmpcbios-inline">∆</span>. And the same angular diagonal is present in letters <span class="ibmpcbios-inline">A, V, N, 7</span> and <span class="ibmpcbios-inline">Æ</span>. All characters with diagonals at any other angle than 45˚ are *forced* to 45˚ angles by extending them with straight lines, perhaps to avoid "jaggies" on low-res CRTs, as mentioned by VileR. Because the same design feature appears in so many characters, it starts to look less like a mistake, and more like a deliberate decision. But what works for <span class="ibmpcbios-inline">A</span> and <span class="ibmpcbios-inline">V</span>, which still are clearly read as A and V, doesn't work so well for letters that are not so common, like <span class="ibmpcbios-inline">∆</span> and <span class="ibmpcbios-inline">Λ</span>. So, maybe DEL was supposed to be DELta, but it wasn't *mistakenly* rendered like a "small house"—it was just a *bad decision* to draw all diagonals dogmatically at 45˚. As a consequence, nobody associated the delta shape with a delta, and thought it looked more like a house, and because by 1984 that association had already stuck, IBM decided to retroactively name it a "small house". After all, the character set already had "not serious" characters like the smiley.
+
+(Some diagonals were later adjusted for the 1987 IBM VGA version of the font: the Greek letters <span class="cp437-inline">Δ, Λ </span> are more pronounced, while the increment-delta stays the same <span class="cp437-inline">∆</span>) 
 
 #### Delta theory doubt
 

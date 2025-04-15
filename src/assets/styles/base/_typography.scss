@@ -46,6 +46,13 @@
     font-style: normal;
     font-display: block;
 }
+@font-face {
+    font-family: 'WebPlus_IBM_BIOS';
+    src: url('/assets/fonts/WebPlus_IBM_BIOS.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
 .amiga, .entry-content .amiga {
     font-family: 'Topaz_Plus_a1200_CP437';
     line-height: 1;
@@ -73,6 +80,21 @@
 }
 .cp437-inline {
     font-family: 'WebPlus_IBM_VGA_8x16';
+    vertical-align: bottom;
+    line-height: inherit;
+    font-size:inherit;
+    -webkit-font-smoothing:grayscale;
+}
+.ibmpcbios, .entry-content .ibmpcbios {
+    --scale:1;
+    font-family: 'WebPlus_IBM_BIOS';
+    line-height: 1;
+    font-size:#{"min(calc((100vw - 2rem) / 40), calc(var(--scale) * 8px))"};
+    max-width:fit-content;
+    -webkit-font-smoothing:grayscale;
+}
+.ibmpcbios-inline {
+    font-family: 'WebPlus_IBM_BIOS';
     vertical-align: bottom;
     line-height: inherit;
     font-size:inherit;
