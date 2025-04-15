@@ -17,54 +17,11 @@ eleventyNavigation:
     </p>
     <h3>What's new?</h3>
     <ul>
+      <li>2025: <a href="/why-is-there-a-small-house-in-ibm-s-code-page-437/">Why is there a "small house" in IBM's Code page 437?</a>
+      <li>2025: <a href="/the-origins-of-del-0x7f-and-its-legacy-in-amiga-ascii-art/">The origins of DEL (0x7F) and its Legacy in Amiga ASCII art</a>
       <li>2024: <a href="/font-with-built-in-syntax-highlighting/">Font with Built-In Syntax Highlighting</a>
-      <li>2024: <a href="/typographic-art-of-valto-malmiola/">Typographic Art of Valto Malmiola</a>
     </ul>
   </article>
-
-<!-- Tutorials -->
-  <h1>Tutorials</h1>
-  <ul class="posts-grid">
-    {% for post in collections.Tutorial %}
-      <li{% if page.url == post.url %} aria-current="page"{% endif %}>
-        
-        <div class="cover">
-          <a href="{{ post.url }}">
-            {% if post.data.cover %}
-              {% image
-                post.data.cover,
-                "photoclass",
-                "",
-                "(min-width: 30em) 50vw, 100vw",
-                false
-              %}
-            {% else %}
-                <div class="no-img">{{ ["✾","❀","✿","✺","✯","✻","❂","✧","✣"] | random }}</div>
-            {% endif %}
-          </a>
-        </div>
-        
-        <div>
-          <a href="{{ post.url }}">
-            <h2>{{ post.data.title }}</h2>
-          </a>
-          {{ post.data.description }}
-          <ul class="frontpage-tags-list"> 
-            {% for tag in post.data.tags -%}
-              {% if tag !== 'posts' %}
-                <li>
-                  <a class="tag" href="/tags/{{ tag }}">#{{ tag }}</a>
-                </li>
-              {% endif %}
-            {%- endfor %}
-          </ul>
-          {% if 'Post' in post.data.tags %}
-            
-          {% endif %}
-        </div>
-      </li>
-    {% endfor %}
-  </ul>
 
 <!--Essays -->
   <h1>Essays & Articles</h1>
@@ -110,6 +67,8 @@ eleventyNavigation:
     {% endfor %}
   </ul>
 
+  
+
 <!-- Blog posts -->
   <h1>Blog</h1>
   <ul class="posts-grid">
@@ -135,6 +94,50 @@ eleventyNavigation:
         <div>
           <a href="{{ post.url }}">
             <h2>{{ post.data.title }} <small><em>{{ post.data.date.getFullYear() }}</em></small></h2>
+          </a>
+          {{ post.data.description }}
+          <ul class="frontpage-tags-list"> 
+            {% for tag in post.data.tags -%}
+              {% if tag !== 'posts' %}
+                <li>
+                  <a class="tag" href="/tags/{{ tag }}">#{{ tag }}</a>
+                </li>
+              {% endif %}
+            {%- endfor %}
+          </ul>
+          {% if 'Post' in post.data.tags %}
+            
+          {% endif %}
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <!-- Tutorials -->
+  <h1>Tutorials</h1>
+  <ul class="posts-grid">
+    {% for post in collections.Tutorial %}
+      <li{% if page.url == post.url %} aria-current="page"{% endif %}>
+        
+        <div class="cover">
+          <a href="{{ post.url }}">
+            {% if post.data.cover %}
+              {% image
+                post.data.cover,
+                "photoclass",
+                "",
+                "(min-width: 30em) 50vw, 100vw",
+                false
+              %}
+            {% else %}
+                <div class="no-img">{{ ["✾","❀","✿","✺","✯","✻","❂","✧","✣"] | random }}</div>
+            {% endif %}
+          </a>
+        </div>
+        
+        <div>
+          <a href="{{ post.url }}">
+            <h2>{{ post.data.title }}</h2>
           </a>
           {{ post.data.description }}
           <ul class="frontpage-tags-list"> 
