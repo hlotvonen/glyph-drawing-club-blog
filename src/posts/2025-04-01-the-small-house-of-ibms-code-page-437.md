@@ -382,7 +382,7 @@ There is, however, IBM's [DisplayWrite](https://www.dosdays.co.uk/topics/Softwar
     <figcaption>IBM's DisplayWrite for DOS from 1984 uses the house symbol to indicate the center line.</figcaption>
 </figure>
 
-All in all, while people might nowadays associate the house symbol with a tab marker, quite likely based on their memories of MS Word, there doesn't seem to be any concrete evidence of its use for this purpose before 1981. (For further evidence, send me an email: hlotvonen@gmail.com)
+If the house was intended to represent a margin or tab stop, then why didn't they add it to code point 0x09, which is already standardized in ASCII as "horizontal tabulation"? ECMA-17 from 1968 also already has a standardised graphical representation for horizontal tabs, which is a right arrow. All in all, while people might nowadays associate the house symbol with a tab marker, quite likely based on their memories of MS Word, there doesn't seem to be any concrete evidence of its use for this purpose before 1981. (For further evidence, send me an email: hlotvonen@gmail.com)
 
 :::
 
