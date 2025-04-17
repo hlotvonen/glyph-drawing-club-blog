@@ -345,7 +345,7 @@ Dru Nelson suggested it be related to the cursor indicator from the original IBM
         "(min-width: 30em) 50vw, 100vw",
         true
     %}
-    <figcaption>IBM selectric typewriter from 1961 (Image ©: <a href="https://www.pressebox.com/pressrelease/ibm-deutschland-gmbh-bblingen/IBM-Celebrates-50th-Anniversary-of-Selectric-Typewriter/boxid/437871" target="_blank">IBM Deutschland GmbH</a></figcaption>
+    <figcaption>IBM selectric typewriter from 1961 (Image ©: <a href="https://www.pressebox.com/pressrelease/ibm-deutschland-gmbh-bblingen/IBM-Celebrates-50th-Anniversary-of-Selectric-Typewriter/boxid/437871" target="_blank">IBM Deutschland GmbH</a>)</figcaption>
 </figure>
 
 But, I'm not quite convinced. Firstly, if the house was meant as a cursor (shown underneath the character position), then why wasn't it positioned touching the top edge of the character cell? The house seems to always be positioned in the middle of the character cell instead. Secondly, the character was named "delta" in the System BIOS, so if it was meant to be a cursor, wouldn't they have named it so? Thirdly, the CP437 character set already includes an upwards triangle <span class="ibmpcbios-inline">▲</span> and <span class="ibmpcbios-inline">^</span>, both of which could work as cursor indicators already. Fourthly, IBM PC indicates its cursor position with a blinking underline—the same as Wang terminals—so there was no need for a separate "cursor" symbol.
@@ -382,7 +382,7 @@ There is, however, IBM's [DisplayWrite](https://www.dosdays.co.uk/topics/Softwar
     <figcaption>IBM's DisplayWrite for DOS from 1984 uses the house symbol to indicate the center line.</figcaption>
 </figure>
 
-All in all, while people might nowadays associate the house symbol with a tab marker, quite likely based on their memories of MS Word, there doesn't seem to be any concrete evidence of its use for this purpose before 1981.
+All in all, while people might nowadays associate the house symbol with a tab marker, quite likely based on their memories of MS Word, there doesn't seem to be any concrete evidence of its use for this purpose before 1981. (For further evidence, send me an email: hlotvonen@gmail.com)
 
 :::
 
