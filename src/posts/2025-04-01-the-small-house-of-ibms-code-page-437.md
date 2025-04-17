@@ -170,7 +170,7 @@ Most of these theories are based on my conversations with VileR and Michael Wald
 :::
 
 #### Theory #1: House as a symbol for home computers
-My first thought was that maybe the house was included as a symbol for IBM's new line of personal **home** computers? Before IBM PC's launch in 1981, IBM had largely been known for their business computers. So, it makes sense that, as IBM was entering the growing market of personal computers, they wanted to signal to the home users that their PC had something *fun* to offer—hence the "not serious" glyphs, like the smiley, which were added with text-based games in mind. So maybe they added the house glyph for the same reason? Surely the smileys must have a house they live in! It's compelling to think this might be true, but to be clear, this is pure speculation, and there's nothing to support this claim.
+My first thought was that maybe the house was included as a symbol for IBM's new line of personal **home** computers? Before IBM PC's launch in 1981, IBM had largely been known for their business computers. So, it makes sense that, as IBM was entering the growing market of personal computers, they wanted to signal to the home users that their PC had something *fun* to offer—hence the "not serious" glyphs, like the smiley, which were added with text-based games in mind. So maybe they added the house glyph for the same reason? Surely the smileys must have a house to live in! It's compelling to think this might be true, but to be clear, this is pure speculation, and there's nothing to support this claim.
 
 #### Theory #2: It's related to backspace
 Another "hunch" was suggested by VileR. He entertained the idea that the house character itself was associated with the action of deleting text, or related to the backspace symbol ⌫ (U+232B). If you rotate ⌫ 90˚ clockwise, you do get a house ⌂ (with an &times; in it). It's an interesting idea, but there doesn't seem to be anything to support this claim either.
@@ -330,6 +330,61 @@ That can't be a mistake, can it? If even the actual Greek uppercase delta is, qu
 And then, a [commenter on hackernews](https://news.ycombinator.com/item?id=43669273) pointed out that nearly all characters that have steep diagonal lines are rendered the same. The Greek capital letter lambda (Λ) is similarly drawn as the house character: <span class="ibmpcbios-inline">Λ</span>. The increment symbol, represented by delta (∆), also looks like the house: <span class="ibmpcbios-inline">∆</span>. And the same angular diagonal is present in letters <span class="ibmpcbios-inline">A, V, N, 7</span> and <span class="ibmpcbios-inline">Æ</span>. All characters with diagonals at any other angle than 45˚ are *forced* to 45˚ angles by extending them with straight lines, perhaps to avoid "jaggies" on low-res CRTs, as mentioned by VileR. Because the same design feature appears in so many characters, it starts to look less like a mistake, and more like a deliberate decision. But what works for <span class="ibmpcbios-inline">A</span> and <span class="ibmpcbios-inline">V</span>, which still are clearly read as A and V, doesn't work so well for letters that are not so common, like <span class="ibmpcbios-inline">∆</span> and <span class="ibmpcbios-inline">Λ</span>. So, maybe DEL was supposed to be DELta, but it wasn't *mistakenly* rendered like a "small house"—it was just a *bad decision* to draw all diagonals dogmatically at 45˚. As a consequence, nobody associated the delta shape with a delta, and thought it looked more like a house, and because by 1984 that association had already stuck, IBM decided to retroactively name it a "small house". After all, the character set already had "not serious" characters like the smiley.
 
 (Some diagonals were later adjusted for the 1987 IBM VGA version of the font: the Greek letters <span class="cp437-inline">Δ, Λ </span> are more pronounced, while the increment-delta stays the same <span class="cp437-inline">∆</span>) 
+
+::: wrap note
+##### Reader's theories: It represents a tab stop, or a similar part
+After I published the article, many people commented that the house reminded them of some *physical* part of earlier typewriters and word processors. 
+
+Dru Nelson suggested it be related to the cursor indicator from the original IBM selectric typewriter. Indeed, it does look like it! 
+
+<figure class="u-image-full-width">
+    {% image
+        "./src/assets/images/0x7f/selectric.jpg",
+        "",
+        "IBM Selectric typewriter has a cursor which looks like the house symbol.",
+        "(min-width: 30em) 50vw, 100vw",
+        true
+    %}
+    <figcaption>IBM selectric typewriter from 1961 (Image ©: <a href="https://www.pressebox.com/pressrelease/ibm-deutschland-gmbh-bblingen/IBM-Celebrates-50th-Anniversary-of-Selectric-Typewriter/boxid/437871" target="_blank">IBM Deutschland GmbH</a></figcaption>
+</figure>
+
+But, I'm not quite convinced. Firstly, if the house was meant as a cursor (shown underneath the character position), then why wasn't it positioned touching the top edge of the character cell? The house seems to always be positioned in the middle of the character cell instead. Secondly, the character was named "delta" in the System BIOS, so if it was meant to be a cursor, wouldn't they have named it so? Thirdly, the CP437 character set already includes an upwards triangle <span class="ibmpcbios-inline">▲</span> and <span class="ibmpcbios-inline">^</span>, both of which could work as cursor indicators already. Fourthly, IBM PC indicates its cursor position with a blinking underline—the same as Wang terminals—so there was no need for a separate "cursor" symbol.
+
+Robert Kersbergen also suggested to me in an email that the house resembles the "scope" of some typewriters (used to position the typeball or type hammer), but this theory is also shaky for the same reasons as above.
+
+Many people commented that it looks like a tab or margin stop, but so far no-one has managed to name or provide any pictures of such use *before* IBM PCs launch in 1981. Maybe people remember it from word processors that came *after* 1981?
+
+<figure class="u-image-full-width">
+    {% image
+        "./src/assets/images/0x7f/msword.jpg",
+        "",
+        "Margin stops in MS Word.",
+        "(min-width: 30em) 50vw, 100vw",
+        true
+    %}
+    <figcaption>The margin stops in MS Word after version 6.x</figcaption>
+</figure>
+
+Sure, the margin stops in MS Word do resemble the house character quite a bit. But, this is a relatively recent development. The house-resembling-markers were added to Word in 1993 for version 6. Before that, MS Word indicated tab and margin stops with simple triangles, numbers, and square brackets. 
+
+Another popular word processor, [WordPerfect](https://youtu.be/ML_GoEUhs4A?t=358), indicated tab stops with <span class="ibmpcbios-inline">▲</span>, and [WordStar](https://youtu.be/5kYfsP_WKLY?t=365) used the exclamation point (<span class="ibmpcbios-inline">!</span>). 
+
+There is, however, IBM's [DisplayWrite](https://www.dosdays.co.uk/topics/Software/ibm_displaywrite.php), which *did* use the house symbol to indicate the *center line*, but it came out in 1984, three years after the launch of IBM PC. It seems unlikely that IBM would have anticipated its use for this minor purpose, especially considering that IBM's earlier computer, the DisplayWrite**r** from 1980, indicated the center line, not with a house, but [with a triangle](https://www.youtube.com/watch?v=YnU_woucebE&t=169s).
+
+<figure class="u-image-full-width">
+    {% image
+        "./src/assets/images/0x7f/displaywrite_1.png",
+        "",
+        "Tab markers in MS Word.",
+        "(min-width: 30em) 50vw, 100vw",
+        true
+    %}
+    <figcaption>IBM's DisplayWrite for DOS from 1984 uses the house symbol to indicate the center line.</figcaption>
+</figure>
+
+All in all, while people might nowadays associate the house symbol with a tab marker, quite likely based on their memories of MS Word, there doesn't seem to be any concrete evidence of its use for this purpose before 1981.
+
+:::
 
 #### Delta theory doubt
 
@@ -546,3 +601,7 @@ To see how <span class="cp437-inline">⌂</span> was used in PC ASCII art, I wro
     {% image "./src/assets/images/0x7f/0x7f-pcascii/2018_impure69.zip_arl-radio_final.ans.png", "crisp", "", "(min-width: 30em) 50vw, 100vw", true %}
     <figcaption>2018_impure69.zip_arl-radio_final.ans</figcaption>
 </figure>
+
+---
+
+If you enjoyed this read, you might also want to check out the "main" article which digs deeper into the history of DEL character, and how it was represented and used in the Amiga computers: [The origins of DEL (0x7F) and its Legacy in Amiga ASCII art](../the-origins-of-del-0x7f-and-its-legacy-in-amiga-ascii-art/)
