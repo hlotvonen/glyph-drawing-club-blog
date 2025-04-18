@@ -215,7 +215,7 @@ There's a [recent proposal](https://www.unicode.org/L2/L2020/20271-n5149-blissym
 :::
 
 #### Theory #6: Botched copy of a dot-stretched Wang delta
-Or maybe it *does* come from Wang? Viler makes an interesting observation: a 1979 Wang character set for the *2236DE terminal* includes a delta symbol ( Δ ) at position 0x9A. At first glance this seemed unrelated to IBM's house symbol at 0x7F. But after viewing the ROM data as a bitmap, VileR discovered two interesting things. First, Wang's delta wasn't a clean equilateral triangle (angles at 60°, 60°, 60°); to avoid uneven displacements between scanlines, which could produce very obvious "jaggies" on low-res CRTs, the delta was instead rendered as a right triangle (angles 45°, 90°, 45°). However, because of this, the triangle's side-corners had to be chopped off, to fit it into its 7&times;7 pixels-per-character space. Secondly, VileR discovered that the bitmap's pixels were spaced-out, implying that the glyphs relied on some sort of dot-stretching effect in the display circuitry. After these realizations, rendering the bitmap with his [CRT emulator](https://int10h.org/blog/2021/01/simulating-crt-monitors-ffmpeg-pt-1-color/) revealed that Wang's delta actually resembles IBM's blocky house symbol.
+Or maybe it *does* come from Wang? VileR makes an interesting observation: a 1979 Wang character set for the *2236DE terminal* includes a delta symbol ( Δ ) at position 0x9A. At first glance this seemed unrelated to IBM's house symbol at 0x7F. But after viewing the ROM data as a bitmap, VileR discovered two interesting things. First, Wang's delta wasn't a clean equilateral triangle (angles at 60°, 60°, 60°); to avoid uneven displacements between scanlines, which could produce very obvious "jaggies" on low-res CRTs, the delta was instead rendered as a right triangle (angles 45°, 90°, 45°). However, because of this, the triangle's side-corners had to be chopped off, to fit it into its 7&times;7 pixels-per-character space. Secondly, VileR discovered that the bitmap's pixels were spaced-out, implying that the glyphs relied on some sort of dot-stretching effect in the display circuitry. After these realizations, rendering the bitmap with his [CRT emulator](https://int10h.org/blog/2021/01/simulating-crt-monitors-ffmpeg-pt-1-color/) revealed that Wang's delta actually resembles IBM's blocky house symbol.
 
 <figure class="u-image-full-width">
     {% image
@@ -233,7 +233,7 @@ So, if Bill Gates was correct about IBM copying characters from Wang, it's entir
 #### Theory #7: Is it delta?
 But, in an email conversation, Michael Walden speculates that it might not even be a coincidence that the DELete character has DELta as its printable character glyph. 
 
-Delta as a symbol ( Δ ) originates from the Greek alphabet. CP437 already includes some Greek characters in the 0xEO–0xEB range, notably 0xEB being the symbol for Greek *small* delta ( δ ). These characters were not included to support Greek language, but as math symbols. In mathematics and other sciences, the uppercase delta is often used to denote a "change of any changeable quantity", which might have been a reason to include it in the character set.
+Delta as a symbol ( Δ ) originates from the Greek alphabet. CP437 already includes some Greek characters in the 0xEO–0xEB range, notably 0xEB being the symbol for Greek *small* delta ( δ ). These characters were not included to support Greek language, but as math symbols. In mathematics and other sciences, the uppercase delta is often used to denote a "change of any changeable quantity", which might have provided a good reason to include it in the character set.
 
 Delta doesn't only appear in Wang's character set, but in many character sets before it. For example, the APL programming language, which originated at IBM in the 1960s, includes delta ( Δ ), and inverted delta ( ∇ ) in its syntax. As a curious but unrelated coincidence, the IBM name for the inverted delta is DEL—the same as the control character DEL (Delete) at 0x7F.^[Wikipedia article [Digital encoding of APL symbols](https://en.wikipedia.org/wiki/Digital_encoding_of_APL_symbols#Character_repertoire) 3.4.2025]
 
@@ -325,67 +325,6 @@ As I was taking another look at VileR's oldschool PC fonts page on the original 
 
 That can't be a mistake, can it? If even the actual Greek uppercase delta is, quite unmistakenly, rendered as a house, then the theory that DEL is just a badly formed uppercase Greek delta character with the bottom corners cut off (due to a lack of horizontal pixels) starts to seem more and more convincing.
 
-#### Theory #10: It's no mistake
-
-And then, a [commenter on hackernews](https://news.ycombinator.com/item?id=43669273) pointed out that nearly all characters that have steep diagonal lines are rendered the same. The Greek capital letter lambda (Λ) is similarly drawn as the house character: <span class="ibmpcbios-inline">Λ</span>. The increment symbol, represented by delta (∆), also looks like the house: <span class="ibmpcbios-inline">∆</span>. And the same angular diagonal is present in letters <span class="ibmpcbios-inline">A, V, N, 7</span> and <span class="ibmpcbios-inline">Æ</span>. All characters with diagonals at any other angle than 45˚ are *forced* to 45˚ angles by extending them with straight lines, perhaps to avoid "jaggies" on low-res CRTs, as mentioned by VileR. Because the same design feature appears in so many characters, it starts to look less like a mistake, and more like a deliberate decision. But what works for <span class="ibmpcbios-inline">A</span> and <span class="ibmpcbios-inline">V</span>, which still are clearly read as A and V, doesn't work so well for letters that are not so common, like <span class="ibmpcbios-inline">∆</span> and <span class="ibmpcbios-inline">Λ</span>. So, maybe DEL was supposed to be DELta, but it wasn't *mistakenly* rendered like a "small house"—it was just a *bad decision* to draw all diagonals dogmatically at 45˚. As a consequence, nobody associated the delta shape with a delta, and thought it looked more like a house, and because by 1984 that association had already stuck, IBM decided to retroactively name it a "small house". After all, the character set already had "not serious" characters like the smiley.
-
-(Some diagonals were later adjusted for the 1987 IBM VGA version of the font: the Greek letters <span class="cp437-inline">Δ, Λ </span> are more pronounced, while the increment-delta stays the same <span class="cp437-inline">∆</span>) 
-
-::: wrap note
-##### Reader's theories: It represents a tab stop, or a similar part
-After I published the article, many people commented that the house reminded them of some *physical* part of earlier typewriters and word processors. 
-
-Dru Nelson suggested it be related to the cursor indicator from the original IBM selectric typewriter. Indeed, it does look like it! 
-
-<figure class="u-image-full-width">
-    {% image
-        "./src/assets/images/0x7f/selectric.jpg",
-        "",
-        "IBM Selectric typewriter has a cursor which looks like the house symbol.",
-        "(min-width: 30em) 50vw, 100vw",
-        true
-    %}
-    <figcaption>IBM selectric typewriter from 1961 (Image ©: <a href="https://www.pressebox.com/pressrelease/ibm-deutschland-gmbh-bblingen/IBM-Celebrates-50th-Anniversary-of-Selectric-Typewriter/boxid/437871" target="_blank">IBM Deutschland GmbH</a>)</figcaption>
-</figure>
-
-But, I'm not quite convinced. Firstly, if the house was meant as a cursor (shown underneath the character position), then why wasn't it positioned touching the top edge of the character cell? The house seems to always be positioned in the middle of the character cell instead. Secondly, the character was named "delta" in the System BIOS, so if it was meant to be a cursor, wouldn't they have named it so? Thirdly, the CP437 character set already includes an upwards triangle <span class="ibmpcbios-inline">▲</span> and <span class="ibmpcbios-inline">^</span>, both of which could work as cursor indicators already. Fourthly, IBM PC indicates its cursor position with a blinking underline—the same as Wang terminals—so there was no need for a separate "cursor" symbol.
-
-Robert Kersbergen also suggested to me in an email that the house resembles the "scope" of some typewriters (used to position the typeball or type hammer), but this theory is also shaky for the same reasons as above.
-
-Many people commented that it looks like a tab or margin stop, but so far no-one has managed to name or provide any pictures of such use *before* IBM PCs launch in 1981. Maybe people remember it from word processors that came *after* 1981?
-
-<figure class="u-image-full-width">
-    {% image
-        "./src/assets/images/0x7f/msword.jpg",
-        "",
-        "Margin stops in MS Word.",
-        "(min-width: 30em) 50vw, 100vw",
-        true
-    %}
-    <figcaption>The margin stops in MS Word after version 6.x</figcaption>
-</figure>
-
-Sure, the margin stops in MS Word do resemble the house character quite a bit. But, this is a relatively recent development. The house-resembling-markers were added to Word in 1993 for version 6. Before that, MS Word indicated tab and margin stops with simple triangles, numbers, and square brackets. 
-
-Another popular word processor, [WordPerfect](https://youtu.be/ML_GoEUhs4A?t=358), indicated tab stops with <span class="ibmpcbios-inline">▲</span>, and [WordStar](https://youtu.be/5kYfsP_WKLY?t=365) used the exclamation point (<span class="ibmpcbios-inline">!</span>). 
-
-There is, however, IBM's [DisplayWrite](https://www.dosdays.co.uk/topics/Software/ibm_displaywrite.php), which *did* use the house symbol to indicate the *center line*, but it came out in 1984, three years after the launch of IBM PC. It seems unlikely that IBM would have anticipated its use for this minor purpose, especially considering that IBM's earlier computer, the DisplayWrite**r** from 1980, indicated the center line, not with a house, but [with a triangle](https://www.youtube.com/watch?v=YnU_woucebE&t=169s).
-
-<figure class="u-image-full-width">
-    {% image
-        "./src/assets/images/0x7f/displaywrite_1.png",
-        "",
-        "Tab markers in MS Word.",
-        "(min-width: 30em) 50vw, 100vw",
-        true
-    %}
-    <figcaption>IBM's DisplayWrite for DOS from 1984 uses the house symbol to indicate the center line.</figcaption>
-</figure>
-
-If the house was intended to represent a margin or tab stop, then why didn't they add it to code point 0x09, which is already standardized in ASCII as "horizontal tabulation"? ECMA-17 from 1968 also already has a standardised graphical representation for horizontal tabs, which is a right arrow. All in all, while people might nowadays associate the house symbol with a tab marker, quite likely based on their memories of MS Word, there doesn't seem to be any concrete evidence of its use for this purpose before 1981. (For further evidence, send me an email: hlotvonen@gmail.com)
-
-:::
-
 #### Delta theory doubt
 
 There is just one thing I cant't quite comprehend. Let's assume for a second that DEL was supposed to be delta. Did IBM seriously *not* try different ways of drawing a delta, before settling on the house glyph? With a little bit of effort, it is completely possible to draw a convincing delta, even in 8&times;8 pixel space. Here's a chart to compare. The first three are IBM's renditions of the "delta", the rest are my own attempts I threw together in 10 minutes. I think that any of the versions I drew could have been more clearly understood as deltas. So, if IBM *did* go through some versions of the delta, they would have likely landed on the same, or very similar shapes to mine—yet they *still* chose the house-looking glyph to represent it. Why would they do that?
@@ -394,9 +333,23 @@ Click on the patterns to change the view. You can also edit/draw on the canvas, 
 
 <character-editor></character-editor>
 
+#### Theory #10: It's no mistake
+
+And then, a [commenter on hackernews](https://news.ycombinator.com/item?id=43669273) pointed out something that should have been obvious almost immediately: nearly all characters that have steep diagonal lines are rendered the same. The Greek capital letter lambda (Λ) is similarly drawn as the house character: <span class="ibmpcbios-inline">Λ</span>. The increment symbol, represented by delta (∆), also looks like the house: <span class="ibmpcbios-inline">∆</span>. The same angular diagonal is present in letters <span class="ibmpcbios-inline">A, V, N, 7</span> and <span class="ibmpcbios-inline">Æ</span>. In fact, all characters which would typically have diagonal lines at steeper angles than 45˚ are *forced* to 45˚ by extending them first with straight vertical lines. 
+
+Because the same design feature appears in so many characters, it starts to look less like a mistake, and more like a deliberate decision. Perhaps VileR's suggestion—that designers of early bitmap fonts were reluctant to use angles other than 45˚/90˚ to avoid uneven displacements between scanlines—is the correct one, and explains this design choice.
+
+So maybe Wang's delta *wasn't* misinterpreted or mistakenly drawn as a house by IBM's designers, as theorised earlier. Instead, maybe the designers intended it to be a delta, but in their stubborness to avoid "jaggies" rendered it illegible; they didn't realize that, while <span class="ibmpcbios-inline">A</span> and <span class="ibmpcbios-inline">V</span> can still be clearly read as A and V, a more uncommon symbol like delta, rendered as <span class="ibmpcbios-inline">⌂</span>, wouldn't be as easily understood as ∆. As a consequence, nobody associated CP437's "delta" shape with the actual delta symbol, but percieved it as a funny little house. After all, the character set already had "not serious" characters like the smiley.
+
+::: wrap note
+
+##### Sidenote
+There's a few extra reader suggested theories [at the end of this post](#readers-theories-it-represents-a-tab-stop-or-a-similar-part) (after the ASCII images) claiming it comes from tab or margin stops, or some other physical typewriter part.
+:::
+
 ### What DO we know?
 
-It seems the only thing we know for certain is that even IBM was confused, or just didn't care, whether 0x7F should be a delta, or a house. The fact is, that while the character at code point 0x7F in the 1981 IBM PC's System BIOS font might look like a house, we can't definitely claim that it was *intended* to look like a house. The *only* thing we can say for sure, is that 0x7F has been labeled as "delta" in the IBM PC's System BIOS since 1981, and that the IBM's official registry named it "small house" in 1984.
+But even after all these theories, the only thing we know for certain is that even IBM was confused, or just didn't care, whether 0x7F should be a delta, or a house. The fact is, that while the character at code point 0x7F in the 1981 IBM PC's System BIOS font might look like a house, we can't definitely claim that it was *intended* to look like a house. The *only* thing we can say for sure, is that 0x7F has been labeled as "delta" in the IBM PC's System BIOS since 1981, and that the IBM's official registry named it "small house" in 1984. That's it.
 
 What does this tell us? The consistent *inconsistencies* in IBM's technical documentations, fonts, and registries, sounds like a classic case of miscommunication between the different departments of IBM. Did the font's designers intend 0x7F to be a house, but the engineers interpreted it as a delta, mislabeling it in the System BIOS? Or did the designers intend it to be delta, but the botched rendering made it look like a house, and publications like the *IBM BASIC Manual* perpetuated the wrong interpretation until IBM decided to make it official in the registry? Or what? There is no clear answer.
 
@@ -604,4 +557,60 @@ To see how <span class="cp437-inline">⌂</span> was used in PC ASCII art, I wro
 
 ---
 
-If you enjoyed this read, you might also want to check out the "main" article which digs deeper into the history of DEL character, and how it was represented and used in the Amiga computers: [The origins of DEL (0x7F) and its Legacy in Amiga ASCII art](../the-origins-of-del-0x7f-and-its-legacy-in-amiga-ascii-art/)
+
+::: wrap note
+##### Reader's theories: It represents a tab stop, or a similar part
+After I published the article, many people commented that the house reminded them of some *physical* part of earlier typewriters and word processors. 
+
+Dru Nelson suggested it's related to the cursor indicator from the original IBM selectric typewriter.
+
+<figure class="u-image-full-width">
+    {% image
+        "./src/assets/images/0x7f/selectric.jpg",
+        "",
+        "IBM Selectric typewriter has a cursor which looks like the house symbol.",
+        "(min-width: 30em) 50vw, 100vw",
+        true
+    %}
+    <figcaption>IBM selectric typewriter from 1961 (Image ©: <a href="https://www.pressebox.com/pressrelease/ibm-deutschland-gmbh-bblingen/IBM-Celebrates-50th-Anniversary-of-Selectric-Typewriter/boxid/437871" target="_blank">IBM Deutschland GmbH</a>)</figcaption>
+</figure>
+
+Indeed, it does look like it! But, firstly, if the house glyph was intended to be used as a cursor (shown underneath the character position), then why wasn't it positioned touching the top edge of the character cell? The house character is almost always positioned near the baseline of the character cell instead. Secondly, the character was named "delta" in the System BIOS, so if it was meant to be a cursor, wouldn't they have named it so? Thirdly, the CP437 character set already includes an upwards triangle <span class="ibmpcbios-inline">▲</span> and <span class="ibmpcbios-inline">^</span>, both of which could work as cursor indicators already. Fourthly, IBM PC indicates its cursor position with a blinking underline—the same as Wang terminals—so there was no need for a separate "cursor" symbol anyway.
+
+Robert Kersbergen also suggested to me in an email that the house resembles the "scope" of some typewriters (used to position the typeball or type hammer), but this theory is also on shaky ground for the same reasons as above.
+
+Many people also commented that it looks like a tab or margin stop, but so far I haven't managed to find any pictures of such use *before* IBM PCs launch in 1981. When I've asked the commenters to provide some sources, or name the devices, they've come empty handed. Maybe people remember them from word processors that came *after* 1981?
+
+<figure class="u-image-full-width">
+    {% image
+        "./src/assets/images/0x7f/msword.jpg",
+        "",
+        "Margin stops in MS Word.",
+        "(min-width: 30em) 50vw, 100vw",
+        true
+    %}
+    <figcaption>The margin stops in MS Word after version 6.x</figcaption>
+</figure>
+
+Sure enough, the margin stops in MS Word do resemble the house character quite a bit. But, this is a relatively recent development: the house-resembling-markers were added to Word in 1993 for version 6. Before that, MS Word indicated tab and margin stops with simple triangles, numbers, and square brackets. 
+
+What about other word processors? [WordPerfect](https://youtu.be/ML_GoEUhs4A?t=358), indicated tab stops with <span class="ibmpcbios-inline">▲</span>, and [WordStar](https://youtu.be/5kYfsP_WKLY?t=365) used the exclamation point (<span class="ibmpcbios-inline">!</span>). There is, however, IBM's own [DisplayWrite](https://www.dosdays.co.uk/topics/Software/ibm_displaywrite.php) program for DOS, which *did* use the house symbol to indicate the *center line*, but it came out in 1984, three years after the launch of IBM PC. It seems unlikely that IBM would have anticipated its use for this minor purpose, especially considering that IBM's earlier computer, the DisplayWrite**R** from 1980, indicated the center line, not with a house, but [with a triangle](https://www.youtube.com/watch?v=YnU_woucebE&t=169s).
+
+<figure class="u-image-full-width">
+    {% image
+        "./src/assets/images/0x7f/displaywrite_1.png",
+        "",
+        "Tab markers in MS Word.",
+        "(min-width: 30em) 50vw, 100vw",
+        true
+    %}
+    <figcaption>IBM's DisplayWrite for DOS from 1984 uses the house symbol to indicate the center line.</figcaption>
+</figure>
+
+Also, if the house was indeed intended to represent a margin or tab stop, then why didn't they add its glyph to code point 0x09, which is already standardized in ASCII as "horizontal tabulation"? And, ECMA-17 from 1968 already has a standardised graphical representation for horizontal tabs, which is a right arrow. All in all, while people might nowadays associate the house symbol with a tab marker, this association is quite likely based on their memories of MS Word or other modern word processors. There doesn't seem to be any concrete evidence of its use for this purpose before 1981. But I would gladly be proven wrong. If you know something more, send me an email: hlotvonen@gmail.com
+
+:::
+
+### Further reading
+
+If you enjoyed this read, you might also want to check out the "main" article which digs deeper into the history of DEL character, and how it was represented and used in the Amiga computers. It's not quite as "juicy" of a story as this one, but interesting nonetheless: [The origins of DEL (0x7F) and its Legacy in Amiga ASCII art](../the-origins-of-del-0x7f-and-its-legacy-in-amiga-ascii-art/)
