@@ -162,7 +162,7 @@ Its angled top makes it useful for creating curves, as seen in ddrj's [drj-mmc.a
 
 ## Theories on the origins of CP437's house
 
-But what about IBM? Why did IBM decide to include a symbol representing a house in their character set? It's a strange glyph; adding a smiley is readily arguable, and playing card suits have existed in prior character sets, but a house—as far as I can tell—didn't exist as a glyph anywhere before IBM's Code Page 437. It seems to come out of thin air. To my knowledge, there are no (surviving) documents on the design process of the character set. The little bit we know comes from a few interviews, like the one with David J. Bradley, and from meticulous research done by people like [VileR](https://int10h.org/blog/2024/10/missing-ibm-pc-localization-disks-roms/). So, the only thing I can do is speculate. Here are my thoughts:
+But what about IBM? Why did IBM decide to include a symbol representing a house in their character set? It's a strange glyph; adding a smiley is readily arguable, and playing card suits have existed in prior character sets, but a house—as far as I can tell—didn't exist as a glyph anywhere before IBM's Code Page 437. It seems to have come out of thin air. To my knowledge, there are no (surviving) documents on the design process of the character set. The little bit we know comes from a few interviews, like the one with David J. Bradley, and from meticulous research done by people like [VileR](https://int10h.org/blog/2024/10/missing-ibm-pc-localization-disks-roms/). So, the only thing I can do is speculate. Here are my thoughts:
 
 ::: wrap note
 #### Acknowledgements
@@ -338,12 +338,12 @@ As I was taking another look at VileR's oldschool PC fonts page on the original 
         "(min-width: 30em) 50vw, 100vw",
         true
     %}
-    <figcaption>This Greek variant of IBM PC's font renders the greek delta as a house!</figcaption>
+    <figcaption>IBM PC-like Greek .psf font from a console-tools linux package, renders the greek delta as a house.</figcaption>
 </figure>
 
-That can't be a mistake, can it? If even the actual Greek uppercase delta is, quite unmistakenly, rendered as a house, then the theory that DEL is just a badly formed uppercase Greek delta character with the bottom corners cut off (due to a lack of horizontal pixels) starts to seem more and more convincing.
+If even the actual Greek uppercase delta is, quite unmistakenly, rendered as a house, then the theory that DEL is just a badly formed uppercase Greek delta character with the bottom corners cut off (due to a lack of horizontal pixels) starts to seem more and more convincing.
 
-But yet again, it's not so simple. VileR pointed out to me that we don't *actually* know what the official IBM PC Greek font looked like! The character set above is from a Greek .psf font from *console-tools* (a linux package), which is styled like IBM's, but isn't necessarily based on actual IBM sources. The actual IBM Greek character set, CP851, was (presumably) used in IBMs Greek video card ROMs, and supplied on IBM's *National Language Supplement* diskette. But, neither the ROMs, nor the language diskettes, have ever been made available anywhere. The only Greek fonts that have survived are from various software and video cards made by third party vendors, not by IBM. And, the [one Greek font VileR has found](https://github.com/viler-int10h/vga-text-mode-fonts/blob/master/PREVIEWS/SYSTEM/DOSMIXED/CP851.F14.png), which *might* be a direct copy of an IBM PC font, actually renders the Greek delta as a delta, not a house!
+But yet again, it's not so simple. VileR pointed out to me that we don't *actually* know what the official IBM PC Greek font looked like! The original pixel data of the IBM Greek CP851 character set could be (presumably) found in IBM's Greek video card ROMs, or on IBM's *National Language Supplement* diskettes. But, neither the ROMs, nor the language diskettes, have ever been made available anywhere. The *only* Greek fonts that have survived are sourced from software and video cards made by third party vendors, not by IBM. But while most of the third party Greek fonts I found are styled like IBM's, and render 0x7F as a house, they aren't necessarily based on actual IBM sources. And, the one Greek font VileR has found, an unknown [MS-DOS CP851 font](https://github.com/viler-int10h/vga-text-mode-fonts/blob/master/PREVIEWS/SYSTEM/DOSMIXED/CP851.F14.png), which *might* be a direct copy of an actual IBM PC font, renders the Greek delta as a delta, not a house!
 
 <figure class="u-image-full-width">
     {% image
