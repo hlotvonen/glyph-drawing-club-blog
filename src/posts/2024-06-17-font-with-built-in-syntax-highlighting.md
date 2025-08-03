@@ -353,17 +353,18 @@ In order to modify the built-in color palette, you have to edit the font source 
 
 ## Projects using this font
 
-Here's some cool projects using this font:
+Here's some cool projects that are using or are inspired by this font:
 
 1. [Holograph is a visual coding tool built on tldraw](https://www.holograph.so/) & [its GitHub page](https://github.com/dennishansen/holograph)
 2. [@celine/celine is library for building reactive HTML notebooks](https://maxbo.me/celine/) & [its GitHub page](https://github.com/MaxwellBo/celine) & [blogpost](https://maxbo.me/a-html-file-is-all-you-need.html)
 3. [Shaders art made with pure CSS](https://chenglou.me/pure-css-shaders-art/) & [its GitHub Page](https://github.com/chenglou/pure-css-shaders-art)
 4. [Mdit, a simple Markdown previewer](https://mdit.pages.dev/) & [its GitHub Page](https://github.com/roblesdotdev/mdit)
 5. [Web Component for making a Textarea element into a syntax highlighted codeblock](https://github.com/JRJurman/textarea-code-block)
-6. Not well implemented (yet), but it's used in [a rich text editor extension with related Taiga UI components](https://taiga-family.github.io/editor/highlight/code)
-7. It might also be used as an example for displaying the potential uses for color fonts in the W3C [CSS Fonts Module Level 4 specification](https://github.com/w3c/csswg-drafts/tree/main/css-fonts-4)
-8. [<code-pen> Web Component with syntax highlighting](https://codepen.io/daviddarnes/pen/poXpaLB?editors=1100)
-9. (Did you make a project using this font, or know a project that uses it? Let me know please!)
+6. It might also be used as an example for displaying the potential uses for color fonts in the W3C [CSS Fonts Module Level 4 specification](https://github.com/w3c/csswg-drafts/tree/main/css-fonts-4)
+7. [<code-pen> Web Component with syntax highlighting](https://codepen.io/daviddarnes/pen/poXpaLB?editors=1100)
+8. [An OpenType font with built-in TEX syntax highlighting](https://tug.org/tug2025/preprints/rajeesh-colorfont-syntax.pdf)
+9. [Labelary ZPL viewer & editor](https://labelary.com/viewer.html)
+10. (Did you make a project using this font, or know a project that uses it? Let me know please!)
 
 ## Potential future
 
