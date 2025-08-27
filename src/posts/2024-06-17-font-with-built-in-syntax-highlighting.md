@@ -8,6 +8,8 @@ tags:
     - Blog
     - Type Design
     - Fonts
+    - CSS
+    - Typography
 webcomponents: 
     - tiny-box
 ---
