@@ -32,6 +32,8 @@ I had never heard of "cogent" or "semi-justified" text alignment, and searching 
     <figcaption>Semi-justified and ragged comparison. Images from the briarpress discussion.</figcaption>
 </figure>
 
+Edit: [Johannes Lang](https://typo.social/@jo/115105914791813359) pointed out Fraser Muggeridge's recent talk [*Justified and unjustified setting (at the same time)*](https://vimeo.com/1059643515) which is about this exact method! Muggeridge shows some examples of its use, one of which is typography made by [Herbert Bayer in *Visual Communication, Architecture, Painting*](https://books.alicemourou.com/books/visual-communication-architecture-painting)(1967).
+
 I found this idea interesting, so I had to try it out. Here's an interactive demo:
 
 <soft-justify 
@@ -168,7 +170,7 @@ While a justification system based on the [Knuth–Plass line-breaking algorithm
     Justifying text usually means that all lines except (usually) the last are set to equal measure. Text justification is very common in books and other printed matter, and is regarded by many as an essential property of high quality typography. On the web, it's the opposite.
 </div>
 
-We can't have Knuth-Plass on the web — sad, but understandable. But `text-align:justify;` is nigh useless, so maybe this semi-justified system could offer a real alternative. It has essentially the same computational cost as regular greedy justification since it's still a greedy algorithm, just with bounds checking. Since we've only really had *one* option for text alignment since the birth of the web, `text-align: left;`, maybe this could some day provide another one? Imagine if you could just do something like this...
+We can't have Knuth-Plass on the web — sad, but understandable (although, [Dan Burzo](https://typo.social/@db/115105923083489752) pointed out to me that [`text-wrap:pretty;`](https://webkit.org/blog/16547/better-typography-with-text-wrap-pretty/) might bring it to web at some point). But `text-align:justify;` is nigh useless, so maybe this semi-justified system could offer a real alternative. It has essentially the same computational cost as regular greedy justification since it's still a greedy algorithm, just with bounds checking. Since we've only really had *one* option for text alignment since the birth of the web, `text-align: left;`, maybe this could some day provide another one? Imagine if you could just do something like this...
 
     p {
       text-align: justify;
