@@ -3,111 +3,64 @@ Core algorithm for soft-justify
 */
 
 class SoftJustify {
-  #measureText;
-  #measureCache;
-
-  constructor(measureFunction) {
-    this.#measureText = measureFunction;
-    this.#measureCache = new Map();
+  constructor(measureText) {
+    this.measure = measureText;
+    this.measureCache = new Map();
   }
 
-  justifyText(text, config) {
-    const { maxWidth, minSpace, maxSpace, normalSpace } = config;
+  justifyText(text, { maxWidth, minSpace, maxSpace, normalSpace }) {
+    const words = text.trim().split(/\s+/);
+    const lines = this.breakLines(words, maxWidth, minSpace);
     
-    const words = this.#tokenizeText(text);
-    const lines = this.#breakIntoLines(words, maxWidth, minSpace);
-    
-    return lines.map((lineWords, index) => {
-      const isLastLine = index === lines.length - 1;
-      const shouldJustify = this.#shouldJustifyLine(lineWords, isLastLine, maxWidth, maxSpace);
+    return lines.map((words, i) => {
+      const isLast = i === lines.length - 1;
+      const canJustify = words.length > 1 && !isLast && 
+        this.totalWidth(words) + (words.length - 1) * maxSpace >= maxWidth;
       
       return {
-        words: lineWords,
-        type: shouldJustify ? 'justified' : 'normal',
-        spacing: shouldJustify 
-          ? this.#calculateOptimalSpacing(lineWords, maxWidth, minSpace, maxSpace)
-          : normalSpace,
-        isLast: isLastLine
+        words,
+        spacing: canJustify ? this.calcSpacing(words, maxWidth, minSpace, maxSpace) : normalSpace,
+        justified: canJustify
       };
     });
   }
-  
-  #tokenizeText(text) {
-    return text.trim().split(/\s+/).filter(w => w.length > 0);
-  }
 
-  #breakIntoLines(words, maxWidth, minSpace) {
+  breakLines(words, maxWidth, minSpace) {
     const lines = [];
-    let currentLine = [];
-
+    let line = [];
+    
     for (const word of words) {
-      if (this.#wordFitsOnLine(currentLine, word, maxWidth, minSpace)) {
-        currentLine.push(word);
-      } else {
-        if (currentLine.length > 0) {
-          lines.push(currentLine);
-          currentLine = [];
-        }
-        currentLine.push(word);
+      if (line.length && !this.fits(line, word, maxWidth, minSpace)) {
+        lines.push(line);
+        line = [];
       }
-    }
-
-    if (currentLine.length > 0) {
-      lines.push(currentLine);
+      line.push(word);
     }
     
+    if (line.length) lines.push(line);
     return lines;
   }
 
-  #shouldJustifyLine(words, isLastLine, maxWidth, maxSpace) {
-    if (words.length <= 1 || isLastLine) return false;
-
-    const totalWordWidth = this.#getTotalWidth(words);
-    const gapCount = words.length - 1;
-    const maxPossibleWidth = totalWordWidth + (gapCount * maxSpace);
-
-    return maxPossibleWidth >= maxWidth;
+  fits(line, word, maxWidth, minSpace) {
+    return this.totalWidth(line) + this.measureTextCached(word) + line.length * minSpace <= maxWidth;
   }
 
-  #calculateOptimalSpacing(words, maxWidth, minSpace, maxSpace) {
-    const totalWordWidth = this.#getTotalWidth(words);
-    const gapCount = words.length - 1;
-
-    if (gapCount === 0) return minSpace;
-
-    const availableSpace = maxWidth - totalWordWidth;
-    const idealSpacing = availableSpace / gapCount;
-
-    return Math.min(Math.max(idealSpacing, minSpace), maxSpace);
+  calcSpacing(words, maxWidth, minSpace, maxSpace) {
+    const gaps = words.length - 1;
+    if (!gaps) return minSpace;
+    
+    const spacing = (maxWidth - this.totalWidth(words)) / gaps;
+    return Math.min(Math.max(spacing, minSpace), maxSpace);
   }
 
-  #wordFitsOnLine(currentLine, word, maxWidth, minSpace) {
-    if (currentLine.length === 0) return true;
-
-    const currentWidth = this.#getTotalWidth(currentLine);
-    const wordWidth = this.measureTextCached(word);
-    const spacesNeeded = currentLine.length * minSpace;
-
-    return currentWidth + wordWidth + spacesNeeded <= maxWidth;
-  }
-  
-  #getTotalWidth(words) { 
-    return words.reduce((total, word) => total + this.measureTextCached(word), 0);
+  totalWidth(words) {
+    return words.reduce((sum, word) => sum + this.measureTextCached(word), 0);
   }
 
   measureTextCached(text) {
-    let width = this.#measureCache.get(text);
-    if (width !== undefined) return width;
-
-    width = this.#measureText(text);
-    this.#measureCache.set(text, width);
-    return width;
+    return this.measureCache.get(text) ?? 
+      (this.measureCache.set(text, this.measure(text)), this.measureCache.get(text));
   }
-
-  clearCache() {
-    this.#measureCache.clear();
-  }
-
 }
 
 /*
@@ -244,6 +197,9 @@ class SoftJustifyElement extends HTMLElement {
 
     this.shadowRoot.innerHTML = `
                     <style>
+                        :host {
+                          
+                        }
                         .controls {
                             display: ${showControls ? 'block' : 'none'};
                             padding:0.5rem 0;
@@ -253,6 +209,8 @@ class SoftJustifyElement extends HTMLElement {
                         }
                         svg {
                             border-right: ${showEdge ? '1px solid var(--color-4)' : 'none'};
+                            overflow:auto;
+                            max-width:100%;
                         }
                         svg text {
                             fill:var(--color-7);

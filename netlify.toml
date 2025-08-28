@@ -20,6 +20,12 @@
 #     status = 301
 #     force = true
 
+
+[[redirects]]
+    from = "/proposal-better-css-text-justification/"
+    to = "/semi-justified-text"
+    status = 301
+
 [[redirects]]
     from = "/moebius-ansi-and-ascii-art-editor-with-custom-font-support/"
     to = "/moebiusxbin-ascii-and-text-mode-art-editor-with-custom-font-support/"
