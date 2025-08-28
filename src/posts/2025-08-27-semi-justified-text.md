@@ -32,7 +32,7 @@ I had never heard of "cogent" or "semi-justified" text alignment, and searching 
     <figcaption>Semi-justified and ragged comparison. Images from the briarpress discussion.</figcaption>
 </figure>
 
-Edit: [Johannes Lang](https://typo.social/@jo/115105914791813359) pointed out Fraser Muggeridge's recent talk [*Justified and unjustified setting (at the same time)*](https://vimeo.com/1059643515) which is about this exact method! Muggeridge shows some examples of its use, one of which is typography made by [Herbert Bayer in *Visual Communication, Architecture, Painting*](https://books.alicemourou.com/books/visual-communication-architecture-painting)(1967).
+Edit: [Johannes Lang](https://typo.social/@jo/115105914791813359) pointed out that Fraser Muggeridge gave a talk recently about this exact method: [*Justified and unjustified setting (at the same time)*](https://vimeo.com/1059643515)! The talk includes many examples, it's worth a watch.
 
 I found this idea interesting, so I had to try it out. Here's an interactive demo:
 
