@@ -62,7 +62,7 @@ Instead what we can do is the following:
 2. Add words to a line if there's enough room for *at least the minimum spacing between all words*. 
 3. Determine what the *maximum allowed word space* should be (25% bigger than normal space still looks ok), and distribute the remaining space until the maximum spacing between all words is reached. 
 4. If even the maximum spacing can't reach the target line width, *don't distribute the remaining space*; instead use normal spacing to make the line ragged.
-5. Repeat for each line.
+5. Repeat for each line, including the last.
 
 That's it. It's a really simple system. Here's a non-optimised implementation in JavaScript:
 
@@ -78,8 +78,7 @@ That's it. It's a really simple system. Here's a non-optimised implementation in
         const lines = this.#breakLines(words, maxWidth, minSpace);
 
         return lines.map((words, i) => {
-          const isLast = i === lines.length - 1;
-          const canJustify = words.length > 1 && !isLast &&
+          const canJustify = words.length > 1 &&
             this.#totalWidth(words) + (words.length - 1) * maxSpace >= maxWidth;
 
           return {

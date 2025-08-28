@@ -13,8 +13,7 @@ class SoftJustify {
     const lines = this.breakLines(words, maxWidth, minSpace);
     
     return lines.map((words, i) => {
-      const isLast = i === lines.length - 1;
-      const canJustify = words.length > 1 && !isLast && 
+      const canJustify = words.length > 1 && 
         this.totalWidth(words) + (words.length - 1) * maxSpace >= maxWidth;
       
       return {
