@@ -59,14 +59,13 @@ Instead what we can do is the following:
 1. Determine what the *minimum allowed word space* should be. I found that 25% smaller normal space is usually acceptable. 
 2. Add words to a line if there's enough room for *at least the minimum spacing between all words*. 
 3. Determine what the *maximum allowed word space* should be (25% bigger than normal space still looks ok), and distribute the remaining space until the maximum spacing between all words is reached. 
-4. If even the maximum spacing can't reach the target line width, *don't distribute the remaining space*; instead use normal spacing to make the line normal ragged.
+4. If even the maximum spacing can't reach the target line width, *don't distribute the remaining space*; instead use normal spacing to make the line ragged.
 5. Repeat for each line.
 
 That's it. It's a really simple system. Here's a non-optimised implementation in JavaScript:
 
     class SoftJustify {
-      // measureText should be a function that returns the pixel width of a text string
-      // it could be canvas.measureText(text).width or SVG getComputedTextLength()
+      // measureText should return the pixel width of a text string
       #measure
       constructor(measureText) {
         this.#measure = measureText;
@@ -85,8 +84,7 @@ That's it. It's a really simple system. Here's a non-optimised implementation in
             words,
             spacing: canJustify
               ? this.#calcSpacing(words, maxWidth, minSpace, maxSpace)
-              : normalSpace,
-            justified: canJustify
+              : normalSpace
           };
         });
       }
