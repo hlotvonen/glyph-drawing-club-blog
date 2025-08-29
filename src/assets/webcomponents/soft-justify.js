@@ -173,6 +173,15 @@ class SoftJustifyElement extends HTMLElement {
     this.render();
     this.setupComponents();
     this.setupEventListeners();
+
+    // using a custom font, so gotta make sure the font is loaded to get correct measurements
+    document.fonts.addEventListener('loadingdone', () => {
+      if (this.softJustify) {
+        this.softJustify.measureCache.clear();
+      }
+      this.justify();
+    });
+
     this.justify();
   }
 
@@ -364,7 +373,7 @@ class SoftJustifyElement extends HTMLElement {
       });
 
       this.renderer.render(justifiedLines, params.lineHeight, this.softJustify);
-    }, 0);
+    }, 1);
   }
 
   clearCacheAndJustify() {
