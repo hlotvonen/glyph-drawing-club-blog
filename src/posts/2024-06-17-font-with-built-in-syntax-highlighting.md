@@ -14,14 +14,6 @@ webcomponents:
     - tiny-box
 ---
 
-::: wrap note
-
-Note:
-
-I received a lot of great feedback from the discussions at [Mastodon](https://typo.social/@gdc/112959308500800771) and [Hacker News](https://news.ycombinator.com/item?id=41245159), so I've updated the post with some improvements to the font! I've also added some further examples and acknowledgements at the end.
-
-:::
-
 ## Syntax Highlighting in Hand-Coded Websites
 
 ### The problem 
@@ -81,46 +73,47 @@ This method opens up some interesting possibilities...
 6. Clean HTML source code.
 7. Works everywhere that supports OpenType features, like InDesign.
 8. Doesn't require maintenance or updating.
-9. Works in `<textarea>` and `<input>`! Syntax highlighting inside `<textarea>` has been [previously impossible](https://css-tricks.com/creating-an-editable-textarea-that-supports-syntax-highlighted-code/), because textareas and inputs can only contain plain text. This is where the interesting possibilities lie. As a demo, I made this tiny HTML, CSS & JS sandbox, with native undo and redo, in a single, [~200 line web component](/assets/webcomponents/tinybox.js).
+9. Works in `<textarea>` and `<input>`! Syntax highlighting inside `<textarea>` has been [previously impossible](https://css-tricks.com/creating-an-editable-textarea-that-supports-syntax-highlighted-code/), because textareas and inputs can only contain plain text. This is where the interesting possibilities lie. As a demo, I made this tiny HTML, CSS & JS sandbox, with native undo and redo, in a single, [web component](/assets/webcomponents/tinybox.js).
 
 <tiny-box class="u-screen-size">
   <template>
-    <style>
-      .container {
-        height: 100%;
-        width: 100%;
-        display: grid;
-        place-content: center;
-        background:
-          /* evening sunset over ocean horizon */
-          linear-gradient(
-            lch(40 50 290),
-            lch(60 50 60) 50%,
-            lch(60 55 30) 70%,
-            lch(20 20 290) 70.2%,
-            lch(40 30 60)
-          )
-        ;
-      }
-      p {
-        font-size: clamp(16px, 2vw, 32px);
-        color: lch(10 40 290);
-      }
-      html, body {
-        width:100%;
-        height:100%;
-        margin:0;
-      }
-    </style>
-    <div class="container">
-      <!-- Edit the content! -->
-      <p>
-        tiny HTML & CSS sandbox =)
-      </p>
-    </div>
-    <script>
-      document.querySelector('p').style.background = 'yellow';
-    </script>
+      <style>
+        .container {
+          height: 100%;
+          width: 100%;
+          display: grid;
+          place-content: center;
+          background:
+            /* evening sunset over ocean horizon */
+            linear-gradient(
+              lch(40 50 290),
+              lch(60 50 60) 50%,
+              lch(60 55 30) 70%,
+              lch(20 20 290) 70.2%,
+              lch(40 30 60)
+            )
+          ;
+        }
+        p {
+          font-size: clamp(16px, 2vw, 32px);
+          color: lch(10 40 290);
+        }
+        html, body {
+          width:100%;
+          height:100%;
+          margin:0;
+        }
+      </style>
+      <div class="container">
+        <!-- Edit the content! -->
+        <p>
+          tiny HTML & CSS sandbox =)
+        </p>
+      </div>
+      <script>
+        const textHighlightColor = "yellow";
+        document.querySelector('p').style.background = textHighlightColor;
+      </script>
   </template>
 </tiny-box>
 
@@ -133,7 +126,7 @@ There are, of course, some limitations to this method. It is not a direct replac
 3. Finding patterns in text with OpenType contextual alternates is quite basic, and is no match for scripts that use regular expressions. For example, words within `<p>` tags that are JS keywords will be always highlighted: `<p>if I throw this Object through the window, catch it, for else it’ll continue to Infinity & break</p>`. 
 4. Multiline highlighting with manual line breaks will sadly not work. 
 
-    This is a common, for example, in comment blocks and template literals:
+    This is common, for example, in comment blocks and template literals:
 
         <!-- This line gets highlighted...
         but not this, because I made a manual line break...
@@ -260,7 +253,7 @@ Instead, I came up with this monstrosity. Here's how I find CSS value functions:
 
 @CssParam is a custom OpenType glyph class I've set up. It includes the characters `A`&thinsp;`–`&thinsp;`Z`, `a`&thinsp;`–`&thinsp;`z`, and `-`, which are all the possible characters used in CSS value function names. Because the longest possible CSS value function name is `repeating-linear-gradient()`, with 25 letters, the first line of the lookup starts with @CssParam repeated 25 times, followed by parenleft (`(`). This lookup will match any word up to 25 letters long, if it's immediately followed by an opening parenthesis. When a match occurs, it substitutes the matched text with its alternate color form (@CssParamAlt4). 
 
-This lookup works for both CSS and JavaScript. It will colorize standard CSS functions like `rgb()` as well as custom JavaScript functions like `myFunction()`. The result is a semi-flexible syntax highlighter that doesn't require complex parsing. I've repeated the same principle for finding HTML tags and attributes, and for CSS selectors and parameters.
+This lookup works for both CSS and JavaScript. It will colorize standard CSS functions like `rgb()` as well as custom JavaScript functions like `myFunction()`. The result is a semi-flexible syntax highlighter that doesn't require complex parsing. The downside is that if you have a really long function name, it stops working midway: `aReallyLongFunctionNameStopsWorkingMidway()`. I've repeated the same principle for finding HTML tags and attributes, and for CSS selectors and parameters.
 
 #### Unknown length rules
 
@@ -606,6 +599,10 @@ The original source .glyphs file is [hosted in this GitHub repository](https://g
 
     // Export statement
     export { greet, Person };
+
+## Discussion
+
+I received a lot of great feedback from the discussions at [Mastodon](https://typo.social/@gdc/112959308500800771) and [Hacker News](https://news.ycombinator.com/item?id=41245159).
 
 ## Acknowledgements
 
