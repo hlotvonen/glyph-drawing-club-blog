@@ -366,7 +366,9 @@ Here's some cool projects that are using or are inspired by this font:
 7. [<code-pen> Web Component with syntax highlighting](https://codepen.io/daviddarnes/pen/poXpaLB?editors=1100)
 8. [An OpenType font with built-in TEX syntax highlighting](https://tug.org/tug2025/preprints/rajeesh-colorfont-syntax.pdf)
 9. [Labelary ZPL viewer & editor](https://labelary.com/viewer.html)
-10. (Did you make a project using this font, or know a project that uses it? Let me know please!)
+10. [garten.salat.dev blog](https://garten.salat.dev/)
+11. [L’invasion du HTML mutant](https://www.ffoodd.fr/devfest.2024/jeu/)
+11. (Did you make a project using this font, or know a project that uses it? Let me know please!)
 
 ## Potential future
 
