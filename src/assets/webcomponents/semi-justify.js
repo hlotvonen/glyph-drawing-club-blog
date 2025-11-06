@@ -1,8 +1,8 @@
 /*
-Core algorithm for soft-justify
+Core algorithm for semi-justify
 */
 
-class SoftJustify {
+class SemiJustify {
   constructor(measureText) {
     this.measure = measureText;
     this.measureCache = new Map();
@@ -158,7 +158,7 @@ class SVGTextRenderer {
  Web component specific stuff
 */
 
-class SoftJustifyElement extends HTMLElement {
+class SemiJustifyElement extends HTMLElement {
   static get observedAttributes() {
     return ['text', 'width', 'min-space', 'max-space', 'show-controls', 'show-edge', 'font-size'];
   }
@@ -176,8 +176,8 @@ class SoftJustifyElement extends HTMLElement {
 
     // using a custom font, so gotta make sure the font is loaded to get correct measurements
     document.fonts.addEventListener('loadingdone', () => {
-      if (this.softJustify) {
-        this.softJustify.measureCache.clear();
+      if (this.semiJustify) {
+        this.semiJustify.measureCache.clear();
       }
       this.justify();
     });
@@ -271,7 +271,7 @@ class SoftJustifyElement extends HTMLElement {
     // Initialize renderer and justifier
     const fontSize = parseInt(this.getAttribute('font-size')) || 16;
     this.renderer = new SVGTextRenderer(this.elements.svg, fontSize);
-    this.softJustify = new SoftJustify((text) => this.renderer.measureText(text));
+    this.semiJustify = new SemiJustify((text) => this.renderer.measureText(text));
 
     this.updateDisplays();
   }
@@ -362,23 +362,23 @@ class SoftJustifyElement extends HTMLElement {
   justify() {
     clearTimeout(this.justifyTimeout);
     this.justifyTimeout = setTimeout(() => {
-      if (!this.softJustify || !this.renderer) return;
+      if (!this.semiJustify || !this.renderer) return;
 
       const params = this.getParameters();
-      const justifiedLines = this.softJustify.justifyText(params.text, {
+      const justifiedLines = this.semiJustify.justifyText(params.text, {
         maxWidth: params.maxWidth,
         minSpace: params.minSpace,
         maxSpace: params.maxSpace,
         normalSpace: params.normalSpace
       });
 
-      this.renderer.render(justifiedLines, params.lineHeight, this.softJustify);
+      this.renderer.render(justifiedLines, params.lineHeight, this.semiJustify);
     }, 1);
   }
 
   clearCacheAndJustify() {
-    if (this.softJustify) {
-      this.softJustify.clearCache();
+    if (this.semiJustify) {
+      this.semiJustify.clearCache();
     }
     this.justify();
   }
@@ -404,4 +404,4 @@ class SoftJustifyElement extends HTMLElement {
 }
 
 // Register the custom element
-customElements.define('soft-justify', SoftJustifyElement);
+customElements.define('semi-justify', SemiJustifyElement);
